@@ -8,6 +8,9 @@ class InicioController extends Controller
 {
     //
     public function inicioTurismoLosAngeles(){
-        return view('inicioTurismoLosAngeles');
+        return view('inicio-turismo-los-angeles');
     }
+    // public function logearTurismoLosAngeles(){
+    //     return view('inicioSesionTurismoLosAngeles');
+    // }
 }

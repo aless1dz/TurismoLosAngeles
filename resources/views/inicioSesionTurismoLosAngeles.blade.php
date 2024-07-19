@@ -13,14 +13,15 @@
     <div class="form-container sign-in-form">
         <div class="form-box sign-in-box">
             <h2>Inicio de sesión</h2>
-            <form action="">
+            <form action="/logear-turismo-los-angeles" method="POST">
+            @csrf
                 <div class="field">
                     <i class="uil uil-at"></i>
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="field">
                     <i class="uil uil-lock-alt"></i>
-                    <input class="password-input" type="password" placeholder="Contraseña" required>
+                    <input class="password-input" type="password" name="password" placeholder="Contraseña" required>
                     <div class="eye-btn"><i class="uil uil-eye-slash"></i></div>
                 </div>
                 <div class="forgot-link">
@@ -48,22 +49,23 @@
         </div>
         <div class="form-box sign-up-box">
             <h2>Registrate</h2>
-            <form action="">
+            <form action="/registrar-turismo-los-angeles" method="POST">
+            @csrf
                 <div class="field">
                     <i class="uil uil-at"></i>
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" name ="email" placeholder="Email" required>
                 </div>
                 <div class="field">
                     <i class="uil uil-user"></i>
-                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="text" name="name" placeholder="Nombre completo" required>
                 </div>
                 <div class="field">
                     <i class="uil uil-lock-alt"></i>
-                    <input type="password" placeholder="Contraseña" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
                 </div>
                 <div class="field">
                     <i class="uil uil-lock-access"></i>
-                    <input type="password" placeholder="Confirmar contraseña" required>
+                    <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" required>
                 </div>
                 <input class="submit-btn" type="submit" value="Sign up">
             </form>
