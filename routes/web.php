@@ -12,9 +12,12 @@ use Illuminate\Http\Request;
 // });
 
 Route::get('/inicio', [InicioController::class, 'inicioTurismoLosAngeles']);
+Route::get('/iniciar-sesion', [InicioController::class, 'logearTurismoLosAngeles']);
+Route::get('/registrarse', [InicioController::class, 'registrarseTurismoLosAngeles']);
+
 Route::get('/logear-turismo-los-angeles', [UserController::class, 'vistaLogin']);
-Route::post('/logear-turismo-los-angeles', [UserController::class, 'logear']);
-Route::post('/registrar-turismo-los-angeles', [UserController::class, 'registrar']);
+// Route::post('/logear-turismo-los-angeles', [UserController::class, 'logear']);
+// Route::post('/registrar-turismo-los-angeles', [UserController::class, 'registrar']);
 
 // Route::get('/email/verify', function () {
 //     return view('auth.verify-email');

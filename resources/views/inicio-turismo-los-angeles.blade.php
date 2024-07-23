@@ -12,7 +12,7 @@
 
         <!-- Encabezado Turismo Los Angeles -->
         <header>
-            <a href="#" class="brand">TurismoLosAngeles</a>
+            <a href="#" class="brand">Turismo Los Angeles</a>
             <div class="menu-btn"></div>
             <div class="navigation">
                 <div class="navigation-items">
