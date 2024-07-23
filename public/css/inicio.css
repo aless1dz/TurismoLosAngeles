@@ -898,4 +898,27 @@ fieldset:disabled .btn {
         transition: 0.3s ease;
     }
 }
+
+/*Estilo de alerta para cerrar sesion*/
+    .swal2-popup {
+        font-size: 1.0rem;
+        background-color: #565656;
+        border-radius: 60px;
+    }
+
+    .swal2-title {
+        color: #ffffff;
+    }
+
+    .swal2-confirm {
+        background-color: #105392;
+        border-radius: 5px;
+    }
+
+    .swal2-cancel {
+        background-color: rgb(45, 45, 45);
+        border-radius: 5px;
+    }
+    
 /* Final Responsivo Turismo Los Angeles */
+    
