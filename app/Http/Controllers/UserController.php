@@ -44,7 +44,6 @@ class UserController extends Controller
 
         event(new Registered($user));
 
-        $user->notify(new RegistroConfirmacion());
 
         return redirect('/logear-turismo-los-angeles')->with('status', 'Te hemos enviado un correo de confirmación.');
     }

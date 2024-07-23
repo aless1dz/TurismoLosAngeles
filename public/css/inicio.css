@@ -7,6 +7,18 @@
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    margin: 0;
+    font-family: "Heebo", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #808b8d;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
 header {
     z-index: 999;
     position: absolute;
@@ -198,8 +210,623 @@ section {
     transition: 2s ease;
     transition-property: clip-path;
 }
+/* Final Videos Turismo Los Angeles */
 
-/* Responsivo Turiamo Los Angeles */
+/* Inicio Sobre Nosotros Turismo Los Angeles */
+.container,
+.container-xxl {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container,
+  .container-sm {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container,
+  .container-sm,
+  .container-md {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 1320px;
+  }
+}
+
+.navbar > .container,
+.navbar > .container-xxl {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) / -2);
+  margin-left: calc(var(--bs-gutter-x) / -2);
+}
+
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) / 2);
+  padding-left: calc(var(--bs-gutter-x) / 2);
+  margin-top: var(--bs-gutter-y);
+}
+
+.g-5,
+.gx-5 {
+  --bs-gutter-x: 3rem;
+}
+
+.g-5,
+.gy-5 {
+  --bs-gutter-y: 3rem;
+}
+
+.col-lg-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.col-lg-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.text-start {
+  text-align: left !important;
+}
+
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.pe-3 {
+  padding-right: 1rem !important;
+}
+
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.btn-check[disabled] + .btn,
+.btn-check:disabled + .btn {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+.input-group .btn {
+  position: relative;
+  z-index: 2;
+}
+
+.input-group .btn:focus {
+  z-index: 3;
+}
+
+.input-group-lg > .form-control,
+.input-group-lg > .form-select,
+.input-group-lg > .input-group-text,
+.input-group-lg > .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+}
+
+.input-group-sm > .form-control,
+.input-group-sm > .form-select,
+.input-group-sm > .input-group-text,
+.input-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.2rem;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #808b8d;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+.btn:hover {
+  color: #808b8d;
+}
+.btn-check:focus + .btn,
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(134, 184, 23, 0.25);
+}
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+}
+.btn-sm,
+.btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.2rem;
+}
+
+.btn-group > .btn,
+.btn-group-vertical > .btn {
+  position: relative;
+  flex: 1 1 auto;
+}
+.btn-group > .btn-check:checked + .btn,
+.btn-group > .btn-check:focus + .btn,
+.btn-group > .btn:hover,
+.btn-group > .btn:focus,
+.btn-group > .btn:active,
+.btn-group > .btn.active,
+.btn-group-vertical > .btn-check:checked + .btn,
+.btn-group-vertical > .btn-check:focus + .btn,
+.btn-group-vertical > .btn:hover,
+.btn-group-vertical > .btn:focus,
+.btn-group-vertical > .btn:active,
+.btn-group-vertical > .btn.active {
+  z-index: 1;
+}
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.btn-group > .btn:nth-child(n + 3),
+.btn-group > :not(.btn-check) + .btn,
+.btn-group > .btn-group:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.btn-sm + .dropdown-toggle-split,
+.btn-group-sm > .btn + .dropdown-toggle-split {
+  padding-right: 0.375rem;
+  padding-left: 0.375rem;
+}
+.btn-lg + .dropdown-toggle-split,
+.btn-group-lg > .btn + .dropdown-toggle-split {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.btn-group-vertical > .btn,
+.btn-group-vertical > .btn-group {
+  width: 100%;
+}
+.btn-group-vertical > .btn:not(:first-child),
+.btn-group-vertical > .btn-group:not(:first-child) {
+  margin-top: -1px;
+}
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn-group:not(:last-child) > .btn {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-group-vertical > .btn ~ .btn,
+.btn-group-vertical > .btn-group:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+
+.btn-primary {
+  color: #000;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.btn-primary:hover {
+  color: #000;
+  background-color: #98c33a;
+  border-color: #92bf2e;
+}
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  color: #000;
+  background-color: #98c33a;
+  border-color: #92bf2e;
+  box-shadow: 0 0 0 0.25rem rgba(114, 156, 20, 0.5);
+}
+.btn-check:checked + .btn-primary,
+.btn-check:active + .btn-primary,
+.btn-primary:active,
+.btn-primary.active,
+.show > .btn-primary.dropdown-toggle {
+  color: #000;
+  background-color: #9ec645;
+  border-color: #92bf2e;
+}
+.btn-check:checked + .btn-primary:focus,
+.btn-check:active + .btn-primary:focus,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(114, 156, 20, 0.5);
+}
+.btn-primary:disabled,
+.btn-primary.disabled {
+  color: #000;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.py-3 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.px-5 {
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+}
+
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+/* Final Sobre Nosotros Turismo Los Angeles */
+
+/* Prueba */
+/*** Section Title ***/
+.section-title {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+  
+  .section-title::before {
+    position: absolute;
+    content: "";
+    width: calc(100% + 80px);
+    height: 2px;
+    top: 4px;
+    left: -40px;
+    background: var(--primary);
+    z-index: -1;
+  }
+  
+  .section-title::after {
+    position: absolute;
+    content: "";
+    width: calc(100% + 120px);
+    height: 2px;
+    bottom: 5px;
+    left: -60px;
+    background: var(--primary);
+    z-index: -1;
+  }
+  
+  .section-title.text-start::before {
+    width: calc(100% + 40px);
+    left: 0;
+  }
+  
+  .section-title.text-start::after {
+    width: calc(100% + 60px);
+    left: 0;
+  }
+  
+  /*** Service ***/
+  .service-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.08);
+    transition: 0.5s;
+  }
+  
+  .service-item:hover {
+    background: var(--primary);
+  }
+  
+  .service-item * {
+    transition: 0.5s;
+  }
+  
+  .service-item:hover * {
+    color: var(--light) !important;
+  }
+  
+  /*** Destination ***/
+  .destination img {
+    transition: 0.5s;
+  }
+  
+  .destination a:hover img {
+    transform: scale(1.1);
+  }
+  
+  /*** Package ***/
+  .package-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.08);
+  }
+  
+  .package-item img {
+    transition: 0.5s;
+  }
+  
+  .package-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  /*** Booking ***/
+  .booking {
+    background: linear-gradient(rgba(15, 23, 43, 0.7), rgba(15, 23, 43, 0.7)),
+      url(../img/booking.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /*** Team ***/
+  .team-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.08);
+  }
+  
+  .team-item img {
+    transition: 0.5s;
+  }
+  
+  .team-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .team-item .btn {
+    background: #ffffff;
+    color: var(--primary);
+    border-radius: 20px;
+    border-bottom: 1px solid var(--primary);
+  }
+  
+  .team-item .btn:hover {
+    background: var(--primary);
+    color: #ffffff;
+  }
+  
+  /*** Testimonial ***/
+  .testimonial-carousel::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 1;
+  }
+  
+  .testimonial-carousel::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 1;
+  }
+  
+  @media (min-width: 768px) {
+    .testimonial-carousel::before,
+    .testimonial-carousel::after {
+      width: 200px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .testimonial-carousel::before,
+    .testimonial-carousel::after {
+      width: 300px;
+    }
+  }
+  
+  .testimonial-carousel .owl-item .testimonial-item,
+  .testimonial-carousel .owl-item.center .testimonial-item * {
+    transition: 0.5s;
+  }
+  
+  .testimonial-carousel .owl-item.center .testimonial-item {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+  }
+  
+  .testimonial-carousel .owl-item.center .testimonial-item * {
+    color: #ffffff !important;
+  }
+  
+  .testimonial-carousel .owl-dots {
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .testimonial-carousel .owl-dot {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 15px;
+    transition: 0.5s;
+  }
+  
+  .testimonial-carousel .owl-dot.active {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  
+  /*** Footer ***/
+  .footer .btn.btn-social {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-weight: normal;
+    border: 1px solid #ffffff;
+    border-radius: 35px;
+    transition: 0.3s;
+  }
+  
+  .footer .btn.btn-social:hover {
+    color: var(--primary);
+  }
+  
+  .footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: 0.3s;
+  }
+  
+  .footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+  }
+  
+  .footer .btn.btn-link:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+  }
+  
+  .footer .copyright {
+    padding: 25px 0;
+    font-size: 15px;
+    border-top: 1px solid rgba(256, 256, 256, 0.1);
+  }
+  
+  .footer .copyright a {
+    color: var(--light);
+  }
+  
+  .footer .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer .footer-menu a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+  }
+  
+/* Prueba */
+
+/* Responsivo Turismo Los Angeles */
 @media (max-width: 1040px) {
     header {
         padding: 12px 20px;
