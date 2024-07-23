@@ -37,6 +37,13 @@ Route::get('/dashboard', function(){
     return view('adminFold.dashboard');
 });
 
+Route::get('/view/users',[UserController::class, "view"])->name('users');
+Route::get('/get/users', [UserController::class, 'getUsers']);
+Route::get('/get/user/{id}', [UserController::class, 'getUser']);
+Route::post('/insert/user', [UserController::class, 'insertUser']);
+Route::put('/update/user/{id}', [UserController::class, 'updateUser']);
+Route::delete('/delete/user/{id}', [UserController::class, 'deleteUser']);
+
 Route::get('/view/associates',[AssociatesController::class, "view"])->name('associates');
 Route::get('/get/associates', [AssociatesController::class, "index"]);
 Route::get('/get/associate/{id}',[AssociatesController::class, "show"]);

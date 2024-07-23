@@ -7,7 +7,7 @@ use App\Models\Associate;
 
 class AssociatesController extends Controller{
     public function view(){
-        return view('adminFold.clientes');
+        return view('adminFold.associates');
     }
 
     public function index()

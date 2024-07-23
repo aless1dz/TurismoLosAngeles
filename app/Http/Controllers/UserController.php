@@ -48,4 +48,50 @@ class UserController extends Controller
 
         return redirect('/logear-turismo-los-angeles')->with('status', 'Te hemos enviado un correo de confirmación.');
     }
+
+    public function view(){
+        return view('adminFold.clientes');
+    }
+
+    public function getUsers(Request $request)
+    {
+        $order = $request->query('order', 'asc');
+        $users = User::orderBy('id', $order)->get();
+        return response()->json($users);
+    }
+
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        return response()->json($user);
+    }
+
+    public function insertUser(Request $request)
+    {
+        $user = new User;
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->birthdate = $request->birthdate;
+        $user->save();
+        return response()->json($user);
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->birthdate = $request->birthdate;
+        $user->save();
+        return response()->json($user);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['message' => 'User deleted successfully']);
+    }
 }
