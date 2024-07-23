@@ -39,6 +39,7 @@ Route::post('/actualizar-contrasenia', [UserController::class, 'actualizarContra
 
 //ENVIAR CORREO DE BIENVENIDA
 Route::post('/registro', [UserController::class, 'registrar'])->name('registro');
+=======
 
 Route::get('/dashboard', function(){
     return view('adminFold.dashboard');
