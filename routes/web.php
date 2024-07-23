@@ -7,31 +7,38 @@ use App\Http\Controllers\AssociatesController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+     return view('inicio-turismo-los-angeles');
+});
 
-Route::get('/inicio', [InicioController::class, 'inicioTurismoLosAngeles']);
-Route::get('/iniciar-sesion', [InicioController::class, 'logearTurismoLosAngeles']);
-Route::get('/registrarse', [InicioController::class, 'registrarseTurismoLosAngeles']);
+//INICIO
+Route::get('/inicio', [UserController::class, 'inicioTurismoLosAngeles']);
 
-Route::get('/logear-turismo-los-angeles', [UserController::class, 'vistaLogin']);
-// Route::post('/logear-turismo-los-angeles', [UserController::class, 'logear']);
-// Route::post('/registrar-turismo-los-angeles', [UserController::class, 'registrar']);
+//LOGIN
+Route::get('/iniciar-sesion', [UserController::class, 'vistaLogin']);
+Route::post('/inicio-sesion', [UserController::class, 'logear']);
 
-// Route::get('/email/verify', function () {
-//     return view('auth.verify-email');
-// })->middleware('auth')->name('verification.notice');
+//CERRAR SESION
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-//     $request->fulfill();
-//     return redirect('/inicio-turismo-los-angeles');
-// })->middleware(['auth', 'signed'])->name('verification.verify');
+//REGISTRO
+Route::get('/registrarse', [UserController::class, 'vistaRegistro']);
+Route::post('/registro', [UserController::class, 'registrar']);
 
-// Route::post('/email/verification-notification', function (Request $request) {
-//     $request->user()->sendEmailVerificationNotification();
-//     return back()->with('status', 'verification-link-sent');
-// })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+//OBTENER FORMULARIO PARA ENVIAR EMAIL Y RECUPERAR CONTRASEÑA
+Route::get('/formulario-recuperar-contrasenia', [UserController::class, 'formularioRecuperarContrasenia'])->name('formulario-recuperar-contrasenia');
+
+//ENVIAR EL FORMULARIO PARA RECUPERAR CONTRASEÑA
+Route::post('/enviar-recuperar-contrasenia', [UserController::class, 'enviarRecuperarContrasenia'])->name('enviar-recuperacion');
+
+//OBTENER FORMULARIO PARA ACTUALIZAR CONTRASEÑA
+Route::get('/reiniciar-contrasenia/{token}', [UserController::class, 'formularioActualizacion'])->name('formulario-actualizar-contrasenia');
+
+//ENVIAR EL FORMULARIO PARA ACTUALIZAR CONTRASEÑA
+Route::post('/actualizar-contrasenia', [UserController::class, 'actualizarContrasenia'])->name('actualizar-contrasenia');
+
+//ENVIAR CORREO DE BIENVENIDA
+Route::post('/registro', [UserController::class, 'registrar'])->name('registro');
 
 Route::get('/dashboard', function(){
     return view('adminFold.dashboard');
