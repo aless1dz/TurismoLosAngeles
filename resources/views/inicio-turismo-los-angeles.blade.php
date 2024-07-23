@@ -20,7 +20,7 @@
                     <a href="#">Visas</a>
                     <a href="#">Galería</a>
                     <a href="#">Contacto</a>
-                    <a href="/logear-turismo-los-angeles">Iniciar Sesión</a>
+                    <a href="/iniciar-sesion">Iniciar Sesión</a>
                 </div>
             </div>
         </header>
