@@ -23,15 +23,10 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 //REGISTRO
 Route::get('/registrarse', [UserController::class, 'vistaRegistro']);
-Route::post('/registro', [UserController::class, 'registrar']);
+Route::post('/registro', [UserController::class, 'registrar'])->name('registro.post');
 
-//ENVIAR CORREO DE VERIFICACION EMAIL
-Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail']);
+Route::get('/confirmar-correo/{codigo}', [UserController::class, 'confirmarCorreo'])->name('confirmar.correo');
 
-//PROTEGER RUTAS SI EL USUARIO NO ESTA AUTENTICADO
-Route::middleware(['auth', 'verified'])->group(function () {
-     Route::get('/', [UserController::class, 'inicioTurismoLosAngeles']);
- });
 
 //OBTENER FORMULARIO PARA ENVIAR EMAIL Y RECUPERAR CONTRASEÑA
 Route::get('/formulario-recuperar-contrasenia', [UserController::class, 'formularioRecuperarContrasenia'])->name('formulario-recuperar-contrasenia');

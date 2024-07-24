@@ -139,7 +139,7 @@ class UserController extends Controller
         }
 
         return $next($request);
-}
+    }
 
     //RECUPERAR CONTRASEÑA
     public function formularioRecuperarContrasenia()

@@ -40,15 +40,12 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            if ($user->email_verified_at === null) {
-                Auth::logout();
-                return redirect()->back()->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
-            }
-            return redirect()->intended('/inicio');
+            return redirect('/inicio');
         }
-        return redirect()->back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros.']);
 
+        return back()->withErrors([
+            'invalid_credentials' => 'Las credenciales no coinciden con nuestros registros.',
+        ])->withInput();
     }
 
     public function logout(Request $request)
@@ -80,67 +77,62 @@ class UserController extends Controller
 
         ]
         );
-
-        $verificationToken = Str::random(60);
+        $confirmationCode = Str::random(6);
 
         $user = User::create([
             'name' => $request->name,
             'last_name'=> $request->last_name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),   
-            'email_verified_at' => null,
-            'verification_token' => $verificationToken,
-         
+            'password' => Hash::make($request->password),
+            'confirmation_code' => $confirmation_code,
+            'confirmation_code_expires_at' => now()->addMinutes(30) // Código expira en 30 minutos
+
         ]);
 
-        $this->enviarCorreoVerificacion($user->email, $verificationToken);
+        Mail::send('emails.confirmation', ['code' => $confirmationCode], function($message) use ($request) {
+            $message->to($request->email)
+                    ->subject('Código de Confirmación');
+            $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+        });
 
         return redirect('/iniciar-sesion')->with('message', 'Registro exitoso. Te hemos enviado un correo de bienvenida.');
 
     }
 
-    private function enviarCorreoVerificacion($email, $token)
+    public function confirmarCodigo(Request $request)
     {
-        $verificationLink = url('/verificar-email/' . $token);
+        $request->validate([
+            'email' => 'required|email',
+            'confirmation_code' => 'required|string'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || $user->confirmation_code !== $request->confirmation_code) {
+            return redirect('/')->with('error', 'Código de confirmación inválido.');
+        }
+
+        if ($user->confirmation_code_expires_at < now()) {
+            return redirect('/')->with('error', 'El código de confirmación ha expirado.');
+        }
+
+        $user->update([
+            'email_verified_at' => now(),
+            'confirmation_code' => null, // Limpiar el código de confirmación
+            'confirmation_code_expires_at' => null // Limpiar la fecha de caducidad
+        ]);
+
+        // Enviar correo de bienvenida
+        Mail::send('emails.bienvenida', ['user' => $user], function($message) use ($request) {
+            $message->to($request->email)
+                    ->subject('Bienvenido');
+            $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+        });
+
+        return redirect('/')->with('status', 'Correo confirmado. ¡Bienvenido!');
+    }
+
     
-        Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
-        $message->to($email)->subject('Verifica tu dirección de correo electrónico');
-        });
-    }
-    public function verificarEmail($token)
-    {
-        $user = User::where('verification_token', $token)->first();
-
-        if (!$user) {
-            return redirect('/iniciar-sesion')->with('error', 'Token de verificación inválido.');
-        }
-
-        $user->email_verified_at = now();
-        $user->verification_token = null;
-        $user->save();
-
-        $this->enviarCorreoBienvenida($user->email);
-
-        return redirect('/iniciar-sesion')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
-    }
-
-    private function enviarCorreoBienvenida($email)
-    {
-        Mail::send('emails.bienvenida', [], function ($message) use ($email) {
-            $message->to($email)->subject('Bienvenido a nuestra plataforma');
-        });
-    }
-
-    public function handle($request, Closure $next)
-    {
-        if (Auth::check() && !Auth::user()->email_verified_at) {
-            Auth::logout();
-            return redirect('/iniciar-sesion')->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
-        }
-
-        return $next($request);
-}
-
     //RECUPERAR CONTRASEÑA
     public function formularioRecuperarContrasenia()
     {

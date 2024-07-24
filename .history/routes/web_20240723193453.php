@@ -25,13 +25,12 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/registrarse', [UserController::class, 'vistaRegistro']);
 Route::post('/registro', [UserController::class, 'registrar']);
 
-//ENVIAR CORREO DE VERIFICACION EMAIL
-Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail']);
+Route::post('/confirmar-codigo', [UserController::class, 'confirmarCodigo'])->name('confirmar.codigo');
 
-//PROTEGER RUTAS SI EL USUARIO NO ESTA AUTENTICADO
-Route::middleware(['auth', 'verified'])->group(function () {
-     Route::get('/', [UserController::class, 'inicioTurismoLosAngeles']);
- });
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+     $request->fulfill();
+     return redirect('/home'); // o la ruta a la que deseas redirigir después de la verificación
+ })->middleware(['auth', 'signed'])->name('verification.verify');
 
 //OBTENER FORMULARIO PARA ENVIAR EMAIL Y RECUPERAR CONTRASEÑA
 Route::get('/formulario-recuperar-contrasenia', [UserController::class, 'formularioRecuperarContrasenia'])->name('formulario-recuperar-contrasenia');

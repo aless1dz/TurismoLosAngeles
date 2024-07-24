@@ -80,7 +80,7 @@ class UserController extends Controller
 
         ]
         );
-
+        
         $verificationToken = Str::random(60);
 
         $user = User::create([
@@ -100,45 +100,45 @@ class UserController extends Controller
     }
 
     private function enviarCorreoVerificacion($email, $token)
-    {
-        $verificationLink = url('/verificar-email/' . $token);
+{
+    $verificationLink = url('/verificar-email/' . $token);
     
-        Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
+    Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
         $message->to($email)->subject('Verifica tu dirección de correo electrónico');
-        });
-    }
-    public function verificarEmail($token)
-    {
-        $user = User::where('verification_token', $token)->first();
+    });
+}
+public function verificarEmail($token)
+{
+    $user = User::where('verification_token', $token)->first();
 
-        if (!$user) {
-            return redirect('/iniciar-sesion')->with('error', 'Token de verificación inválido.');
-        }
-
-        $user->email_verified_at = now();
-        $user->verification_token = null;
-        $user->save();
-
-        $this->enviarCorreoBienvenida($user->email);
-
-        return redirect('/iniciar-sesion')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
+    if (!$user) {
+        return redirect('/iniciar-sesion')->with('error', 'Token de verificación inválido.');
     }
 
-    private function enviarCorreoBienvenida($email)
-    {
-        Mail::send('emails.bienvenida', [], function ($message) use ($email) {
-            $message->to($email)->subject('Bienvenido a nuestra plataforma');
-        });
+    $user->email_verified_at = now();
+    $user->verification_token = null;
+    $user->save();
+
+    $this->enviarCorreoBienvenida($user->email);
+
+    return redirect('/iniciar-sesion')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
+}
+
+private function enviarCorreoBienvenida($email)
+{
+    Mail::send('emails.bienvenida', [], function ($message) use ($email) {
+        $message->to($email)->subject('Bienvenido a nuestra plataforma');
+    });
+}
+
+public function handle($request, Closure $next)
+{
+    if (Auth::check() && !Auth::user()->email_verified_at) {
+        Auth::logout();
+        return redirect('/iniciar-sesion')->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
     }
 
-    public function handle($request, Closure $next)
-    {
-        if (Auth::check() && !Auth::user()->email_verified_at) {
-            Auth::logout();
-            return redirect('/iniciar-sesion')->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
-        }
-
-        return $next($request);
+    return $next($request);
 }
 
     //RECUPERAR CONTRASEÑA

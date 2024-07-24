@@ -40,15 +40,12 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            if ($user->email_verified_at === null) {
-                Auth::logout();
-                return redirect()->back()->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
-            }
-            return redirect()->intended('/inicio');
+            return redirect('/inicio');
         }
-        return redirect()->back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros.']);
 
+        return back()->withErrors([
+            'invalid_credentials' => 'Las credenciales no coinciden con nuestros registros.',
+        ])->withInput();
     }
 
     public function logout(Request $request)
@@ -80,66 +77,74 @@ class UserController extends Controller
 
         ]
         );
-
-        $verificationToken = Str::random(60);
+        $confirmation_code = Str::random(30);
 
         $user = User::create([
             'name' => $request->name,
             'last_name'=> $request->last_name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),   
-            'email_verified_at' => null,
-            'verification_token' => $verificationToken,
-         
+            'password' => Hash::make($request->password),
+            'confirmation_code' => $confirmation_code
         ]);
+        $this->enviarCorreoConfirmacion($user->email, $confirmation_code);
 
-        $this->enviarCorreoVerificacion($user->email, $verificationToken);
 
         return redirect('/iniciar-sesion')->with('message', 'Registro exitoso. Te hemos enviado un correo de bienvenida.');
 
     }
 
-    private function enviarCorreoVerificacion($email, $token)
+    public function enviarCorreoConfirmacion($destinatario, $codigo)
     {
-        $verificationLink = url('/verificar-email/' . $token);
-    
-        Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
-        $message->to($email)->subject('Verifica tu dirección de correo electrónico');
-        });
+        $detalles = [
+            'titulo' => 'Confirmación de Correo Electrónico',
+            'cuerpo' => 'Por favor, haz clic en el siguiente enlace para confirmar tu correo electrónico: ' . url('/confirmar-correo/' . $codigo)
+        ];
+
+        Mail::html(
+            '<h1>' . $detalles['titulo'] . '</h1>' .
+            '<p>' . $detalles['cuerpo'] . '</p>',
+            function ($message) use ($destinatario) {
+                $message->to($destinatario)
+                        ->subject('Confirmación de Correo Electrónico');
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            }
+        );
     }
-    public function verificarEmail($token)
+    public function confirmarCorreo($codigo)
     {
-        $user = User::where('verification_token', $token)->first();
+        $user = User::where('confirmation_code', $codigo)->first();
 
         if (!$user) {
-            return redirect('/iniciar-sesion')->with('error', 'Token de verificación inválido.');
+            return redirect('/inicio')->with('error', 'Código de confirmación inválido.');
         }
 
         $user->email_verified_at = now();
-        $user->verification_token = null;
+        $user->confirmation_code = null;
         $user->save();
 
+        // Enviar correo de bienvenida
         $this->enviarCorreoBienvenida($user->email);
 
-        return redirect('/iniciar-sesion')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
+        return redirect('/iniciar-sesion')->with('message', 'Correo electrónico confirmado exitosamente.');
     }
-
-    private function enviarCorreoBienvenida($email)
+    public function enviarCorreo($destinatario)
     {
-        Mail::send('emails.bienvenida', [], function ($message) use ($email) {
-            $message->to($email)->subject('Bienvenido a nuestra plataforma');
-        });
+        $detalles = [
+            'titulo' => 'Bienvenido a Turismo Los Angeles',
+            'cuerpo' => 'Hola, Gracias por registrarte en nuestro sitio web'
+        ];
+
+        Mail::html(
+            '<h1>' . $detalles['titulo'] . '</h1>' .
+            '<p>' . $detalles['cuerpo'] . '</p>',
+            function ($message) use ($destinatario) {
+                $message->to($destinatario)
+                        ->subject('Registro exitoso a Turismo Los Angeles');
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            }
+        );
+        return response()->json(['status' => 'Correo enviado']);
     }
-
-    public function handle($request, Closure $next)
-    {
-        if (Auth::check() && !Auth::user()->email_verified_at) {
-            Auth::logout();
-            return redirect('/iniciar-sesion')->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
-        }
-
-        return $next($request);
-}
 
     //RECUPERAR CONTRASEÑA
     public function formularioRecuperarContrasenia()

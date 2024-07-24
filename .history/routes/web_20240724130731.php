@@ -25,12 +25,11 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/registrarse', [UserController::class, 'vistaRegistro']);
 Route::post('/registro', [UserController::class, 'registrar']);
 
-//ENVIAR CORREO DE VERIFICACION EMAIL
 Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail']);
-
-//PROTEGER RUTAS SI EL USUARIO NO ESTA AUTENTICADO
 Route::middleware(['auth', 'verified'])->group(function () {
-     Route::get('/', [UserController::class, 'inicioTurismoLosAngeles']);
+     // Rutas que requieren autenticación y verificación de correo
+     Route::get('/inicio', 'UserController@vistaInicio');
+     // ... otras rutas protegidas
  });
 
 //OBTENER FORMULARIO PARA ENVIAR EMAIL Y RECUPERAR CONTRASEÑA
