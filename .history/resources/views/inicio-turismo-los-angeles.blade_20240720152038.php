@@ -73,6 +73,53 @@
     </section>
     <!-- Final Sección Videos Turismo Los Angeles -->
 
+    <!-- Sobre Nosotros Turismo Los Angeles -->
+    <div class="container-xxl py-5">
+        <div class="container">
+          <div class="row g-5">
+            <div
+              class="col-lg-6 wow fadeInUp"
+              data-wow-delay="0.1s"
+              style="min-height: 400px"
+            >
+              <div class="position-relative h-100">
+                <img
+                  class="img-fluid position-absolute w-100 h-100"
+                  src="img/about.jpg"
+                  alt=""
+                  style="object-fit: cover"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+              <h6 class="section-title bg-white text-start text-primary pe-3">
+                sobre nosotros
+              </h6>
+              <h1 class="mb-4">
+                Bienvenido a <span class="text-primary">Turismo Los Angeles</span>
+              </h1>
+              <p class="mb-4">
+                Somos una agencia integradora, transportista y tour operadora, que
+                cuenta con más de 20 años de experiencia en el Trámite de Visas,
+                Renta de Unidades, Viajes Vacacionales a nivel nacional, locales
+                (Coahuila y Durango) y a Estados Unidos (McAllen, San Antonio,
+                Eagle Pass e Isla del Padre).
+              </p>
+              <p class="mb-4">
+                Tenemos como principal objetivo crear y desarrollar productos
+                turísticos con los más altos estándares de calidad y servicio a
+                nuestros clientes, creando experiencias únicas e inolvidables.
+              </p>
+              <p class="mb-4">
+                ¡En Turismo Los Ángeles nos aseguramos de que tu viaje sea una
+                experiencia increíble!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Final Sobre Nosotros Turismo Los Angeles -->
+
     <script type="text/javascript" src="{{ asset('js/inicio.js')}}"></script>
     
 </body>
