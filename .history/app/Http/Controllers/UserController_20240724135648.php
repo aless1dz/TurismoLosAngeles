@@ -95,11 +95,12 @@ class UserController extends Controller
 
         $this->enviarCorreoVerificacion($user->email, $verificationToken);
 
+<<<<<<< HEAD
+=======
         return redirect('/iniciar-sesion')->with('message', 'Registro exitoso. Te hemos enviado un correo de bienvenida.');
 
     }
 
-    //VERIFICAR EMAIL DE USUARIO
     public function enviarCorreo($destinatario)
     {
         $verificationLink = url('/verificar-email/' . $token);
@@ -140,7 +141,7 @@ class UserController extends Controller
         }
 
         return $next($request);
-    }
+}
 
     //RECUPERAR CONTRASEÑA
     public function formularioRecuperarContrasenia()
@@ -218,3 +219,4 @@ class UserController extends Controller
     }
 
 }
+>>>>>>> d5cbb271e1ab24662f009b538ce45a578f876dbd

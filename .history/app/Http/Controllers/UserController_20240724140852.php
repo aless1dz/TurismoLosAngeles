@@ -98,8 +98,8 @@ class UserController extends Controller
         return redirect('/iniciar-sesion')->with('message', 'Registro exitoso. Te hemos enviado un correo de bienvenida.');
 
     }
-
-    //VERIFICAR EMAIL DE USUARIO
+    
+//VERIFICAR EMAIL DE USUARIO
     public function enviarCorreo($destinatario)
     {
         $verificationLink = url('/verificar-email/' . $token);

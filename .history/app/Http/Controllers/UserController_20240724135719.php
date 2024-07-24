@@ -99,7 +99,6 @@ class UserController extends Controller
 
     }
 
-    //VERIFICAR EMAIL DE USUARIO
     public function enviarCorreo($destinatario)
     {
         $verificationLink = url('/verificar-email/' . $token);
@@ -140,7 +139,7 @@ class UserController extends Controller
         }
 
         return $next($request);
-    }
+}
 
     //RECUPERAR CONTRASEÑA
     public function formularioRecuperarContrasenia()
