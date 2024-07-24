@@ -26,9 +26,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
      */
     protected $fillable = [
         'name',
-        'email',
+        'last_name',
         'birthdate',
+        'email', 
         'password',
+        'role',
     ];
 
     /**
@@ -54,7 +56,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         ];
     }
 
-  
 }
 
 

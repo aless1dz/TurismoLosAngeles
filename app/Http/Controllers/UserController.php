@@ -81,8 +81,10 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'last_name'=> $request->last_name,
+            'birthdate'=> $request->birthdate,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         $this->enviarCorreo($user->email);
@@ -91,7 +93,6 @@ class UserController extends Controller
 
     }
 
-<<<<<<< HEAD
     public function view(){
         return view('adminFold.clientes');
     }
@@ -135,103 +136,11 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return response()->json(['message' => 'User deleted successfully']);
+        return response()->json(['message' => 'Cliente eliminado correctamente']);
     }
+
+    public function role()
+{
+    return $this->belongsTo(Role::class);
 }
-=======
-    public function enviarCorreo($destinatario)
-    {
-        $detalles = [
-            'titulo' => 'Bienvenido a Turismo Los Angeles',
-            'cuerpo' => 'Hola, Gracias por registrarte en nuestro sitio web'
-        ];
-
-        Mail::html(
-            '<h1>' . $detalles['titulo'] . '</h1>' .
-            '<p>' . $detalles['cuerpo'] . '</p>',
-            function ($message) use ($destinatario) {
-                $message->to($destinatario)
-                        ->subject('Registro exitoso a Turismo Los Angeles');
-                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-            }
-        );
-        return response()->json(['status' => 'Correo enviado']);
-    }
-
-    //RECUPERAR CONTRASEÑA
-    public function formularioRecuperarContrasenia()
-    {
-        return view('Auth.formulario-recuperar-contrasenia');
-    }
-
-    public function enviarRecuperarContrasenia(Request $request)
-    {
-        // Validación del email
-        $request->validate([
-            'email' => 'required|email|exists:users',
-        ]);
-
-        // Generar un token único
-        $token = Str::random(64);
-
-        // Eliminar la anterior reseteo de contraseña sin terminar
-        DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
-
-        // Creamos la solicitud de reseteo de contraseña
-        DB::table('password_reset_tokens')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
-
-        // Enviamos el email de recuperación de contraseña
-        Mail::send('Auth.recuperar-contrasenia', ['token' => $token], function ($message) use ($request) {
-            $message->to($request->email);
-            $message->subject('Recuperar Contraseña');
-        });
-
-        return back()->with('message', 'Te hemos enviado un email con las instrucciones para que recuperes tu contraseña');
-    }
-    
-    public function formularioActualizacion($token)
-    {
-        return view('auth.formulario-actualizacion', ['token' => $token]);
-    }
-
-   
-    public function actualizarContrasenia(Request $request)
-    {
-        // Validaciones
-        $request->validate([
-            'email' => 'required|email|exists:users',
-            'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required'
-        ]);
-
-        // Obtenemos el registro que contiene la solicitud de reseteo de contraseña
-        $updatePassword = DB::table('password_reset_tokens')
-            ->where([
-                'email' => $request->email,
-                'token' => $request->token
-            ])
-            ->first();
-
-        // Si no existe la solicitud devolvemos un error
-        if (!$updatePassword) {
-            return back()->withInput()->with('error', 'Token inválido');
-        }
-
-        // Actualizamos la contraseña del usuario
-        $user = User::where('email', $request->email)
-            ->update(['password' => Hash::make($request->password)]);
-
-
-        // Eliminamos la solicitud
-        DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
-
-        // Devolvemos al formulario de login (devolvera un 404 puesto que no existe la ruta)
-        return redirect('/iniciar-sesion')->with('message', 'Tu contraseña se ha cambiado correctamente');
-    }
-
 }
->>>>>>> d5cbb271e1ab24662f009b538ce45a578f876dbd
