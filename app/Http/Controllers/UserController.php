@@ -86,11 +86,9 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'last_name'=> $request->last_name,
+            'birthdate'=> $request->birthdate,
             'email' => $request->email,
-            'password' => Hash::make($request->password),   
-            'email_verified_at' => null,
-            'verification_token' => $verificationToken,
-         
+            'password' => Hash::make($request->password),
         ]);
 
         $this->enviarCorreoVerificacion($user->email, $verificationToken);
@@ -99,14 +97,16 @@ class UserController extends Controller
 
     }
 
-    //VERIFICAR EMAIL DE USUARIO
-    private function enviarCorreoVerificacion($email, $token)
+<<<<<<< HEAD
+    public function view(){
+        return view('adminFold.clientes');
+    }
+
+    public function getUsers(Request $request)
     {
-        $verificationLink = url('/verificar-email/' . $token);
-    
-        Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
-        $message->to($email)->subject('Verifica tu dirección de correo electrónico');
-        });
+        $order = $request->query('order', 'asc');
+        $users = User::orderBy('id', $order)->get();
+        return response()->json($users);
     }
 
     public function verificarEmail($token)
@@ -120,33 +120,45 @@ class UserController extends Controller
         $user->email_verified_at = now();
         $user->verification_token = null;
         $user->save();
-
-        $this->enviarCorreoBienvenida($user);
-
-        return redirect('/iniciar-sesion')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
+        return response()->json($user);
     }
 
-    private function enviarCorreoBienvenida($user)
-{
-    if (!$user instanceof User) {
-        return;
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->birthdate = $request->birthdate;
+        $user->save();
+        return response()->json($user);
     }
-    
-    try {
-        Mail::to($user->email)->send(new VerifyEmail($user));
-    } catch (\Exception $e) {
-       
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['message' => 'User deleted successfully']);
     }
 }
-
-    public function handle($request, Closure $next)
+=======
+    public function enviarCorreo($destinatario)
     {
-        if (Auth::check() && !Auth::user()->email_verified_at) {
-            Auth::logout();
-            return redirect('/iniciar-sesion')->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
-        }
+        $detalles = [
+            'titulo' => 'Bienvenido a Turismo Los Angeles',
+            'cuerpo' => 'Hola, Gracias por registrarte en nuestro sitio web'
+        ];
 
-        return $next($request);
+        Mail::html(
+            '<h1>' . $detalles['titulo'] . '</h1>' .
+            '<p>' . $detalles['cuerpo'] . '</p>',
+            function ($message) use ($destinatario) {
+                $message->to($destinatario)
+                        ->subject('Registro exitoso a Turismo Los Angeles');
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            }
+        );
+        return response()->json(['status' => 'Correo enviado']);
     }
 
     //RECUPERAR CONTRASEÑA
@@ -225,3 +237,4 @@ class UserController extends Controller
     }
 
 }
+>>>>>>> d5cbb271e1ab24662f009b538ce45a578f876dbd

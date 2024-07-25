@@ -79,6 +79,8 @@
                             <th>Apellidos</th>
                             <th>Email</th>
                             <th>Fecha Nacimiento</th>
+                            <th>Fecha de Creacion</th>
+                            <th>Fecha de Actualizacion</th>
                             <th>Editar/Eliminar</th>
                         </tr>
                     </thead>
@@ -189,6 +191,8 @@
                     <td>${user.last_name}</td>
                     <td>${user.email}</td>
                     <td>${user.birthdate}</td>
+                    <td>${user.created_at}</td>
+                    <td>${user.updated_at}</td>
                     <td>
                         <button class="btn btn-warning" onclick="editUser(${user.id})"><i class="bi bi-pencil-fill"></i></button>
                         <button class="btn btn-danger" onclick="deleteUser(${user.id})"><i class="bi bi-backspace-fill"></i></button>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssociatesController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -65,3 +66,5 @@ Route::get('/get/associate/{id}',[AssociatesController::class, "show"]);
 Route::post('/insert/associate',[AssociatesController::class, "store"]);
 Route::put('/update/associate/{id}',[AssociatesController::class, "update"]);
 Route::delete('/delete/associate/{id}',[AssociatesController::class, "destroy"]);
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');

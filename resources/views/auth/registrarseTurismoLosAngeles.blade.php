@@ -40,6 +40,16 @@
             </div>
           </div>
           <div class="input-box">
+            <label for="birthdate">Fecha de Nacimiento</label>
+            <input type="date" value="{{old('date')}}" name="birthdate" class="input-field" placeholder="Fecha Nacimiento">
+            <i class="bx bx-envelope"></i>
+            @error('date')
+              <small class="text-danger mt-1">
+                <strong>{{$message}}</strong>
+              </small>
+              @enderror
+          </div>
+          <div class="input-box">
             <input type="email" value="{{old('email')}}" name="email" class="input-field" placeholder="Email">
             <i class="bx bx-envelope"></i>
             @error('email')
