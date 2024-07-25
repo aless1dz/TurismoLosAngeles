@@ -66,7 +66,6 @@ class UserController extends Controller
         $request->validate([
              'name' => 'required|string|max:255',
              'last_name'=>'required|string|max:255',
-             'birthdate'=>'required|date',
              'email' => 'required|string|email|max:255|unique:users',
              'password' => 'required|string|min:8',
              'password_confirmation' => 'required|string|min:8|same:password'
@@ -74,7 +73,6 @@ class UserController extends Controller
         ],[
             'name.required'=>'El nombre es necesario',
             'last_name.required'=>'El apellido es necesario',
-            'birthdate.required'=>'La fecha de nacimiento es necesaria',
             'email.required'=>'El email es necesario',
             'email.unique'=>'El email ya es utilizado',
             'password.required'=>'La contraseña es necesaria',
@@ -91,8 +89,6 @@ class UserController extends Controller
             'birthdate'=> $request->birthdate,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'email_verified_at' => null,
-            'verification_token' => $verificationToken,
         ]);
 
         $this->enviarCorreoVerificacion($user->email, $verificationToken);
@@ -100,18 +96,17 @@ class UserController extends Controller
         return redirect('/iniciar-sesion')->with('message', 'Registro exitoso. Te hemos enviado un correo de bienvenida.');
 
     }
+//VERIFICAR EMAIL DE USUARIO
+private function enviarCorreoVerificacion($email, $token)
+{
+    $verificationLink = url('/verificar-email/' . $token);
 
-    //VERIFICAR EMAIL DE USUARIO
-    private function enviarCorreoVerificacion($email, $token)
-    {
-        $verificationLink = url('/verificar-email/' . $token);
+    Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
+    $message->to($email)->subject('Verifica tu dirección de correo electrónico');
+    });
+}
 
-        Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
-        $message->to($email)->subject('Verifica tu dirección de correo electrónico');
-        });
-    }
-
-    public function verificarEmail($token)
+public function verificarEmail($token)
     {
         $user = User::where('verification_token', $token)->first();
 
@@ -227,10 +222,11 @@ class UserController extends Controller
          return redirect('/iniciar-sesion')->with('message', 'Tu contraseña se ha cambiado correctamente');
      }
 
-
     public function view(){
         return view('adminFold.clientes');
     }
+
+    
 
     public function getUsers(Request $request)
     {

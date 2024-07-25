@@ -91,8 +91,6 @@ class UserController extends Controller
             'birthdate'=> $request->birthdate,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'email_verified_at' => null,
-            'verification_token' => $verificationToken,
         ]);
 
         $this->enviarCorreoVerificacion($user->email, $verificationToken);
@@ -101,17 +99,17 @@ class UserController extends Controller
 
     }
 
-    //VERIFICAR EMAIL DE USUARIO
-    private function enviarCorreoVerificacion($email, $token)
-    {
-        $verificationLink = url('/verificar-email/' . $token);
+//VERIFICAR EMAIL DE USUARIO
+private function enviarCorreoVerificacion($email, $token)
+{
+    $verificationLink = url('/verificar-email/' . $token);
 
-        Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
-        $message->to($email)->subject('Verifica tu dirección de correo electrónico');
-        });
-    }
+    Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
+    $message->to($email)->subject('Verifica tu dirección de correo electrónico');
+    });
+}
 
-    public function verificarEmail($token)
+public function verificarEmail($token)
     {
         $user = User::where('verification_token', $token)->first();
 
