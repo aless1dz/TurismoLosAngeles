@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Mail\VerifyEmail;
+
 
 class UserController extends Controller
 {
@@ -93,22 +93,22 @@ class UserController extends Controller
          
         ]);
 
-        $this->enviarCorreoVerificacion($user->email, $verificationToken);
+        $this->enviarCorreo($user->email, $verificationToken);
 
         return redirect('/iniciar-sesion')->with('message', 'Registro exitoso. Te hemos enviado un correo de bienvenida.');
 
     }
 
+    
     //VERIFICAR EMAIL DE USUARIO
-    private function enviarCorreoVerificacion($email, $token)
+    public function enviarCorreo($email, $verificationToken)
     {
-        $verificationLink = url('/verificar-email/' . $token);
+        $verificationLink = url('/verificar-email/' . $verificationToken);
     
         Mail::send('emails.verificacion', ['verificationLink' => $verificationLink], function ($message) use ($email) {
         $message->to($email)->subject('Verifica tu dirección de correo electrónico');
         });
     }
-
     public function verificarEmail($token)
     {
         $user = User::where('verification_token', $token)->first();
@@ -121,23 +121,17 @@ class UserController extends Controller
         $user->verification_token = null;
         $user->save();
 
-        $this->enviarCorreoBienvenida($user);
+        $this->enviarCorreoBienvenida($user->email);
 
         return redirect('/iniciar-sesion')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
     }
 
-    private function enviarCorreoBienvenida($user)
-{
-    if (!$user instanceof User) {
-        return;
+    private function enviarCorreoBienvenida($email)
+    {
+        Mail::send('emails.bienvenida', [], function ($message) use ($email) {
+            $message->to($email)->subject('Bienvenido a nuestra plataforma');
+        });
     }
-    
-    try {
-        Mail::to($user->email)->send(new VerifyEmail($user));
-    } catch (\Exception $e) {
-       
-    }
-}
 
     public function handle($request, Closure $next)
     {

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Mail\VerifyEmail;
+
 
 class UserController extends Controller
 {
@@ -121,23 +121,17 @@ class UserController extends Controller
         $user->verification_token = null;
         $user->save();
 
-        $this->enviarCorreoBienvenida($user);
+        $this->enviarCorreoBienvenida($user->email);
 
-        return redirect('/iniciar-sesion')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
+        return redirect('/inicio')->with('message', 'Tu cuenta ha sido verificada. Ahora puedes iniciar sesión.');
     }
 
-    private function enviarCorreoBienvenida($user)
-{
-    if (!$user instanceof User) {
-        return;
+    private function enviarCorreoBienvenida($email)
+    {
+        Mail::send('emails.bienvenida', [], function ($message) use ($email) {
+            $message->to($email)->subject('Bienvenido a nuestra plataforma');
+        });
     }
-    
-    try {
-        Mail::to($user->email)->send(new VerifyEmail($user));
-    } catch (\Exception $e) {
-       
-    }
-}
 
     public function handle($request, Closure $next)
     {

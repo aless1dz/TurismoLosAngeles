@@ -10,6 +10,7 @@
     
     <p>Gracias por registrarte</p>
     
+    <a href="{{ $verificationLink }}">Verificar mi correo electrónico</a>
     
     <p>Saludos,<br>El equipo de Turismo Los Angeles</p>
 </body>

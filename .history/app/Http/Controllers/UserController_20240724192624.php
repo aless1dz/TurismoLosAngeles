@@ -128,14 +128,19 @@ class UserController extends Controller
 
     private function enviarCorreoBienvenida($user)
 {
-    if (!$user instanceof User) {
+    if (!$user instanceof \App\Models\User) {
+        \Log::error('Error: Se esperaba un objeto User, se recibió: ' . gettype($user));
         return;
     }
+
+    \Log::info('Iniciando envío de correo de bienvenida para: ' . $user->email);
     
     try {
         Mail::to($user->email)->send(new VerifyEmail($user));
+        \Log::info('Correo de bienvenida enviado exitosamente a: ' . $user->email);
     } catch (\Exception $e) {
-       
+        \Log::error('Error al enviar correo de bienvenida: ' . $e->getMessage());
+        \Log::error('Traza de la excepción: ' . $e->getTraceAsString());
     }
 }
 

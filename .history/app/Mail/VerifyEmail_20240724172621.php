@@ -16,18 +16,18 @@ class VerifyEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public $user;
+    public function __construct($verificationLink)
+{
+    $this->verificationLink = $verificationLink;
+}
 
-    public function __construct($user)
-    {
-        $this->user = $user;
-    }
-
-    public function build()
-    {
-        return $this->view('emails.bienvenida')
-                    ->subject('Bienvenido a nuestra plataforma');
-    }
+public function build()
+{
+    return $this->view('emails.bienvenida')
+                ->with([
+                    'verificationLink' => $this->verificationLink,
+                ]);
+}
 
     /**
      * Get the message envelope.
@@ -35,7 +35,7 @@ class VerifyEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Bienvenido a nuestra plataforma',
+            subject: 'Verify Email',
         );
     }
 
@@ -45,7 +45,7 @@ class VerifyEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.bienvenida',
+            view: 'view.name',
         );
     }
 

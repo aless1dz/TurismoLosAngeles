@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 {
     use HasFactory, Notifiable;
 
-    /** 
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -29,7 +29,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'last_name',
         'email',
         'password',
-        'verification_token',
     ];
 
     /**
