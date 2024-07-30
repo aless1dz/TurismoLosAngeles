@@ -27,6 +27,11 @@ class UserController extends Controller
     public function inicioTurismoLosAngeles(){
         return view('Auth.inicio-turismo-los-angeles');
     }
+
+    public function citasTurismoLosAngeles(){
+        return view('Auth.citasTurismoLosAngeles');
+    }
+
     public function logear(Request $request)
     {
         $request->validate([

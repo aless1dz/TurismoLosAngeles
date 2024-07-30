@@ -27,7 +27,7 @@
             <a href="#home">inicio</a>
             <a href="#about">nuestros servicios</a>
             <a href="#shop">galeria</a>
-            <a href="#packages">contacto</a>
+            <a href="/citas">citas</a>
             <a href="/iniciar-sesion">iniciar sesión</a>
 
             @else 

@@ -26,6 +26,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/registrarse', [UserController::class, 'vistaRegistro']);
 Route::post('/registro', [UserController::class, 'registrar']);
 
+Route::get('/citas', [UserController::class, 'citasTurismoLosAngeles']);
+
 //ENVIAR CORREO DE VERIFICACION EMAIL
 Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail'])->name('verification.verify');
 
