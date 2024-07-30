@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-     return view('inicio-turismo-los-angeles');
+     return view('auth.inicio-turismo-los-angeles');
 });
 
 //INICIO
@@ -25,6 +25,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 //REGISTRO
 Route::get('/registrarse', [UserController::class, 'vistaRegistro']);
 Route::post('/registro', [UserController::class, 'registrar']);
+Route::get('/vista-verificacion', [UserController::class, 'registrar']);
+
 
 Route::get('/citas', [UserController::class, 'citasTurismoLosAngeles']);
 

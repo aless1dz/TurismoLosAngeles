@@ -52,7 +52,7 @@ class UserController extends Controller
             }
             return redirect()->intended('/inicio');
         }
-        return redirect()->back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros.']);
+        return redirect()->back()->withErrors(['invalid_credentials' => 'Estas credenciales no coinciden con nuestros registros.']);
 
     }
 
@@ -73,17 +73,18 @@ class UserController extends Controller
              'last_name'=>'required|string|max:255',
              'birthdate'=>'required|date',
              'email' => 'required|string|email|max:255|unique:users',
-             'password' => 'required|string|min:8',
-             'password_confirmation' => 'required|string|min:8|same:password'
+             'password' => 'required|string|min:8|confirmed',
 
         ],[
             'name.required'=>'El nombre es necesario',
             'last_name.required'=>'El apellido es necesario',
             'birthdate.required'=>'La fecha de nacimiento es necesaria',
+            'birthdate.date' => 'La fecha de nacimiento debe ser una fecha válida',
             'email.required'=>'El email es necesario',
             'email.unique'=>'El email ya es utilizado',
             'password.required'=>'La contraseña es necesaria',
-            'password_confirmation.required'=>'La contraseña no coincide',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'password.confirmed' => 'Las contraseñas no coinciden',
 
         ]
         );
@@ -102,7 +103,7 @@ class UserController extends Controller
 
         $this->enviarCorreoVerificacion($user->email, $verificationToken);
 
-        return redirect('/iniciar-sesion')->with('message', 'Registro exitoso. Te hemos enviado un correo de bienvenida.');
+        return view('emails.vistaVerificacion')->with('email', $user->email);
 
     }
 
@@ -135,17 +136,17 @@ class UserController extends Controller
 
     
     private function enviarCorreoBienvenida($user)
-{
-    if (!$user instanceof User) {
+    {
+        if (!$user instanceof User) {
         return;
-    }
+        }
     
-    try {
+        try {
         Mail::to($user->email)->send(new VerifyEmail($user));
-    } catch (\Exception $e) {
+        } catch (\Exception $e) {
        
+        }
     }
-}
 
     public function handle($request, Closure $next)
     {
@@ -168,7 +169,12 @@ class UserController extends Controller
          // Validación del email
          $request->validate([
              'email' => 'required|email|exists:users',
-         ]);
+         ],[
+            'email.required'=>'El email es necesario',
+            'email.email' => 'El formato del email es inválido.',
+            'email.exists' => 'El email no está registrado.',
+            'email' => 'El email seleccionado es inválido.',
+            ]);
  
          // Generar un token único
          $token = Str::random(64);
@@ -203,9 +209,15 @@ class UserController extends Controller
          // Validaciones
          $request->validate([
              'email' => 'required|email|exists:users',
-             'password' => 'required|string|min:6|confirmed',
-             'password_confirmation' => 'required'
-         ]);
+             'password' => 'required|string|min:8|confirmed',
+         ],[
+            'email.required'=>'El email es necesario',
+            'email.email' => 'El formato del email es inválido.',
+            'email.exists' => 'El email no está registrado.',
+            'password.required'=>'La contraseña es necesaria',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'password.confirmed' => 'Las contraseñas no coinciden',
+            ]);
  
          // Obtenemos el registro que contiene la solicitud de reseteo de contraseña
          $updatePassword = DB::table('password_reset_tokens')
