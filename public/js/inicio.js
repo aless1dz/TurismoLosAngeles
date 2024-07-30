@@ -1,55 +1,133 @@
-const menuBtn = document.querySelector(".menu-btn");
-        const navigation = document.querySelector(".navigation");
+let navbar = document.querySelector('.header .navbar');
 
-        menuBtn.addEventListener("click", () => {
-            menuBtn.classList.toggle("active");
-            navigation.classList.toggle("active");
-        });
+document.querySelector('#menu-btn').onclick = () =>{
+    navbar.classList.add('active');
+}
 
-        //Javascript for video slider navigation
-        const btns = document.querySelectorAll(".nav-btn");
-        const slides = document.querySelectorAll(".video-slide");
-        const contents = document.querySelectorAll(".content");
+document.querySelector('#nav-close').onclick = () =>{
+    navbar.classList.remove('active');
+}
 
-        var sliderNav = function(manual){
-            btns.forEach((btn) => {
-                btn.classList.remove("active");
-            });
+let searchForm = document.querySelector('.search-form');
 
-            slides.forEach((slide) => {
-                slide.classList.remove("active");
-            });
+document.querySelector('#menu-btn').onclick = () =>{
+    searchForm.classList.add('active');
+}
 
-            contents.forEach((content) => {
-                content.classList.remove("active");
-            });
+document.querySelector('#close-search').onclick = () =>{
+    searchForm.classList.remove('active');
+}
 
-            btns[manual].classList.add("active");
-            slides[manual].classList.add("active");
-            contents[manual].classList.add("active");
-        }
+window.onscroll = () =>{
+    navbar.classList.remove('active');
 
-        btns.forEach((btn, i) => {
-            btn.addEventListener("click", () =>{
-                sliderNav(i);
-            });
-        });
+    if(window.scrollY > 0){
+        document.querySelector('.header').classList.add('active');
+    }else{
+        document.querySelector('.header').classList.remove('active');
+    }
+};
 
-        //CONFIRMAR SI EL USUARIO QUIERE CERRAR SESION
-        function confirmLogout(event) {
-            event.preventDefault();
-        
-            Swal.fire({
-                title: '¿Estás seguro de que quieres cerrar sesión?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Cerrar sesión',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('logout-form').submit();
-                }
-            });
-        }
-        
-        
+window.onload = () =>{
+    if(window.scrollY > 0){
+        document.querySelector('.header').classList.add('active');
+    }else{
+        document.querySelector('.header').classList.remove('active');
+    }
+};
+
+
+var swiper = new Swiper(".home-slider", {
+    loop: true,
+    grabCursor: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
+var swiper = new Swiper(".product-slider", {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        640: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 3,
+        },
+        1024: {
+            slidesPerView: 4,
+        },
+    },
+});
+
+var swiper = new Swiper(".review-slider", {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        640: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 3,
+        },
+    },
+});
+
+var swiper = new Swiper(".blogs-slider", {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 10,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        991: {
+            slidesPerView: 3,
+        },
+    },
+});
+
+var swiper = new Swiper(".clients-slider", {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        640: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 3,
+        },
+        1024: {
+            slidesPerView: 4,
+        },
+    },
+});
