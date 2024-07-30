@@ -82,11 +82,11 @@
 
             <div class="col-md-10">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                <h1 class="h2">Clientes</h1>
+                <h1 class="h2">Estados</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" onclick="clearForm()">
-                        Añadir Cliente
-                    </button> -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#stateModal" onclick="clearForm()">
+                        Añadir Estado
+                    </button>
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                     <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                 </div>
@@ -96,50 +96,39 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Email</th>
-                            <th>Fecha Nacimiento</th>
+                            <th>País</th>
                             <th>Fecha de Creacion</th>
                             <th>Fecha de Actualizacion</th>
                             <th>Editar/Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody id="userTableBody">
+                    <tbody id="stateTableBody">
                         
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal fade" id="stateModal" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="userForm">
+                <form id="stateForm">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="userModalLabel">Añadir/Editar Cliente</h5>
+                        <h5 class="modal-title" id="stateModalLabel">Añadir/Editar Cliente</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id="user_id" name="id">
+                        <input type="hidden" id="idstates" name="id">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="apellidos" name="last_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthdate">Fecha Nacimiento</label>
-                            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <label for="apellidos">País</label>
+                            <input type="text" class="form-control" id="country" name="country" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -154,121 +143,115 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <script>
-    var users = [];
+ var states = [];
 
-    $(document).ready(function () {
-        fetchUsers();
+$(document).ready(function () {
+    fetchStates();
 
-        $('#sort-asc').on('click', function () {
-            fetchUsers('id', 'asc');
-        });
-        $('#sort-desc').on('click', function () {
-            fetchUsers('id', 'desc');
-        });
-
-        $('#userForm').on('submit', function (e) {
-            e.preventDefault();
-
-            let id = $('#user_id').val();
-            let url = id ? `/update/user/${id}` : '/insert/user';
-            let method = id ? 'PUT' : 'POST';
-
-            $.ajax({
-                url: url,
-                method: method,
-                data: $('#userForm').serialize(),
-                success: function (response) {
-                    $('#userModal').modal('hide');
-                    fetchUsers();
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        });
-
-        $('#search-btn').on('click', function () {
-            applyFilters();
-        });
+    $('#sort-asc').on('click', function () {
+        fetchStates('asc');
     });
 
-    function fetchUsers(order = 'asc') {
-        $.get(`/get/users?order=${order}`, function (data) {
-            users = data;
-            renderUsers(users);
-        });
-    }
+    $('#sort-desc').on('click', function () {
+        fetchStates('desc');
+    });
 
-    function renderUsers(data) {
-        let tableBody = $('#userTableBody');
-        tableBody.empty();
-        data.forEach(user => {
-            tableBody.append(`
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.last_name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.birthdate}</td>
-                    <td>${user.created_at}</td>
-                    <td>${user.updated_at}</td>
-                    <td>
-                        <button class="btn btn-warning" onclick="editUser(${user.id})"><i class="bi bi-pencil-fill"></i></button>
-                        <button class="btn btn-danger" onclick="deleteUser(${user.id})"><i class="bi bi-backspace-fill"></i></button>
-                    </td>
-                </tr>
-            `);
-        });
-    }
+    $('#stateForm').on('submit', function (e) {
+        e.preventDefault();
 
-    function applyFilters() {
-        let searchValue = $('#search-input').val().toLowerCase();
-        
-        let filteredUsers = users.filter(function (user) {
-            let match = true;
+        let id = $('#idstates').val();
+        let url = id ? `/update/state/${id}` : '/insert/state';
+        let method = id ? 'PUT' : 'POST';
 
-            if (searchValue) {
-                match = user.name.toLowerCase().includes(searchValue) || user.last_name.toLowerCase().includes(searchValue);
-            }
-
-            return match;
-        });
-
-        renderUsers(filteredUsers);
-    }
-
-    function editUser(id) {
-        $.get(`/get/user/${id}`, function (user) {
-            $('#user_id').val(user.id);
-            $('#nombre').val(user.name);
-            $('#apellidos').val(user.last_name);
-            $('#email').val(user.email);
-            $('#birthdate').val(user.birthdate);
-            $('#userModal').modal('show');
-        });
-    }
-
-    function deleteUser(id) {
         $.ajax({
-            url: `/delete/user/${id}`,
+            url: url,
+            method: method,
+            data: $('#stateForm').serialize(),
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            method: 'DELETE',
-            success: function () {
-                fetchUsers();
+            success: function (response) {
+                $('#stateModal').modal('hide');
+                fetchStates();
             },
             error: function (error) {
                 console.log(error);
             }
         });
-    }
+    });
 
-    function clearForm() {
-        $('#user_id').val('');
-        $('#userForm')[0].reset();
-    }
-    </script>
+    $('#search-btn').on('click', function () {
+        applyFilters();
+    });
+});
+
+function fetchStates(order = 'asc') {
+    $.get(`/get/states?order=${order}`, function (data) {
+        states = data;
+        renderStates(states);
+    });
+}
+
+function renderStates(data) {
+    let tableBody = $('#stateTableBody');
+    tableBody.empty();
+    data.forEach(state => {
+        let createdAt = new Date(state.created_at).toLocaleString();
+        let updatedAt = new Date(state.updated_at).toLocaleString();
+        tableBody.append(`
+            <tr>
+                <td>${state.idstates}</td> 
+                <td>${state.name}</td>
+                <td>${state.country}</td>
+                <td>${createdAt}</td>
+                <td>${updatedAt}</td>
+                <td>
+                    <button class="btn btn-warning" onclick="editState(${state.idstates})"><i class="bi bi-pencil-fill"></i></button> 
+                    <button class="btn btn-danger" onclick="deleteState(${state.idstates})"><i class="bi bi-backspace-fill"></i></button> 
+                </td>
+            </tr>
+        `);
+    });
+}
+
+function applyFilters() {
+    let searchValue = $('#search-input').val().toLowerCase();
+    let filteredStates = states.filter(state => state.name.toLowerCase().includes(searchValue));
+    renderStates(filteredStates);
+}
+
+function editState(id) {
+    $.get(`/get/state/${id}`, function (state) {
+        $('#idstates').val(state.idstates);
+        $('#name').val(state.name);
+        $('#country').val(state.country);
+        $('#stateModal').modal('show');
+    });
+}
+
+function deleteState(id) {
+    $.ajax({
+        url: `/delete/state/${id}`,
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function () {
+            fetchStates();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
+function clearForm() {
+    $('#idstates').val('');
+    $('#stateForm')[0].reset();
+}
+
+</script>
 </body>
 </html>

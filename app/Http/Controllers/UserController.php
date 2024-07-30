@@ -77,14 +77,14 @@ class UserController extends Controller
 
         ]
         );
-
+        
         $user = User::create([
             'name' => $request->name,
             'last_name'=> $request->last_name,
             'birthdate'=> $request->birthdate,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => $request->role ?? 'user',
         ]);
 
         $this->enviarCorreo($user->email);
@@ -139,8 +139,5 @@ class UserController extends Controller
         return response()->json(['message' => 'Cliente eliminado correctamente']);
     }
 
-    public function role()
-{
-    return $this->belongsTo(Role::class);
-}
+
 }
