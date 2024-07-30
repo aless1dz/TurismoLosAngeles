@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-     return view('inicio-turismo-los-angeles');
+     return view('auth.inicio-turismo-los-angeles');
 });
 
 //INICIO
@@ -30,6 +30,18 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 //REGISTRO
 Route::get('/registrarse', [UserController::class, 'vistaRegistro']);
 Route::post('/registro', [UserController::class, 'registrar']);
+Route::get('/vista-verificacion', [UserController::class, 'registrar']);
+
+
+Route::get('/citas', [UserController::class, 'citasTurismoLosAngeles']);
+
+//ENVIAR CORREO DE VERIFICACION EMAIL
+Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail'])->name('verification.verify');
+
+//PROTEGER RUTAS SI EL USUARIO NO ESTA AUTENTICADO
+/*Route::middleware(['auth', 'verified'])->group(function () {
+     Route::get('/inicio', [UserController::class, 'inicioTurismoLosAngeles']);
+});*/
 
 //OBTENER FORMULARIO PARA ENVIAR EMAIL Y RECUPERAR CONTRASEÑA
 Route::get('/formulario-recuperar-contrasenia', [UserController::class, 'formularioRecuperarContrasenia'])->name('formulario-recuperar-contrasenia');

@@ -5,27 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            width: 100%;
-            max-width: 500px;
-        }
-        .card-header {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .card-body {
-            padding: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/formActualizacionContrasenia.css') }}">
+
 </head>
 <body>
     <main class="login-form">
@@ -42,7 +23,7 @@
                                 <div class="form-group row">
                                     <label for="email_address" class="col-md-4 col-form-label text-md-right">Email</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="email_address" class="form-control" name="email" required autofocus>
+                                        <input type="email" id="email_address" class="form-control" name="email" required autofocus>
                                         @if ($errors->has('email'))
                                             <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,9 +41,9 @@
           </div>
           <div class="input-box">
             <label for="birthdate">Fecha de Nacimiento</label>
-            <input type="date" value="{{old('date')}}" name="birthdate" class="input-field" placeholder="Fecha Nacimiento">
+            <input type="date" value="{{old('birthdate')}}" name="birthdate" class="input-field" placeholder="Fecha Nacimiento">
             <i class="bx bx-envelope"></i>
-            @error('date')
+            @error('birthdate')
               <small class="text-danger mt-1">
                 <strong>{{$message}}</strong>
               </small>

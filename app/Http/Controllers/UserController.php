@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-
+use App\Mail\VerifyEmail;
 
 class UserController extends Controller
 {
@@ -27,6 +27,11 @@ class UserController extends Controller
     public function inicioTurismoLosAngeles(){
         return view('Auth.inicio-turismo-los-angeles');
     }
+
+    public function citasTurismoLosAngeles(){
+        return view('Auth.citasTurismoLosAngeles');
+    }
+
     public function logear(Request $request)
     {
         $request->validate([
@@ -40,12 +45,15 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/inicio');
+            $user = Auth::user();
+            if ($user->email_verified_at === null) {
+                Auth::logout();
+                return redirect()->back()->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
+            }
+            return redirect()->intended('/inicio');
         }
+        return redirect()->back()->withErrors(['invalid_credentials' => 'Estas credenciales no coinciden con nuestros registros.']);
 
-        return back()->withErrors([
-            'invalid_credentials' => 'Las credenciales no coinciden con nuestros registros.',
-        ])->withInput();
     }
 
     public function logout(Request $request)
@@ -63,28 +71,31 @@ class UserController extends Controller
         $request->validate([
              'name' => 'required|string|max:255',
              'last_name'=>'required|string|max:255',
+             'birthdate'=>'required|date',
              'email' => 'required|string|email|max:255|unique:users',
-             'password' => 'required|string|min:8',
-             'password_confirmation' => 'required|string|min:8|same:password'
+             'password' => 'required|string|min:8|confirmed',
 
         ],[
             'name.required'=>'El nombre es necesario',
             'last_name.required'=>'El apellido es necesario',
+            'birthdate.required'=>'La fecha de nacimiento es necesaria',
+            'birthdate.date' => 'La fecha de nacimiento debe ser una fecha válida',
             'email.required'=>'El email es necesario',
             'email.unique'=>'El email ya es utilizado',
             'password.required'=>'La contraseña es necesaria',
-            'password_confirmation.required'=>'La contraseña no coincide',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'password.confirmed' => 'Las contraseñas no coinciden',
 
         ]
         );
-        
+
         $user = User::create([
             'name' => $request->name,
             'last_name'=> $request->last_name,
             'birthdate'=> $request->birthdate,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'user',
+            'role' => $request->role,
         ]);
 
         $this->enviarCorreo($user->email);
@@ -104,22 +115,6 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function getUser($id)
-    {
-        $user = User::find($id);
-        return response()->json($user);
-    }
-
-    public function insertUser(Request $request)
-    {
-        $user = new User;
-        $user->name = $request->name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->birthdate = $request->birthdate;
-        $user->save();
-        return response()->json($user);
-    }
 
     public function updateUser(Request $request, $id)
     {
@@ -139,5 +134,8 @@ class UserController extends Controller
         return response()->json(['message' => 'Cliente eliminado correctamente']);
     }
 
-
+    public function role()
+{
+    return $this->belongsTo(Role::class);
+}
 }

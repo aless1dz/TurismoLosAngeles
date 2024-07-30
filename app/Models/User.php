@@ -19,13 +19,18 @@ class User extends Authenticatable implements MustVerifyEmailContract
 {
     use HasFactory, Notifiable;
 
-    /**
+    /** 
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'last_name', 'birthdate', 'email', 'password', 'role'
+        'name',
+        'last_name',
+        'email',
+        'birthdate',
+        'password',
+        'verification_token',
     ];
 
     /**

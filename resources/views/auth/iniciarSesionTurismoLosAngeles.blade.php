@@ -21,7 +21,7 @@
               </div>
               @error('invalid_credentials')
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <small class="text-danger mt-1">
+              <small>
                 <strong>{{$message}}</strong>
               </small>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -36,7 +36,7 @@
                 <input type="email" value="{{old('email')}}" name="email" class="input-field" placeholder="Email">
                 <i class="bx bx-envelope"></i>
                 @error('email')
-              <small class="text-danger mt-1">
+              <small class="text-custom mt-1">
                 <strong>{{$message}}</strong>
               </small>
               @enderror
@@ -45,7 +45,7 @@
                 <input type="password" name="password" class="input-field" placeholder="Contraseña">
                 <i class="bx bx-lock-alt"></i>
                 @error('password')
-              <small class="text-danger mt-1">
+              <small class="text-custom mt-1">
                 <strong>{{$message}}</strong>
               </small>
               @enderror
