@@ -31,7 +31,7 @@
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">correo electrónico</label>
-                    <input type="email" id="user-email" class="contact__input" required>
+                    <input type="email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">mensaje</label>

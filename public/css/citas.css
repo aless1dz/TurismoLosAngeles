@@ -126,7 +126,7 @@ header {
 .contact__input,
 .contact__textarea {
     padding: 10px;
-    border-radius: 0px;
+    border-radius: 15px;
     outline: none;
     background-color: var(--white);
     border: 1px solid var(--black);
@@ -135,7 +135,7 @@ header {
 
 .contact__button {
     width: 100%;
-    border-radius: 0px;
+    border-radius: 15px;
     border: none;
     padding: 15px 20px;
     background-color: var(--blue);
