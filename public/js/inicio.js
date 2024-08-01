@@ -10,7 +10,7 @@ document.querySelector('#nav-close').onclick = () =>{
 
 let searchForm = document.querySelector('.search-form');
 
-document.querySelector('#menu-btn').onclick = () =>{
+document.querySelector('#search-btn').onclick = () =>{
     searchForm.classList.add('active');
 }
 

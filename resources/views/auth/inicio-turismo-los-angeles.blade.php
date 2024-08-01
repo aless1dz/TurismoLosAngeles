@@ -41,9 +41,11 @@
     </div>
     </nav>
 
-        <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-        </div>
+    <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <!-- <a href="#" class="fas fa-shopping-cart"></a> -->
+        <div id="search-btn" class="fas fa-search" style="display: none;"></div> 
+    </div>
 
     </header>
 
@@ -264,9 +266,19 @@
     <!-- sección píe de página final -->
 
 
-    <script src="{{ asset('js/inicio.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/inicio.js') }}"></script>
+    {{-- <script>
+        var swiper = new Swiper(".home-slider", {
+            loop: true,
+            grabCursor: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script> --}}
 
 </body>
 </html>
