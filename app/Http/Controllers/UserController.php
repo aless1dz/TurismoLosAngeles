@@ -32,6 +32,62 @@ class UserController extends Controller
         return view('Auth.citasTurismoLosAngeles');
     }
 
+    public function serviciosTurismoLosAngeles(){
+        return view('Auth.serviciosTurismoLosAngeles');
+    }
+
+    public function visaTurismoLosAngeles(){
+        return view('Auth.visaTurismoLosAngeles');
+    }
+
+    public function pasaporteTurismoLosAngeles(){
+        return view('Auth.pasaporteTurismoLosAngeles');
+    }
+
+    public function unidadesTurismoLosAngeles(){
+        return view('Auth.unidadesTurismoLosAngeles');
+    }
+
+    public function viajesTurismoLosAngeles(){
+        return view('Auth.viajesTurismoLosAngeles');
+    }
+
+    public function viajesUsaTurismoLosAngeles(){
+        return view('Auth.viajesUsaTurismoLosAngeles');
+    }
+
+    public function viajesVacacionalesTurismoLosAngeles(){
+        return view('Auth.viajesVacacionalesTurismoLosAngeles');
+    }
+
+    public function viajesLocalesTurismoLosAngeles(){
+        return view('Auth.viajesLocalesTurismoLosAngeles');
+    }
+
+    public function citasPrincipalTurismoLosAngeles(){
+        return view('Auth.citasPrincipalTurismoLosAngeles');
+    }
+
+    public function citasVisaTurismoLosAngeles(){
+        return view('Auth.citasVisaTurismoLosAngeles');
+    }
+
+    public function citasViajesTurismoLosAngeles(){
+        return view('Auth.citasViajesTurismoLosAngeles');
+    }
+
+    public function citasUnidadesTurismoLosAngeles(){
+        return view('Auth.citasUnidadesTurismoLosAngeles');
+    }
+
+    public function citasCotizacionTurismoLosAngeles(){
+        return view('Auth.citasCotizacionTurismoLosAngeles');
+    }
+
+    public function citaPasaporteTurismoLosAngeles(){
+        return view('Auth.citaPasaporteTurismoLosAngeles');
+    }
+
     public function logear(Request $request)
     {
         $request->validate([

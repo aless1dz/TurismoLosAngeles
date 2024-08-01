@@ -24,17 +24,17 @@
         <nav class="navbar">
             <div id="nav-close" class="fas fa-times"></div>
             @guest 
-            <a href="#home">inicio</a>
-            <a href="#about">nuestros servicios</a>
-            <a href="#shop">galeria</a>
-            <a href="/citas">citas</a>
+            <a href="/inicio">inicio</a>
+            <a href="/servicios">nuestros servicios</a>
+            <a href="/viajes">viajes</a>
+            <a href="/citasPrincipal">citas</a>
             <a href="/iniciar-sesion">iniciar sesión</a>
 
             @else 
-            <a href="#home">inicio</a>
-            <a href="#about">nuestros servicios</a>
-            <a href="#shop">galeria</a>
-            <a href="#packages">contacto</a>
+            <a href="/inicio">inicio</a>
+            <a href="/servicios">nuestros servicios</a>
+            <a href="/viajes">viajes</a>
+            <a href="/citasPrincipal">citas</a>
             <a href="/inicio" onclick="confirmLogout(event)">cerrar sesión</a>
             @endguest
         </nav>
