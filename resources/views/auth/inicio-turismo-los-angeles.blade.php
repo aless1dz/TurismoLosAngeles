@@ -19,8 +19,9 @@
 
     <header class="header">
 
-        <a href="#" class="logo"> <i class="fas fa-angel"></i> turismo los angeles. </a>
+        <a href="/inicio" class="logo"> <i class="fas fa-angel"></i> turismo los angeles </a>
 
+<<<<<<< HEAD
         <nav class="navbar">
             <div id="nav-close" class="fas fa-times"></div>
             @guest 
@@ -38,6 +39,26 @@
             <a href="/inicio" onclick="confirmLogout(event)">cerrar sesión</a>
             @endguest
         </nav>
+=======
+    <nav class="navbar">
+        <div id="nav-close" class="fas fa-times"></div>
+        <a href="/inicio">Inicio</a>
+        <a href="#about">Nuestros Servicios</a>
+        <a href="#shop">Galería</a>
+        <a href="/citas">Citas</a>
+
+    <div class="user-menu">
+        @guest
+            <a href="/iniciar-sesion" class="dropdown-toggle">Iniciar Sesión</a>
+        @else
+            <a href="" class="dropdown-toggle">Bienvenido, {{ Auth::user()->name }} </a>
+            <div class="dropdown-menu">
+                <a href="/inicio" onclick="confirmLogout(event)">Cerrar Sesión</a>
+            </div>
+        @endguest
+    </div>
+    </nav>
+>>>>>>> 4d9d4a40dcae15e1fd861093f58dfab52dbcf422
 
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>

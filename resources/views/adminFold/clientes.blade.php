@@ -26,34 +26,54 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
+                    <li class="nav-item">
                             <a class="nav-link active" href="#">
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('associates') }}">
                                 Viajes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('associates') }}">
                                 Renta de Unidades
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('associates') }}">
                                 VISA
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('users') }}">
                                 Clientes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('associates') }}">
                                 Acompañantes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('associates') }}">
+                                Unidades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cities') }}">
+                                Ciudades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('states') }}">
+                                Estados
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
                             </a>
                         </li>
                     </ul>
@@ -64,9 +84,9 @@
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <h1 class="h2">Clientes</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" onclick="clearForm()">
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" onclick="clearForm()">
                         Añadir Cliente
-                    </button>
+                    </button> -->
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                     <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                 </div>

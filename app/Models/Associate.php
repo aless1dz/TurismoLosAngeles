@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Associate extends Model{
 
+    use HasFactory;
+    
     protected $fillable = [
         'name', 'last_name', 'birthdate'
     ];
