@@ -702,7 +702,9 @@ section {
 
 }
 
-/*Estilo para el cerrar sesion y usuario*/
+/* General Navbar Styles (Assuming they are already in place) */
+
+/* User Menu Dropdown Styles */
 .user-menu {
   position: relative;
   display: inline-block;
@@ -724,13 +726,7 @@ section {
   z-index: 1000;
 }
 
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #333333; 
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
+
 
 .user-menu:hover .dropdown-menu {
   display: block;

@@ -702,7 +702,9 @@ section {
 
 }
 
-/*Estilo para el cerrar sesion y usuario*/
+/* General Navbar Styles (Assuming they are already in place) */
+
+/* User Menu Dropdown Styles */
 .user-menu {
   position: relative;
   display: inline-block;
@@ -717,7 +719,7 @@ section {
   position: absolute;
   right: 0;
   top: 100%;
-  background-color: #ffffff;
+  background-color: #ffffff0e; /* White background for the dropdown */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   overflow: hidden;
@@ -730,6 +732,10 @@ section {
   color: #333333; 
   text-decoration: none;
   transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #e50c0c;
 }
 
 .user-menu:hover .dropdown-menu {

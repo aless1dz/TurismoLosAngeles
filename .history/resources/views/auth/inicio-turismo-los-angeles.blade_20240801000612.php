@@ -40,9 +40,6 @@
     </div>
     </nav>
 
-        <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-        </div>
 
     </header>
 

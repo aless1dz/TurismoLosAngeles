@@ -32,7 +32,7 @@
         @guest
             <a href="/iniciar-sesion" class="dropdown-toggle">Iniciar Sesión</a>
         @else
-            <a href="" class="dropdown-toggle">Bienvenido, {{ Auth::user()->name }} </a>
+            <a href="#" class="dropdown-toggle">Bienvenido {{ Auth::user()->name }} </a>
             <div class="dropdown-menu">
                 <a href="/inicio" onclick="confirmLogout(event)">Cerrar Sesión</a>
             </div>

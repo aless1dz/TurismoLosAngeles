@@ -732,9 +732,5 @@ section {
   transition: background-color 0.3s;
 }
 
-.user-menu:hover .dropdown-menu {
-  display: block;
-}
-
 
 /*# sourceMappingURL=style.css.map */

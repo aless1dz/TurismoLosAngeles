@@ -702,7 +702,9 @@ section {
 
 }
 
-/*Estilo para el cerrar sesion y usuario*/
+/* General Navbar Styles (Assuming they are already in place) */
+
+/* User Menu Dropdown Styles */
 .user-menu {
   position: relative;
   display: inline-block;

@@ -21,8 +21,8 @@
 
         <a href="/inicio" class="logo"> <i class="fas fa-angel"></i> turismo los angeles </a>
 
-    <nav class="navbar">
-        <div id="nav-close" class="fas fa-times"></div>
+        <nav class="navbar">
+    <div id="nav-close" class="fas fa-times"></div>
         <a href="/inicio">Inicio</a>
         <a href="#about">Nuestros Servicios</a>
         <a href="#shop">Galería</a>
@@ -32,13 +32,13 @@
         @guest
             <a href="/iniciar-sesion" class="dropdown-toggle">Iniciar Sesión</a>
         @else
-            <a href="" class="dropdown-toggle">Bienvenido, {{ Auth::user()->name }} </a>
+            <a href="#" class="dropdown-toggle">Bienvenido {{ Auth::user()->name }} </a>
             <div class="dropdown-menu">
-                <a href="/inicio" onclick="confirmLogout(event)">Cerrar Sesión</a>
+                <a href="#" onclick="confirmLogout(event)">Cerrar Sesión</a>
             </div>
         @endguest
     </div>
-    </nav>
+</nav>
 
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>

@@ -702,39 +702,17 @@ section {
 
 }
 
-/*Estilo para el cerrar sesion y usuario*/
-.user-menu {
-  position: relative;
-  display: inline-block;
+.user-name {
+  color: #ffcc00;
+  font-weight: bold;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #444;
 }
 
-.dropdown-toggle {
-  cursor: pointer;
+.user-name:hover {
+  background-color: #666;
 }
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #333333; 
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.user-menu:hover .dropdown-menu {
-  display: block;
-}
-
 
 /*# sourceMappingURL=style.css.map */

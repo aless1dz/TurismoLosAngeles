@@ -131,20 +131,3 @@ var swiper = new Swiper(".clients-slider", {
         },
     },
 });
-
-//CONFIRMAR SI EL USUARIO QUIERE CERRAR SESION
-function confirmLogout(event) {
-    event.preventDefault();
-
-    Swal.fire({
-        title: '¿Estás seguro de que quieres cerrar sesión?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Cerrar sesión',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            document.getElementById('logout-form').submit();
-        }
-    });
-}

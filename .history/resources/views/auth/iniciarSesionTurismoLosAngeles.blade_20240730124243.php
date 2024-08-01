@@ -57,9 +57,8 @@
               <div class="two-col">
                 <div class="two">
                     <label><a href="/formulario-recuperar-contrasenia">¿Olvidaste la contraseña?</a></label>
-                  </div>
-                  <div class="two">
-                  <label><a href="/inicio">Regresar a inicio</a></label>
+                    <label><a href="/inicio">Regresar a inicio</a></label>
+
                   </div>
               </div>
              </div>

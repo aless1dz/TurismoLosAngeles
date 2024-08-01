@@ -673,68 +673,23 @@ section {
 
 /*Estilo de alerta para cerrar sesion*/
 .swal2-popup {
+  font-size: 1.0rem;
   background-color: #565656;
   border-radius: 60px;
-  width: 600px; 
-  height: auto;
 }
 
 .swal2-title {
   color: #ffffff;
-  font-size: 4rem;
 }
 
 .swal2-confirm {
   background-color: #105392;
   border-radius: 5px;
-  width: 150px; 
-  height: 50px;
-  font-size: 1.5rem;
-
 }
 
 .swal2-cancel {
   background-color: rgb(45, 45, 45);
   border-radius: 5px;
-  width: 150px; 
-  height: 50px;
-  font-size: 1.5rem;
-
 }
-
-/*Estilo para el cerrar sesion y usuario*/
-.user-menu {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-toggle {
-  cursor: pointer;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 15px;
-  color: #333333; 
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.user-menu:hover .dropdown-menu {
-  display: block;
-}
-
 
 /*# sourceMappingURL=style.css.map */
