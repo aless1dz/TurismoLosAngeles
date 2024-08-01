@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssociatesController;
+use App\Http\Controllers\StatesController;
+use App\Http\Controllers\CitiesController;
+use App\Http\Controllers\TripsController;
+use App\Http\Controllers\DestinationsController;
+use App\Http\Controllers\Cost_TabulatorsController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -71,4 +76,40 @@ Route::post('/insert/associate',[AssociatesController::class, "store"]);
 Route::put('/update/associate/{id}',[AssociatesController::class, "update"]);
 Route::delete('/delete/associate/{id}',[AssociatesController::class, "destroy"]);
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/states', [StatesController::class, 'view'])->name('states');
+Route::get('/get/states', [StatesController::class, 'getStates']);
+Route::get('/get/state/{id}', [StatesController::class, 'getState']);
+Route::post('/insert/state', [StatesController::class, 'insertState']);
+Route::put('/update/state/{id}', [StatesController::class, 'updateState']);
+Route::delete('/delete/state/{id}', [StatesController::class, 'deleteState']);
+
+
+Route::get('/view/cities', [CitiesController::class, 'view'])->name('cities');
+Route::get('/cities/all', [CitiesController::class, 'getCities']);
+Route::get('/cities/{id}', [CitiesController::class, 'getCity']);
+Route::post('/cities/insert', [CitiesController::class, 'insertCity']);
+Route::put('/cities/update/{id}', [CitiesController::class, 'updateCity']);
+Route::delete('/cities/delete/{id}', [CitiesController::class, 'deleteCity']);
+Route::get('/states/all', [CitiesController::class, 'getStates']);
+
+
+Route::get('/view/destinations', [DestinationsController::class, 'view'])->name('destinations');
+Route::get('/get/destinations', [DestinationsController::class, 'getDestinations']);
+Route::get('/get/destination/{id}', [DestinationsController::class, 'getDestination']);
+Route::post('/insert/destination', [DestinationsController::class, 'insertDestination']);
+Route::put('/update/destination/{id}', [DestinationsController::class, 'updateDestination']);
+Route::delete('/delete/destination/{id}', [DestinationsController::class, 'deleteDestination']);
+Route::get('/get/states', [DestinationsController::class, 'getStates']);
+Route::get('/get/cities', [DestinationsController::class, 'getCities']);
+
+Route::get('/view/cost_tabulators', [Cost_TabulatorsController::class, 'view'])->name('cost_tabulators');
+Route::get('/cost_tabulators/all', [Cost_TabulatorsController::class, 'getCost_Tabulators']);
+Route::get('/cost_tabulators/{id}', [Cost_TabulatorsController::class, 'getCost_Tabulator']);
+Route::post('/cost_tabulators/insert', [Cost_TabulatorsController::class, 'insertCost_Tabulator']);
+Route::put('/cost_tabulators/update/{id}', [Cost_TabulatorsController::class, 'updateCost_Tabulator']);
+Route::delete('/cost_tabulators/delete/{id}', [Cost_TabulatorsController::class, 'deleteCost_Tabulator']);
+Route::get('/destinations/all', [Cost_TabulatorsController::class, 'getDestinations']);
+// Route::middleware(['admin'])->group(function () {
+//     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+// });
+

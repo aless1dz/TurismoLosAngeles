@@ -6,6 +6,8 @@
     <title>Administracion</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,8 +28,8 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
                                 Dashboard
                             </a>
                         </li>
@@ -80,31 +82,29 @@
                 </div>
             </nav>
 
-            <div class="col-md-10">
+            <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                <h1 class="h2">Clientes</h1>
+                <h1 class="h2">Ciudades</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" onclick="clearForm()">
-                        Añadir Cliente
-                    </button> -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cityModal" onclick="clearForm()">
+                        Añadir Ciudad
+                    </button>
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                     <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                 </div>
-                
+
                 <table class="table table-sm table-bordered">
                     <thead class="table-dark">
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Email</th>
-                            <th>Fecha Nacimiento</th>
+                            <th>Estado</th>
                             <th>Fecha de Creacion</th>
                             <th>Fecha de Actualizacion</th>
                             <th>Editar/Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody id="userTableBody">
+                    <tbody id="cityTableBody">
                         
                     </tbody>
                 </table>
@@ -112,34 +112,29 @@
         </div>
     </div>
 
-    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    
+    <div class="modal fade" id="cityModal" tabindex="-1" aria-labelledby="cityModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="userForm">
+                <form id="cityForm">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="userModalLabel">Añadir/Editar Cliente</h5>
+                        <h5 class="modal-title" id="cityModalLabel">Añadir/Editar Ciudad</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id="user_id" name="id">
+                        <input type="hidden" id="idcities" name="idcities">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="apellidos" name="last_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthdate">Fecha Nacimiento</label>
-                            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <label for="idstates">Estado</label>
+                            <select class="form-control" id="idstates" name="idstates" required>
+                                
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -151,124 +146,108 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
     <script>
-    var users = [];
+        var cities = [];
+        var states = [];
 
-    $(document).ready(function () {
-        fetchUsers();
+        $(document).ready(function () {
+            fetchCities();
+            fetchStates();
 
-        $('#sort-asc').on('click', function () {
-            fetchUsers('id', 'asc');
-        });
-        $('#sort-desc').on('click', function () {
-            fetchUsers('id', 'desc');
-        });
+            $('#cityForm').on('submit', function (e) {
+                e.preventDefault();
 
-        $('#userForm').on('submit', function (e) {
-            e.preventDefault();
+                let id = $('#idcities').val();
+                let url = id ? `/cities/update/${id}` : '/cities/insert';
+                let method = id ? 'PUT' : 'POST';
 
-            let id = $('#user_id').val();
-            let url = id ? `/update/user/${id}` : '/insert/user';
-            let method = id ? 'PUT' : 'POST';
+                $.ajax({
+                    url: url,
+                    type: method,
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $('#cityModal').modal('hide');
+                        fetchCities();
+                    }
+                });
+            });
 
-            $.ajax({
-                url: url,
-                method: method,
-                data: $('#userForm').serialize(),
-                success: function (response) {
-                    $('#userModal').modal('hide');
-                    fetchUsers();
-                },
-                error: function (error) {
-                    console.log(error);
-                }
+            $('#search-btn').on('click', function () {
+                let searchTerm = $('#search-input').val().toLowerCase();
+                let filteredCities = cities.filter(city => city.name.toLowerCase().includes(searchTerm));
+                renderCities(filteredCities);
             });
         });
 
-        $('#search-btn').on('click', function () {
-            applyFilters();
-        });
-    });
+        function fetchCities() {
+            $.getJSON('/cities/all', function (data) {
+                cities = data;
+                renderCities(cities);
+            });
+        }
 
-    function fetchUsers(order = 'asc') {
-        $.get(`/get/users?order=${order}`, function (data) {
-            users = data;
-            renderUsers(users);
-        });
-    }
+        function fetchStates() {
+            $.getJSON('/states/all', function (data) {
+                states = data;
+                renderStates(states);
+            });
+        }
 
-    function renderUsers(data) {
-        let tableBody = $('#userTableBody');
-        tableBody.empty();
-        data.forEach(user => {
-            tableBody.append(`
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.last_name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.birthdate}</td>
-                    <td>${user.created_at}</td>
-                    <td>${user.updated_at}</td>
-                    <td>
-                        <button class="btn btn-warning" onclick="editUser(${user.id})"><i class="bi bi-pencil-fill"></i></button>
-                        <button class="btn btn-danger" onclick="deleteUser(${user.id})"><i class="bi bi-backspace-fill"></i></button>
-                    </td>
-                </tr>
-            `);
-        });
-    }
+        function renderCities(data) {
+            let tableBody = $('#cityTableBody');
+            tableBody.empty();
+            data.forEach(city => {
+                let createdAt = new Date(city.created_at).toLocaleString();
+                let updatedAt = new Date(city.updated_at).toLocaleString();
+                tableBody.append(`
+                    <tr>
+                        <td>${city.idcities}</td>
+                        <td>${city.name}</td>
+                        <td>${city.state ? city.state.name : 'N/A'}</td>
+                        <td>${createdAt}</td>
+                        <td>${updatedAt}</td>
+                        <td>
+                            <button class="btn btn-warning" onclick="editCity(${city.idcities})"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-danger" onclick="deleteCity(${city.idcities})"><i class="bi bi-backspace-fill"></i></button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
 
-    function applyFilters() {
-        let searchValue = $('#search-input').val().toLowerCase();
-        
-        let filteredUsers = users.filter(function (user) {
-            let match = true;
+        function renderStates(states) {
+            let stateSelect = $('#idstates');
+            stateSelect.empty();
+            states.forEach(state => {
+                stateSelect.append(`<option value="${state.idstates}">${state.name}</option>`);
+            });
+        }
 
-            if (searchValue) {
-                match = user.name.toLowerCase().includes(searchValue) || user.last_name.toLowerCase().includes(searchValue);
+        function editCity(id) {
+            let city = cities.find(city => city.idcities == id);
+            $('#idcities').val(city.idcities);
+            $('#name').val(city.name);
+            $('#idstates').val(city.states_idstates);
+            $('#cityModal').modal('show');
+        }
+
+        function deleteCity(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta ciudad?')) {
+                $.ajax({
+                    url: `/cities/delete/${id}`,
+                    type: 'DELETE',
+                    success: function (response) {
+                        fetchCities();
+                    }
+                });
             }
+        }
 
-            return match;
-        });
-
-        renderUsers(filteredUsers);
-    }
-
-    function editUser(id) {
-        $.get(`/get/user/${id}`, function (user) {
-            $('#user_id').val(user.id);
-            $('#nombre').val(user.name);
-            $('#apellidos').val(user.last_name);
-            $('#email').val(user.email);
-            $('#birthdate').val(user.birthdate);
-            $('#userModal').modal('show');
-        });
-    }
-
-    function deleteUser(id) {
-        $.ajax({
-            url: `/delete/user/${id}`,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            method: 'DELETE',
-            success: function () {
-                fetchUsers();
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    }
-
-    function clearForm() {
-        $('#user_id').val('');
-        $('#userForm')[0].reset();
-    }
+        function clearForm() {
+            $('#cityForm')[0].reset();
+            $('#idcities').val('');
+        }
     </script>
 </body>
 </html>

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Associate extends Model{
-
+class Unit extends Model
+{
     use HasFactory;
     
     protected $fillable = [
-        'name', 'last_name', 'birthdate'
+        'model', 'manufacturer', 'plates', 'place', 'full_space'
     ];
 }
