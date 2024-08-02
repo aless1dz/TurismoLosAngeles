@@ -9,19 +9,19 @@
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <!-- Librería iziToast -->
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"> --}}
-    <title>Citas | Turismo Los Angeles</title>
+    <title>Comentarios | Turismo Los Angeles</title>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header>
-            <a href="/inicio" class="container__logo"><img src="{{ asset('ImgCitas/IMG-Regresar.png') }}" alt="Logo Company"></a>
+            <a href="/citasPrincipal" class="container__logo"><img src="{{ asset('ImgCitas/IMG-Regresar.png') }}" alt="Logo Company"></a>
         </header>
 
         <!-- Section -->
          <section class="contact">
             <div class="contact__box">
-                <h2 class="contact__title">contáctanos</h2>
+                <h2 class="contact__title">comentarios</h2>
                 <p class="contact__description">déjanos tu mensaje y con gusto te responderemos</p>
             </div>
             <form action="" id="contact-form" class="contact__form" autocomplete="off">

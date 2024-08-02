@@ -19,29 +19,33 @@
 
     <header class="header">
 
-        <a href="#" class="logo"> <i class="fas fa-angel"></i> turismo los angeles. </a>
+        <a href="/inicio" class="logo"> <i class="fas fa-angel"></i> turismo los angeles </a>
 
-        <nav class="navbar">
-            <div id="nav-close" class="fas fa-times"></div>
-            @guest 
-            <a href="#home">inicio</a>
-            <a href="#about">nuestros servicios</a>
-            <a href="#shop">galeria</a>
-            <a href="/citas">citas</a>
-            <a href="/iniciar-sesion">iniciar sesión</a>
+    <nav class="navbar">
+        <div id="nav-close" class="fas fa-times"></div>
+        <a href="/inicio">inicio</a>
+        <a href="/servicios">nuestros servicios</a>
+        <a href="/viajes">viajes</a>
+        <a href="#shop">galería</a>
+        <a href="/citasPrincipal">citas</a>
 
-            @else 
-            <a href="#home">inicio</a>
-            <a href="#about">nuestros servicios</a>
-            <a href="#shop">galeria</a>
-            <a href="#packages">contacto</a>
-            <a href="/inicio" onclick="confirmLogout(event)">cerrar sesión</a>
-            @endguest
-        </nav>
+    <div class="user-menu">
+        @guest
+            <a href="/iniciar-sesion" class="dropdown-toggle">iniciar sesión</a>
+        @else
+            <a href="" class="dropdown-toggle">bienvenido, {{ Auth::user()->name }} </a>
+            <div class="dropdown-menu">
+                <a href="/inicio" onclick="confirmLogout(event)">cerrar sesión</a>
+            </div>
+        @endguest
+    </div>
+    </nav>
 
-        <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-        </div>
+    <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <!-- <a href="#" class="fas fa-shopping-cart"></a> -->
+        <div id="search-btn" class="fas fa-search" style="display: none;"></div> 
+    </div>
 
     </header>
 
@@ -262,9 +266,19 @@
     <!-- sección píe de página final -->
 
 
-    <script src="{{ asset('js/inicio.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/inicio.js') }}"></script>
+    {{-- <script>
+        var swiper = new Swiper(".home-slider", {
+            loop: true,
+            grabCursor: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script> --}}
 
 </body>
 </html>

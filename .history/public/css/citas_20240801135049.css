@@ -1,0 +1,360 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Variables CSS */
+:root {
+    --white: #f4f4f4;
+    --black: #1b1b1b;
+    --blue: #2255c4;
+    --dark-blue: #123786;
+}
+
+/* Reset CSS */
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+}
+
+/* Body */
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header */
+header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 30px;
+}
+
+.container__logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.container__box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: var(--blue);
+    z-index: -1;
+}
+
+.container__rrss {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.container__rrss-item {
+    color: var(--black);
+    font-size: 1.5em;
+    transition: 0.3s;
+}
+
+.container__rrss-item:hover {
+    color: var(--dark-blue);
+}
+
+/* Section */
+.contact {
+    position: relative;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    left: 200px; /* 200 px */
+}
+
+.contact__box {
+    text-align: left;
+}
+
+.contact__title {
+    font-size: 3em;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.contact__description {
+    font-size: 1.2em;
+    color: var(--black);
+    margin-bottom: 30px;
+}
+
+.contact__form {
+    width: 100%;
+}
+
+.contact__inputs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.contact__label {
+    font-size: 1em;
+    color: var(--black);
+    margin-bottom: 4px;
+}
+
+.contact__input,
+.contact__textarea {
+    padding: 10px;
+    border-radius: 15px;
+    outline: none;
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    resize: none;
+}
+
+.contact__button {
+    width: 100%;
+    border-radius: 15px;
+    border: none;
+    padding: 15px 20px;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact__button:hover {
+    background-color: var(--dark-blue);
+}
+
+/* Aside */
+.info {
+    background-color: var(--black);
+    width: 600px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 100px;
+    gap: 45px;
+}
+
+.info__little-box {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--blue);
+}
+
+.info__title {
+    color: var(--white);
+    font-size: 2em;
+}
+
+.info__list {
+    list-style: none;
+}
+
+.info__list-item {
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.bx {
+    font-size: 2em;
+}
+
+.info__list-item-description {
+    font-size: 1em;
+}
+
+/* Breakpoints */
+
+/* -- Pantallas Largas -- */
+@media only screen and (max-width: 1200px) {
+   .contact {
+        max-width: 500px;
+        left: 150px;
+   }
+
+   .info {
+        width: 500px;
+        padding-left: 70px;
+   }
+}
+
+/* -- Laptops -- */
+@media only screen and (max-width: 992px) {
+   .contact {
+        max-width: 400px;
+        left: 100px;
+   }
+
+   .info {
+        width: 400px;
+   }
+}
+
+/* -- Tablets -- */
+@media only screen and (max-width: 768px) {
+   .container {
+        justify-content: center;
+        flex-direction: column;
+        gap: 80px;
+   }
+
+   .container__box {
+        width: 100px;
+   }
+
+   .contact {
+        max-width: 400px;
+        left: 0;
+        padding-top: 40px;
+   }
+
+   .info {
+        padding: 40px;
+        left: 0;
+   }
+}
+
+/* -- Celulares -- */
+@media only screen and (max-width: 400px) {
+    header {
+        padding: 20px;
+    }
+
+    .container__box {
+        display: none;
+    }
+
+    .container__rrss {
+        top: 95%;
+        left: 130px;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        z-index: 1;
+        margin-top: 30px;
+    }
+
+    .container__rrss-item {
+        color: var(--blue);
+    }
+
+    .contact {
+        max-width: 300px;
+        padding-top: 100px;
+    }
+
+    .contact__title {
+        font-size: 2em;
+    }
+
+    .contact__description {
+        font-size: 1em;
+    }
+
+    .info__little-box {
+        top: -20px;
+        left: 0;
+    }
+}
+/*Estilo de alerta para cerrar sesion*/
+.swal2-popup {
+    background-color: #565656;
+    border-radius: 60px;
+    width: 600px; 
+    height: auto;
+  }
+  
+  .swal2-title {
+    color: #ffffff;
+    font-size: 4rem;
+  }
+  
+  .swal2-confirm {
+    background-color: #105392;
+    border-radius: 5px;
+    width: 150px; 
+    height: 50px;
+    font-size: 1.5rem;
+  
+  }
+  
+  .swal2-cancel {
+    background-color: rgb(45, 45, 45);
+    border-radius: 5px;
+    width: 150px; 
+    height: 50px;
+    font-size: 1.5rem;
+  
+  }
+  
+  /*Estilo para el cerrar sesion y usuario*/
+  .user-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333333; 
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .user-menu:hover .dropdown-menu {
+    display: block;
+  }
+  

@@ -10,7 +10,7 @@ document.querySelector('#nav-close').onclick = () =>{
 
 let searchForm = document.querySelector('.search-form');
 
-document.querySelector('#menu-btn').onclick = () =>{
+document.querySelector('#search-btn').onclick = () =>{
     searchForm.classList.add('active');
 }
 
@@ -131,3 +131,20 @@ var swiper = new Swiper(".clients-slider", {
         },
     },
 });
+
+//CONFIRMAR SI EL USUARIO QUIERE CERRAR SESION
+function confirmLogout(event) {
+    event.preventDefault();
+
+    Swal.fire({
+        title: '¿Estás seguro de que quieres cerrar sesión?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Cerrar sesión',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('logout-form').submit();
+        }
+    });
+}

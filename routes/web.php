@@ -36,6 +36,35 @@ Route::get('/vista-verificacion', [UserController::class, 'registrar']);
 
 Route::get('/citas', [UserController::class, 'citasTurismoLosAngeles']);
 
+Route::get('/servicios', [UserController::class, 'serviciosTurismoLosAngeles']);
+
+Route::get('/visa', [UserController::class, 'visaTurismoLosAngeles']);
+
+Route::get('/pasaporte', [UserController::class, 'pasaporteTurismoLosAngeles']);
+
+Route::get('/unidades', [UserController::class, 'unidadesTurismoLosAngeles']);
+
+Route::get('/viajes', [UserController::class, 'viajesTurismoLosAngeles']);
+
+Route::get('/viajesUsa', [UserController::class, 'viajesUsaTurismoLosAngeles']);
+
+Route::get('/viajesVacacionales', [UserController::class, 'viajesVacacionalesTurismoLosAngeles']);
+
+Route::get('/viajesLocales', [UserController::class, 'viajesLocalesTurismoLosAngeles']);
+
+Route::get('/citasPrincipal', [UserController::class, 'citasPrincipalTurismoLosAngeles']);
+
+Route::get('/citasVisa', [UserController::class, 'citasVisaTurismoLosAngeles']);
+
+Route::get('/citasViajes', [UserController::class, 'citasViajesTurismoLosAngeles']);
+
+Route::get('/citasUnidades', [UserController::class, 'citasUnidadesTurismoLosAngeles']);
+
+Route::get('/citasCotizacion', [UserController::class, 'citasCotizacionTurismoLosAngeles']);
+
+Route::get('/citaPasaporte', [UserController::class, 'citaPasaporteTurismoLosAngeles']);
+
+
 //ENVIAR CORREO DE VERIFICACION EMAIL
 Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail'])->name('verification.verify');
 
