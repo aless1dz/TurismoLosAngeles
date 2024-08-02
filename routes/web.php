@@ -8,6 +8,7 @@ use App\Http\Controllers\StatesController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\TripsController;
 use App\Http\Controllers\DestinationsController;
+use App\Http\Controllers\UnitsController;
 use App\Http\Controllers\Cost_TabulatorsController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -112,4 +113,21 @@ Route::get('/destinations/all', [Cost_TabulatorsController::class, 'getDestinati
 // Route::middleware(['admin'])->group(function () {
 //     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 // });
+
+Route::get('/view/units', [UnitsController::class, 'view'])->name('units');
+Route::get('/get/units', [UnitsController::class, 'getUnits']);
+Route::get('/get/unit/{idunits}', [UnitsController::class, 'getUnit']);
+Route::post('/units/insert', [UnitsController::class, 'insertUnit']);
+Route::put('/units/update/{idunits}', [UnitsController::class, 'updateUnit']);
+Route::delete('/delete/unit/{idunits}', [UnitsController::class, 'deleteUnit']);
+
+Route::get('/view/trips', [TripsController::class, 'view'])->name('trips');
+Route::get('/get/trips', [TripsController::class, 'getTrips']);
+Route::get('/get/trip/{idtrips}', [TripsController::class, 'getTrip']);
+Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
+Route::put('/trips/update/{idtrips}', [TripsController::class, 'updateTrip']);
+Route::delete('/delete/trip/{idtrips}', [TripsController::class, 'deleteTrip']);
+Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
+Route::get('/users/all', [TripsController::class, 'getUsers']);
+Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
 

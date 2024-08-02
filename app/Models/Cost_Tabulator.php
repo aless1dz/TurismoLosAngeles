@@ -18,9 +18,14 @@ class Cost_Tabulator extends Model
 
     public function destination()
 {
-    return $this->belongsTo(Destination::class, 'destinations_iddestinations', 'iddestinations');
+    return $this->belongsTo(Destination::class, 'destinations_iddestinations');
 }
 
 
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
+    }
     
 }

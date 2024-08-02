@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -59,7 +60,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('units') }}">
                                 Unidades
                             </a>
                         </li>
@@ -171,6 +172,12 @@
                         fetchCities();
                     }
                 });
+                $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+                });
+
             });
 
             $('#search-btn').on('click', function () {
@@ -233,14 +240,20 @@
         }
 
         function deleteCity(id) {
-            if (confirm('¿Estás seguro de que quieres eliminar esta ciudad?')) {
-                $.ajax({
-                    url: `/cities/delete/${id}`,
-                    type: 'DELETE',
-                    success: function (response) {
-                        fetchCities();
-                    }
-                });
+        if (confirm('¿Estás seguro de que quieres eliminar esta ciudad?')) {
+        $.ajax({
+            url: `/cities/delete/${id}`,
+            type: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                fetchCities();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+            });
             }
         }
 
