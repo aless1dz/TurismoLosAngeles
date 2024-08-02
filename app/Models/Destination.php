@@ -12,7 +12,7 @@ class Destination extends Model
     protected $primaryKey = 'iddestinations';
 
     protected $fillable = [
-        'cities_idcities', 'states_idstates'
+        'destination_acronym', 'cities_idcities', 'states_idstates'
     ];
 
     public function city()
@@ -28,5 +28,10 @@ class Destination extends Model
     public function cost_tabulators()
     {
         return $this->hasMany(Cost_Tabulator::class, 'destinations_iddestinations', 'iddestinations');
+    }
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
     }
 }

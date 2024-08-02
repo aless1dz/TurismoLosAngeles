@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Trip;
+use App\Models\Destination;
+use App\Models\Cost_Tabulator;
+use App\Models\User;
 
 class TripsController extends Controller
 {
@@ -13,47 +16,85 @@ class TripsController extends Controller
     }
 
     public function getTrips(Request $request)
-    {
-        $order = $request->query('order', 'asc');
-        $trips = Trip::with('state', 'city')->orderBy('idtrips', $order)->get();
-        return response()->json($trips);
-    }
+{
+    try {
+        $order = $request->query('order', 'asc'); 
 
-    public function getTrip($id)
+        $trips = Trip::with(['destination', 'cost_tabulator', 'user'])
+            ->orderBy('idtrips', $order)
+            ->get(); 
+
+        return response()->json($trips); 
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+
+    public function getTrip($idtrips)
     {
-        $trip = Trip::with('state', 'city')->where('idtrips', $id)->first();
+        $trip = Trip::find($idtrips);
         return response()->json($trip);
     }
 
     public function insertTrip(Request $request)
-    {
-        $trip = new Trip;
-        $trip->start_date = $request->start_date;
-        $trip->end_date = $request->end_date;
-        $trip->states_idstates = $request->idstates; 
-        $trip->save();
-        return response()->json($trip);
-    }
+{
+    $validated = $request->validate([
+        'iddestinations' => 'required|integer',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date',
+        'duration' => 'required|integer',
+        'idcost_tabulators' => 'required|integer',
+        'idusers' => 'required|integer'
+    ]);
 
-    public function updateCity(Request $request, $idcities)
-    {
-        $trip = Trip::find($idcities);
-        $trip->name = $request->name;
-        $trip->states_idstates = $request->idstates; 
-        $trip->save();
-        return response()->json($trip);
-    }
+    $trip = new Trip;
+    $trip->destinations_iddestinations = $validated['iddestinations'];
+    $trip->start_date = $validated['start_date'];
+    $trip->end_date = $validated['end_date'];
+    $trip->duration = $validated['duration'];
+    $trip->cost_tabulators_idcost_tabulators = $validated['idcost_tabulators'];
+    $trip->users_idusers = $validated['idusers'];
+    $trip->save();
 
-    public function deleteCity($idcities)
+    return response()->json($trip);
+}
+
+
+public function updateTrip(Request $request, $idtrips)
+{
+    $trip = Trip::find($idtrips);
+    $trip->destinations_iddestinations = $request->iddestinations;
+    $trip->start_date = $request->start_date;
+    $trip->end_date = $request->end_date;
+    $trip->duration = $request->duration;
+    $trip->cost_tabulators_idcost_tabulators = $request->idcost_tabulators;
+    $trip->users_idusers = $request->idusers;
+    $trip->save();
+    return response()->json($trip);
+}
+
+
+    public function deleteTrip($idtrips)
     {
-        $trip = Trip::find($idcities);
+        $trip = Trip::find($idtrips);
         $trip->delete();
-        return response()->json(['message' => 'Ciudad eliminada correctamente']);
+        return response()->json(['message' => 'Unidad eliminada correctamente']);
     }
-
-    public function getStates()
+    
+    public function getDestinations()
     {
-        $states = State::all();
-        return response()->json($states);
+        $destinations = Destination::all();
+        return response()->json($destinations);
+    }
+    
+    public function getUsers()
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+    public function getCost_Tabulators()
+    {
+        $cost_tabulators = Cost_Tabulator::all();
+        return response()->json($cost_tabulators);
     }
 }

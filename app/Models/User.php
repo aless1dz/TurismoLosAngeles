@@ -56,6 +56,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
         ];
     }
 
+    public function trips()
+    {
+        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
+    }
 }
 
 

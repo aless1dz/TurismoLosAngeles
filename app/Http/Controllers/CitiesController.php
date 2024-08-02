@@ -40,7 +40,7 @@ class CitiesController extends Controller
     {
         $city = City::find($idcities);
         $city->name = $request->name;
-        $city->states_idstates = $request->idstates; 
+        $city->states_idstates = $request->idstates;
         $city->save();
         return response()->json($city);
     }
@@ -48,8 +48,12 @@ class CitiesController extends Controller
     public function deleteCity($idcities)
     {
         $city = City::find($idcities);
-        $city->delete();
-        return response()->json(['message' => 'Ciudad eliminada correctamente']);
+        if ($city) {
+            $city->delete();
+            return response()->json(['message' => 'Ciudad eliminada correctamente']);
+        } else {
+            return response()->json(['message' => 'Ciudad no encontrada'], 404);
+        }
     }
 
     public function getStates()

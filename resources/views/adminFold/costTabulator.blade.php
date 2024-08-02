@@ -17,7 +17,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fas fa-user"></i> User
+                        <i class="fas fa-user"></i> Admin
                     </a>
                 </li>
             </ul>
@@ -30,49 +30,14 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
-                                Dashboard
-                            </a>
+                            <a class="nav-link active" href="/dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Viajes
-                            </a>
+                            <a class="nav-link" href="{{ route('associates') }}">Viajes</a>
                         </li>
+                        <!-- Añade más elementos de la barra lateral aquí -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                VISA
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}">
-                                Clientes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Acompañantes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                Estados
-                            </a>
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">Tabla de Costos</a>
                         </li>
                     </ul>
                 </div>
@@ -81,7 +46,7 @@
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <h1 class="h2">Tabla de costos</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cost_TabulatorModal" onclick="clearForm()">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#costTabulatorModal" onclick="clearForm()">
                         Añadir
                     </button>
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
@@ -92,30 +57,29 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Id</th>
-                            <th>Destino (Abreviatura)</th>
-                            <th>Precio Unico</th>
-                            <th>Precio de mayoreo</th>
-                            <th>Descripcion</th>
-                            <th>Fecha de Creacion</th>
-                            <th>Fecha de Actualizacion</th>
-                            <th>Editar/Eliminar</th>
+                            <th>Destino</th>
+                            <th>Precio único</th>
+                            <th>Precio a Mayoreo</th>
+                            <th>Descripción</th>
+                            <th>Fecha de Actualización</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="cost_TabulatorTableBody">
-                        
+                    <tbody id="costTabulatorTableBody">
+                        <!-- Los datos se llenarán aquí mediante JavaScript -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="cost_TabulatorModal" tabindex="-1" aria-labelledby="cost_TabulatorModalLabel" aria-hidden="true">
+    <div class="modal fade" id="costTabulatorModal" tabindex="-1" aria-labelledby="costTabulatorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="cost_TabulatorForm">
+                <form id="costTabulatorForm">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="cost_TabulatorModalLabel">Añadir/Editar</h5>
+                        <h5 class="modal-title" id="costTabulatorModalLabel">Añadir/Editar</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -129,18 +93,17 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="unit_price">Precio Unico</label>
+                            <label for="unit_price">Precio Único</label>
                             <input type="number" class="form-control" id="unit_price" name="unit_price" required>
                         </div>
                         <div class="form-group">
-                            <label for="bulk_price">Precio al por Mayor</label>
+                            <label for="bulk_price">Precio a Mayoreo</label>
                             <input type="number" class="form-control" id="bulk_price" name="bulk_price" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Descripcion</label>
+                            <label for="description">Descripción</label>
                             <input type="text" class="form-control" id="description" name="description" required>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -156,16 +119,10 @@
         var destinations = [];
 
         $(document).ready(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
             fetchCost_Tabulators();
             fetchDestinations();
 
-            $('#cost_TabulatorForm').on('submit', function (e) {
+            $('#costTabulatorForm').on('submit', function (e) {
                 e.preventDefault();
 
                 let id = $('#idcost_tabulators').val();
@@ -177,20 +134,20 @@
                     type: method,
                     data: $(this).serialize(),
                     success: function (response) {
-                        $('#cost_TabulatorModal').modal('hide');
+                        $('#costTabulatorModal').modal('hide');
                         fetchCost_Tabulators();
                     },
                     error: function (xhr) {
                         console.error(xhr.responseText);
-                    
+                        alert('Error al guardar los datos. Intenta de nuevo.');
                     }
                 });
             });
 
             $('#search-btn').on('click', function () {
                 let searchTerm = $('#search-input').val().toLowerCase();
-                let filteredCost_Tabulators = cost_tabulators.filter(cost_tabulator => cost_tabulator.destination_acronym.toLowerCase().includes(searchTerm));
-                renderCost_Tabulators(filteredCost_Tabulators);
+                let filteredCost_tabulators = cost_tabulators.filter(cost_tabulator => cost_tabulator.description.toLowerCase().includes(searchTerm));
+                renderCost_Tabulators(filteredCost_tabulators);
             });
         });
 
@@ -202,56 +159,68 @@
         }
 
         function fetchDestinations() {
-            $.getJSON('/destinations/all', function (data) {
-                destinations = data;
-                renderDestinations(destinations);
-            });
+    $.getJSON('/destinations/all', function (data) {
+        console.log(data);
+        renderDestinations(data);
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Error al obtener destinos:', textStatus, errorThrown);
+    });
+}
+
+function renderDestinations(destinations) {
+    let destinationSelect = $('#iddestinations');
+    destinationSelect.empty();
+    destinations.forEach(destination => {
+        console.log(destination); 
+        if (destination.iddestinations && destination.destination_acronym) {
+            destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
+        } else {
+            console.error('Datos de destino no válidos:', destination);
         }
+    });
+}
+
+
 
         function renderCost_Tabulators(data) {
-            let tableBody = $('#cost_TabulatorTableBody');
+            let tableBody = $('#costTabulatorTableBody');
             tableBody.empty();
             data.forEach(cost_tabulator => {
                 let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
                 let updatedAt = new Date(cost_tabulator.updated_at).toLocaleString();
+                let destinationText = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
                 tableBody.append(`
                     <tr>
                         <td>${cost_tabulator.idcost_tabulators}</td>
-                        <td>${cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A'}</td>
+                        <td>${destinationText}</td>
                         <td>${cost_tabulator.unit_price}</td>
                         <td>${cost_tabulator.bulk_price}</td>
                         <td>${cost_tabulator.description}</td>
-                        <td>${createdAt}</td>
                         <td>${updatedAt}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="editCost_Tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteCost_Tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-backspace-fill"></i></button>
+                            <button class="btn btn-warning" onclick="editCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-danger" onclick="deleteCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-backspace-fill"></i></button>
                         </td>
                     </tr>
                 `);
             });
         }
 
-        function renderDestinations(destinations) {
-            let destinationSelect = $('#iddestinations');
-            destinationSelect.empty();
-            destinations.forEach(destination => {
-                destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
-            });
-        }
 
-        function editCost_Tabulator(id) {
-            let cost_tabulator = cost_tabulators.find(cost_tabulator => cost_tabulator.idcost_tabulators == id);
-            $('#idcost_tabulators').val(cost_tabulator.idcost_tabulators);
-            $('#iddestinations').val(cost_tabulator.destinations_iddestinations);
-            $('#unit_price').val(cost_tabulator.unit_price);
-            $('#bulk_price').val(cost_tabulator.bulk_price);
-            $('#description').val(cost_tabulator.description);
-            $('#cost_TabulatorModal').modal('show');
-        }
+        function editCost_tabulator(id) {
+    let cost_tabulator = cost_tabulators.find(item => item.idcost_tabulators === id);
+    if (cost_tabulator) {
+        $('#idcost_tabulators').val(cost_tabulator.idcost_tabulators);
+        $('#iddestinations').val(cost_tabulator.destinations_iddestinations); // Asegúrate de que este valor coincide
+        $('#unit_price').val(cost_tabulator.unit_price);
+        $('#bulk_price').val(cost_tabulator.bulk_price);
+        $('#description').val(cost_tabulator.description);
+        $('#costTabulatorModal').modal('show');
+    }
+}
 
-        function deleteCost_Tabulator(id) {
-            if (confirm('Estas seguro de eliminar?')) {
+        function deleteCost_tabulator(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
                 $.ajax({
                     url: `/cost_tabulators/delete/${id}`,
                     type: 'DELETE',
@@ -260,14 +229,14 @@
                     },
                     error: function (xhr) {
                         console.error(xhr.responseText);
-                        alert('Error al eliminar. Intenta de nuevo.');
+                        alert('Error al eliminar el registro. Intenta de nuevo.');
                     }
                 });
             }
         }
 
         function clearForm() {
-            $('#cost_TabulatorForm')[0].reset();
+            $('#costTabulatorForm')[0].reset();
             $('#idcost_tabulators').val('');
         }
     </script>

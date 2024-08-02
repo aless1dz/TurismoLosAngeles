@@ -38,12 +38,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                VISA
+                                Citas
                             </a>
                         </li>
                         <li class="nav-item">
@@ -57,7 +52,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('units') }}">
                                 Unidades
                             </a>
                         </li>
@@ -71,17 +66,28 @@
                                 Estados
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                Destinos
+                            </a>
+                        </li>
+                            
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
-            
-           
-            <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
+
+            <div class="col-md-10">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                <h1 class="h2">Ciudades</h1>
+                <h1 class="h2">Viajes (Historial)</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cityModal" onclick="clearForm()">
-                        Añadir Ciudad
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tripModal" onclick="clearForm()">
+                        Añadir Viaje
                     </button>
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                     <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
@@ -91,14 +97,19 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Estado</th>
+                            <th>Destino</th>
+                            <th>Fecha de Inicio</th>
+                            <th>Fecha de Fin</th>
+                            <th>Duración (Días)</th>
+                            <th>Costo (Unico o Mayoreo)</th>
+                            <th>Usuario</th>
+                            <th>Contrato</th>
                             <th>Fecha de Creacion</th>
                             <th>Fecha de Actualizacion</th>
                             <th>Editar/Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody id="cityTableBody">
+                    <tbody id="tripTableBody">
                         
                     </tbody>
                 </table>
@@ -106,154 +117,233 @@
         </div>
     </div>
 
-    <div class="modal fade" id="cityModal" tabindex="-1" aria-labelledby="cityModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form id="cityForm">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cityModalLabel">Añadir/Editar Ciudad</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="idcities" name="id">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+    <div class="modal fade" id="tripModal" tabindex="-1" aria-labelledby="tripModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="tripForm">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tripModalLabel">Añadir/Editar Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="idstates">Estado</label>
-                        <select class="form-control" id="idstates" name="idstates" required>
-                            
-                        </select>
+                    <div class="modal-body">
+                        <input type="hidden" id="idtrips" name="idtrips">
+                        <div class="form-group">
+                            <label for="iddestinations">Destino</label>
+                            <select class="form-control" id="iddestinations" name="iddestinations" required>
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Fecha de Inicio</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">Fecha de Fin</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duaración (Días)</label>
+                            <input type="number" class="form-control" id="duration" name="duration" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="idcost_tabulators">Costo (Unico o Mayoreo)</label>
+                            <select class="form-control" id="idcost_tabulators" name="idcost_tabulators" required>
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="idusers">Cliente</label>
+                            <select class="form-control" id="idusers" name="idusers" required>
+                                
+                            </select>
+                        </div>
+                        
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
     <script>
-var cities = [];
-var states = [];
+    var trips = [];
+    var destinations = [];
+    var users = [];
+    var cost_tabulators = [];
 
-$(document).ready(function () {
-    fetchCities();
-    fetchStates();
+    $(document).ready(function () {
+    fetchTrips();
+    fetchCost_Tabulators();
+    fetchDestinations();
+    fetchUsers();
 
-    $('#cityForm').on('submit', function (e) {
-        e.preventDefault();
-
-        let id = $('#idcities').val();
-        let url = id ? `/update/city/${id}` : '/insert/city';
-        let method = id ? 'PUT' : 'POST';
-
-        $.ajax({
-            url: url,
-            method: method,
-            data: $('#cityForm').serialize(),
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function (response) {
-                $('#cityModal').modal('hide');
-                fetchCities();
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
+    $('#sort-asc').on('click', function () {
+        fetchTrips('asc');
     });
+    $('#sort-desc').on('click', function () {
+        fetchTrips('desc');
+    });
+
+    $('#tripForm').on('submit', function (e) {
+    e.preventDefault();
+
+    let id = $('#idtrips').val();
+    let url = id ? `/trips/update/${id}` : '/trips/insert';
+    let method = id ? 'PUT' : 'POST';
+
+    // Verificar que idusers tenga un valor válido
+    let idusers = $('#idusers').val();
+    if (idusers === 'undefined' || idusers === '') {
+        alert('Por favor seleccione un usuario válido.');
+        return;
+    }
+
+    $.ajax({
+        url: url,
+        method: method,
+        data: $('#tripForm').serialize(),
+        success: function (response) {
+            $('#tripModal').modal('hide');
+            fetchTrips();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
 
     $('#search-btn').on('click', function () {
         applyFilters();
     });
 });
 
-function fetchCities(order = 'asc') {
-    $.get(`/get/cities?order=${order}`, function (data) {
-        cities = data;
-        renderCities(cities);
-    });
-}
+        function fetchTrips(order = 'asc') {
+        $.get(`/get/trips?order=${order}`, function (data) {
+        trips = data;
+        renderTrips(trips);
+            });
+        }
+        function fetchDestinations() {
+            $.getJSON('/destinations/all', function (data) {
+                destinations = data;
+                renderDestinations(destinations);
+            });
+        }
 
-function renderCities(data) {
-    let tableBody = $('#cityTableBody');
-    tableBody.empty();
-    data.forEach(city => {
-        let createdAt = new Date(city.created_at).toLocaleString();
-        let updatedAt = new Date(city.updated_at).toLocaleString();
+        function fetchCost_Tabulators() {
+            $.getJSON('/cost_tabulators/all', function (data) {
+                cost_tabulators = data;
+                renderCost_Tabulators(cost_tabulators);
+            });
+        }
+        function fetchUsers() {
+            $.getJSON('/users/all', function (data) {
+                users = data;
+                renderUsers(users);
+            });
+        }
+
+        function renderTrips(data) {
+        let tableBody = $('#tripTableBody');
+        tableBody.empty();
+        data.forEach(trip => {
+        let createdAt = new Date(trip.created_at).toLocaleString();
+        let updatedAt = new Date(trip.updated_at).toLocaleString();
+        let destinationInfo = trip.destination ? `${trip.destination.destination_acronym}`: 'N/A';
+        let costInfo = trip.cost_tabulator ? `${trip.cost_tabulator.unit_price}  ${trip.cost_tabulator.bulk_price}` : 'N/A';
+        let userInfo = trip.user ? `${trip.user.name} : ${trip.user.last_name}` : 'N/A';
+
         tableBody.append(`
             <tr>
-                <td>${city.idcities}</td>
-                <td>${city.name}</td>
-                <td>${city.state ? city.state.name : 'N/A'}</td>
+                <td>${trip.idtrips}</td>
+                <td>${destinationInfo}</td>
+                <td>${trip.start_date}</td>
+                <td>${trip.end_date}</td>
+                <td>${trip.duration}</td>
+                <td>${costInfo}</td>
+                <td>${userInfo}</td>
                 <td>${createdAt}</td>
                 <td>${updatedAt}</td>
                 <td>
-                    <button class="btn btn-warning" onclick="editCity(${city.idcities})"><i class="bi bi-pencil-fill"></i></button>
-                    <button class="btn btn-danger" onclick="deleteCity(${city.idcities})"><i class="bi bi-backspace-fill"></i></button>
+                    <button class="btn btn-warning" onclick="editTrip(${trip.idtrips})"><i class="bi bi-pencil-fill"></i></button>
+                    <button class="btn btn-danger" onclick="deleteTrip(${trip.idtrips})"><i class="bi bi-backspace-fill"></i></button>
                 </td>
             </tr>
         `);
     });
 }
-
-function applyFilters() {
-    let searchValue = $('#search-input').val().toLowerCase();
-    
-    let filteredCities = cities.filter(function (city) {
-        let match = true;
-
-        if (searchValue) {
-            match = city.name.toLowerCase().includes(searchValue);
+  
+        function renderDestinations(destinations) {
+            let destinationSelect = $('#iddestinations');
+            destinationSelect.empty();
+            destinations.forEach(destination => {
+                destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym} </option>`);
+            });
+        }
+        function renderUsers(users) {
+            let userSelect = $('#idusers');
+            userSelect.empty();
+            users.forEach(user => {
+                userSelect.append(`<option value="${user.idusers}">${user.name}:${user.last_name} </option>`);
+            });
+        }
+        function renderCost_Tabulators(cost_tabulators) {
+            let cost_tabulatorSelect = $('#idcost_tabulators');
+            cost_tabulatorSelect.empty();
+            cost_tabulators.forEach(cost_tabulator => {
+                cost_tabulatorSelect.append(`<option value="${cost_tabulator.idcost_tabulators}">${cost_tabulator.unit_price}:${cost_tabulator.bulk_price} </option>`);
+            });
         }
 
-        return match;
-    });
+    function applyFilters() {
+        let searchValue = $('#search-input').val().toLowerCase();
+        
+        let filteredTrips = trips.filter(function (trip) {
+            let match = true;
 
-    renderCities(filteredCities);
-}
+            if (searchValue) {
+                match = trip.destination.toLowerCase().includes(searchValue) || trip.user.name.toLowerCase().includes(searchValue);
+            }
 
-function fetchStates() {
-    $.get('/get/states', function (data) {
-        states = data;
-        let stateSelect = $('#idstates');
-        stateSelect.empty();
-        states.forEach(state => {
-            stateSelect.append(`<option value="${state.idstates}">${state.name}</option>`);
+            return match;
         });
+
+        renderTrips(filteredTrips);
+    }
+
+    function editTrip(id) {
+    $.get(`/get/trip/${id}`, function (trip) {
+        $('#idtrips').val(trip.idtrips);
+        $('#iddestinations').val(trip.iddestinations);
+        $('#start_date').val(trip.start_date);
+        $('#end_date').val(trip.end_date);
+        $('#duration').val(trip.duration);
+        $('#idcost_tabulators').val(trip.idcost_tabulators);
+        $('#idusers').val(trip.idusers || ''); 
+        $('#tripModal').modal('show');
     });
 }
 
-function editCity(id) {
-    $.get(`/get/city/${id}`, function (city) {
-        $('#idcities').val(city.idcities);
-        $('#name').val(city.name);
-        $('#idstates').val(city.states_idstates);
-        $('#cityModal').modal('show');
-    });
-}
 
-function deleteCity(id) {
+function deleteTrip(id) {
     $.ajax({
-        url: `/delete/city/${id}`,
+        url: `/delete/trip/${id}`,
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         method: 'DELETE',
         success: function () {
-            fetchCities();
+            fetchTrips();
         },
         error: function (error) {
             console.log(error);
@@ -261,11 +351,10 @@ function deleteCity(id) {
     });
 }
 
-function clearForm() {
-    $('#idcities').val('');
-    $('#cityForm')[0].reset();
-    $('#idstates').val('');
-}
-</script>
+    function clearForm() {
+        $('#idtrips').val('');
+        $('#tripForm')[0].reset();
+    }
+    </script>
 </body>
 </html>
