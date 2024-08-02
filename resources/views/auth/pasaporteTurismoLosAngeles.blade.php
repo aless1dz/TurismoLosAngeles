@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasaporte | Turismo Los Angeles</title>
 
-
     <!-- link font awesome -->
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <!-- link css -->
     <link rel="stylesheet" href="{{ asset('css/servicios.css') }}">
-
 
 </head>
 <body>
@@ -27,7 +25,6 @@
         <a href="/inicio">inicio</a>
         <a href="/servicios">nuestros servicios</a>
         <a href="/viajes">viajes</a>
-        <a href="#shop">galería</a>
         <a href="/citasPrincipal">citas</a>
 
     <div class="user-menu">
@@ -61,7 +58,6 @@
 
         <div id="close-search" class="fas fa-times"></div>
 
-        
     </div>
 
     <!-- sección principal inicio -->
@@ -125,33 +121,33 @@
 
             <div class="box">
                 <h3>enlaces directos</h3>
-                <a href="#home">inicio</a>
-                <a href="#about">nuestros servicios</a>
-                <a href="#shop">galería</a>
-                <a href="#packages">contacto</a>
-                <a href="#reviews">iniciar sesión</a>
+                <a href="/inicio">inicio</a>
+                <a href="/servicios">nuestros servicios</a>
+                <a href="/viajes">viajes</a>
+                <a href="/citasPrincipal">citas</a>
             </div>
 
             <div class="box">
                 <h3>enlaces adicionales</h3>
-                <a href="#">visas</a>
-                <a href="#">pasaporte</a>
-                <a href="#">unidades</a>
+                <a href="/visa">visas</a>
+                <a href="/pasaporte">pasaporte</a>
+                <a href="/unidades">unidades</a>
             </div>
 
             <div class="box">
-                <h3>información de contacto</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangeles@gmail.com </a>
-                <a href="#"> <i class="fas fa-map"></i> Av. Morelos #482 pte casi esquina con Leona Vicario. </a>
+                <h3>contacto</h3>
+                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> visas (871) 401 0593 </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> viajes (871) 217 4806 </a>
+                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> unidades (871) 457 2300 </a>
+                <a href="mailto:turismolosangelespro@gmail.com" target="_blank" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangelespro@gmail.com </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  av morelos 482, primero de cobián centro, 27000 torreón, coah. </a> 
             </div>
 
             <div class="box">
                 <h3>siguenos</h3>
-                <a href="#"> <i class="fab fa-facebook"></i> facebook </a>
-                <a href="#"> <i class="fab fa-whatsapp"></i> whatsApp</a>
-                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> facebook </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> whatsApp</a>
+                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> instagram </a>
             </div>
 
         </div>
@@ -159,7 +155,7 @@
         <div class="credit">copyright © 2024 <span>turismo los angeles</span> | todos los derechos reservados.</div>
 
     </section>
-
+    
     <!-- sección píe de página final -->
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
