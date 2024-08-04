@@ -19,30 +19,32 @@
         </header>
 
         <!-- Section -->
-         <section class="contact">
+        <section class="contact">
             <div class="contact__box">
                 <h2 class="contact__title">comentarios</h2>
                 <p class="contact__description">déjanos tu mensaje y con gusto te responderemos</p>
             </div>
-            <form action="" id="contact-form" class="contact__form" autocomplete="off">
+            <form action="{{ route('store.comentario') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
+                @csrf
+                <input type="hidden" name="form_type" value="comentarios">
                 <div class="contact__inputs">
                     <label class="contact__label">nombre</label>
-                    <input type="text" id="user-name" class="contact__input" required>
+                    <input type="text" name="user_name" id="user_name" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">correo electrónico</label>
-                    <input type="email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
+                    <input type="email" name="user_email" id="user_email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">mensaje</label>
-                    <textarea id="message" cols="30" rows="5" class="contact__textarea" required></textarea>
+                    <textarea name="message" id="message" cols="30" rows="5" class="contact__textarea" required></textarea>
                 </div>
                 <button type="submit" class="contact__button">enviar</button>
             </form>
-         </section>
+        </section>
 
         <!-- Aside -->
-         <aside class="info">
+        <aside class="info">
             <div class="info__little-box"></div>
             <h2 class="info__title">información de contacto</h2>
             <ul class="info__list">
@@ -63,13 +65,13 @@
                     <p class="info__list-item-description">09:00 - 18:00</p>
                 </li>
             </ul>
-         </aside>
+        </aside>
 
         <!-- Box -->
-         <div class="container__box"></div>
+        <div class="container__box"></div>
 
         <!-- Redes Sociales -->
-         <div class="container__rrss">
+        <div class="container__rrss">
             <a href="#" class="container__rrss-item">
                 <i class="fab fa-facebook"></i>
             </a>
@@ -79,7 +81,7 @@
             <a href="#" class="container__rrss-item">
                 <i class="fab fa-instagram"></i>
             </a>
-         </div>
+        </div>
     </div>
 
     <!-- Librería EmailJS -->

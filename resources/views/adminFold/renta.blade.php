@@ -114,7 +114,7 @@
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <meta name="csrf-token" content="{{ csrf_token() }}">
-            <h1 class="h2">Citas Pasaportes</h1>
+            <h1 class="h2">Citas Renta de Unidades</h1>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                 <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
@@ -126,24 +126,24 @@
                      
                         <th>Nombre</th>
                         <th>Correo Electrónico</th>
-                        <th>Tipo de Visa</th>
+                        <th>Tipo de Unidad</th>
                         <th>Fecha</th>
-                        <th>Personas</th>
+                        <th>Pasajeros</th>
                         <th>Fecha de Envío</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($visas as $visa)
-                        <tr>
-
-                            <td>{{ $visa->user_name }}</td>
-                            <td>{{ $visa->user_email }}</td>
-                            <td>{{ $visa->type_visa }}</td>
-                            <td>{{ $visa->user_date }}</td>
-                            <td>{{ $visa->user_adult }}</td>
-                            <td>{{ $visa->created_at}}</td>
-                        </tr>
-                    @endforeach
+                    @foreach($rentas as $renta)
+                    <tr>
+                        <td>{{ $renta->user_name }}</td>
+                        <td>{{ $renta->user_email }}</td>
+                        <td>{{ $renta->type_transport }}</td>
+                        <td>{{ $renta->user_date }}</td>
+                        <td>{{ $renta->user_pasajeros }}</td>
+                        <td>{{ $renta->created_at}}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

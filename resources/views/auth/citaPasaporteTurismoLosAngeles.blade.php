@@ -24,33 +24,35 @@
                 <h2 class="contact__title">cita pasaporte</h2>
                 <p>Complete la información solicitada y espera una respuesta.</p><br>
             </div>
-            <form action="" id="contact-form" class="contact__form" autocomplete="off">
-                <div class="contact__inputs">
-                    <label class="contact__label">nombre</label>
-                    <input type="text" id="user-name" class="contact__input" required>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">correo electrónico</label>
-                    <input type="email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">tipo de pasaporte</label>
-                    <select name="type_visa" class="contact__input" id="user-type" required>
-                        <option value="" disabled selected>Selecciona el tipo de pasaporte</option>
-                            <option value="primera_vez">primera vez</option>
-                            <option value="renovacion">renovación</option>
-                    </select>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">fecha</label>
-                    <input type="date" id="user-date" class="contact__input" required>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">personas</label>
-                    <input type="number" id="user-adult" class="contact__input" required>
-                </div>
-                <button type="submit" class="contact__button">enviar</button>
-            </form>
+            <form action="{{ route('store.formality') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
+    @csrf
+    <div class="contact__inputs">
+        <label class="contact__label">nombre</label>
+        <input type="text" name="user_name" id="user-name" class="contact__input" required>
+    </div>
+    <div class="contact__inputs">
+        <label class="contact__label">correo electrónico</label>
+        <input type="email" name="user_email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
+    </div>
+    <div class="contact__inputs">
+        <label class="contact__label">tipo de pasaporte</label>
+        <select name="type_visa" class="contact__input" id="user-type" required>
+            <option value="" disabled selected>Selecciona el tipo de pasaporte</option>
+            <option value="primera_vez">primera vez</option>
+            <option value="renovacion">renovación</option>
+        </select>
+    </div>
+    <div class="contact__inputs">
+        <label class="contact__label">fecha</label>
+        <input type="date" name="user_date" id="user-date" class="contact__input" required>
+    </div>
+    <div class="contact__inputs">
+        <label class="contact__label">personas</label>
+        <input type="number" name="user_adult" id="user-adult" class="contact__input" required>
+    </div>
+    <button type="submit" class="contact__button">enviar</button>
+</form>
+
          </section>
 
         <!-- Aside -->

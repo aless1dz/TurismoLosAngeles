@@ -32,18 +32,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('trips') }}">
                                 Viajes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                VISA
+                                Citas
                             </a>
                         </li>
                         <li class="nav-item">
@@ -57,7 +52,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('units') }}">
                                 Unidades
                             </a>
                         </li>
@@ -81,6 +76,36 @@
                         <li class="nav_item">
                             <a class="nav_link" href="{{ route('cost_tabulators') }}">
                                 Tabla de Costos
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('pasaportes') }}">
+                                Citas Pasaportes
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('cotizaciones') }}">
+                                Citas Cotizaciones
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('comentarios') }}">
+                                Comentarios
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('rentas') }}">
+                                Renta de Unidades
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('viajes') }}">
+                                Solicitud de Viajes
+                            </a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('visas') }}">
+                                Citas para Visas
                             </a>
                         </li>
                     </ul>
