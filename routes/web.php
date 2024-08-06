@@ -156,23 +156,24 @@ Route::delete('/delete/unit/{idunits}', [UnitsController::class, 'deleteUnit']);
 
 Route::get('/view/trips', [TripsController::class, 'view'])->name('trips');
 Route::get('/get/trips', [TripsController::class, 'getTrips']);
-<<<<<<< HEAD
 Route::get('/get/trip/{idtrips}', [TripsController::class, 'getTrip']);
 Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
 Route::put('/trips/update/{idtrips}', [TripsController::class, 'updateTrip']);
 Route::delete('/delete/trip/{idtrips}', [TripsController::class, 'deleteTrip']);
-=======
-Route::get('/get/trip/{id}', [TripsController::class, 'getTrip']);
-Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
-Route::put('/trips/update/{id}', [TripsController::class, 'updateTrip']);
-Route::delete('/delete/trip/{id}', [TripsController::class, 'deleteTrip']);
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
 Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
 
-<<<<<<< HEAD
-=======
+
+Route::get('/get/trip/{id}', [TripsController::class, 'getTrip']);
+Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
+Route::put('/trips/update/{id}', [TripsController::class, 'updateTrip']);
+Route::delete('/delete/trip/{id}', [TripsController::class, 'deleteTrip']);
+
+Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
+Route::get('/users/all', [TripsController::class, 'getUsers']);
+Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
+
 
 Route::post('/store-formality', [FormalityController::class, 'store'])->name('store.formality');
 // Route::get('/view/pasaportes', [FormalityController::class, 'view'])->name('pasaportes');
@@ -203,4 +204,3 @@ Route::get('/visas', [FormalityController::class, 'viewVisas'])->name('visas');
 
 Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('store.visas');
 
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd

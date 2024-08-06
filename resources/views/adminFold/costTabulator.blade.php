@@ -104,11 +104,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-<<<<<<< HEAD
-                        <i class="fas fa-user"></i> Admin
-=======
                         <i class="bi bi-person-circle"></i> User
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                     </a>
                 </li>
             </ul>
@@ -120,17 +116,6 @@
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-<<<<<<< HEAD
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">Viajes</a>
-                        </li>
-                        <!-- Añade más elementos de la barra lateral aquí -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">Tabla de Costos</a>
-=======
                     <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -210,7 +195,6 @@
                             <a class="nav-link" href="{{ route('visas') }}">
                                 <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                         </li>
                     </ul>
                 </div>
@@ -230,24 +214,6 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <table class="table table-sm table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Id</th>
-                            <th>Destino</th>
-                            <th>Precio único</th>
-                            <th>Precio a Mayoreo</th>
-                            <th>Descripción</th>
-                            <th>Fecha de Actualización</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="costTabulatorTableBody">
-                        <!-- Los datos se llenarán aquí mediante JavaScript -->
-                    </tbody>
-                </table>
-=======
                 <div class="table-responsive">
                     <table class="table table-sm table-striped table-hover">
                         <thead>
@@ -267,7 +233,6 @@
                         </tbody>
                     </table>
                 </div>
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
             </div>
         </div>
     </div>
@@ -338,10 +303,6 @@
                     },
                     error: function (xhr) {
                         console.error(xhr.responseText);
-<<<<<<< HEAD
-                        alert('Error al guardar los datos. Intenta de nuevo.');
-=======
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                     }
                 });
             });
@@ -390,20 +351,12 @@ function renderDestinations(destinations) {
             data.forEach(cost_tabulator => {
                 let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
                 let updatedAt = new Date(cost_tabulator.updated_at).toLocaleString();
-<<<<<<< HEAD
-                let destinationText = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
-                tableBody.append(`
-                    <tr>
-                        <td>${cost_tabulator.idcost_tabulators}</td>
-                        <td>${destinationText}</td>
-=======
                 let destinationAcronym = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
                 
                 tableBody.append(`
                     <tr>
                         <td>${cost_tabulator.idcost_tabulators}</td>
                         <td>${destinationAcronym}</td>
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                         <td>${cost_tabulator.unit_price}</td>
                         <td>${cost_tabulator.bulk_price}</td>
                         <td>${cost_tabulator.description}</td>
@@ -430,13 +383,8 @@ function renderDestinations(destinations) {
     }
 }
 
-<<<<<<< HEAD
-        function deleteCost_tabulator(id) {
-            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
-=======
         function deleteCost_Tabulator(id) {
             if (confirm('¿Estás seguro de eliminar?')) {
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                 $.ajax({
                     url: `/cost_tabulators/delete/${id}`,
                     type: 'DELETE',
