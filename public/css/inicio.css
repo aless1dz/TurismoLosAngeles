@@ -177,13 +177,13 @@ section {
 }
 .home .box .content {
   width: 50rem;
-}
+} 
 .home .box .content span {
-  font-size: 6rem;
+  font-size: 5rem;
   color: rgb(255, 255, 255);
 }
 .home .box .content h3 {
-  font-size: 8rem;
+  font-size: 7rem;
   color: rgb(255, 255, 255);
   padding-top: 0.5rem;
   text-transform: uppercase;
@@ -198,7 +198,7 @@ section {
 .swiper-button-next::after,
 .swiper-button-prev::after {
   font-size: 3rem;
-  color: #000;
+  color: #fff;
 }
 
 .category .box-container {

@@ -5,54 +5,61 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 
-class CitiesController extends Controller
+class UnitsController extends Controller
 {
     public function view()
     {
-        return view('adminFold.cities');
+        return view('adminFold.unidades');
     }
 
-    public function getCities(Request $request)
+    public function getUnits(Request $request)
     {
-        $order = $request->query('order', 'asc');
-        $cities = City::with('state')->orderBy('idcities', $order)->get();
-        return response()->json($cities);
+        try {
+            $order = $request->query('order', 'asc'); // Obtener el parámetro de orden, por defecto 'asc'
+            $units = Unit::orderBy('idunits', $order)->get(); // Obtener las unidades ordenadas
+
+            return response()->json($units); // Devolver las unidades en formato JSON
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
-    public function getCity($id)
+    public function getUnit($idunits)
     {
-        $city = City::with('state')->where('idcities', $id)->first();
-        return response()->json($city);
+        $unit = Unit::find($idunits);
+        return response()->json($unit);
     }
 
-    public function insertCity(Request $request)
+    public function insertUnit(Request $request)
     {
-        $city = new City;
-        $city->name = $request->name;
-        $city->states_idstates = $request->idstates; 
-        $city->save();
-        return response()->json($city);
+        $unit = new Unit;
+        $unit->model = $request->model;
+        $unit->manufacturer = $request->manufacturer;
+        $unit->plate = $request->plate;
+        $unit->place = $request->place;
+        $unit->save();
+        return response()->json($unit);
     }
 
-    public function updateCity(Request $request, $idcities)
+    public function updateUnit(Request $request, $idunits)
     {
-        $city = City::find($idcities);
-        $city->name = $request->name;
-        $city->states_idstates = $request->idstates; 
-        $city->save();
-        return response()->json($city);
+        $unit = Unit::find($idunits);
+        $unit->model = $request->model;
+        $unit->manufacturer = $request->manufacturer;
+        $unit->plate = $request->plate;
+        $unit->place = $request->place;
+        $unit->save();
+        return response()->json($unit);
     }
 
-    public function deleteCity($idcities)
+    public function deleteUnit($idunits)
     {
-        $city = City::find($idcities);
-        $city->delete();
-        return response()->json(['message' => 'Ciudad eliminada correctamente']);
+        $unit = Unit::find($idunits);
+        $unit->delete();
+        return response()->json(['message' => 'Unidad eliminada correctamente']);
     }
-
-    public function getStates()
-    {
-        $states = State::all();
-        return response()->json($states);
-    }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd

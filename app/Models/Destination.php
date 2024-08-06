@@ -12,7 +12,7 @@ class Destination extends Model
     protected $primaryKey = 'iddestinations';
 
     protected $fillable = [
-        'cities_idcities', 'states_idstates'
+        'destination_acronym', 'cities_idcities', 'states_idstates'
     ];
 
     public function city()
@@ -29,4 +29,22 @@ class Destination extends Model
     {
         return $this->hasMany(Cost_Tabulator::class, 'destinations_iddestinations', 'iddestinations');
     }
+
+<<<<<<< HEAD
+    public function trips()
+    {
+        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
+=======
+    /**
+     * Definición de la relación con el modelo `Trip`.
+     * Un destino puede estar asociado con muchos viajes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
+    }
 }
+

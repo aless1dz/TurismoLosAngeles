@@ -3,21 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administracion</title>
+    <title>Administración</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .navbar {
+            background-color: #35424a;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+        .sidebar {
+            background-color: #2c3e50;
+            color: #ffffff;
+            min-height: 100vh;
+            padding-top: 1rem;
+        }
+        .sidebar .nav-link {
+            color: #bdc3c7;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: #2255c4;
+            color: #ffffff;
+        }
+        .sidebar .nav-link i {
+            margin-right: 0.5rem;
+        }
+        .table-responsive {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .table thead th {
+            background-color: #34495e;
+            color: #ffffff;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .table tbody tr:hover {
+            background-color: #eaeaea;
+        }
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+        .btn {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
+        .btn:hover {
+            background-color: #1f4aaa;
+        }
+        .btn-warning, .btn-danger {
+            padding: 0.375rem 0.75rem;
+        }
+        .btn-warning i, .btn-danger i {
+            font-size: 1.2rem;
+        }
+        .modal-content {
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .modal-header {
+            background-color: #2255c4;
+            color: #ffffff;
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #2255c4;
+        }
+        .modal-footer .btn-secondary {
+            background-color: #7f8c8d;
+        }
+        .modal-footer .btn-primary {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fas fa-user"></i> User
+<<<<<<< HEAD
+                        <i class="fas fa-user"></i> Admin
+=======
+                        <i class="bi bi-person-circle"></i> User
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                     </a>
                 </li>
             </ul>
@@ -26,53 +117,100 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
+<<<<<<< HEAD
                         <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('associates') }}">Viajes</a>
+                        </li>
+                        <!-- Añade más elementos de la barra lateral aquí -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">Tabla de Costos</a>
+=======
+                    <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
-                                Dashboard
+                                <i class="bi bi-speedometer2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                <i class="bi bi-geo-alt"></i> Viajes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                VISA
+                                <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">
-                                Clientes
+                                <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Acompañantes
+                                <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Unidades
+                            <a class="nav-link" href="{{ route('units') }}">
+                                <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cities') }}">
-                                Ciudades
+                                <i class="bi bi-building"></i> Ciudades
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('states') }}">
-                                Estados
+                                <i class="bi bi-map-fill"></i> Estados
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                <i class="bi bi-map"></i> Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('comentarios') }}">
+                                <i class="bi bi-chat-left-dots"></i> Comentarios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rentas') }}">
+                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('viajes') }}">
+                                <i class="bi bi-airplane"></i> Solicitud de Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
+                            </a>
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                         </li>
                     </ul>
                 </div>
@@ -81,41 +219,66 @@
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <h1 class="h2">Tabla de costos</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cost_TabulatorModal" onclick="clearForm()">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#costTabulatorModal" onclick="clearForm()">
                         Añadir
                     </button>
-                    <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
-                    <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                    <div class="input-group w-50">
+                        <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
+                        <div class="input-group-append">
+                            <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
                 </div>
 
+<<<<<<< HEAD
                 <table class="table table-sm table-bordered">
                     <thead class="table-dark">
                         <tr>
                             <th>Id</th>
-                            <th>Destino (Abreviatura)</th>
-                            <th>Precio Unico</th>
-                            <th>Precio de mayoreo</th>
-                            <th>Descripcion</th>
-                            <th>Fecha de Creacion</th>
-                            <th>Fecha de Actualizacion</th>
-                            <th>Editar/Eliminar</th>
+                            <th>Destino</th>
+                            <th>Precio único</th>
+                            <th>Precio a Mayoreo</th>
+                            <th>Descripción</th>
+                            <th>Fecha de Actualización</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="cost_TabulatorTableBody">
-                        
+                    <tbody id="costTabulatorTableBody">
+                        <!-- Los datos se llenarán aquí mediante JavaScript -->
                     </tbody>
                 </table>
+=======
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Destino (Abreviatura)</th>
+                                <th>Precio Unico</th>
+                                <th>Precio de mayoreo</th>
+                                <th>Descripcion</th>
+                                <th>Fecha de Creacion</th>
+                                <th>Fecha de Actualizacion</th>
+                                <th>Editar/Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cost_TabulatorTableBody">
+                           
+                        </tbody>
+                    </table>
+                </div>
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="cost_TabulatorModal" tabindex="-1" aria-labelledby="cost_TabulatorModalLabel" aria-hidden="true">
+    <div class="modal fade" id="costTabulatorModal" tabindex="-1" aria-labelledby="costTabulatorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="cost_TabulatorForm">
+                <form id="costTabulatorForm">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="cost_TabulatorModalLabel">Añadir/Editar</h5>
+                        <h5 class="modal-title" id="costTabulatorModalLabel">Añadir/Editar</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -125,26 +288,25 @@
                         <div class="form-group">
                             <label for="iddestinations">Destino</label>
                             <select class="form-control" id="iddestinations" name="iddestinations" required>
-                                
+                               
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="unit_price">Precio Unico</label>
+                            <label for="unit_price">Precio Único</label>
                             <input type="number" class="form-control" id="unit_price" name="unit_price" required>
                         </div>
                         <div class="form-group">
-                            <label for="bulk_price">Precio al por Mayor</label>
+                            <label for="bulk_price">Precio a Mayoreo</label>
                             <input type="number" class="form-control" id="bulk_price" name="bulk_price" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Descripcion</label>
+                            <label for="description">Descripción</label>
                             <input type="text" class="form-control" id="description" name="description" required>
                         </div>
-
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="bi bi-x-lg"></i> Cerrar</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar Cambios</button>
                     </div>
                 </form>
             </div>
@@ -156,16 +318,10 @@
         var destinations = [];
 
         $(document).ready(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
             fetchCost_Tabulators();
             fetchDestinations();
 
-            $('#cost_TabulatorForm').on('submit', function (e) {
+            $('#costTabulatorForm').on('submit', function (e) {
                 e.preventDefault();
 
                 let id = $('#idcost_tabulators').val();
@@ -177,20 +333,23 @@
                     type: method,
                     data: $(this).serialize(),
                     success: function (response) {
-                        $('#cost_TabulatorModal').modal('hide');
+                        $('#costTabulatorModal').modal('hide');
                         fetchCost_Tabulators();
                     },
                     error: function (xhr) {
                         console.error(xhr.responseText);
-                    
+<<<<<<< HEAD
+                        alert('Error al guardar los datos. Intenta de nuevo.');
+=======
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                     }
                 });
             });
 
             $('#search-btn').on('click', function () {
                 let searchTerm = $('#search-input').val().toLowerCase();
-                let filteredCost_Tabulators = cost_tabulators.filter(cost_tabulator => cost_tabulator.destination_acronym.toLowerCase().includes(searchTerm));
-                renderCost_Tabulators(filteredCost_Tabulators);
+                let filteredCost_tabulators = cost_tabulators.filter(cost_tabulator => cost_tabulator.description.toLowerCase().includes(searchTerm));
+                renderCost_Tabulators(filteredCost_tabulators);
             });
         });
 
@@ -202,56 +361,82 @@
         }
 
         function fetchDestinations() {
-            $.getJSON('/destinations/all', function (data) {
-                destinations = data;
-                renderDestinations(destinations);
-            });
+    $.getJSON('/destinations/all', function (data) {
+        console.log(data);
+        renderDestinations(data);
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Error al obtener destinos:', textStatus, errorThrown);
+    });
+}
+
+function renderDestinations(destinations) {
+    let destinationSelect = $('#iddestinations');
+    destinationSelect.empty();
+    destinations.forEach(destination => {
+        console.log(destination); 
+        if (destination.iddestinations && destination.destination_acronym) {
+            destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
+        } else {
+            console.error('Datos de destino no válidos:', destination);
         }
+    });
+}
+
+
 
         function renderCost_Tabulators(data) {
-            let tableBody = $('#cost_TabulatorTableBody');
+            let tableBody = $('#costTabulatorTableBody');
             tableBody.empty();
             data.forEach(cost_tabulator => {
                 let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
                 let updatedAt = new Date(cost_tabulator.updated_at).toLocaleString();
+<<<<<<< HEAD
+                let destinationText = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
                 tableBody.append(`
                     <tr>
                         <td>${cost_tabulator.idcost_tabulators}</td>
-                        <td>${cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A'}</td>
+                        <td>${destinationText}</td>
+=======
+                let destinationAcronym = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
+                
+                tableBody.append(`
+                    <tr>
+                        <td>${cost_tabulator.idcost_tabulators}</td>
+                        <td>${destinationAcronym}</td>
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                         <td>${cost_tabulator.unit_price}</td>
                         <td>${cost_tabulator.bulk_price}</td>
                         <td>${cost_tabulator.description}</td>
-                        <td>${createdAt}</td>
                         <td>${updatedAt}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="editCost_Tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteCost_Tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-backspace-fill"></i></button>
+                            <button class="btn btn-warning" onclick="editCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-danger" onclick="deleteCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-backspace-fill"></i></button>
                         </td>
                     </tr>
                 `);
             });
         }
 
-        function renderDestinations(destinations) {
-            let destinationSelect = $('#iddestinations');
-            destinationSelect.empty();
-            destinations.forEach(destination => {
-                destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
-            });
-        }
 
-        function editCost_Tabulator(id) {
-            let cost_tabulator = cost_tabulators.find(cost_tabulator => cost_tabulator.idcost_tabulators == id);
-            $('#idcost_tabulators').val(cost_tabulator.idcost_tabulators);
-            $('#iddestinations').val(cost_tabulator.destinations_iddestinations);
-            $('#unit_price').val(cost_tabulator.unit_price);
-            $('#bulk_price').val(cost_tabulator.bulk_price);
-            $('#description').val(cost_tabulator.description);
-            $('#cost_TabulatorModal').modal('show');
-        }
+        function editCost_tabulator(id) {
+    let cost_tabulator = cost_tabulators.find(item => item.idcost_tabulators === id);
+    if (cost_tabulator) {
+        $('#idcost_tabulators').val(cost_tabulator.idcost_tabulators);
+        $('#iddestinations').val(cost_tabulator.destinations_iddestinations); // Asegúrate de que este valor coincide
+        $('#unit_price').val(cost_tabulator.unit_price);
+        $('#bulk_price').val(cost_tabulator.bulk_price);
+        $('#description').val(cost_tabulator.description);
+        $('#costTabulatorModal').modal('show');
+    }
+}
 
+<<<<<<< HEAD
+        function deleteCost_tabulator(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+=======
         function deleteCost_Tabulator(id) {
-            if (confirm('Estas seguro de eliminar?')) {
+            if (confirm('¿Estás seguro de eliminar?')) {
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                 $.ajax({
                     url: `/cost_tabulators/delete/${id}`,
                     type: 'DELETE',
@@ -260,14 +445,14 @@
                     },
                     error: function (xhr) {
                         console.error(xhr.responseText);
-                        alert('Error al eliminar. Intenta de nuevo.');
+                        alert('Error al eliminar el registro. Intenta de nuevo.');
                     }
                 });
             }
         }
 
         function clearForm() {
-            $('#cost_TabulatorForm')[0].reset();
+            $('#costTabulatorForm')[0].reset();
             $('#idcost_tabulators').val('');
         }
     </script>

@@ -79,7 +79,7 @@
                     </div>
                     <h3>rIU mazatlán.</h3>
                     <p>rIU mazatlán es un resort todo incluido en la playa de mazatlán, ofreciendo lujo, múltiples restaurantes, piscinas, y entretenimiento diario para todas las edades.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -89,7 +89,7 @@
                     </div>
                     <h3>huasteca potosina.</h3>
                     <p>la huasteca potosina en san luis potosí es famosa por sus cascadas, ríos cristalinos, y actividades de ecoturismo como rafting y senderismo.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -99,7 +99,7 @@
                     </div>
                     <h3>mazatlán - las flores.</h3>
                     <p>las flores beach resort, ubicado en la zona dorada de mazatlán, ofrece habitaciones con vista al mar, piscinas, y fácil acceso a tiendas y vida nocturna.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -109,7 +109,7 @@
                     </div>
                     <h3>huasteca hidalguense.</h3>
                     <p>la huasteca hidalguense en hidalgo ofrece montañas, ríos, cascadas y rica cultura indígena, ideal para ecoturismo y aventuras.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -119,7 +119,7 @@
                     </div>
                     <h3>mazatlán - hotel misión.</h3>
                     <p>hotel misión mazatlán es un cómodo y accesible hotel con habitaciones bien equipadas, piscina al aire libre, y restaurante, ideal para una estancia relajante.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -129,10 +129,13 @@
                     </div>
                     <h3>ángeles locos.</h3>
                     <p>ángeles locos es un resort todo incluido en tenacatita, jalisco, ofreciendo actividades recreativas, deportes acuáticos y espectáculos en vivo, ideal para familias.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
             </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
         </div>
 
@@ -148,33 +151,33 @@
 
             <div class="box">
                 <h3>enlaces directos</h3>
-                <a href="#home">inicio</a>
-                <a href="#about">nuestros servicios</a>
-                <a href="#shop">galería</a>
-                <a href="#packages">contacto</a>
-                <a href="#reviews">iniciar sesión</a>
+                <a href="/inicio">inicio</a>
+                <a href="/servicios">nuestros servicios</a>
+                <a href="/viajes">viajes</a>
+                <a href="/citasPrincipal">citas</a>
             </div>
 
             <div class="box">
                 <h3>enlaces adicionales</h3>
-                <a href="#">visas</a>
-                <a href="#">pasaporte</a>
-                <a href="#">unidades</a>
+                <a href="/visa">visas</a>
+                <a href="/pasaporte">pasaporte</a>
+                <a href="/unidades">unidades</a>
             </div>
 
             <div class="box">
-                <h3>información de contacto</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangeles@gmail.com </a>
-                <a href="#"> <i class="fas fa-map"></i> Av. Morelos #482 pte casi esquina con Leona Vicario. </a>
+                <h3>contacto</h3>
+                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> visas (871) 401 0593 </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> viajes (871) 217 4806 </a>
+                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> unidades (871) 457 2300 </a>
+                <a href="mailto:turismolosangelespro@gmail.com" target="_blank" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangelespro@gmail.com </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  av morelos 482, primero de cobián centro, 27000 torreón, coah. </a> 
             </div>
 
             <div class="box">
                 <h3>siguenos</h3>
-                <a href="#"> <i class="fab fa-facebook"></i> facebook </a>
-                <a href="#"> <i class="fab fa-whatsapp"></i> whatsApp</a>
-                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> facebook </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> whatsApp</a>
+                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> instagram </a>
             </div>
 
         </div>
@@ -182,7 +185,7 @@
         <div class="credit">copyright © 2024 <span>turismo los angeles</span> | todos los derechos reservados.</div>
 
     </section>
-
+    
     <!-- sección píe de página final -->
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
