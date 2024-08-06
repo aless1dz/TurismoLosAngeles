@@ -291,7 +291,7 @@
                 e.preventDefault();
 
                 let id = $('#idcities').val();
-                let url = id ? `/cities/update/${id}` : '/cities/insert';
+                let url = id ? /cities/update/${id} : '/cities/insert';
                 let method = id ? 'PUT' : 'POST';
 
                 $.ajax({
@@ -367,7 +367,7 @@
         function deleteCity(id) {
             if (confirm('¿Estás seguro de que quieres eliminar esta ciudad?')) {
                 $.ajax({
-                    url: `/cities/delete/${id}`,
+                    url: /cities/delete/${id},
                     type: 'DELETE',
                     success: function (response) {
                         fetchCities();

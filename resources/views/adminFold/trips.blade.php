@@ -214,7 +214,9 @@
                 </div>
             </nav>
 
-
+<<<<<<< HEAD
+            <div class="col-md-10">
+=======
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <h1 class="h2">Viajes (Historial)</h1>
@@ -257,57 +259,77 @@
     </div>
 
     <div class="modal fade" id="tripModal" tabindex="-1" aria-labelledby="tripModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form id="tripForm">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tripModalLabel">Añadir/Editar Cliente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="idtrips" name="idtrips">
-                    <div class="form-group">
-                        <label for="iddestinations">Destino</label>
-                        <select class="form-control" id="iddestinations" name="iddestinations" required>
-
-                        </select>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="tripForm">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tripModalLabel">Añadir/Editar Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="start_date">Fecha de Inicio</label>
-                        <input type="date" class="form-control" id="start_date" name="start_date" required>
+                    <div class="modal-body">
+                        <input type="hidden" id="idtrips" name="idtrips">
+                        <div class="form-group">
+                            <label for="iddestinations">Destino</label>
+                            <select class="form-control" id="iddestinations" name="iddestinations" required>
+<<<<<<< HEAD
+                                
+=======
+                                <option value="" disabled selected>Seleccione un destino</option>
+                                <!-- Las opciones serán cargadas aquí -->
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start_date">Fecha de Inicio</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">Fecha de Fin</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" required>
+                        </div>
+                        <div class="form-group">
+<<<<<<< HEAD
+                            <label for="duration">Duaración (Días)</label>
+=======
+                            <label for="duration">Duración (Días)</label>
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
+                            <input type="number" class="form-control" id="duration" name="duration" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="idcost_tabulators">Costo (Unico o Mayoreo)</label>
+                            <select class="form-control" id="idcost_tabulators" name="idcost_tabulators" required>
+<<<<<<< HEAD
+                                
+=======
+                                <option value="" disabled selected>Seleccione un costo</option>
+                                <!-- Las opciones serán cargadas aquí -->
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="idusers">Cliente</label>
+<<<<<<< HEAD
+                            <select class="form-control" id="idusers" name="idusers" required>
+                                
+                            </select>
+                        </div>
+                        
+=======
+                            <select class="form-control" id="idusers" name="idusers" required></select>
+                        </div>
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                     </div>
-                    <div class="form-group">
-                        <label for="end_date">Fecha de Fin</label>
-                        <input type="date" class="form-control" id="end_date" name="end_date" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </div>
-                    <div class="form-group">
-                        <label for="duration">Duración (Días)</label>
-                        <input type="number" class="form-control" id="duration" name="duration" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="idcost_tabulators">Costo (Unico o Mayoreo)</label>
-                        <select class="form-control" id="idcost_tabulators" name="idcost_tabulators" required>
-                            
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="idusers">Cliente</label>
-                        <select class="form-control" id="idusers" name="idusers" required>
-                            
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -491,33 +513,7 @@
             $('#idtrips').val('');
             $('#tripForm')[0].reset();
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-btn');
-    const table = document.querySelector('table tbody');
-
-    searchButton.addEventListener('click', function() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const rows = table.querySelectorAll('tr');
-
-        rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(7)'); 
-            if (nameCell) {
-                const nameText = nameCell.textContent.toLowerCase();
-                if (nameText.includes(searchTerm)) {
-                    row.style.display = ''; 
-                } else {
-                    row.style.display = 'none'; 
-                }
-            }
-        });
-    });
-
-    searchInput.addEventListener('input', function() {
-        searchButton.click();
-    });
-});
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
     </script>
 </body>
 </html>

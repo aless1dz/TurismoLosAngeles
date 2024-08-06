@@ -343,32 +343,29 @@ function renderDestinations(destinations) {
 
 
 
-function renderCost_Tabulators(data) {
-    let tableBody = $('#cost_TabulatorTableBody');
-    tableBody.empty(); 
-    data.forEach(cost_tabulator => {
-        try {
-            let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
-            let updatedAt = new Date(cost_tabulator.updated_at).toLocaleString();
-            let destinationAcronym = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
-            
-            tableBody.append(`
-            <tr>
-            <td>${cost_tabulator.idcost_tabulators}</td>
-            <td>${destinationAcronym}</td>
-            <td>${cost_tabulator.unit_price}</td>
-            <td>${cost_tabulator.bulk_price}</td>
-            <td>${cost_tabulator.description}</td>
-            <td>${createdAt}</td>
-            <td>${updatedAt}</td>
-            <td>
-            <button class="btn btn-warning" onclick="editCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
-            <button class="btn btn-danger" onclick="deleteCost_Tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-backspace-fill"></i></button>
-            </td>
-            </tr>
-            `);
-        } catch (error) {
-            console.error("Error al renderizar cost_tabulator:", error, cost_tabulator);
+        function renderCost_Tabulators(data) {
+            let tableBody = $('#costTabulatorTableBody');
+            tableBody.empty();
+            data.forEach(cost_tabulator => {
+                let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
+                let updatedAt = new Date(cost_tabulator.updated_at).toLocaleString();
+                let destinationAcronym = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
+                
+                tableBody.append(`
+                    <tr>
+                        <td>${cost_tabulator.idcost_tabulators}</td>
+                        <td>${destinationAcronym}</td>
+                        <td>${cost_tabulator.unit_price}</td>
+                        <td>${cost_tabulator.bulk_price}</td>
+                        <td>${cost_tabulator.description}</td>
+                        <td>${updatedAt}</td>
+                        <td>
+                            <button class="btn btn-warning" onclick="editCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-danger" onclick="deleteCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-backspace-fill"></i></button>
+                        </td>
+                    </tr>
+                `);
+            });
         }
         console.log(cost_tabulator.destination);
     });
