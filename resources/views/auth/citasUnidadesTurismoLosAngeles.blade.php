@@ -24,31 +24,33 @@
                 <h2 class="contact__title">renta de unidades</h2>
                 <p>Complete la información solicitada y espera una respuesta.</p><br>
             </div>
-            <form action="" id="contact-form" class="contact__form" autocomplete="off">
+            <form action="{{ route('insertar.renta') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
+                @csrf
+                <input type="hidden" id="form_type" name="form_type" value="renta">
                 <div class="contact__inputs">
                     <label class="contact__label">nombre</label>
-                    <input type="text" id="user-name" class="contact__input" required>
+                    <input type="text" name="user_name" id="user-name" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">correo electrónico</label>
-                    <input type="email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
+                    <input type="email" name="user_email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">transporte</label>
-                    <select name="type_trasnport" class="contact__input" id="user-transport" required>
+                    <select name="type_transport" class="contact__input" id="user-transport" required>
                         <option value="" disabled selected>Selecciona el tipo de unidad</option>
-                            <option value="autobus">autobús</option>
-                            <option value="sprinter">sprinter</option>
-                            <option value="hiace">hiace</option>
+                        <option value="autobus">autobús</option>
+                        <option value="sprinter">sprinter</option>
+                        <option value="hiace">hiace</option>
                     </select>
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">fecha</label>
-                    <input type="date" id="user-date" class="contact__input" required>
+                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">pasajeros</label>
-                    <input type="number" id="user-pasajeros" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
+                    <input type="number" name="user_pasajeros" id="user-pasajeros" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
                 @auth
                 <button type="submit" class="contact__button">enviar</button>
@@ -56,10 +58,10 @@
                 <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
                 @endauth
             </form>
-         </section>
+        </section>
 
         <!-- Aside -->
-         <aside class="info">
+        <aside class="info">
             <div class="info__little-box"></div>
             <h2 class="info__title">información de contacto</h2>
             <ul class="info__list">
@@ -80,13 +82,13 @@
                     <p class="info__list-item-description">09:00 - 18:00</p>
                 </li>
             </ul>
-         </aside>
+        </aside>
 
         <!-- Box -->
-         <div class="container__box"></div>
+        <div class="container__box"></div>
 
         <!-- Redes Sociales -->
-         <div class="container__rrss">
+        <div class="container__rrss">
             <a href="#" class="container__rrss-item">
                 <i class="fab fa-facebook"></i>
             </a>
@@ -96,7 +98,7 @@
             <a href="#" class="container__rrss-item">
                 <i class="fab fa-instagram"></i>
             </a>
-         </div>
+        </div>
     </div>
 
     <!-- Librería EmailJS -->

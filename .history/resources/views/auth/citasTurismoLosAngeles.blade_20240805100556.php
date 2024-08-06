@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <!-- Librería iziToast -->
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"> --}}
-    <title>Citas Viajes | Turismo Los Angeles</title>
+    <title>Comentarios | Turismo Los Angeles</title>
 </head>
 <body>
     <div class="container">
@@ -19,33 +19,23 @@
         </header>
 
         <!-- Section -->
-        <section class="contact">
+         <section class="contact">
             <div class="contact__box">
-                <h2 class="contact__title">cita viajes</h2>
-                <p>Complete la información solicitada y espera una respuesta.</p><br>
+                <h2 class="contact__title">comentarios</h2>
+                <p class="contact__description">déjanos tu mensaje y con gusto te responderemos</p>
             </div>
-            <form action="{{ route('store.viajes') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
-                @csrf
-                <input type="hidden" id="form_type" name="form_type" value="viajes">
+            <form action="" id="contact-form" class="contact__form" autocomplete="off">
                 <div class="contact__inputs">
                     <label class="contact__label">nombre</label>
-                    <input type="text" name="user_name" id="user-name" class="contact__input" required>
+                    <input type="text" id="user-name" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">correo electrónico</label>
-                    <input type="email" name="user_email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
+                    <input type="email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">adultos que viajan</label>
-                    <input type="number" name="user_adult" id="user-adult" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">niños que viajan</label>
-                    <input type="number" name="user_kid" id="user-kid" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
+                    <label class="contact__label">mensaje</label>
+                    <textarea id="message" cols="30" rows="5" class="contact__textarea" required></textarea>
                 </div>
                 @auth
                 <button type="submit" class="contact__button">enviar</button>

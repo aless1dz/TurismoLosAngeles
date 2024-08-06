@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración</title>
+    <title>Citas Cotizaciones | Administración</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -23,9 +23,9 @@
 
 <div class="container-fluid">
     <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-                <ul class="nav flex-column">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+            <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="#">
                                 Dashboard
@@ -109,39 +109,35 @@
                             </a>
                         </li>
                     </ul>
-                </div>
-            </nav>
+            </div>
+        </nav>
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-            <h1 class="h2">Citas Pasaportes</h1>
+            <h1 class="h2">Citas Cotizaciones</h1>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                 <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
             </div>
-            
             <table class="table table-sm table-bordered">
                 <thead class="table-dark">
                     <tr>
-                     
                         <th>Nombre</th>
-                        <th>Correo Electrónico</th>
-                        <th>Tipo de Visa</th>
+                        <th>WhatsApp</th>
+                        <th>Destino</th>
                         <th>Fecha</th>
-                        <th>Personas</th>
+                        <th>Pasajeros</th>
                         <th>Fecha de Envío</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($visas as $visa)
+                    @foreach($cotizaciones as $cotizacion)
                         <tr>
-
-                            <td>{{ $visa->user_name }}</td>
-                            <td>{{ $visa->user_email }}</td>
-                            <td>{{ $visa->type_visa }}</td>
-                            <td>{{ $visa->user_date }}</td>
-                            <td>{{ $visa->user_adult }}</td>
-                            <td>{{ $visa->created_at}}</td>
+                            <td>{{ $cotizacion->user_name }}</td>
+                            <td>{{ $cotizacion->user_whatsapp }}</td>
+                            <td>{{ $cotizacion->user_destino }}</td>
+                            <td>{{ $cotizacion->user_date }}</td>
+                            <td>{{ $cotizacion->user_pasajeros }}</td>
+                            <td>{{ $cotizacion->created_at}}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -164,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const rows = table.querySelectorAll('tr');
 
         rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(2)'); 
+            const nameCell = row.querySelector('td:nth-child(1)'); 
             if (nameCell) {
                 const nameText = nameCell.textContent.toLowerCase();
                 if (nameText.includes(searchTerm)) {
@@ -176,12 +172,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-  
     searchInput.addEventListener('input', function() {
         searchButton.click();
     });
 });
 </script>
-
 </body>
 </html>

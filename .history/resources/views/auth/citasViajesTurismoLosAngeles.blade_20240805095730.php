@@ -24,34 +24,28 @@
                 <h2 class="contact__title">cita viajes</h2>
                 <p>Complete la información solicitada y espera una respuesta.</p><br>
             </div>
-            <form action="{{ route('store.viajes') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
-                @csrf
-                <input type="hidden" id="form_type" name="form_type" value="viajes">
+            <form action="" id="contact-form" class="contact__form" autocomplete="off">
                 <div class="contact__inputs">
                     <label class="contact__label">nombre</label>
-                    <input type="text" name="user_name" id="user-name" class="contact__input" required>
+                    <input type="text" id="user-name" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">correo electrónico</label>
-                    <input type="email" name="user_email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
+                    <input type="email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
+                    <input type="date" id="user-date" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">adultos que viajan</label>
-                    <input type="number" name="user_adult" id="user-adult" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
+                    <input type="number" id="user-adult" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">niños que viajan</label>
-                    <input type="number" name="user_kid" id="user-kid" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
+                    <input type="number" id="user-kid" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
-                @auth
                 <button type="submit" class="contact__button">enviar</button>
-                @else
-                <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
-                @endauth
             </form>
          </section>
 

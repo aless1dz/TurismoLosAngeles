@@ -114,7 +114,7 @@
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <meta name="csrf-token" content="{{ csrf_token() }}">
-            <h1 class="h2">Citas Pasaportes</h1>
+            <h1 class="h2">Solicitud de Viajes</h1>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                 <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
@@ -126,24 +126,24 @@
                      
                         <th>Nombre</th>
                         <th>Correo Electrónico</th>
-                        <th>Tipo de Visa</th>
                         <th>Fecha</th>
-                        <th>Personas</th>
-                        <th>Fecha de Envío</th>
+                        <th>Adultos Que Viajan</th>
+                        <th>Niños Que Viajan</th>
+                        <th>Fecha de envío</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($visas as $visa)
-                        <tr>
-
-                            <td>{{ $visa->user_name }}</td>
-                            <td>{{ $visa->user_email }}</td>
-                            <td>{{ $visa->type_visa }}</td>
-                            <td>{{ $visa->user_date }}</td>
-                            <td>{{ $visa->user_adult }}</td>
-                            <td>{{ $visa->created_at}}</td>
-                        </tr>
-                    @endforeach
+                    @foreach($viajes as $viaje)
+                    <tr>
+                        <td>{{ $viaje->user_name }}</td>
+                        <td>{{ $viaje->user_email }}</td>
+                        <td>{{ $viaje->user_date }}</td>
+                        <td>{{ $viaje->user_adult }}</td>
+                        <td>{{ $viaje->user_kid }}</td>
+                        <td>{{ $viaje->created_at }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

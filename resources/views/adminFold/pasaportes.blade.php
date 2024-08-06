@@ -126,22 +126,22 @@
                      
                         <th>Nombre</th>
                         <th>Correo Electrónico</th>
-                        <th>Tipo de Visa</th>
+                        <th>Tipo de Pasaporte</th>
                         <th>Fecha</th>
                         <th>Personas</th>
                         <th>Fecha de Envío</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($visas as $visa)
+                    @foreach($pasaportes as $pasaporte)
                         <tr>
 
-                            <td>{{ $visa->user_name }}</td>
-                            <td>{{ $visa->user_email }}</td>
-                            <td>{{ $visa->type_visa }}</td>
-                            <td>{{ $visa->user_date }}</td>
-                            <td>{{ $visa->user_adult }}</td>
-                            <td>{{ $visa->created_at}}</td>
+                            <td>{{ $pasaporte->user_name }}</td>
+                            <td>{{ $pasaporte->user_email }}</td>
+                            <td>{{ $pasaporte->type_visa }}</td>
+                            <td>{{ $pasaporte->user_date }}</td>
+                            <td>{{ $pasaporte->user_adult }}</td>
+                            <td>{{ $pasaporte->created_at}}</td>
                         </tr>
                     @endforeach
                 </tbody>
