@@ -77,7 +77,7 @@
                     </div>
                     <h3>viesca-parras.</h3>
                     <p>viesca y parras son pueblos en coahuila, méxico, conocidos por su historia y viñedos. viesca ofrece paisajes desérticos y dunas, mientras que parras es famoso por su producción de vino y arquitectura colonial.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -87,7 +87,7 @@
                     </div>
                     <h3>torreón-viesca.</h3>
                     <p>recorrido por la región desértica de coahuila, que conecta una ciudad industrial con un pueblo histórico conocido por sus dunas y paisajes naturales.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -97,7 +97,7 @@
                     </div>
                     <h3>termas de san joaquín.</h3>
                     <p>las termas de san joaquín son un resort de aguas termales en coahuila, méxico, ofreciendo baños termales, spa y un entorno relajante ideal para el descanso y la salud.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -107,7 +107,7 @@
                     </div>
                     <h3>múzquiz.</h3>
                     <p>múzquiz es un municipio en coahuila, méxico, conocido por su riqueza cultural y natural. ofrece visitas a reservas naturales, cuevas, y la oportunidad de explorar la cultura indígena kikapú.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -117,7 +117,7 @@
                     </div>
                     <h3>moorelear-torreón.</h3>
                     <p>vamos a moorelear todo el día, conoce museos en torreón, turismo religioso, paseo morelos y much más.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -127,7 +127,7 @@
                     </div>
                     <h3>general cepeda.</h3>
                     <p>general cepeda es un municipio en coahuila, méxico, conocido por su tranquilidad y paisajes rurales. es famoso por sus petroglifos, fósiles y eventos culturales locales.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -137,7 +137,7 @@
                     </div>
                     <h3>cuatrociénegas.</h3>
                     <p>cuatrociénegas es un área natural protegida en coahuila, méxico, famosa por sus pozas, dunas de yeso y biodiversidad única. es un destino popular para ecoturismo y estudios científicos.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -147,10 +147,13 @@
                     </div>
                     <h3>arteaga.</h3>
                     <p>arteaga es un pueblo en coahuila, méxico, conocido por sus paisajes montañosos y clima fresco. es un destino popular para actividades al aire libre como el senderismo y el esquí.</p>
-                    <a href="#" class="btn">leer más</a>
+    
                 </div>
 
             </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
         </div>
 
@@ -175,7 +178,7 @@
                     </div>
                     <h3>viejo oeste.</h3>
                     <p>el viejo oeste en durango es un parque temático que recrea la época de los vaqueros con espectáculos en vivo y visitas a sets de películas.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -185,7 +188,7 @@
                     </div>
                     <h3>puente de ojuela.</h3>
                     <p>el puente de ojuela en durango es un antiguo puente colgante sobre un cañón, famoso por su historia minera y su impresionante estructura.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -195,10 +198,13 @@
                     </div>
                     <h3>mexiquillo.</h3>
                     <p>mexiquillo es un parque natural en durango con formaciones rocosas, bosques, cascadas y ríos, ideal para senderismo, ciclismo y camping.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
             </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
         </div>
 
@@ -223,7 +229,7 @@
                     </div>
                     <h3>bioparque estrella.</h3>
                     <p>el bioparque estrella en monterrey es un parque de vida silvestre que ofrece safaris, exhibiciones de animales y actividades recreativas. es un destino ideal para disfrutar en familia y aprender sobre la conservación de la naturaleza.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
             </div>

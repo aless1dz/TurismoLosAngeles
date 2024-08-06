@@ -79,7 +79,7 @@
                     </div>
                     <h3>rIU mazatlán.</h3>
                     <p>rIU mazatlán es un resort todo incluido en la playa de mazatlán, ofreciendo lujo, múltiples restaurantes, piscinas, y entretenimiento diario para todas las edades.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -89,7 +89,7 @@
                     </div>
                     <h3>huasteca potosina.</h3>
                     <p>la huasteca potosina en san luis potosí es famosa por sus cascadas, ríos cristalinos, y actividades de ecoturismo como rafting y senderismo.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -99,7 +99,7 @@
                     </div>
                     <h3>mazatlán - las flores.</h3>
                     <p>las flores beach resort, ubicado en la zona dorada de mazatlán, ofrece habitaciones con vista al mar, piscinas, y fácil acceso a tiendas y vida nocturna.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -109,7 +109,7 @@
                     </div>
                     <h3>huasteca hidalguense.</h3>
                     <p>la huasteca hidalguense en hidalgo ofrece montañas, ríos, cascadas y rica cultura indígena, ideal para ecoturismo y aventuras.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -119,7 +119,7 @@
                     </div>
                     <h3>mazatlán - hotel misión.</h3>
                     <p>hotel misión mazatlán es un cómodo y accesible hotel con habitaciones bien equipadas, piscina al aire libre, y restaurante, ideal para una estancia relajante.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -129,10 +129,13 @@
                     </div>
                     <h3>ángeles locos.</h3>
                     <p>ángeles locos es un resort todo incluido en tenacatita, jalisco, ofreciendo actividades recreativas, deportes acuáticos y espectáculos en vivo, ideal para familias.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
             </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
         </div>
 

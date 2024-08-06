@@ -77,7 +77,7 @@
                     </div>
                     <h3>san antonio.</h3>
                     <p>san antonio es una ciudad histórica en texas, conocida por el alamo, el river walk, y su rica herencia cultural. ofrece una mezcla de historia, cultura, y entretenimiento, siendo un destino popular para turistas.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -87,7 +87,7 @@
                     </div>
                     <h3>mcAllen 2 días.</h3>
                     <p>mcAllen es una vibrante ciudad en el sur de texas, conocida por su cálido clima, centros comerciales, y una floreciente escena artística. es un importante centro de comercio y cultura en la región fronteriza.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -97,7 +97,7 @@
                     </div>
                     <h3>mcAllen 1 día.</h3>
                     <p>mcAllen destaca por su vida nocturna, eventos culturales y parques naturales, como el refugio nacional de vida silvestre de santa ana. es un destino atractivo tanto para compras como para actividades al aire libre.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -107,10 +107,13 @@
                     </div>
                     <h3>eagle pass.</h3>
                     <p>eagle pass es una ciudad fronteriza en texas, situada junto al río bravo. es conocida por su rica historia, proximidad a piedras negras, méxico, y como un punto de entrada para el comercio y el turismo binacional.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
             </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
         </div>
 

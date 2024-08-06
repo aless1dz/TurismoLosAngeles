@@ -72,82 +72,65 @@
             <div class="swiper-wrapper">
     
                 <div class="swiper-slide">
-                   <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                   <div class="box" style="background: url('/ImgInicio/IMG-IArteaga.png') no-repeat;">
                         <div class="content">
                             <span>arteaga</span>
                             <h3>coahuila</h3>
                             <p>arteaga, en la sierra madre oriental, es un pueblo mágico con bosques, manzanos y cumbres nevadas. ideal para ecoturismo, ofrece cabañas, senderismo, avistamiento de aves y paseos a caballo.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box second" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box second" style="background: url('/ImgInicio/IMG-ICuatrocienegas.jpg') no-repeat;">
                         <div class="content">
                             <span>cuatrociénegas</span>
                             <h3>coahuila</h3>
                             <p>cuatrociénegas es un pueblo mágico con historia, comida y vino. Alberga playas, pozos, ríos, mármol y montañas, formando uno de los oasis más peculiares y hermosos del mundo.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box" style="background: url('/ImgInicio/IMG-IGeneralCepeda.jpg') no-repeat;">
                         <div class="content">
                             <span>general cepeda</span>
                             <h3>coahuila</h3>
                             <p>ofrece una riqueza paleontológica, sorprendentes paisajes y deliciosos productos lácteos sin hormonas. explora fósiles de dinosaurios y disfruta de la impresionante cultura, historia y gastronomía del lugar.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box second" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box second" style="background: url('/ImgInicio/IMG-IMuzquiz.jpg') no-repeat;">
                         <div class="content">
                             <span>múzquiz</span>
                             <h3>coahuila</h3>
                             <p>este pueblo mágico es un mosaico de cultura, historia y naturaleza, los origenes apuntan a 90 millones de años atras, evidencia de esto las encuentras en su museo de palentología, la presencia de etnias kikapúes y mascogos.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
-                        <div class="content">
-                            <span>termas de san joaquín</span>
-                            <h3>coahuila</h3>
-                            <p>En medio del desierto en Ramos Arizpe, Coahuila, un resort ofrece aguas termales con minerales como calcio, hierro y fósforo, conocidas por sus propiedades saludables milenarias.</p>
-                            <a href="#" class="btn">leer más</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide">
-                    <div class="box second" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
-                        <div class="content">
-                            <span>viesca</span>
-                            <h3>coahuila</h3>
-                            <p>la mayor atracción alrededor de viesca son las dunas de bilbao. originalmente cubierto por el mar, el paisaje se formó tras su retiro. este lugar histórico alberga la casa visitada por miguel hidalgo en 1811 y posteriormente por el presidente benito juárez.</p>
-                            <a href="#" class="btn">leer más</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide">
-                    <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box" style="background: url('/ImgInicio/IMG-IParras.jpg') no-repeat;">
                         <div class="content">
                             <span>parras</span>
                             <h3>coahuila</h3>
                             <p>parras de la fuente, un oasis en el desierto, con viñedos, nogales y calles históricas. fundada hace más de 400 años, destaca por su arquitectura, gastronomía y las bodegas más antiguas del continente</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
+                <div class="swiper-slide">
+                    <div class="box second" style="background: url('/ImgInicio/IMG-IViesca.jpg') no-repeat;">
+                        <div class="content">
+                            <span>viesca</span>
+                            <h3>coahuila</h3>
+                            <p>la mayor atracción alrededor de viesca son las dunas de bilbao. originalmente cubierto por el mar, el paisaje se formó tras su retiro. este lugar histórico alberga la casa visitada por miguel hidalgo en 1811 y posteriormente por el presidente benito juárez.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
     
             <div class="swiper-button-next"></div>
