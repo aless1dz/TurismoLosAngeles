@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viajes USA | Turismo Los Angeles</title>
 
-
     <!-- link font awesome -->
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <!-- link css -->
     <link rel="stylesheet" href="{{ asset('css/viajes.css') }}">
-
 
 </head>
 <body>
@@ -79,7 +77,7 @@
                     </div>
                     <h3>san antonio.</h3>
                     <p>san antonio es una ciudad histórica en texas, conocida por el alamo, el river walk, y su rica herencia cultural. ofrece una mezcla de historia, cultura, y entretenimiento, siendo un destino popular para turistas.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -89,7 +87,7 @@
                     </div>
                     <h3>mcAllen 2 días.</h3>
                     <p>mcAllen es una vibrante ciudad en el sur de texas, conocida por su cálido clima, centros comerciales, y una floreciente escena artística. es un importante centro de comercio y cultura en la región fronteriza.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -99,7 +97,7 @@
                     </div>
                     <h3>mcAllen 1 día.</h3>
                     <p>mcAllen destaca por su vida nocturna, eventos culturales y parques naturales, como el refugio nacional de vida silvestre de santa ana. es un destino atractivo tanto para compras como para actividades al aire libre.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
                 <div class="swiper-slide slide">
@@ -109,10 +107,13 @@
                     </div>
                     <h3>eagle pass.</h3>
                     <p>eagle pass es una ciudad fronteriza en texas, situada junto al río bravo. es conocida por su rica historia, proximidad a piedras negras, méxico, y como un punto de entrada para el comercio y el turismo binacional.</p>
-                    <a href="#" class="btn">leer más</a>
+                    
                 </div>
 
             </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
 
         </div>
 
@@ -128,33 +129,33 @@
 
             <div class="box">
                 <h3>enlaces directos</h3>
-                <a href="#home">inicio</a>
-                <a href="#about">nuestros servicios</a>
-                <a href="#shop">galería</a>
-                <a href="#packages">contacto</a>
-                <a href="#reviews">iniciar sesión</a>
+                <a href="/inicio">inicio</a>
+                <a href="/servicios">nuestros servicios</a>
+                <a href="/viajes">viajes</a>
+                <a href="/citasPrincipal">citas</a>
             </div>
 
             <div class="box">
                 <h3>enlaces adicionales</h3>
-                <a href="#">visas</a>
-                <a href="#">pasaporte</a>
-                <a href="#">unidades</a>
+                <a href="/visa">visas</a>
+                <a href="/pasaporte">pasaporte</a>
+                <a href="/unidades">unidades</a>
             </div>
 
             <div class="box">
-                <h3>información de contacto</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangeles@gmail.com </a>
-                <a href="#"> <i class="fas fa-map"></i> Av. Morelos #482 pte casi esquina con Leona Vicario. </a>
+                <h3>contacto</h3>
+                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> visas (871) 401 0593 </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> viajes (871) 217 4806 </a>
+                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> unidades (871) 457 2300 </a>
+                <a href="mailto:turismolosangelespro@gmail.com" target="_blank" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangelespro@gmail.com </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  av morelos 482, primero de cobián centro, 27000 torreón, coah. </a> 
             </div>
 
             <div class="box">
                 <h3>siguenos</h3>
-                <a href="#"> <i class="fab fa-facebook"></i> facebook </a>
-                <a href="#"> <i class="fab fa-whatsapp"></i> whatsApp</a>
-                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> facebook </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> whatsApp</a>
+                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> instagram </a>
             </div>
 
         </div>
@@ -162,7 +163,7 @@
         <div class="credit">copyright © 2024 <span>turismo los angeles</span> | todos los derechos reservados.</div>
 
     </section>
-
+    
     <!-- sección píe de página final -->
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

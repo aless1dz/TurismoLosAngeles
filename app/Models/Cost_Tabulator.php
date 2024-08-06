@@ -18,10 +18,16 @@ class Cost_Tabulator extends Model
 
     public function destination()
 {
-    return $this->belongsTo(Destination::class, 'destinations_iddestinations', 'iddestinations');
+    return $this->belongsTo(Destination::class, 'destinations_iddestinations');
 }
 
 
+<<<<<<< HEAD
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
+=======
  /**
      * Definición de la relación con el modelo `Trip`.
      * Un tabulador de costos puede ser utilizado en muchos viajes.
@@ -31,6 +37,7 @@ class Cost_Tabulator extends Model
     public function trips()
     {
         return $this->hasMany(Trip::class);
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
     }
     
 }

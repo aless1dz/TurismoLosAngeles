@@ -23,6 +23,10 @@ class Cost_TabulatorsController extends Controller
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
 
 
     public function getCost_Tabulator($id)
@@ -32,28 +36,28 @@ class Cost_TabulatorsController extends Controller
     }
 
     public function insertCost_Tabulator(Request $request)
-{
-    $request->validate([
-        'iddestinations' => 'required|exists:destinations,iddestinations',
-        'unit_price' => 'required|numeric',
-        'bulk_price' => 'required|numeric',
-        'description' => 'nullable|string'
-    ]);
-
-    try {
-        $cost_tabulator = new Cost_Tabulator;
-        $cost_tabulator->destinations_iddestinations = $request->iddestinations;
-        $cost_tabulator->unit_price = $request->unit_price;
-        $cost_tabulator->bulk_price = $request->bulk_price;
-        $cost_tabulator->description = $request->description;
-        $cost_tabulator->save();
-        return response()->json($cost_tabulator);
-    } catch (\Exception $e) {
-        // Registra el error para depuración
-        \Log::error('Error al insertar Cost_Tabulator: ' . $e->getMessage());
-        return response()->json(['error' => $e->getMessage()], 500);
+    {
+        $request->validate([
+            'iddestinations' => 'required|exists:destinations,iddestinations',
+            'unit_price' => 'required|numeric',
+            'bulk_price' => 'required|numeric',
+            'description' => 'nullable|string'
+        ]);
+    
+        try {
+            $cost_tabulator = new Cost_Tabulator;
+            $cost_tabulator->destinations_iddestinations = $request->iddestinations;
+            $cost_tabulator->unit_price = $request->unit_price;
+            $cost_tabulator->bulk_price = $request->bulk_price;
+            $cost_tabulator->description = $request->description;
+            $cost_tabulator->save();
+            return response()->json($cost_tabulator);
+        } catch (\Exception $e) {
+            \Log::error('Error al insertar Cost_Tabulator: ' . $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
-}
+    
     public function updateCost_Tabulator(Request $request, $idcost_tabulators)
     {
         $cost_tabulator = Cost_Tabulator::find($idcost_tabulators);
@@ -72,9 +76,11 @@ class Cost_TabulatorsController extends Controller
         return response()->json(['message' => 'Columna eliminada correctamente']);
     }
 
-    public function getDestinations()
+    public function getAllDestinations()
     {
         $destinations = Destination::all();
         return response()->json($destinations);
     }
+
+    
 }

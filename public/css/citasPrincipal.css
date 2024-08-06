@@ -551,10 +551,10 @@ section {
     top: 1rem;
     right: 2rem;
   }
-  .swiper-button-next::after,
+  /* .swiper-button-next::after,
   .swiper-button-prev::after {
     display: none;
-  }
+  } */
 }
 @media (max-width: 450px) {
   html {

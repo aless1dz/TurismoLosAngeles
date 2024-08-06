@@ -203,7 +203,7 @@ header {
 /* Breakpoints */
 
 /* -- Pantallas Largas -- */
-@media only screen and (max-width: 1200px) {
+@media (max-width: 1200px) {
    .contact {
         max-width: 500px;
         left: 150px;
@@ -216,7 +216,7 @@ header {
 }
 
 /* -- Laptops -- */
-@media only screen and (max-width: 992px) {
+@media (max-width: 992px) {
    .contact {
         max-width: 400px;
         left: 100px;
@@ -228,12 +228,16 @@ header {
 }
 
 /* -- Tablets -- */
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
    .container {
         justify-content: center;
         flex-direction: column;
         gap: 80px;
    }
+
+   .container__rrss {
+    display: none;
+    }
 
    .container__box {
         width: 100px;
@@ -249,12 +253,12 @@ header {
         padding: 40px;
         left: 0;
    }
-}
+} 
 
 /* -- Celulares -- */
-@media only screen and (max-width: 400px) {
+@media (max-width: 400px) {
     header {
-        padding: 20px;
+        padding: 12px;
     }
 
     .container__box {
@@ -262,37 +266,31 @@ header {
     }
 
     .container__rrss {
-        top: 95%;
-        left: 130px;
-        display: flex;
-        flex-direction: row;
-        gap: 15px;
-        z-index: 1;
-        margin-top: 30px;
-    }
-
-    .container__rrss-item {
-        color: var(--blue);
+        display: none;
     }
 
     .contact {
-        max-width: 300px;
-        padding-top: 100px;
+        max-width: 90%;
+        margin: 0 auto;
+        padding-top: 700px;
     }
 
     .contact__title {
-        font-size: 2em;
+        font-size: 1.5em;
+        text-align: center;
     }
 
     .contact__description {
         font-size: 1em;
+        text-align: center;
     }
 
     .info__little-box {
-        top: -20px;
-        left: 0;
+        display: none;
     }
 }
+
+
 /*Estilo de alerta para cerrar sesion*/
 .swal2-popup {
     background-color: #565656;

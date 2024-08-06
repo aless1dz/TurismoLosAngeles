@@ -42,7 +42,6 @@
 
     <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
-        <!-- <a href="#" class="fas fa-shopping-cart"></a> -->
         <div id="search-btn" class="fas fa-search" style="display: none;"></div> 
     </div>
 
@@ -59,7 +58,7 @@
         <div id="close-search" class="fas fa-times"></div>
 
         <form action="">
-             <input type="search" name="" placeholder="search here..." id="search-box">
+            <input type="search" id="search-box">
             <label for="search-box" class="fas fa-search"></label> 
         </form> 
     </div>
@@ -73,84 +72,65 @@
             <div class="swiper-wrapper">
     
                 <div class="swiper-slide">
-    
-                    <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                   <div class="box" style="background: url('/ImgInicio/IMG-IArteaga.png') no-repeat;">
                         <div class="content">
                             <span>arteaga</span>
                             <h3>coahuila</h3>
                             <p>arteaga, en la sierra madre oriental, es un pueblo mágico con bosques, manzanos y cumbres nevadas. ideal para ecoturismo, ofrece cabañas, senderismo, avistamiento de aves y paseos a caballo.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
-    
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box second" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box second" style="background: url('/ImgInicio/IMG-ICuatrocienegas.jpg') no-repeat;">
                         <div class="content">
                             <span>cuatrociénegas</span>
                             <h3>coahuila</h3>
                             <p>cuatrociénegas es un pueblo mágico con historia, comida y vino. Alberga playas, pozos, ríos, mármol y montañas, formando uno de los oasis más peculiares y hermosos del mundo.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box" style="background: url('/ImgInicio/IMG-IGeneralCepeda.jpg') no-repeat;">
                         <div class="content">
                             <span>general cepeda</span>
                             <h3>coahuila</h3>
                             <p>ofrece una riqueza paleontológica, sorprendentes paisajes y deliciosos productos lácteos sin hormonas. explora fósiles de dinosaurios y disfruta de la impresionante cultura, historia y gastronomía del lugar.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box second" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box second" style="background: url('/ImgInicio/IMG-IMuzquiz.jpg') no-repeat;">
                         <div class="content">
                             <span>múzquiz</span>
                             <h3>coahuila</h3>
                             <p>este pueblo mágico es un mosaico de cultura, historia y naturaleza, los origenes apuntan a 90 millones de años atras, evidencia de esto las encuentras en su museo de palentología, la presencia de etnias kikapúes y mascogos.</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
                 <div class="swiper-slide">
-                    <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
-                        <div class="content">
-                            <span>termas de san joaquín</span>
-                            <h3>coahuila</h3>
-                            <p>En medio del desierto en Ramos Arizpe, Coahuila, un resort ofrece aguas termales con minerales como calcio, hierro y fósforo, conocidas por sus propiedades saludables milenarias.</p>
-                            <a href="#" class="btn">leer más</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide">
-                    <div class="box second" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
-                        <div class="content">
-                            <span>viesca</span>
-                            <h3>coahuila</h3>
-                            <p>la mayor atracción alrededor de viesca son las dunas de bilbao. originalmente cubierto por el mar, el paisaje se formó tras su retiro. este lugar histórico alberga la casa visitada por miguel hidalgo en 1811 y posteriormente por el presidente benito juárez.</p>
-                            <a href="#" class="btn">leer más</a>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide">
-                    <div class="box" style="background: url('/ImgInicio/IMG-Prueba.jpg') no-repeat;">
+                    <div class="box" style="background: url('/ImgInicio/IMG-IParras.jpg') no-repeat;">
                         <div class="content">
                             <span>parras</span>
                             <h3>coahuila</h3>
                             <p>parras de la fuente, un oasis en el desierto, con viñedos, nogales y calles históricas. fundada hace más de 400 años, destaca por su arquitectura, gastronomía y las bodegas más antiguas del continente</p>
-                            <a href="#" class="btn">leer más</a>
                         </div>
                     </div>
                 </div>
     
+                <div class="swiper-slide">
+                    <div class="box second" style="background: url('/ImgInicio/IMG-IViesca.jpg') no-repeat;">
+                        <div class="content">
+                            <span>viesca</span>
+                            <h3>coahuila</h3>
+                            <p>la mayor atracción alrededor de viesca son las dunas de bilbao. originalmente cubierto por el mar, el paisaje se formó tras su retiro. este lugar histórico alberga la casa visitada por miguel hidalgo en 1811 y posteriormente por el presidente benito juárez.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
     
             <div class="swiper-button-next"></div>
@@ -227,33 +207,33 @@
 
             <div class="box">
                 <h3>enlaces directos</h3>
-                <a href="#home">inicio</a>
-                <a href="#about">nuestros servicios</a>
-                <a href="#shop">galería</a>
-                <a href="#packages">contacto</a>
-                <a href="#reviews">iniciar sesión</a>
+                <a href="/inicio">inicio</a>
+                <a href="/servicios">nuestros servicios</a>
+                <a href="/viajes">viajes</a>
+                <a href="/citasPrincipal">citas</a>
             </div>
 
             <div class="box">
                 <h3>enlaces adicionales</h3>
-                <a href="#">visas</a>
-                <a href="#">pasaporte</a>
-                <a href="#">unidades</a>
+                <a href="/visa">visas</a>
+                <a href="/pasaporte">pasaporte</a>
+                <a href="/unidades">unidades</a>
             </div>
 
             <div class="box">
-                <h3>información de contacto</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangelespro@gmail.com </a>
-                <a href="#"> <i class="fas fa-map"></i> Av. Morelos #482 pte casi esquina con Leona Vicario. </a>
+                <h3>contacto</h3>
+                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> visas (871) 401 0593 </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> viajes (871) 217 4806 </a>
+                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> unidades (871) 457 2300 </a>
+                <a href="mailto:turismolosangelespro@gmail.com" target="_blank" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangelespro@gmail.com </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  av morelos 482, primero de cobián centro, 27000 torreón, coah. </a> 
             </div>
 
             <div class="box">
                 <h3>siguenos</h3>
-                <a href="#"> <i class="fab fa-facebook"></i> facebook </a>
-                <a href="#"> <i class="fab fa-whatsapp"></i> whatsApp</a>
-                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> facebook </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> whatsApp</a>
+                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> instagram </a>
             </div>
 
         </div>
