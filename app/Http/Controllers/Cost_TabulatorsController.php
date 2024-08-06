@@ -14,16 +14,15 @@ class Cost_TabulatorsController extends Controller
     }
 
     public function getCost_Tabulators(Request $request)
-    {
+{
     try {
         $order = $request->query('order', 'asc');
         $cost_tabulators = Cost_Tabulator::with('destination')->orderBy('idcost_tabulators', $order)->get();
         return response()->json($cost_tabulators);
-    } 
-    catch (\Exception $e) {
+    } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
-    }
+}
 
 
     public function getCost_Tabulator($id)

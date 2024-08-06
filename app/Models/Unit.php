@@ -9,6 +9,8 @@ class Unit extends Model
 {
     use HasFactory;
     
+    protected $primaryKey = 'idunits';
+
     protected $fillable = [
         'model', 'manufacturer', 'plates', 'place', 'full_space'
     ];

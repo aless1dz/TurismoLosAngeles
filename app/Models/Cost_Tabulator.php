@@ -22,5 +22,15 @@ class Cost_Tabulator extends Model
 }
 
 
+ /**
+     * Definición de la relación con el modelo `Trip`.
+     * Un tabulador de costos puede ser utilizado en muchos viajes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
     
 }

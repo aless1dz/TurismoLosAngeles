@@ -6,15 +6,73 @@
     <title>Citas Cotizaciones | Administración</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .navbar {
+            background-color: #35424a;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+        .sidebar {
+            background-color: #2c3e50;
+            color: #ffffff;
+            min-height: 100vh;
+            padding-top: 1rem;
+        }
+        .sidebar .nav-link {
+            color: #bdc3c7;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: #2255c4;
+            color: #ffffff;
+        }
+        .sidebar .nav-link i {
+            margin-right: 0.5rem;
+        }
+        .table-responsive {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .table thead th {
+            background-color: #34495e;
+            color: #ffffff;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .table tbody tr:hover {
+            background-color: #eaeaea;
+        }
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+        .btn {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
+        .btn:hover {
+            background-color: #1f4aaa;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">Dashboard</a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                    <i class="fas fa-user"></i> User
+                    <i class="bi bi-person-circle"></i> User
                 </a>
             </li>
         </ul>
@@ -23,125 +81,129 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-md-2 d-none d-md-block sidebar">
             <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                Dashboard
+                <ul class="nav flex-column">
+                <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
+                                <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('trips') }}">
-                                Viajes
+                                <i class="bi bi-geo-alt"></i> Viajes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Citas
+                                <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">
-                                Clientes
+                                <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Acompañantes
+                                <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
-                                Unidades
+                                <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cities') }}">
-                                Ciudades
+                                <i class="bi bi-building"></i> Ciudades
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('states') }}">
-                                Estados
+                                <i class="bi bi-map-fill"></i> Estados
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
+                                <i class="bi bi-map"></i> Destinos
                             </a>
                         </li>
-                            
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('pasaportes') }}">
-                                Citas Pasaportes
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('cotizaciones') }}">
-                                Citas Cotizaciones
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('comentarios') }}">
-                                Comentarios
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('comentarios') }}">
+                                <i class="bi bi-chat-left-dots"></i> Comentarios
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('rentas') }}">
-                                Renta de Unidades
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rentas') }}">
+                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('viajes') }}">
-                                Solicitud de Viajes
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('viajes') }}">
+                                <i class="bi bi-airplane"></i> Solicitud de Viajes
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('visas') }}">
-                                Citas para Visas
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
                         </li>
-                    </ul>
+                </ul>
             </div>
         </nav>
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <h1 class="h2">Citas Cotizaciones</h1>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
-                <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                <div class="input-group w-50">
+                    <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
+                    <div class="input-group-append">
+                        <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                    </div>
+                </div>
             </div>
-            <table class="table table-sm table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>WhatsApp</th>
-                        <th>Destino</th>
-                        <th>Fecha</th>
-                        <th>Pasajeros</th>
-                        <th>Fecha de Envío</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($cotizaciones as $cotizacion)
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ $cotizacion->user_name }}</td>
-                            <td>{{ $cotizacion->user_whatsapp }}</td>
-                            <td>{{ $cotizacion->user_destino }}</td>
-                            <td>{{ $cotizacion->user_date }}</td>
-                            <td>{{ $cotizacion->user_pasajeros }}</td>
-                            <td>{{ $cotizacion->created_at}}</td>
+                            <th>Nombre</th>
+                            <th>WhatsApp</th>
+                            <th>Destino</th>
+                            <th>Fecha</th>
+                            <th>Pasajeros</th>
+                            <th>Fecha de Envío</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach($cotizaciones as $cotizacion)
+                            <tr>
+                                <td>{{ $cotizacion->user_name }}</td>
+                                <td>{{ $cotizacion->user_whatsapp }}</td>
+                                <td>{{ $cotizacion->user_destino }}</td>
+                                <td>{{ $cotizacion->user_date }}</td>
+                                <td>{{ $cotizacion->user_pasajeros }}</td>
+                                <td>{{ $cotizacion->created_at}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

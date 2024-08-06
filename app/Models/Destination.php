@@ -29,4 +29,16 @@ class Destination extends Model
     {
         return $this->hasMany(Cost_Tabulator::class, 'destinations_iddestinations', 'iddestinations');
     }
+
+    /**
+     * Definición de la relación con el modelo `Trip`.
+     * Un destino puede estar asociado con muchos viajes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }
+

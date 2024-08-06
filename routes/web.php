@@ -186,7 +186,7 @@ Route::post('/insertComentario', [FormalityController::class, 'insertComentarios
 Route::get('/rentas', [FormalityController::class, 'viewRentas'])->name('rentas');
 Route::post('/store-renta', [FormalityController::class, 'insertRentas'])->name('insertar.renta');
 
-Route::get('/viajes', [FormalityController::class, 'viewViajes'])->name('viajes');
+Route::get('/viajesForm', [FormalityController::class, 'viewViajes'])->name('viajes');
 
 Route::post('/store-viajes', [FormalityController::class, 'insertViajes'])->name('store.viajes');
 
