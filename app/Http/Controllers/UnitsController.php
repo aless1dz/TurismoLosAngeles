@@ -58,4 +58,8 @@ class UnitsController extends Controller
         $unit->delete();
         return response()->json(['message' => 'Unidad eliminada correctamente']);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd

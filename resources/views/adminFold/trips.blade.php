@@ -6,15 +6,102 @@
     <title>Administracion</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .navbar {
+            background-color: #35424a;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+        .sidebar {
+            background-color: #2c3e50;
+            color: #ffffff;
+            min-height: 100vh;
+            padding-top: 1rem;
+        }
+        .sidebar .nav-link {
+            color: #bdc3c7;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: #2255c4;
+            color: #ffffff;
+        }
+        .sidebar .nav-link i {
+            margin-right: 0.5rem;
+        }
+        .table-responsive {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .table thead th {
+            background-color: #34495e;
+            color: #ffffff;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .table tbody tr:hover {
+            background-color: #eaeaea;
+        }
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+        .btn {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
+        .btn:hover {
+            background-color: #1f4aaa;
+        }
+        .btn-warning, .btn-danger {
+            padding: 0.375rem 0.75rem;
+        }
+        .btn-warning i, .btn-danger i {
+            font-size: 1.2rem;
+        }
+        .modal-content {
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .modal-header {
+            background-color: #2255c4;
+            color: #ffffff;
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #2255c4;
+        }
+        .modal-footer .btn-secondary {
+            background-color: #7f8c8d;
+        }
+        .modal-footer .btn-primary {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fas fa-user"></i> User
+                        <i class="bi bi-person-circle"></i> User
                     </a>
                 </li>
             </ul>
@@ -23,47 +110,95 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                     <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                Dashboard
+                            <a class="nav-link active" href="/dashboard">
+                                <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('trips') }}">
-                                Viajes
+                                <i class="bi bi-geo-alt"></i> Viajes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
+<<<<<<< HEAD
                                 Citas
+=======
+                                <i class="bi bi-calendar3"></i> Citas
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">
-                                Clientes
+                                <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Acompañantes
+                                <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
+<<<<<<< HEAD
                                 Unidades
+=======
+                                <i class="bi bi-bus-front-fill"></i> Unidades
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cities') }}">
-                                Ciudades
+                                <i class="bi bi-building"></i> Ciudades
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('states') }}">
-                                Estados
+                                <i class="bi bi-map-fill"></i> Estados
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                <i class="bi bi-map"></i> Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('comentarios') }}">
+                                <i class="bi bi-chat-left-dots"></i> Comentarios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rentas') }}">
+                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('viajes') }}">
+                                <i class="bi bi-airplane"></i> Solicitud de Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
                         </li>
 
@@ -82,16 +217,47 @@
                 </div>
             </nav>
 
+<<<<<<< HEAD
             <div class="col-md-10">
+=======
+            <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <h1 class="h2">Viajes (Historial)</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tripModal" onclick="clearForm()">
                         Añadir Viaje
                     </button>
-                    <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
-                    <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                    <div class="input-group w-50">
+                        <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
+                        <div class="input-group-append">
+                            <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Destino</th>
+                                <th>Fecha de Inicio</th>
+                                <th>Fecha de Fin</th>
+                                <th>Duración (Días)</th>
+                                <th>Costo (Unico o Mayoreo)</th>
+                                <th>Usuario</th>
+                                <th>Fecha de Creacion</th>
+                                <th>Fecha de Actualizacion</th>
+                                <th>Editar/Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tripTableBody">
+                            <!-- Contenido de los viajes -->
+                        </tbody>
+                    </table>
+                </div>
+<<<<<<< HEAD
                 
                 <table class="table table-sm table-bordered">
                     <thead class="table-dark">
@@ -113,6 +279,8 @@
                         
                     </tbody>
                 </table>
+=======
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
             </div>
         </div>
     </div>
@@ -133,7 +301,12 @@
                         <div class="form-group">
                             <label for="iddestinations">Destino</label>
                             <select class="form-control" id="iddestinations" name="iddestinations" required>
+<<<<<<< HEAD
                                 
+=======
+                                <option value="" disabled selected>Seleccione un destino</option>
+                                <!-- Las opciones serán cargadas aquí -->
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </select>
                         </div>
                         <div class="form-group">
@@ -145,22 +318,36 @@
                             <input type="date" class="form-control" id="end_date" name="end_date" required>
                         </div>
                         <div class="form-group">
+<<<<<<< HEAD
                             <label for="duration">Duaración (Días)</label>
+=======
+                            <label for="duration">Duración (Días)</label>
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             <input type="number" class="form-control" id="duration" name="duration" required>
                         </div>
                         <div class="form-group">
                             <label for="idcost_tabulators">Costo (Unico o Mayoreo)</label>
                             <select class="form-control" id="idcost_tabulators" name="idcost_tabulators" required>
+<<<<<<< HEAD
                                 
+=======
+                                <option value="" disabled selected>Seleccione un costo</option>
+                                <!-- Las opciones serán cargadas aquí -->
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="idusers">Cliente</label>
+<<<<<<< HEAD
                             <select class="form-control" id="idusers" name="idusers" required>
                                 
                             </select>
                         </div>
                         
+=======
+                            <select class="form-control" id="idusers" name="idusers" required></select>
+                        </div>
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -175,6 +362,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+<<<<<<< HEAD
     var trips = [];
     var destinations = [];
     var users = [];
@@ -347,14 +535,185 @@ function deleteTrip(id) {
         },
         error: function (error) {
             console.log(error);
-        }
-    });
-}
+=======
+        var trips = [];
+        var destinations = [];
+        var users = [];
+        var cost_tabulators = [];
 
+        $(document).ready(function () {
+            fetchTrips();
+            fetchCost_Tabulators();
+            fetchDestinations();
+            fetchUsers();
+
+            $('#tripForm').on('submit', function (e) {
+                e.preventDefault();
+
+                console.log($('#tripForm').serialize());
+
+                let id = $('#idtrips').val();
+                let url = id ? `/trips/update/${id}` : '/trips/insert';
+                let method = id ? 'PUT' : 'POST';
+
+                $.ajax({
+                    url: url,
+                    method: method,
+                    data: $('#tripForm').serialize(),
+                    success: function (response) {
+                        $('#tripModal').modal('hide');
+                        fetchTrips();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            $('#search-btn').on('click', function () {
+                applyFilters();
+            });
+        });
+
+        function fetchTrips(order = 'asc') {
+            $.get(`/get/trips?order=${order}`, function (data) {
+                trips = data;
+                renderTrips(trips);
+            });
+        }
+
+        function fetchDestinations() {
+            $.getJSON('/destinations/all', function (data) {
+                destinations = data;
+                renderDestinations(destinations);
+            });
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
+        }
+
+<<<<<<< HEAD
     function clearForm() {
         $('#idtrips').val('');
         $('#tripForm')[0].reset();
     }
+=======
+        function fetchCost_Tabulators() {
+            $.getJSON('/cost_tabulators/all', function (data) {
+                cost_tabulators = data;
+                renderCost_Tabulators(cost_tabulators);
+            });
+        }
+
+        function fetchUsers() {
+            $.getJSON('/users/all', function (data) {
+                users = data;
+                renderUsers(users);
+            });
+        }
+
+        function renderTrips(data) {
+            let tableBody = $('#tripTableBody');
+            tableBody.empty();
+            data.forEach(trip => {
+                let createdAt = new Date(trip.created_at).toLocaleString();
+                let updatedAt = new Date(trip.updated_at).toLocaleString();
+                let destinationInfo = trip.destination ? `${trip.destination.destination_acronym}` : 'N/A';
+                let costInfo = trip.cost_tabulator ? `${trip.cost_tabulator.unit_price}  ${trip.cost_tabulator.bulk_price}` : 'N/A';
+                let userInfo = trip.user ? `${trip.user.name} ${trip.user.last_name}` : 'N/A';
+
+                tableBody.append(`
+                    <tr>
+                        <td>${trip.idtrips}</td>
+                        <td>${destinationInfo}</td>
+                        <td>${trip.start_date}</td>
+                        <td>${trip.end_date}</td>
+                        <td>${trip.duration}</td>
+                        <td>${costInfo}</td>
+                        <td>${userInfo}</td>
+                        <td>${createdAt}</td>
+                        <td>${updatedAt}</td>
+                        <td>
+                            <button class="btn btn-warning" onclick="editTrip(${trip.idtrips})"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-danger" onclick="deleteTrip(${trip.idtrips})"><i class="bi bi-backspace-fill"></i></button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
+
+        function renderDestinations(destinations) {
+            let destinationSelect = $('#iddestinations');
+            destinationSelect.empty();
+            destinations.forEach(destination => {
+                destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
+            });
+        }
+
+        function renderUsers(users) {
+            let userSelect = $('#idusers');
+            userSelect.empty();
+            users.forEach(user => {
+                userSelect.append(`<option value="${user.id}">${user.name} ${user.last_name}</option>`);
+            });
+        }
+
+        function renderCost_Tabulators(cost_tabulators) {
+            let cost_tabulatorSelect = $('#idcost_tabulators');
+            cost_tabulatorSelect.empty();
+            cost_tabulators.forEach(cost_tabulator => {
+                cost_tabulatorSelect.append(`<option value="${cost_tabulator.idcost_tabulators}">${cost_tabulator.unit_price}:${cost_tabulator.bulk_price}</option>`);
+            });
+        }
+
+        function applyFilters() {
+            let searchValue = $('#search-input').val().toLowerCase();
+
+            let filteredTrips = trips.filter(function (trip) {
+                let match = true;
+
+                if (searchValue) {
+                    match = trip.destination.toLowerCase().includes(searchValue) || trip.user.name.toLowerCase().includes(searchValue);
+                }
+
+                return match;
+            });
+
+            renderTrips(filteredTrips);
+        }
+
+        function editTrip(id) {
+            $.get(`/get/trip/${id}`, function (trip) {
+                $('#idtrips').val(trip.idtrips);
+                $('#iddestinations').val(trip.iddestinations);
+                $('#start_date').val(trip.start_date);
+                $('#end_date').val(trip.end_date);
+                $('#duration').val(trip.duration);
+                $('#idcost_tabulators').val(trip.idcost_tabulators);
+                $('#idusers').val(trip.idusers || '');
+                $('#tripModal').modal('show');
+            });
+        }
+
+        function deleteTrip(idtrips) {
+            $.ajax({
+                url: `/delete/trip/${idtrips}`,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'DELETE',
+                success: function () {
+                    fetchTrips();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function clearForm() {
+            $('#idtrips').val('');
+            $('#tripForm')[0].reset();
+        }
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
     </script>
 </body>
 </html>

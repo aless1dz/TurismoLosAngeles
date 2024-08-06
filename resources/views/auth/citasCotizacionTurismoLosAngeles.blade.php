@@ -8,7 +8,7 @@
     <!-- link font awesome -->
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <!-- Librería iziToast -->
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     <title>Citas Cotizaciones | Turismo Los Angeles</title>
 </head>
 <body>
@@ -24,33 +24,36 @@
                 <h2 class="contact__title">cita cotizaciones</h2>
                 <p>Complete la información solicitada y espera una respuesta.</p><br>
             </div>
-            <form action="" id="contact-form" class="contact__form" autocomplete="off">
-                <div class="contact__inputs">
-                    <label class="contact__label">nombre</label>
-                    <input type="text" id="user-name" class="contact__input" required>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">whatsApp</label>
-                    <input type="number" id="user-whatsapp" class="contact__input" required>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">destino</label>
-                    <input type="text" id="user-destino" class="contact__input" required>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">fecha</label>
-                    <input type="date" id="user-date" class="contact__input" required>
-                </div>
-                <div class="contact__inputs">
-                    <label class="contact__label">pasajeros</label>
-                    <input type="number" id="user-pasajeros" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
-                </div>
-                <button type="submit" class="contact__button">enviar</button>
-            </form>
-         </section>
+            <form action="{{ route('store.cotizacion') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
+            @csrf
+            <input type="hidden" id="form_type" name="form_type" value="cotizacion">
+            <div class="contact__inputs">
+                <label class="contact__label">nombre</label>
+                <input type="text" name="user_name" id="user-name" class="contact__input" required>
+            </div>
+            <div class="contact__inputs">
+                <label class="contact__label">whatsApp</label>
+                <input type="text" name="user_whatsapp" id="user-whatsapp" class="contact__input" required>
+            </div>
+            <div class="contact__inputs">
+                <label class="contact__label">destino</label>
+                <input type="text" name="user_destino" id="user-destino" class="contact__input" required>
+            </div>
+            <div class="contact__inputs">
+                <label class="contact__label">fecha</label>
+                <input type="date" name="user_date" id="user-date" class="contact__input" required>
+            </div>
+            <div class="contact__inputs">
+                <label class="contact__label">pasajeros</label>
+                <input type="number" name="user_pasajeros" id="user-pasajeros" class="contact__input" required min="0">
+            </div>
+            <button type="submit" class="contact__button">enviar</button>
+        </form>
+
+        </section>
 
         <!-- Aside -->
-         <aside class="info">
+        <aside class="info">
             <div class="info__little-box"></div>
             <h2 class="info__title">información de contacto</h2>
             <ul class="info__list">
@@ -71,13 +74,13 @@
                     <p class="info__list-item-description">09:00 - 18:00</p>
                 </li>
             </ul>
-         </aside>
+        </aside>
 
         <!-- Box -->
-         <div class="container__box"></div>
+        <div class="container__box"></div>
 
         <!-- Redes Sociales -->
-         <div class="container__rrss">
+        <div class="container__rrss">
             <a href="#" class="container__rrss-item">
                 <i class="fab fa-facebook"></i>
             </a>
@@ -87,7 +90,7 @@
             <a href="#" class="container__rrss-item">
                 <i class="fab fa-instagram"></i>
             </a>
-         </div>
+        </div>
     </div>
 
     <!-- Librería EmailJS -->

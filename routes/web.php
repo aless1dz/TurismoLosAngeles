@@ -11,6 +11,7 @@ use App\Http\Controllers\DestinationsController;
 use App\Http\Controllers\UnitsController;
 use App\Http\Controllers\Cost_TabulatorsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FormalityController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -68,10 +69,6 @@ Route::get('/citaPasaporte', [UserController::class, 'citaPasaporteTurismoLosAng
 //ENVIAR CORREO DE VERIFICACION EMAIL
 Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail'])->name('verification.verify');
 
-//PROTEGER RUTAS SI EL USUARIO NO ESTA AUTENTICADO
-/*Route::middleware(['auth', 'verified'])->group(function () {
-     Route::get('/inicio', [UserController::class, 'inicioTurismoLosAngeles']);
-});*/
 
 //OBTENER FORMULARIO PARA ENVIAR EMAIL Y RECUPERAR CONTRASEÑA
 Route::get('/formulario-recuperar-contrasenia', [UserController::class, 'formularioRecuperarContrasenia'])->name('formulario-recuperar-contrasenia');
@@ -88,9 +85,16 @@ Route::post('/actualizar-contrasenia', [UserController::class, 'actualizarContra
 //ENVIAR CORREO DE BIENVENIDA
 Route::post('/registro', [UserController::class, 'registrar'])->name('registro');
 
-Route::get('/dashboard', function(){
-    return view('adminFold.dashboard');
-});
+// Route::group(['middleware' => ['check.role:admin']], function () {
+//      // Rutas accesibles solo para administradores
+//      Route::get('/dashboard', function(){
+//           return view('adminFold.dashboard');
+//       });
+//       Route::get('/view/cities', funct..ion () {
+//           return view('adminFold.cities');
+//       });
+//  }); 
+Route::get('/dashboard', [AdminController::class, 'index']);
 
 Route::get('/view/users',[UserController::class, "view"])->name('users');
 Route::get('/get/users', [UserController::class, 'getUsers']);
@@ -134,10 +138,10 @@ Route::get('/get/cities', [DestinationsController::class, 'getCities']);
 
 Route::get('/view/cost_tabulators', [Cost_TabulatorsController::class, 'view'])->name('cost_tabulators');
 Route::get('/cost_tabulators/all', [Cost_TabulatorsController::class, 'getCost_Tabulators']);
-Route::get('/cost_tabulators/{id}', [Cost_TabulatorsController::class, 'getCost_Tabulator']);
+Route::get('/cost_tabulators/{idcost_tabulators}', [Cost_TabulatorsController::class, 'getCost_Tabulator']);
 Route::post('/cost_tabulators/insert', [Cost_TabulatorsController::class, 'insertCost_Tabulator']);
-Route::put('/cost_tabulators/update/{id}', [Cost_TabulatorsController::class, 'updateCost_Tabulator']);
-Route::delete('/cost_tabulators/delete/{id}', [Cost_TabulatorsController::class, 'deleteCost_Tabulator']);
+Route::put('/cost_tabulators/update/{idcost_tabulators}', [Cost_TabulatorsController::class, 'updateCost_Tabulator']);
+Route::delete('/cost_tabulators/delete/{idcost_tabulators}', [Cost_TabulatorsController::class, 'deleteCost_Tabulator']);
 Route::get('/destinations/all', [Cost_TabulatorsController::class, 'getDestinations']);
 // Route::middleware(['admin'])->group(function () {
 //     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -152,11 +156,51 @@ Route::delete('/delete/unit/{idunits}', [UnitsController::class, 'deleteUnit']);
 
 Route::get('/view/trips', [TripsController::class, 'view'])->name('trips');
 Route::get('/get/trips', [TripsController::class, 'getTrips']);
+<<<<<<< HEAD
 Route::get('/get/trip/{idtrips}', [TripsController::class, 'getTrip']);
 Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
 Route::put('/trips/update/{idtrips}', [TripsController::class, 'updateTrip']);
 Route::delete('/delete/trip/{idtrips}', [TripsController::class, 'deleteTrip']);
+=======
+Route::get('/get/trip/{id}', [TripsController::class, 'getTrip']);
+Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
+Route::put('/trips/update/{id}', [TripsController::class, 'updateTrip']);
+Route::delete('/delete/trip/{id}', [TripsController::class, 'deleteTrip']);
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
 Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
 
+<<<<<<< HEAD
+=======
+
+Route::post('/store-formality', [FormalityController::class, 'store'])->name('store.formality');
+// Route::get('/view/pasaportes', [FormalityController::class, 'view'])->name('pasaportes');
+// Route::get('/get/pasaportes', [FormalityController::class, 'getPasaportes']);
+// Route::get('/get/trip/{id}', [FormalityController::class, 'getPasaporte']);
+// Route::post('/pasaportes/insert', [FormalityController::class, 'insertPasaporte']);
+// Route::put('/pasaportes/update/{id}', [FormalityController::class, 'updatePasaporte']);
+// Route::delete('/delete/pasaporte/{id}', [FormalityController::class, 'deletePasaporte']);
+
+
+Route::post('/formulario', [FormalityController::class, 'insertPasaporte'])->name('store.formality');
+Route::get('/pasaportes', [FormalityController::class, 'viewPasaportes'])->name('pasaportes');
+
+Route::get('/cotizaciones', [FormalityController::class, 'viewCotizaciones'])->name('cotizaciones');
+Route::post('/insertCotizacion', [FormalityController::class, 'insertCotizacion'])->name('store.cotizacion');
+
+Route::get('/comentarios', [FormalityController::class, 'viewComentarios'])->name('comentarios');
+Route::post('/insertComentario', [FormalityController::class, 'insertComentarios'])->name('store.comentario');
+
+Route::get('/rentas', [FormalityController::class, 'viewRentas'])->name('rentas');
+Route::post('/store-renta', [FormalityController::class, 'insertRentas'])->name('insertar.renta');
+
+Route::get('/viajesForm', [FormalityController::class, 'viewViajes'])->name('viajes');
+
+Route::post('/store-viajes', [FormalityController::class, 'insertViajes'])->name('store.viajes');
+
+Route::get('/visas', [FormalityController::class, 'viewVisas'])->name('visas');
+
+Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('store.visas');
+
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd

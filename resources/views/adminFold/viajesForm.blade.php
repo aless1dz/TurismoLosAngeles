@@ -38,6 +38,60 @@
         .sidebar .nav-link i {
             margin-right: 0.5rem;
         }
+        .table-responsive {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .table thead th {
+            background-color: #34495e;
+            color: #ffffff;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .table tbody tr:hover {
+            background-color: #eaeaea;
+        }
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+        .btn {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
+        .btn:hover {
+            background-color: #1f4aaa;
+        }
+        .btn-warning, .btn-danger {
+            padding: 0.375rem 0.75rem;
+        }
+        .btn-warning i, .btn-danger i {
+            font-size: 1.2rem;
+        }
+        .modal-content {
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .modal-header {
+            background-color: #2255c4;
+            color: #ffffff;
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #2255c4;
+        }
+        .modal-footer .btn-secondary {
+            background-color: #7f8c8d;
+        }
+        .modal-footer .btn-primary {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
     </style>
 </head>
 <body>
@@ -59,8 +113,8 @@
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
@@ -70,18 +124,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-<<<<<<< HEAD
-                            <a class="nav-link" href="{{ route('trips') }}">
-                                Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Citas
-=======
                             <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-calendar3"></i> Citas
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </a>
                         </li>
                         <li class="nav-item">
@@ -96,11 +140,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
-<<<<<<< HEAD
-                                Unidades
-=======
                                 <i class="bi bi-bus-front-fill"></i> Unidades
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </a>
                         </li>
                         <li class="nav-item">
@@ -156,7 +196,75 @@
                     </ul>
                 </div>
             </nav>
+
+            <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <h1 class="h2">Solicitud de Viajes</h1>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
+                    <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo Electrónico</th>
+                                <th>Fecha</th>
+                                <th>Adultos Que Viajan</th>
+                                <th>Niños Que Viajan</th>
+                                <th>Fecha de envío</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($viajes as $viaje)
+                                <tr>
+                                    <td>{{ $viaje->user_name }}</td>
+                                    <td>{{ $viaje->user_email }}</td>
+                                    <td>{{ $viaje->user_date }}</td>
+                                    <td>{{ $viaje->user_adult }}</td>
+                                    <td>{{ $viaje->user_kid }}</td>
+                                    <td>{{ $viaje->created_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-btn');
+            const table = document.querySelector('table tbody');
+
+            searchButton.addEventListener('click', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const rows = table.querySelectorAll('tr');
+
+                rows.forEach(row => {
+                    const nameCell = row.querySelector('td:nth-child(1)'); 
+                    if (nameCell) {
+                        const nameText = nameCell.textContent.toLowerCase();
+                        if (nameText.includes(searchTerm)) {
+                            row.style.display = ''; 
+                        } else {
+                            row.style.display = 'none'; 
+                        }
+                    }
+                });
+            });
+
+            searchInput.addEventListener('input', function() {
+                searchButton.click();
+            });
+        });
+    </script>
 </body>
 </html>

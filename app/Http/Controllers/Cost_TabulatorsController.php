@@ -23,7 +23,10 @@ class Cost_TabulatorsController extends Controller
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
 
 
     public function getCost_Tabulator($id)
