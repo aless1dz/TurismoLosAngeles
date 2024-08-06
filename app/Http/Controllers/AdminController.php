@@ -14,7 +14,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        // Lógica del dashboard de admin
+        
         return view('adminFold.dashboard');
     }
 }
