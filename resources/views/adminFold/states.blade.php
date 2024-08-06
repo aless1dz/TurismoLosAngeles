@@ -140,11 +140,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
-<<<<<<< HEAD
-                                Unidades
-=======
                                 <i class="bi bi-bus-front-fill"></i> Unidades
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </a>
                         </li>
                         <li class="nav-item">

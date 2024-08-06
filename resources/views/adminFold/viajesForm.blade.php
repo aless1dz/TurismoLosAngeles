@@ -240,31 +240,50 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('search-input');
-            const searchButton = document.getElementById('search-btn');
-            const table = document.querySelector('table tbody');
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-btn');
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+    const filterDateButton = document.getElementById('filter-date-btn');
+    const table = document.querySelector('table tbody');
 
-            searchButton.addEventListener('click', function() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const rows = table.querySelectorAll('tr');
+    function filterRows() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
+        const rows = table.querySelectorAll('tr');
 
-                rows.forEach(row => {
-                    const nameCell = row.querySelector('td:nth-child(1)'); 
-                    if (nameCell) {
-                        const nameText = nameCell.textContent.toLowerCase();
-                        if (nameText.includes(searchTerm)) {
-                            row.style.display = ''; 
-                        } else {
-                            row.style.display = 'none'; 
-                        }
-                    }
-                });
-            });
+        rows.forEach(row => {
+            const nameCell = row.querySelector('td:nth-child(1)');
+            const dateCell = row.querySelector('td:nth-child(4)');
+            const dateText = dateCell.textContent;
 
-            searchInput.addEventListener('input', function() {
-                searchButton.click();
-            });
+            let match = true;
+
+            if (searchTerm && nameCell) {
+                const nameText = nameCell.textContent.toLowerCase();
+                if (!nameText.includes(searchTerm)) {
+                    match = false;
+                }
+            }
+
+            if (startDate && dateText < startDate) {
+                match = false;
+            }
+
+            if (endDate && dateText > endDate) {
+                match = false;
+            }
+
+            row.style.display = match ? '' : 'none';
         });
+    }
+
+    searchButton.addEventListener('click', filterRows);
+    filterDateButton.addEventListener('click', filterRows);
+
+    searchInput.addEventListener('input', filterRows);
+});
     </script>
 </body>
 </html>
