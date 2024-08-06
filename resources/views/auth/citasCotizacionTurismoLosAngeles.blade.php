@@ -45,7 +45,11 @@
                     <label class="contact__label">pasajeros</label>
                     <input type="number" id="user-pasajeros" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
+                @auth
                 <button type="submit" class="contact__button">enviar</button>
+                @else
+                <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
+                @endauth            
             </form>
          </section>
 

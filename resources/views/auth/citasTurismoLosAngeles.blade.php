@@ -37,7 +37,11 @@
                     <label class="contact__label">mensaje</label>
                     <textarea id="message" cols="30" rows="5" class="contact__textarea" required></textarea>
                 </div>
+                @auth
                 <button type="submit" class="contact__button">enviar</button>
+                @else
+                <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
+                @endauth
             </form>
          </section>
 

@@ -49,7 +49,11 @@
                     <label class="contact__label">personas</label>
                     <input type="number" id="user-adult" class="contact__input" required>
                 </div>
+                @auth
                 <button type="submit" class="contact__button">enviar</button>
+                @else
+                <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
+                @endauth
             </form>
          </section>
 
