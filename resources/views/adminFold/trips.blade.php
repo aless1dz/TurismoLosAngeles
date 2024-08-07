@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        body {
+         body {
             font-family: 'Arial', sans-serif;
             background-color: #f7f7f7;
         }
@@ -97,20 +97,12 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i> User
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!-- Resto del contenido del navbar -->
     </nav>
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block sidebar">
+        <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                     <li class="nav-item">
@@ -193,13 +185,26 @@
                                 <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
+                            <a class="nav-link" href="{{ route('associates') }}">
+                                Acompañantes
                             </a>
                         </li>
-                            
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('units') }}">
+                                Unidades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cities') }}">
+                                Ciudades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('states') }}">
+                                Estados
+                            </a>
+                        </li>
                         <li class="nav_item">
                             <a class="nav_link" href="{{ route('cost_tabulators') }}">
                                 Tabla de Costos
@@ -216,6 +221,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tripModal" onclick="clearForm()">
                         Añadir Viaje
                     </button>
+                    <button id="exportBtn" class="btn btn-primary">Exportar a Excel</button>
                     <div class="input-group w-50">
                         <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
                         <div class="input-group-append">
@@ -225,7 +231,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-sm table-striped table-hover">
+                    <table id="tripTable" class="table table-sm table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -267,6 +273,7 @@
                             <select class="form-control" id="iddestinations" name="iddestinations" required>
                                 <option value="" disabled selected>Seleccione un destino</option>
                                 <!-- Las opciones serán cargadas aquí -->
+
                             </select>
                         </div>
                         <div class="form-group">
@@ -302,6 +309,7 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -340,9 +348,9 @@
                 });
             });
 
-            $('#search-btn').on('click', function () {
-                applyFilters();
-            });
+            // $('#search-btn').on('click', function () {
+            //     applyFilters();
+            // });
         });
 
         function fetchTrips(order = 'asc') {
@@ -352,6 +360,7 @@
             });
         }
 
+        
         function fetchDestinations() {
             $.getJSON('/destinations/all', function (data) {
                 destinations = data;
@@ -471,6 +480,12 @@
                 }
             });
         }
+
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            var table = document.getElementById('tripTable');
+            var wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+            XLSX.writeFile(wb, 'HistorialViajes.xlsx');
+        });
 
         function clearForm() {
             $('#idtrips').val('');

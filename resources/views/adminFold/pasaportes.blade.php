@@ -85,7 +85,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                 <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
+                            <a class="nav-link active" href="#">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
@@ -95,8 +95,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-calendar3"></i> Citas
+                                Citas
                             </a>
                         </li>
                         <li class="nav-item">
@@ -217,28 +222,47 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-btn');
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+    const filterDateButton = document.getElementById('filter-date-btn');
     const table = document.querySelector('table tbody');
 
-    searchButton.addEventListener('click', function() {
+    function filterRows() {
         const searchTerm = searchInput.value.toLowerCase();
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
         const rows = table.querySelectorAll('tr');
 
         rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(1)'); 
-            if (nameCell) {
+            const nameCell = row.querySelector('td:nth-child(1)');
+            const dateCell = row.querySelector('td:nth-child(4)');
+            const dateText = dateCell.textContent;
+
+            let match = true;
+
+            if (searchTerm && nameCell) {
                 const nameText = nameCell.textContent.toLowerCase();
-                if (nameText.includes(searchTerm)) {
-                    row.style.display = ''; 
-                } else {
-                    row.style.display = 'none'; 
+                if (!nameText.includes(searchTerm)) {
+                    match = false;
                 }
             }
-        });
-    });
 
-    searchInput.addEventListener('input', function() {
-        searchButton.click();
-    });
+            if (startDate && dateText < startDate) {
+                match = false;
+            }
+
+            if (endDate && dateText > endDate) {
+                match = false;
+            }
+
+            row.style.display = match ? '' : 'none';
+        });
+    }
+
+    searchButton.addEventListener('click', filterRows);
+    filterDateButton.addEventListener('click', filterRows);
+
+    searchInput.addEventListener('input', filterRows);
 });
 </script>
 

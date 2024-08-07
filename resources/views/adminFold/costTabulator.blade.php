@@ -307,21 +307,19 @@
                 });
             });
 
-            $('#search-btn').on('click', function () {
-                let searchTerm = $('#search-input').val().toLowerCase();
-                let filteredCost_tabulators = cost_tabulators.filter(cost_tabulator => cost_tabulator.description.toLowerCase().includes(searchTerm));
-                renderCost_Tabulators(filteredCost_tabulators);
-            });
+            
         });
 
         function fetchCost_Tabulators() {
-            $.getJSON('/cost_tabulators/all', function (data) {
-                cost_tabulators = data;
-                renderCost_Tabulators(cost_tabulators);
-            });
-        }
+    $.getJSON('/cost_tabulators/all', function (data) {
+        console.log(data); 
+        cost_tabulators = data;
+        renderCost_Tabulators(cost_tabulators);
+    });
+}
 
-        function fetchDestinations() {
+
+function fetchDestinations() {
     $.getJSON('/destinations/all', function (data) {
         console.log(data);
         renderDestinations(data);
@@ -346,7 +344,7 @@ function renderDestinations(destinations) {
 
 
         function renderCost_Tabulators(data) {
-            let tableBody = $('#costTabulatorTableBody');
+            let tableBody = $('#cost_TabulatorTableBody');
             tableBody.empty();
             data.forEach(cost_tabulator => {
                 let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
@@ -369,13 +367,15 @@ function renderDestinations(destinations) {
                 `);
             });
         }
+     
+
 
 
         function editCost_tabulator(id) {
     let cost_tabulator = cost_tabulators.find(item => item.idcost_tabulators === id);
     if (cost_tabulator) {
         $('#idcost_tabulators').val(cost_tabulator.idcost_tabulators);
-        $('#iddestinations').val(cost_tabulator.destinations_iddestinations); // Asegúrate de que este valor coincide
+        $('#iddestinations').val(cost_tabulator.destinations_iddestinations); 
         $('#unit_price').val(cost_tabulator.unit_price);
         $('#bulk_price').val(cost_tabulator.bulk_price);
         $('#description').val(cost_tabulator.description);
@@ -403,6 +403,33 @@ function renderDestinations(destinations) {
             $('#costTabulatorForm')[0].reset();
             $('#idcost_tabulators').val('');
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-btn');
+    const table = document.querySelector('table tbody');
+
+    searchButton.addEventListener('click', function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const rows = table.querySelectorAll('tr');
+
+        rows.forEach(row => {
+            const nameCell = row.querySelector('td:nth-child(2)'); 
+            if (nameCell) {
+                const nameText = nameCell.textContent.toLowerCase();
+                if (nameText.includes(searchTerm)) {
+                    row.style.display = ''; 
+                } else {
+                    row.style.display = 'none'; 
+                }
+            }
+        });
+    });
+
+    searchInput.addEventListener('input', function() {
+        searchButton.click();
+    });
+});
     </script>
 </body>
 </html>

@@ -70,8 +70,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-calendar3"></i> Citas
+                                Citas
                             </a>
                         </li>
                         <li class="nav-item">
