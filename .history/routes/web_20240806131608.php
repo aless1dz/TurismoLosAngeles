@@ -197,3 +197,4 @@ Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('
  });
 
 
+>>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd

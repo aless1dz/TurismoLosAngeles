@@ -161,11 +161,16 @@ Route::get('/get/trip/{idtrips}', [TripsController::class, 'getTrip']);
 Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
 Route::put('/trips/update/{idtrips}', [TripsController::class, 'updateTrip']);
 Route::delete('/delete/trip/{idtrips}', [TripsController::class, 'deleteTrip']);
+Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
+Route::get('/users/all', [TripsController::class, 'getUsers']);
+Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
+
 
 Route::get('/get/trip/{id}', [TripsController::class, 'getTrip']);
 Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
 Route::put('/trips/update/{id}', [TripsController::class, 'updateTrip']);
 Route::delete('/delete/trip/{id}', [TripsController::class, 'deleteTrip']);
+
 Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
@@ -197,3 +202,7 @@ Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('
  });
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> df6e8f162d448274608652f92a02986e9ea076e1

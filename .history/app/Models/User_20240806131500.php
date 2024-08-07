@@ -56,15 +56,22 @@ class User extends Authenticatable implements MustVerifyEmailContract
         ];
     }
 
-    public function trips()
-    {
-        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
+<<<<<<< HEAD
     /**
      * Definición de la relación con el modelo `Trip`.
      * Un usuario puede tener muchos viajes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+=======
+    public function trips()
+    {
+        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
+>>>>>>> df6e8f162d448274608652f92a02986e9ea076e1
+    }
 }
-}
+
+
