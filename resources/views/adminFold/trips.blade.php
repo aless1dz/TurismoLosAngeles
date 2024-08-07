@@ -214,9 +214,6 @@
                 </div>
             </nav>
 
-<<<<<<< HEAD
-            <div class="col-md-10">
-=======
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <h1 class="h2">Viajes (Historial)</h1>
@@ -274,12 +271,9 @@
                         <div class="form-group">
                             <label for="iddestinations">Destino</label>
                             <select class="form-control" id="iddestinations" name="iddestinations" required>
-<<<<<<< HEAD
-                                
-=======
                                 <option value="" disabled selected>Seleccione un destino</option>
                                 <!-- Las opciones serán cargadas aquí -->
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
+
                             </select>
                         </div>
                         <div class="form-group">
@@ -291,36 +285,20 @@
                             <input type="date" class="form-control" id="end_date" name="end_date" required>
                         </div>
                         <div class="form-group">
-<<<<<<< HEAD
-                            <label for="duration">Duaración (Días)</label>
-=======
                             <label for="duration">Duración (Días)</label>
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             <input type="number" class="form-control" id="duration" name="duration" required>
                         </div>
                         <div class="form-group">
                             <label for="idcost_tabulators">Costo (Unico o Mayoreo)</label>
                             <select class="form-control" id="idcost_tabulators" name="idcost_tabulators" required>
-<<<<<<< HEAD
-                                
-=======
                                 <option value="" disabled selected>Seleccione un costo</option>
                                 <!-- Las opciones serán cargadas aquí -->
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="idusers">Cliente</label>
-<<<<<<< HEAD
-                            <select class="form-control" id="idusers" name="idusers" required>
-                                
-                            </select>
-                        </div>
-                        
-=======
                             <select class="form-control" id="idusers" name="idusers" required></select>
                         </div>
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -513,7 +491,6 @@
             $('#idtrips').val('');
             $('#tripForm')[0].reset();
         }
->>>>>>> 180dae9d5b61f2d3d134cace068243052493d5bd
     </script>
 </body>
 </html>

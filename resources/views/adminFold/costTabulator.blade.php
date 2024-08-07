@@ -344,7 +344,7 @@ function renderDestinations(destinations) {
 
 
         function renderCost_Tabulators(data) {
-            let tableBody = $('#costTabulatorTableBody');
+            let tableBody = $('#cost_TabulatorTableBody');
             tableBody.empty();
             data.forEach(cost_tabulator => {
                 let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
@@ -367,9 +367,7 @@ function renderDestinations(destinations) {
                 `);
             });
         }
-        console.log(cost_tabulator.destination);
-    });
-}
+     
 
 
 

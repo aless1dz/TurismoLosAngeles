@@ -291,7 +291,7 @@
                 e.preventDefault();
 
                 let id = $('#idcities').val();
-                let url = id ? /cities/update/${id} : '/cities/insert';
+                let url = id ? `/cities/update/${id}` : '/cities/insert';
                 let method = id ? 'PUT' : 'POST';
 
                 $.ajax({
@@ -305,48 +305,46 @@
                 });
             });
 
-            // $('#search-btn').on('click', function () {
-            //     let searchTerm = $('#search-input').val().toLowerCase();
-            //     let filteredCities = cities.filter(city => city.name.toLowerCase().includes(searchTerm));
-            //     renderCities(filteredCities);
-            // });
         });
 
-        function fetchCities() {
-            $.getJSON('/cities/all', function (data) {
-                cities = data;
-                renderCities(cities);
-            });
-        }
-
+        
         function fetchStates() {
             $.getJSON('/states/all', function (data) {
                 states = data;
                 renderStates(states);
             });
         }
+        function fetchCities() {
+    $.getJSON('/cities/all', function (data) {
+        console.log(data); // Verificar los datos recibidos
+        cities = data;
+        renderCities(cities);
+    });
+}
 
-        function renderCities(data) {
-            let tableBody = $('#cityTableBody');
-            tableBody.empty();
-            data.forEach(city => {
-                let createdAt = new Date(city.created_at).toLocaleString();
-                let updatedAt = new Date(city.updated_at).toLocaleString();
-                tableBody.append(`
-                    <tr>
-                        <td>${city.idcities}</td>
-                        <td>${city.name}</td>
-                        <td>${city.state ? city.state.name : 'N/A'}</td>
-                        <td>${createdAt}</td>
-                        <td>${updatedAt}</td>
-                        <td>
-                            <button class="btn btn-warning" onclick="editCity(${city.idcities})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteCity(${city.idcities})"><i class="bi bi-backspace-fill"></i></button>
-                        </td>
-                    </tr>
-                `);
-            });
-        }
+function renderCities(data) {
+    let tableBody = $('#cityTableBody');
+    tableBody.empty();
+    data.forEach(city => {
+        console.log(city); // Verificar cada objeto de ciudad
+        let createdAt = new Date(city.created_at).toLocaleString();
+        let updatedAt = new Date(city.updated_at).toLocaleString();
+        tableBody.append(`
+            <tr>
+                <td>${city.idcities}</td>
+                <td>${city.name}</td>
+                <td>${city.state ? city.state.name : 'N/A'}</td>
+                <td>${createdAt}</td>
+                <td>${updatedAt}</td>
+                <td>
+                    <button class="btn btn-warning" onclick="editCity(${city.idcities})"><i class="bi bi-pencil-fill"></i></button>
+                    <button class="btn btn-danger" onclick="deleteCity(${city.idcities})"><i class="bi bi-backspace-fill"></i></button>
+                </td>
+            </tr>
+        `);
+    });
+}
+
 
         function renderStates(states) {
             let stateSelect = $('#idstates');
@@ -367,7 +365,7 @@
         function deleteCity(id) {
             if (confirm('¿Estás seguro de que quieres eliminar esta ciudad?')) {
                 $.ajax({
-                    url: /cities/delete/${id},
+                    url: `/cities/delete/${id}`,
                     type: 'DELETE',
                     success: function (response) {
                         fetchCities();

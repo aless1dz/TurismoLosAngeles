@@ -26,9 +26,14 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
             <ul class="nav flex-column">
-                        <li class="nav-item">
+            <li class="nav-item">
                             <a class="nav-link active" href="#">
-                                Dashboard
+                                <i class="bi bi-speedometer2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                <i class="bi bi-geo-alt"></i> Viajes
                             </a>
                         </li>
                         <li class="nav-item">
@@ -43,69 +48,67 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">
-                                Clientes
+                                <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Acompañantes
+                                <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
-                                Unidades
+                                <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cities') }}">
-                                Ciudades
+                                <i class="bi bi-building"></i> Ciudades
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('states') }}">
-                                Estados
+                                <i class="bi bi-map-fill"></i> Estados
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
+                                <i class="bi bi-map"></i> Destinos
                             </a>
                         </li>
-                            
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('pasaportes') }}">
-                                Citas Pasaportes
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('cotizaciones') }}">
-                                Citas Cotizaciones
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('comentarios') }}">
-                                Comentarios
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('comentarios') }}">
+                                <i class="bi bi-chat-left-dots"></i> Comentarios
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('rentas') }}">
-                                Renta de Unidades
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rentas') }}">
+                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('viajes') }}">
-                                Solicitud de Viajes
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('viajes') }}">
+                                <i class="bi bi-airplane"></i> Solicitud de Viajes
                             </a>
                         </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('visas') }}">
-                                Citas para Visas
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
                         </li>
                     </ul>

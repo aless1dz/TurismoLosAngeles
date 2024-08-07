@@ -114,7 +114,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                     <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
+                            <a class="nav-link active" href="#">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
@@ -124,8 +124,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-calendar3"></i> Citas
+                                Citas
                             </a>
                         </li>
                         <li class="nav-item">
@@ -191,31 +196,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('visas') }}">
                                 <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Acompañantes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('units') }}">
-                                Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                Estados
-                            </a>
-                        </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
                             </a>
                         </li>
                     </ul>

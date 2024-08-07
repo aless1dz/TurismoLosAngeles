@@ -85,7 +85,7 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                 <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
+                            <a class="nav-link active" href="#">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
@@ -95,8 +95,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-calendar3"></i> Citas
+                                Citas
                             </a>
                         </li>
                         <li class="nav-item">
