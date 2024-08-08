@@ -402,7 +402,7 @@
         const rows = table.querySelectorAll('tr');
 
         rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(7)'); 
+            const nameCell = row.querySelector('td:nth-child(2)'); 
             if (nameCell) {
                 const nameText = nameCell.textContent.toLowerCase();
                 if (nameText.includes(searchTerm)) {

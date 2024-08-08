@@ -97,15 +97,14 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
-        <!-- Resto del contenido del navbar -->
     </nav>
 
     <div class="container-fluid">
         <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar">
+            <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
@@ -185,31 +184,6 @@
                                 <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                Acompañantes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('units') }}">
-                                Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                Estados
-                            </a>
-                        </li>
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -251,6 +225,11 @@
                         </tbody>
                     </table>
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end" id="pagination">
+                        <!-- Páginas de paginación se generarán aquí -->
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
@@ -268,12 +247,12 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="idtrips" name="idtrips">
+                        <input type="hidden" id="page" name="page">
                         <div class="form-group">
                             <label for="iddestinations">Destino</label>
                             <select class="form-control" id="iddestinations" name="iddestinations" required>
                                 <option value="" disabled selected>Seleccione un destino</option>
                                 <!-- Las opciones serán cargadas aquí -->
-
                             </select>
                         </div>
                         <div class="form-group">
@@ -315,9 +294,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         var trips = [];
-        var destinations = [];
-        var users = [];
-        var cost_tabulators = [];
+        var currentPage = 1;
+        var itemsPerPage = 5;
 
         $(document).ready(function () {
             fetchTrips();
@@ -327,8 +305,6 @@
 
             $('#tripForm').on('submit', function (e) {
                 e.preventDefault();
-
-                console.log($('#tripForm').serialize());
 
                 let id = $('#idtrips').val();
                 let url = id ? `/trips/update/${id}` : '/trips/insert';
@@ -340,27 +316,24 @@
                     data: $('#tripForm').serialize(),
                     success: function (response) {
                         $('#tripModal').modal('hide');
-                        fetchTrips();
+                        fetchTrips(response.page);
                     },
                     error: function (error) {
                         console.log(error);
                     }
                 });
             });
-
-            // $('#search-btn').on('click', function () {
-            //     applyFilters();
-            // });
         });
 
-        function fetchTrips(order = 'asc') {
-            $.get(`/get/trips?order=${order}`, function (data) {
-                trips = data;
+        function fetchTrips(page = 1) {
+            currentPage = page;
+            $.get(`/get/trips?page=${page}`, function (data) {
+                trips = data.trips;
                 renderTrips(trips);
+                setupPagination(data.total);
             });
         }
 
-        
         function fetchDestinations() {
             $.getJSON('/destinations/all', function (data) {
                 destinations = data;
@@ -436,6 +409,25 @@
             });
         }
 
+        function setupPagination(totalItems) {
+            let pageCount = Math.ceil(totalItems / itemsPerPage);
+            let pagination = $('#pagination');
+            pagination.empty();
+
+            for (let i = 1; i <= pageCount; i++) {
+                pagination.append(`
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
+                    </li>
+                `);
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            fetchTrips(page);
+        }
+
         function applyFilters() {
             let searchValue = $('#search-input').val().toLowerCase();
 
@@ -461,6 +453,7 @@
                 $('#duration').val(trip.duration);
                 $('#idcost_tabulators').val(trip.idcost_tabulators);
                 $('#idusers').val(trip.idusers || '');
+                $('#page').val(currentPage);
                 $('#tripModal').modal('show');
             });
         }
@@ -473,7 +466,7 @@
                 },
                 method: 'DELETE',
                 success: function () {
-                    fetchTrips();
+                    fetchTrips(currentPage);
                 },
                 error: function (error) {
                     console.log(error);
@@ -489,6 +482,7 @@
 
         function clearForm() {
             $('#idtrips').val('');
+            $('#page').val(currentPage);
             $('#tripForm')[0].reset();
         }
     </script>

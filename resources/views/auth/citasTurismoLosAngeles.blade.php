@@ -8,7 +8,8 @@
     <!-- link font awesome -->
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <!-- Librería iziToast -->
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Comentarios | Turismo Los Angeles</title>
 </head>
 <body>
@@ -88,7 +89,62 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Script Librería iziToast -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-    <!-- Script index.js -->
-    <script src="script.js"></script>
+    <!-- Script para notificación -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                const formData = new FormData(form);
+                const action = form.getAttribute('action');
+                const method = form.getAttribute('method');
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+                if (!csrfToken) {
+                    iziToast.error({
+                        title: 'Error',
+                        message: 'Token CSRF no encontrado',
+                        position: 'bottomCenter'
+                    });
+                    return;
+                }
+
+                fetch(action, {
+                    method: method,
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        iziToast.success({
+                            title: 'Éxito',
+                            message: data.message,
+                            position: 'bottomCenter'
+                        });
+                        form.reset(); // Limpia el formulario después de enviarlo
+                    } else {
+                        iziToast.error({
+                            title: 'Error',
+                            message: 'Hubo un problema al enviar el formulario',
+                            position: 'bottomCenter'
+                        });
+                    }
+                })
+                .catch(error => {
+                    iziToast.error({
+                        title: 'Error',
+                        message: 'Hubo un problema al enviar el formulario',
+                        position: 'bottomCenter'
+                    });
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
