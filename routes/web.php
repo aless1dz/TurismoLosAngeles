@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/inicio', [UserController::class, 'inicioTurismoLosAngeles']);
 
 //LOGIN
-Route::get('/iniciar-sesion', [UserController::class, 'vistaLogin']);
+Route::get('/iniciar-sesion', [UserController::class, 'vistaLogin'])->name('login');
 Route::post('/inicio-sesion', [UserController::class, 'logear']);
 
 //CERRAR SESION
@@ -94,9 +94,10 @@ Route::post('/registro', [UserController::class, 'registrar'])->name('registro')
 //           return view('adminFold.cities');
 //       });
 //  }); 
-Route::get('/dashboard', [AdminController::class, 'index']);
 
-Route::get('/view/users',[UserController::class, "view"])->name('users');
+Route::middleware(['auth', 'admin'])->group(function () {
+     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+     Route::get('/view/users',[UserController::class, "view"])->name('users');
 Route::get('/get/users', [UserController::class, 'getUsers']);
 Route::get('/get/user/{id}', [UserController::class, 'getUser']);
 Route::post('/insert/user', [UserController::class, 'insertUser']);
@@ -166,12 +167,7 @@ Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators'
 
 
 Route::post('/store-formality', [FormalityController::class, 'store'])->name('store.formality');
-// Route::get('/view/pasaportes', [FormalityController::class, 'view'])->name('pasaportes');
-// Route::get('/get/pasaportes', [FormalityController::class, 'getPasaportes']);
-// Route::get('/get/trip/{id}', [FormalityController::class, 'getPasaporte']);
-// Route::post('/pasaportes/insert', [FormalityController::class, 'insertPasaporte']);
-// Route::put('/pasaportes/update/{id}', [FormalityController::class, 'updatePasaporte']);
-// Route::delete('/delete/pasaporte/{id}', [FormalityController::class, 'deletePasaporte']);
+
 
 
 Route::post('/formulario', [FormalityController::class, 'insertPasaporte'])->name('store.formality');
@@ -193,4 +189,6 @@ Route::post('/store-viajes', [FormalityController::class, 'insertViajes'])->name
 Route::get('/visas', [FormalityController::class, 'viewVisas'])->name('visas');
 
 Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('store.visas');
+ });
+
 
