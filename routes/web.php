@@ -189,6 +189,9 @@ Route::post('/store-viajes', [FormalityController::class, 'insertViajes'])->name
 Route::get('/visas', [FormalityController::class, 'viewVisas'])->name('visas');
 
 Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('store.visas');
+
+Route::get('get-cities-by-state/{id}', [CitiesController::class, 'getCitiesByState']);
+
  });
 
 
