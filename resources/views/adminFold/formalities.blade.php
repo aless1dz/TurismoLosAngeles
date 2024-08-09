@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración</title>
+    <title>Citas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -92,10 +92,22 @@
             background-color: #2255c4;
             border-color: #2255c4;
         }
+        .title-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .button-group .btn {
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
@@ -113,10 +125,9 @@
             </ul>
         </div>
     </nav>
-
     <div class="container-fluid">
         <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar">
+            <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -149,16 +160,6 @@
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                <i class="bi bi-building"></i> Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                <i class="bi bi-map-fill"></i> Estados
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -169,21 +170,6 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pasaportes') }}">
-                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cotizaciones') }}">
-                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comentarios') }}">
-                                <i class="bi bi-chat-left-dots"></i> Comentarios
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rentas') }}">
                                 <i class="bi bi-car-front-fill"></i> Renta de Unidades
@@ -194,112 +180,26 @@
                                 <i class="bi bi-airplane"></i> Solicitud de Viajes
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('visas') }}">
-                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+                <div class="title-container">
+                    <h1>Citas</h1>
+                </div>
 
-            <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
-                <meta name="csrf-token" content="{{ csrf_token() }}">
-                <h1 class="h2">Solicitud de Viajes</h1>
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
-                    <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                <div class="button-group">
+                    <a href="{{ route('cotizaciones') }}" class="btn btn-primary">Cotizaciones</a>
+                    <a href="{{ route('visas') }}" class="btn btn-primary">Visas</a>
+                    <a href="{{ route('pasaportes') }}" class="btn btn-primary">Pasaportes</a>
+                    <a href="{{ route('rentas') }}" class="btn btn-primary">Renta de Unidades</a>
                 </div>
-                
-                <div class="table-responsive">
-                    <table class="table table-sm table-striped table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Correo Electrónico</th>
-                                <th>Fecha</th>
-                                <th>Adultos Que Viajan</th>
-                                <th>Niños Que Viajan</th>
-                                <th>Fecha de envío</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($viajes as $viaje)
-                                <tr>
-                                    <td>{{ $viaje->user_name }}</td>
-                                    <td>{{ $viaje->user_email }}</td>
-                                    <td>{{ $viaje->user_date }}</td>
-                                    <td>{{ $viaje->user_adult }}</td>
-                                    <td>{{ $viaje->user_kid }}</td>
-                                    <td>{{ $viaje->created_at }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            </main>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-btn');
-    const startDateInput = document.getElementById('start-date');
-    const endDateInput = document.getElementById('end-date');
-    const filterDateButton = document.getElementById('filter-date-btn');
-    const table = document.querySelector('table tbody');
-
-    function filterRows() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
-        const rows = table.querySelectorAll('tr');
-
-        rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(1)');
-            const dateCell = row.querySelector('td:nth-child(4)');
-            const dateText = dateCell.textContent;
-
-            let match = true;
-
-            if (searchTerm && nameCell) {
-                const nameText = nameCell.textContent.toLowerCase();
-                if (!nameText.includes(searchTerm)) {
-                    match = false;
-                }
-            }
-
-            if (startDate && dateText < startDate) {
-                match = false;
-            }
-
-            if (endDate && dateText > endDate) {
-                match = false;
-            }
-
-            row.style.display = match ? '' : 'none';
-        });
-    }
-
-    searchButton.addEventListener('click', filterRows);
-    filterDateButton.addEventListener('click', filterRows);
-
-    searchInput.addEventListener('input', filterRows);
-});
-    </script>
 </body>
 </html>

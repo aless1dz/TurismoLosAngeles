@@ -113,6 +113,8 @@ class UserController extends Controller
             switch ($user->role) {
                 case 'admin':
                     return redirect()->intended('/dashboard'); // Ruta para admin
+                case 'employee':
+                    return redirect()->intended('/dashboard'); // Ruta para empleado
                 case 'user':
                     return redirect()->intended('/inicio'); // Ruta para usuarios
                 default:
@@ -316,10 +318,16 @@ class UserController extends Controller
         return view('adminFold.clientes');
     }
 
+    public function personal(){
+        return view('adminFold.personal');
+    }
+
     public function getUsers(Request $request)
     {
-        $order = $request->query('order', 'asc');
-        $users = User::orderBy('id', $order)->get();
+         $order = $request->query('order', 'asc');
+        // $users = User::orderBy('id', $order)->get();
+        // return response()->json($users);
+        $users = User::where('role', 'user')->get();
         return response()->json($users);
     }
 
@@ -327,6 +335,12 @@ class UserController extends Controller
     {
         $user = User::find($id);
         return response()->json($user);
+    }
+    
+    public function getAdmins(Request $request)
+    {
+        $admins = User::where('role', 'admin')->get();
+        return response()->json($admins);
     }
 
     public function updateUser(Request $request, $id)

@@ -7,6 +7,13 @@ use App\Models\Formality;
 
 class FormalityController extends Controller
 {
+
+    public function index()
+    {
+        
+        return view('adminFold.formalities');
+    }
+
     public function viewPasaportes()
     {
         $pasaportes = Formality::where('type_visa', '!=', null)->get();
