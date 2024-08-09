@@ -4,37 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Formality;
+use App\Mail\AppointmentMail;
+use Illuminate\Support\Facades\Mail;
+use Exception;
 
 class FormalityController extends Controller
 {
-    public function viewPasaportes()
-    {
-        $pasaportes = Formality::where('type_visa', '!=', null)->get();
-        return view('adminFold.pasaportes', compact('pasaportes'));
-    }
-
     public function insertPasaporte(Request $request)
     {
-        $request->validate([
-            'user_name' => 'required|string|max:60',
-            'user_email' => 'required|email|max:60',
-            'type_visa' => 'required|in:primera_vez,renovacion',
-            'user_date' => 'required|date',
-            'user_adult' => 'required|integer',
-        ]);
+        try {
+            $request->validate([
+                'user_name' => 'required|string|max:60',
+                'user_email' => 'required|email|max:60',
+                'type_visa' => 'required|in:primera_vez,renovacion',
+                'user_date' => 'required|date',
+                'user_adult' => 'required|integer',
+            ]);
 
-        Formality::create([
-            'user_name' => $request->input('user_name'),
-            'user_email' => $request->input('user_email'),
-            'type_visa' => $request->input('type_visa'),
-            'user_date' => $request->input('user_date'),
-            'user_adult' => $request->input('user_adult'),
-            'form_type' => 'pasaporte', 
-        ]);
+            $formality = Formality::create([
+                'user_name' => $request->input('user_name'),
+                'user_email' => $request->input('user_email'),
+                'type_visa' => $request->input('type_visa'),
+                'user_date' => $request->input('user_date'),
+                'user_adult' => $request->input('user_adult'),
+                'form_type' => 'pasaporte',
+            ]);
 
-        return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
+            $details = [
+                'name' => $request->input('user_name'),
+                'email' => $request->input('user_email'),
+                'type_visa' => $request->input('type_visa'),
+                'date' => $request->input('user_date'),
+                'adults' => $request->input('user_adult')
+            ];
+
+            
+        
+            Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+
+            return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
-
     public function viewCotizaciones()
     {
         $cotizaciones = Formality::where('form_type', 'cotizacion')->get();

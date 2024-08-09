@@ -166,29 +166,27 @@ Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
 
 
-Route::post('/store-formality', [FormalityController::class, 'store'])->name('store.formality');
 
-
-
-Route::post('/formulario', [FormalityController::class, 'insertPasaporte'])->name('store.formality');
-Route::get('/pasaportes', [FormalityController::class, 'viewPasaportes'])->name('pasaportes');
-
-Route::get('/cotizaciones', [FormalityController::class, 'viewCotizaciones'])->name('cotizaciones');
-Route::post('/insertCotizacion', [FormalityController::class, 'insertCotizacion'])->name('store.cotizacion');
-
-Route::get('/comentarios', [FormalityController::class, 'viewComentarios'])->name('comentarios');
-Route::post('/insertComentario', [FormalityController::class, 'insertComentarios'])->name('store.comentario');
-
-Route::get('/rentas', [FormalityController::class, 'viewRentas'])->name('rentas');
-Route::post('/store-renta', [FormalityController::class, 'insertRentas'])->name('insertar.renta');
-
-Route::get('/viajesForm', [FormalityController::class, 'viewViajes'])->name('viajes');
-
-Route::post('/store-viajes', [FormalityController::class, 'insertViajes'])->name('store.viajes');
-
-Route::get('/visas', [FormalityController::class, 'viewVisas'])->name('visas');
-
-Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('store.visas');
  });
 
 
+
+ Route::post('/formulario', [FormalityController::class, 'insertPasaporte'])->name('store.formality');
+ Route::get('/pasaportes', [FormalityController::class, 'viewPasaportes'])->name('pasaportes');
+ 
+ Route::get('/cotizaciones', [FormalityController::class, 'viewCotizaciones'])->name('cotizaciones');
+ Route::post('/insertCotizacion', [FormalityController::class, 'insertCotizacion'])->name('store.cotizacion');
+ 
+ Route::get('/comentarios', [FormalityController::class, 'viewComentarios'])->name('comentarios');
+ Route::post('/insertComentario', [FormalityController::class, 'insertComentarios'])->name('store.comentario');
+ 
+ Route::get('/rentas', [FormalityController::class, 'viewRentas'])->name('rentas');
+ Route::post('/store-renta', [FormalityController::class, 'insertRentas'])->name('insertar.renta');
+ 
+ Route::get('/viajesForm', [FormalityController::class, 'viewViajes'])->name('viajes');
+ 
+ Route::post('/store-viajes', [FormalityController::class, 'insertViajes'])->name('store.viajes');
+ 
+ Route::get('/visas', [FormalityController::class, 'viewVisas'])->name('visas');
+ 
+ Route::post('/store-visas', [FormalityController::class, 'insertVisas'])->name('store.visas');
