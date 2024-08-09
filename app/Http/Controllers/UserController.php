@@ -94,22 +94,33 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
         ],[
-            'email.required'=>'El email es necesario',
-            'password.required'=>'La contraseña es necesaria',
+            'email.required' => 'El email es necesario',
+            'password.required' => 'La contraseña es necesaria',
         ]);
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            
+            // Verificar si el correo electrónico está verificado
             if ($user->email_verified_at === null) {
                 Auth::logout();
                 return redirect()->back()->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
             }
-            return redirect()->intended('/inicio');
-        }
-        return redirect()->back()->withErrors(['invalid_credentials' => 'Estas credenciales no coinciden con nuestros registros.']);
 
+            // Redirigir según el rol del usuario
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('/dashboard'); // Ruta para admin
+                case 'user':
+                    return redirect()->intended('/inicio'); // Ruta para usuarios
+                default:
+                    return redirect()->intended('/inicio'); // Ruta predeterminada
+            }
+        }
+
+        return redirect()->back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros.']);
     }
 
     public function logout(Request $request)

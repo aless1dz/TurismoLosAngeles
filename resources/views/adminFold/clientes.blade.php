@@ -110,11 +110,11 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block sidebar">
+        <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
@@ -124,13 +124,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('trips') }}">
-                                Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                Citas
+                                <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
                         <li class="nav-item">
@@ -148,7 +143,7 @@
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('cities') }}">
                                 <i class="bi bi-building"></i> Ciudades
                             </a>
@@ -157,7 +152,7 @@
                             <a class="nav-link" href="{{ route('states') }}">
                                 <i class="bi bi-map-fill"></i> Estados
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -168,7 +163,7 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('pasaportes') }}">
                                 <i class="bi bi-card-checklist"></i> Citas Pasaportes
                             </a>
@@ -182,7 +177,7 @@
                             <a class="nav-link" href="{{ route('comentarios') }}">
                                 <i class="bi bi-chat-left-dots"></i> Comentarios
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rentas') }}">
                                 <i class="bi bi-car-front-fill"></i> Renta de Unidades
@@ -193,15 +188,24 @@
                                 <i class="bi bi-airplane"></i> Solicitud de Viajes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('visas') }}">
                                 <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
+                            </a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
-
             <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
