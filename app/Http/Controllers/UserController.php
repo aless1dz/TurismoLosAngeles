@@ -17,7 +17,14 @@ use App\Mail\VerifyEmail;
 class UserController extends Controller
 {
     public function vistaLogin(){
+        if (Auth::check()) {
+            // Si el usuario está autenticado, redirigir a /inicio
+            return redirect('/inicio');
+        }
+        
+        // Si el usuario no está autenticado, podrías redirigir a otra página o mostrar un mensaje
         return view('Auth.iniciarSesionTurismoLosAngeles');
+       // return redirect('login');
     }
 
     public function vistaRegistro(){
@@ -360,4 +367,16 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['message' => 'User deleted successfully']);
     }
+
+    public function checkAuthentication()
+    {
+        if (Auth::check()) {
+            // Si el usuario está autenticado, redirigir a /inicio
+            return redirect('/inicio');
+        }
+        
+        // Si el usuario no está autenticado, podrías redirigir a otra página o mostrar un mensaje
+        return redirect('login');
+    }
+
 }
