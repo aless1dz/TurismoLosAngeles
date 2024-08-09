@@ -94,22 +94,35 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
         ],[
-            'email.required'=>'El email es necesario',
-            'password.required'=>'La contraseña es necesaria',
+            'email.required' => 'El email es necesario',
+            'password.required' => 'La contraseña es necesaria',
         ]);
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            
+            // Verificar si el correo electrónico está verificado
             if ($user->email_verified_at === null) {
                 Auth::logout();
                 return redirect()->back()->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
             }
-            return redirect()->intended('/inicio');
-        }
-        return redirect()->back()->withErrors(['invalid_credentials' => 'Estas credenciales no coinciden con nuestros registros.']);
 
+            // Redirigir según el rol del usuario
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('/dashboard'); // Ruta para admin
+                case 'employee':
+                    return redirect()->intended('/dashboard'); // Ruta para empleado
+                case 'user':
+                    return redirect()->intended('/inicio'); // Ruta para usuarios
+                default:
+                    return redirect()->intended('/inicio'); // Ruta predeterminada
+            }
+        }
+
+        return redirect()->back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros.']);
     }
 
     public function logout(Request $request)
@@ -305,10 +318,16 @@ class UserController extends Controller
         return view('adminFold.clientes');
     }
 
+    public function personal(){
+        return view('adminFold.personal');
+    }
+
     public function getUsers(Request $request)
     {
-        $order = $request->query('order', 'asc');
-        $users = User::orderBy('id', $order)->get();
+         $order = $request->query('order', 'asc');
+        // $users = User::orderBy('id', $order)->get();
+        // return response()->json($users);
+        $users = User::where('role', 'user')->get();
         return response()->json($users);
     }
 
@@ -316,6 +335,12 @@ class UserController extends Controller
     {
         $user = User::find($id);
         return response()->json($user);
+    }
+    
+    public function getAdmins(Request $request)
+    {
+        $admins = User::where('role', 'admin')->get();
+        return response()->json($admins);
     }
 
     public function updateUser(Request $request, $id)

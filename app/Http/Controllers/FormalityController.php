@@ -10,6 +10,19 @@ use Exception;
 
 class FormalityController extends Controller
 {
+
+    public function index()
+    {
+        
+        return view('adminFold.formalities');
+    }
+
+    public function viewPasaportes()
+    {
+        $pasaportes = Formality::where('type_visa', '!=', null)->get();
+        return view('adminFold.pasaportes', compact('pasaportes'));
+    }
+
     public function insertPasaporte(Request $request)
     {
         try {

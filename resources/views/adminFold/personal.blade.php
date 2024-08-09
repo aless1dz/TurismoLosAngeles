@@ -130,7 +130,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('citas') }}">
+                            <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
@@ -175,12 +175,12 @@
             <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Clientes</h1>
+                    <h1 class="h2">Administradores</h1>
                 </div>
                 
                 <div class="d-flex justify-content-between mb-3">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" onclick="clearForm()">
-                        <i class="bi bi-plus-lg"></i> Añadir Cliente
+                        <i class="bi bi-plus-lg"></i> Añadir Administrador
                     </button>
                     <div class="input-group w-50">
                         <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
@@ -199,181 +199,164 @@
                                 <th>Apellidos</th>
                                 <th>Email</th>
                                 <th>Fecha Nacimiento</th>
-                                <th>Fecha Creación</th>
-                                <th>Fecha Actualización</th>
-                                <th>Acciones</th>
+                                <th>Fecha de Creación</th>
+                                <th>Fecha de Actualización</th>
+                                <th>Editar/Eliminar</th>
                             </tr>
                         </thead>
-                        <tbody id="userTableBody">
-                            <!-- Data will be filled by JavaScript -->
+                        <tbody id="user-table-body">
+                            <!-- Aquí se llenarán los datos con JavaScript -->
                         </tbody>
                     </table>
                 </div>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userModalLabel">Añadir Administrador</h5>
+                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="user-form">
+                                    <input type="hidden" id="user-id">
+                                    <div class="form-group">
+                                        <label for="user-name">Nombre</label>
+                                        <input type="text" class="form-control" id="user-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-lastName">Apellidos</label>
+                                        <input type="text" class="form-control" id="user-lastName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-email">Email</label>
+                                        <input type="email" class="form-control" id="user-email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user-birthday">Fecha de Nacimiento</label>
+                                        <input type="date" class="form-control" id="user-birthday" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" id="save-btn">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Añadir Cliente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="userForm">
-                        @csrf
-                        <input type="hidden" id="userId">
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Apellidos</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthdate">Fecha Nacimiento</label>
-                            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
-                        </div>
-                        <!-- Agrega otros campos si es necesario -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="saveUser()">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetchUsers();
-            
-            // Función para guardar usuario
-            window.saveUser = function () {
-                const form = document.getElementById('userForm');
-                const formData = new FormData(form);
-                const userId = document.getElementById('userId').value;
-
-                const url = userId ? `/users/${userId}` : '/users';
-                const method = userId ? 'PUT' : 'POST';
-
-                fetch(url, {
-                    method: method,
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Accept': 'application/json'
+        $(document).ready(function() {
+            function loadAdmins() {
+                $.ajax({
+                    url: '/get/admins',
+                    method: 'GET',
+                    success: function(data) {
+                        let rows = '';
+                        data.forEach(user => {
+                            rows += `<tr>
+                                <td>${user.id}</td>
+                                <td>${user.name}</td>
+                                <td>${user.lastName}</td>
+                                <td>${user.email}</td>
+                                <td>${user.birthday}</td>
+                                <td>${user.created_at}</td>
+                                <td>${user.updated_at}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm edit-btn" data-id="${user.id}"><i class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>`;
+                        });
+                        $('#user-table-body').html(rows);
                     }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    $('#userModal').modal('hide');
-                    fetchUsers();
-                })
-                .catch(error => console.error('Error:', error));
-            };
-
-            // Función para obtener usuarios
-            function fetchUsers(order = 'asc') {
-                fetch(`/get/users?order=${order}`)
-                .then(response => response.json())
-                .then(data => {
-                    renderUsers(data);
-                })
-                .catch(error => console.error('Error:', error));
-            }
-
-            // Función para renderizar usuarios en la tabla
-            function renderUsers(data) {
-                const tableBody = document.getElementById('userTableBody');
-                tableBody.innerHTML = '';
-                data.forEach(user => {
-                    tableBody.innerHTML += `
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.name}</td>
-                            <td>${user.last_name}</td>
-                            <td>${user.email}</td>
-                            <td>${user.birthdate}</td>
-                            <td>${user.created_at}</td>
-                            <td>${user.updated_at}</td>
-                            <td>
-                                <button class="btn btn-warning" onclick="editUser(${user.id})"><i class="bi bi-pencil-fill"></i></button>
-                                <button class="btn btn-danger" onclick="deleteUser(${user.id})"><i class="bi bi-backspace-fill"></i></button>
-                            </td>
-                        </tr>
-                    `;
                 });
             }
 
-            // Función para limpiar el formulario
-            window.clearForm = function () {
-                document.getElementById('userForm').reset();
-                document.getElementById('userId').value = '';
-                document.getElementById('userModalLabel').textContent = 'Añadir Cliente';
-            };
+            loadAdmins(); // Cargar los administradores cuando se carga la página
 
-            // Función para editar usuario
-            window.editUser = function (userId) {
-                fetch(`/users/${userId}/edit`)
-                .then(response => response.json())
-                .then(user => {
-                    document.getElementById('name').value = user.name;
-                    document.getElementById('last_name').value = user.last_name;
-                    document.getElementById('email').value = user.email;
-                    document.getElementById('birthdate').value = user.birthdate;
-                    document.getElementById('userId').value = user.id;
-                    document.getElementById('userModalLabel').textContent = 'Editar Cliente';
-                    $('#userModal').modal('show');
-                })
-                .catch(error => console.error('Error:', error));
-            };
-
-            // Función para eliminar usuario
-            window.deleteUser = function (userId) {
-                if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-                    fetch(`/users/${userId}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(() => {
-                        fetchUsers();
-                    })
-                    .catch(error => console.error('Error:', error));
-                }
-            };
-
-            // Función de búsqueda
-            document.getElementById('search-btn').addEventListener('click', function () {
-                const searchQuery = document.getElementById('search-input').value.toLowerCase();
-                fetch(`/get/users?search=${searchQuery}`)
-                .then(response => response.json())
-                .then(data => {
-                    renderUsers(data);
-                })
-                .catch(error => console.error('Error:', error));
+            $('#search-btn').click(function() {
+                const query = $('#search-input').val().toLowerCase();
+                $('#user-table-body tr').each(function() {
+                    const name = $(this).find('td').eq(1).text().toLowerCase();
+                    const lastName = $(this).find('td').eq(2).text().toLowerCase();
+                    if (name.includes(query) || lastName.includes(query)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
             });
 
-            // Actualizar los usuarios cuando se carga la página
-            fetchUsers();
+            $('#save-btn').click(function() {
+                const id = $('#user-id').val();
+                const name = $('#user-name').val();
+                const lastName = $('#user-lastName').val();
+                const email = $('#user-email').val();
+                const birthday = $('#user-birthday').val();
+
+                if (id) {
+                    // Update existing user
+                    $.ajax({
+                        url: `/users/${id}`,
+                        method: 'PUT',
+                        data: { name, lastName, email, birthday },
+                        success: function() {
+                            $('#userModal').modal('hide');
+                            loadAdmins();
+                        }
+                    });
+                } else {
+                    // Create new user
+                    $.ajax({
+                        url: '/users',
+                        method: 'POST',
+                        data: { name, lastName, email, birthday },
+                        success: function() {
+                            $('#userModal').modal('hide');
+                            loadAdmins();
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click', '.edit-btn', function() {
+                const id = $(this).data('id');
+                $.ajax({
+                    url: `/users/${id}`,
+                    method: 'GET',
+                    success: function(data) {
+                        $('#user-id').val(data.id);
+                        $('#user-name').val(data.name);
+                        $('#user-lastName').val(data.lastName);
+                        $('#user-email').val(data.email);
+                        $('#user-birthday').val(data.birthday);
+                        $('#userModal').modal('show');
+                    }
+                });
+            });
+
+            $(document).on('click', '.delete-btn', function() {
+                const id = $(this).data('id');
+                if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+                    $.ajax({
+                        url: `/users/${id}`,
+                        method: 'DELETE',
+                        success: function() {
+                            loadAdmins();
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>

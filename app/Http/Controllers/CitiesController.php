@@ -61,4 +61,10 @@ class CitiesController extends Controller
         $states = State::all();
         return response()->json($states);
     }
+    public function getCitiesByState($id)
+{
+    $cities = City::where('states_idstates', $id)->pluck('name', 'idcities');
+    return response()->json($cities);
+}
+
 }

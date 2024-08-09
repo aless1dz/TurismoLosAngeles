@@ -25,8 +25,8 @@ class AdminMiddleware
 
         $user = Auth::user();
 
-        if (!auth()->check() || auth()->user()->role !== 'admin') {
-            // Si el usuario no es admin, redirigir a una página de acceso denegado o página principal
+        if (!auth()->check() || !in_array(auth()->user()->role, ['admin', 'employee'])) {
+            // Redirige si el usuario no tiene el rol adecuado
             return redirect('/inicio'); // o una página de "acceso denegado"
         }
 
