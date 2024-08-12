@@ -60,7 +60,7 @@ class FormalityController extends Controller
             DB::commit(); 
 
             
-            return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
+            return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente. Pronto nos comunicaremos contigo!']);
         } catch (\Exception $e) {
             DB::rollBack(); 
     
@@ -114,7 +114,7 @@ class FormalityController extends Controller
     } catch (\Exception $e) {
         DB::rollBack(); 
 
-        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
+        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo. Pronto nos comunicaremos contigo!'], 500);
     }
 }
 
@@ -153,7 +153,7 @@ class FormalityController extends Controller
 
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Comentario enviado exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Comentario enviado exitosamente. Pronto revisaremos tu comentario!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
@@ -202,7 +202,7 @@ class FormalityController extends Controller
         Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Solicitud de Cita para Renta enviada exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Solicitud de Cita para Renta enviada exitosamente. Pronto nos comunicaremos contigo!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
@@ -251,7 +251,7 @@ class FormalityController extends Controller
         Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Solicitud de viaje enviada exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Solicitud de viaje enviada exitosamente. Pronto nos comunicaremos contigo!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
@@ -299,7 +299,7 @@ class FormalityController extends Controller
         Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente. Pronto nos comunicaremos contigo!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
