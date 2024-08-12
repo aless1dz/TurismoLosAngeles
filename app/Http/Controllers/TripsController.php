@@ -7,12 +7,21 @@ use App\Models\Trip;
 use App\Models\Destination;
 use App\Models\Cost_Tabulator;
 use App\Models\User;
+use App\Models\Unit;
 
 class TripsController extends Controller
 {
     public function view()
     {
         return view('adminFold.trips');
+    }
+
+    public function viewTripsVisas()
+    {
+        $clients = User::where('role', 'user')->get();
+    $destinations = Destination::with('city', 'state')->get();
+    $units = Unit::all(); // Si también necesitas las unidades en la vista
+    return view('adminFold.viajesVisa', compact('clients', 'destinations', 'units'));
     }
 
     public function getTrips(Request $request)
