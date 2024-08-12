@@ -172,7 +172,8 @@ Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators'
  });
  Route::post('/formulario', [FormalityController::class, 'insertPasaporte'])->name('store.formality');
  Route::get('/pasaportes', [FormalityController::class, 'viewPasaportes'])->name('pasaportes');
- 
+ Route::put('/citas/updateStatus/{id}', [FormalityController::class, 'updateStatus'])->name('updateStatus');
+
  Route::get('/cotizaciones', [FormalityController::class, 'viewCotizaciones'])->name('cotizaciones');
  Route::post('/insertCotizacion', [FormalityController::class, 'insertCotizacion'])->name('store.cotizacion');
  

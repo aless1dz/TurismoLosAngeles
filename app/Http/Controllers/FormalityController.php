@@ -195,4 +195,14 @@ class FormalityController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
     }
+
+    public function updateStatus(Request $request, $id)
+{
+    $cotizacion = Cotizacion::findOrFail($id);
+    $cotizacion->state_form = $request->input('state_form');
+    $cotizacion->save();
+
+    return redirect()->back()->with('success', 'Estado actualizado correctamente.');
+}
+
 }

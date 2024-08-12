@@ -23,76 +23,76 @@ class UserController extends Controller
         }
         
         // Si el usuario no está autenticado, podrías redirigir a otra página o mostrar un mensaje
-        return view('auth.iniciarSesionTurismoLosAngeles');
+        return view('Auth.iniciarSesionTurismoLosAngeles');
        // return redirect('login');
     }
 
     public function vistaRegistro(){
-        return view('auth.registrarseTurismoLosAngeles');
+        return view('Auth.registrarseTurismoLosAngeles');
     }
 
     public function inicioTurismoLosAngeles(){
-        return view('auth.inicio-turismo-los-angeles');
+        return view('Auth.inicio-turismo-los-angeles');
     }
 
     public function citasTurismoLosAngeles(){
-        return view('auth.citasTurismoLosAngeles');
+        return view('Auth.citasTurismoLosAngeles');
     }
 
     public function serviciosTurismoLosAngeles(){
-        return view('auth.serviciosTurismoLosAngeles');
+        return view('Auth.serviciosTurismoLosAngeles');
     }
 
     public function visaTurismoLosAngeles(){
-        return view('auth.visaTurismoLosAngeles');
+        return view('Auth.visaTurismoLosAngeles');
     }
 
     public function pasaporteTurismoLosAngeles(){
-        return view('auth.pasaporteTurismoLosAngeles');
+        return view('Auth.pasaporteTurismoLosAngeles');
     }
 
     public function unidadesTurismoLosAngeles(){
-        return view('auth.unidadesTurismoLosAngeles');
+        return view('Auth.unidadesTurismoLosAngeles');
     }
 
     public function viajesTurismoLosAngeles(){
-        return view('auth.viajesTurismoLosAngeles');
+        return view('Auth.viajesTurismoLosAngeles');
     }
 
     public function viajesUsaTurismoLosAngeles(){
-        return view('auth.viajesUsaTurismoLosAngeles');
+        return view('Auth.viajesUsaTurismoLosAngeles');
     }
 
     public function viajesVacacionalesTurismoLosAngeles(){
-        return view('auth.viajesVacacionalesTurismoLosAngeles');
+        return view('Auth.viajesVacacionalesTurismoLosAngeles');
     }
 
     public function viajesLocalesTurismoLosAngeles(){
-        return view('auth.viajesLocalesTurismoLosAngeles');
+        return view('Auth.viajesLocalesTurismoLosAngeles');
     }
 
     public function citasPrincipalTurismoLosAngeles(){
-        return view('auth.citasPrincipalTurismoLosAngeles');
+        return view('Auth.citasPrincipalTurismoLosAngeles');
     }
 
     public function citasVisaTurismoLosAngeles(){
-        return view('auth.citasVisaTurismoLosAngeles');
+        return view('Auth.citasVisaTurismoLosAngeles');
     }
 
     public function citasViajesTurismoLosAngeles(){
-        return view('auth.citasViajesTurismoLosAngeles');
+        return view('Auth.citasViajesTurismoLosAngeles');
     }
 
     public function citasUnidadesTurismoLosAngeles(){
-        return view('auth.citasUnidadesTurismoLosAngeles');
+        return view('Auth.citasUnidadesTurismoLosAngeles');
     }
 
     public function citasCotizacionTurismoLosAngeles(){
-        return view('auth.citasCotizacionTurismoLosAngeles');
+        return view('Auth.citasCotizacionTurismoLosAngeles');
     }
 
     public function citaPasaporteTurismoLosAngeles(){
-        return view('auth.citaPasaporteTurismoLosAngeles');
+        return view('Auth.citaPasaporteTurismoLosAngeles');
     }
 
     public function logear(Request $request)
@@ -237,7 +237,7 @@ class UserController extends Controller
      //RECUPERAR CONTRASEÑA
      public function formularioRecuperarContrasenia()
      {
-         return view('auth.formulario-recuperar-contrasenia');
+         return view('Auth.formulario-recuperar-contrasenia');
      }
  
      public function enviarRecuperarContrasenia(Request $request)
@@ -266,7 +266,7 @@ class UserController extends Controller
          ]);
  
          // Enviamos el email de recuperación de contraseña
-         Mail::send('auth.recuperar-contrasenia', ['token' => $token], function ($message) use ($request) {
+         Mail::send('Auth.recuperar-contrasenia', ['token' => $token], function ($message) use ($request) {
              $message->to($request->email);
              $message->subject('Recuperar Contraseña');
          });
