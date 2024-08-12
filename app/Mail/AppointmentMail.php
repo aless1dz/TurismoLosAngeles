@@ -20,7 +20,7 @@ class AppointmentMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Nueva Solicitud de Cita')
-                    ->view('emails.appointment');
+        return $this->subject('Nueva Cita')->view('emails.appointment')->with('details', $this->details);
+
     }
 }

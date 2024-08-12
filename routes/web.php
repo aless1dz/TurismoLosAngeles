@@ -143,7 +143,6 @@ Route::get('/cost_tabulators/{idcost_tabulators}', [Cost_TabulatorsController::c
 Route::post('/cost_tabulators/insert', [Cost_TabulatorsController::class, 'insertCost_Tabulator']);
 Route::put('/cost_tabulators/update/{idcost_tabulators}', [Cost_TabulatorsController::class, 'updateCost_Tabulator']);
 Route::delete('/cost_tabulators/delete/{idcost_tabulators}', [Cost_TabulatorsController::class, 'deleteCost_Tabulator']);
-Route::get('/destinations/all', [Cost_TabulatorsController::class, 'getDestinations']);
 // Route::middleware(['admin'])->group(function () {
 //     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 // });

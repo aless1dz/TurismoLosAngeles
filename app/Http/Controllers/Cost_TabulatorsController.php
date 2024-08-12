@@ -17,7 +17,7 @@ class Cost_TabulatorsController extends Controller
 {
     try {
         $order = $request->query('order', 'asc');
-        $cost_tabulators = Cost_Tabulator::with('destination')->orderBy('idcost_tabulators', $order)->get();
+        $cost_tabulators = Cost_Tabulator::orderBy('idcost_tabulators', $order)->get();
         return response()->json($cost_tabulators);
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
@@ -27,25 +27,25 @@ class Cost_TabulatorsController extends Controller
 
     public function getCost_Tabulator($id)
     {
-        $cost_tabulator = Cost_Tabulator::with('state')->where('idcost_tabulators', $id)->first();
+        $cost_tabulator = Cost_Tabulator::where('idcost_tabulators', $id)->first();
         return response()->json($cost_tabulator);
     }
 
     public function insertCost_Tabulator(Request $request)
     {
         $request->validate([
-            'iddestinations' => 'required|exists:destinations,iddestinations',
+            'price_description' => 'required|string',
             'unit_price' => 'required|numeric',
-            'bulk_price' => 'required|numeric',
-            'description' => 'nullable|string'
+            'bulk_price' => 'nullable|integer',
+            'number_of_people' => 'required|numeric'
         ]);
     
         try {
             $cost_tabulator = new Cost_Tabulator;
-            $cost_tabulator->destinations_iddestinations = $request->iddestinations;
+            $cost_tabulator->price_description = $request->price_description;
             $cost_tabulator->unit_price = $request->unit_price;
             $cost_tabulator->bulk_price = $request->bulk_price;
-            $cost_tabulator->description = $request->description;
+            $cost_tabulator->number_of_people = $request->number_of_people;
             $cost_tabulator->save();
             return response()->json($cost_tabulator);
         } catch (\Exception $e) {
@@ -57,10 +57,10 @@ class Cost_TabulatorsController extends Controller
     public function updateCost_Tabulator(Request $request, $idcost_tabulators)
     {
         $cost_tabulator = Cost_Tabulator::find($idcost_tabulators);
-        $cost_tabulator->destinations_iddestinations = $request->iddestinations;
+        $cost_tabulator->price_description = $request->price_description;
         $cost_tabulator->unit_price = $request->unit_price;
         $cost_tabulator->bulk_price = $request->bulk_price;
-        $cost_tabulator->description = $request->description;
+        $cost_tabulator->number_of_people = $request->number_of_people;
         $cost_tabulator->save();
         return response()->json($cost_tabulator);
     }
@@ -72,11 +72,6 @@ class Cost_TabulatorsController extends Controller
         return response()->json(['message' => 'Columna eliminada correctamente']);
     }
 
-    public function getAllDestinations()
-    {
-        $destinations = Destination::all();
-        return response()->json($destinations);
-    }
-
+    
     
 }
