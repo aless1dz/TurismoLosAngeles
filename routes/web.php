@@ -149,6 +149,13 @@ Route::get('/destinations/all', [Cost_TabulatorsController::class, 'getDestinati
 // });
 
 Route::get('/view/units', [UnitsController::class, 'view'])->name('units');
+
+Route::get('/viajesvisas', [TripsController::class, 'viewTripsVisas'])->name('visastrips');
+
+Route::put('/units/update/{id}', [UnitsController::class, 'updateUnit'])->name('updateUnit');
+Route::put('/units/updateStatus/{id}', [UnitsController::class, 'updateUnitStatus'])->name('updateUnitStatus');
+
+
 Route::get('/get/units', [UnitsController::class, 'getUnits']);
 Route::get('/get/unit/{idunits}', [UnitsController::class, 'getUnit']);
 Route::post('/units/insert', [UnitsController::class, 'insertUnit']);
@@ -164,6 +171,8 @@ Route::delete('/delete/trip/{idtrips}', [TripsController::class, 'deleteTrip']);
 Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
+
+Route::put('/units/updateStatus/{id}', [UnitsController::class, 'updateUnitStatus'])->name('updateUnitStatus');
 
 
 
