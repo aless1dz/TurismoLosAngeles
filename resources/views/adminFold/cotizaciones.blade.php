@@ -90,7 +90,96 @@
     <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <!-- Sidebar navigation items -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
+                                <i class="bi bi-speedometer2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                <i class="bi bi-geo-alt"></i> Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('citas') }}">
+                                <i class="bi bi-calendar3"></i> Citas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users') }}">
+                                <i class="bi bi-people-fill"></i> Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('associates') }}">
+                                <i class="bi bi-person-hearts"></i> Acompañantes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('units') }}">
+                                <i class="bi bi-bus-front-fill"></i> Unidades
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cities') }}">
+                                <i class="bi bi-building"></i> Ciudades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('states') }}">
+                                <i class="bi bi-map-fill"></i> Estados
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                <i class="bi bi-map"></i> Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('comentarios') }}">
+                                <i class="bi bi-chat-left-dots"></i> Comentarios
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('rentas') }}">
+                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('viajes') }}">
+                                <i class="bi bi-airplane"></i> Solicitud de Viajes
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
+                            </a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -116,8 +205,6 @@
                             <th>Fecha</th>
                             <th>Pasajeros</th>
                             <th>Fecha de Envío</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,42 +215,8 @@
                                 <td>{{ $cotizacion->user_destino }}</td>
                                 <td>{{ $cotizacion->user_date }}</td>
                                 <td>{{ $cotizacion->user_pasajeros }}</td>
-                                <td>{{ $cotizacion->created_at }}</td>
-                                <td>{{ ucfirst($cotizacion->state_form) }}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editStatusModal-{{ $cotizacion->id }}">
-                                        Editar Estado
-                                    </button>
-                                </td>
+                                <td>{{ $cotizacion->created_at}}</td>
                             </tr>
-                            <!-- Modal para editar estado -->
-                            <div class="modal fade" id="editStatusModal-{{ $cotizacion->id }}" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editStatusModalLabel">Editar Estado de Cita</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{ route('updateStatus', $cotizacion->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="form-group">
-                                                    <label for="state_form">Estado</label>
-                                                    <select name="state_form" id="state_form" class="form-control">
-                                                        <option value="pendiente" {{ $cotizacion->state_form == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-                                                        <option value="rechazada" {{ $cotizacion->state_form == 'rechazada' ? 'selected' : '' }}>Rechazada</option>
-                                                        <option value="asignada" {{ $cotizacion->state_form == 'asignada' ? 'selected' : '' }}>Asignada</option>
-                                                    </select>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         @endforeach
                     </tbody>
                 </table>
