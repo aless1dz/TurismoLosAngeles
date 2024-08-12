@@ -234,10 +234,10 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Destino (Abreviatura)</th>
-                                <th>Precio Unico</th>
-                                <th>Precio de mayoreo</th>
-                                <th>Descripcion</th>
+                                <th>Descripción de Precios</th>
+                                <th>Costo Unitario</th>
+                                <th>Costo a mayoreo</th>
+                                <th>Numero de Personas</th>
                                 <th>Fecha de Creacion</th>
                                 <th>Fecha de Actualizacion</th>
                                 <th>Editar/Eliminar</th>
@@ -266,22 +266,20 @@
                     <div class="modal-body">
                         <input type="hidden" id="idcost_tabulators" name="idcost_tabulators">
                         <div class="form-group">
-                            <label for="iddestinations">Destino</label>
-                            <select class="form-control" id="iddestinations" name="iddestinations" required>
-                               
-                            </select>
+                            <label for="price_description">Descripcion de precios</label>
+                           <input type="text" class="form-control" name="price_description" id="price_description" required>
                         </div>
                         <div class="form-group">
-                            <label for="unit_price">Precio Único</label>
+                            <label for="unit_price">Costo Unitario</label>
                             <input type="number" class="form-control" id="unit_price" name="unit_price" required>
                         </div>
                         <div class="form-group">
-                            <label for="bulk_price">Precio a Mayoreo</label>
-                            <input type="number" class="form-control" id="bulk_price" name="bulk_price" required>
+                            <label for="bulk_price">Costo a Mayoreo</label>
+                            <input type="number" class="form-control" id="bulk_price" name="bulk_price">
                         </div>
                         <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <input type="text" class="form-control" id="description" name="description" required>
+                            <label for="number_of_people">Numero de Personas</label>
+                            <input type="number" class="form-control" id="number_of_people" name="number_of_people" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -295,11 +293,10 @@
 
     <script>
         var cost_tabulators = [];
-        var destinations = [];
+       
 
         $(document).ready(function () {
             fetchCost_Tabulators();
-            fetchDestinations();
 
             $('#costTabulatorForm').on('submit', function (e) {
                 e.preventDefault();
@@ -334,28 +331,6 @@
 }
 
 
-function fetchDestinations() {
-    $.getJSON('/destinations/all', function (data) {
-        console.log(data);
-        renderDestinations(data);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error('Error al obtener destinos:', textStatus, errorThrown);
-    });
-}
-
-function renderDestinations(destinations) {
-    let destinationSelect = $('#iddestinations');
-    destinationSelect.empty();
-    destinations.forEach(destination => {
-        console.log(destination); 
-        if (destination.iddestinations && destination.destination_acronym) {
-            destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
-        } else {
-            console.error('Datos de destino no válidos:', destination);
-        }
-    });
-}
-
 
 
         function renderCost_Tabulators(data) {
@@ -364,15 +339,15 @@ function renderDestinations(destinations) {
             data.forEach(cost_tabulator => {
                 let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
                 let updatedAt = new Date(cost_tabulator.updated_at).toLocaleString();
-                let destinationAcronym = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
                 
                 tableBody.append(`
                     <tr>
                         <td>${cost_tabulator.idcost_tabulators}</td>
-                        <td>${destinationAcronym}</td>
+                        <td>${cost_tabulator.price_description}</td>
                         <td>${cost_tabulator.unit_price}</td>
                         <td>${cost_tabulator.bulk_price}</td>
-                        <td>${cost_tabulator.description}</td>
+                        <td>${cost_tabulator.number_of_people}</td>
+                        <td>${createdAt}</td>
                         <td>${updatedAt}</td>
                         <td>
                             <button class="btn btn-warning" onclick="editCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
@@ -390,19 +365,22 @@ function renderDestinations(destinations) {
     let cost_tabulator = cost_tabulators.find(item => item.idcost_tabulators === id);
     if (cost_tabulator) {
         $('#idcost_tabulators').val(cost_tabulator.idcost_tabulators);
-        $('#iddestinations').val(cost_tabulator.destinations_iddestinations); 
+        $('#price_description').val(cost_tabulator.price_description); 
         $('#unit_price').val(cost_tabulator.unit_price);
         $('#bulk_price').val(cost_tabulator.bulk_price);
-        $('#description').val(cost_tabulator.description);
+        $('#number_of_people').val(cost_tabulator.number_of_people);
         $('#costTabulatorModal').modal('show');
     }
 }
 
-        function deleteCost_Tabulator(id) {
+        function deleteCost_tabulator(id) {
             if (confirm('¿Estás seguro de eliminar?')) {
                 $.ajax({
                     url: `/cost_tabulators/delete/${id}`,
                     type: 'DELETE',
+                    headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
                     success: function (response) {
                         fetchCost_Tabulators();
                     },

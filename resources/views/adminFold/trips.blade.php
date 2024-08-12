@@ -277,7 +277,7 @@
                             <label for="iddestinations">Destino</label>
                             <select class="form-control" id="iddestinations" name="iddestinations" required>
                                 <option value="" disabled selected>Seleccione un destino</option>
-                                <!-- Las opciones serán cargadas aquí -->
+                                
                             </select>
                         </div>
                         <div class="form-group">

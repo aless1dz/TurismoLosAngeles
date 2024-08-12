@@ -7,6 +7,8 @@ use App\Models\Formality;
 use App\Mail\AppointmentMail;
 use Illuminate\Support\Facades\Mail;
 use Exception;
+use Illuminate\Support\Facades\DB;
+
 
 class FormalityController extends Controller
 {
@@ -25,6 +27,8 @@ class FormalityController extends Controller
 
     public function insertPasaporte(Request $request)
     {
+        DB::beginTransaction(); 
+
         try {
             $request->validate([
                 'user_name' => 'required|string|max:60',
@@ -34,7 +38,7 @@ class FormalityController extends Controller
                 'user_adult' => 'required|integer',
             ]);
 
-            $formality = Formality::create([
+            Formality::create([
                 'user_name' => $request->input('user_name'),
                 'user_email' => $request->input('user_email'),
                 'type_visa' => $request->input('type_visa'),
@@ -42,22 +46,25 @@ class FormalityController extends Controller
                 'user_adult' => $request->input('user_adult'),
                 'form_type' => 'pasaporte',
             ]);
-
             $details = [
-                'name' => $request->input('user_name'),
-                'email' => $request->input('user_email'),
+                'user_name' => $request->input('user_name'),
+                'user_email' => $request->input('user_email'),
                 'type_visa' => $request->input('type_visa'),
-                'date' => $request->input('user_date'),
-                'adults' => $request->input('user_adult')
+                'user_date' => $request->input('user_date'),
+                'user_adult' => $request->input('user_adult'),
+                'form_type' => $request->input('form_type', 'pasaporte'),
             ];
+            
+            Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+            
+            DB::commit(); 
 
             
-        
-            Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
-
             return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
-        } catch (Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        } catch (\Exception $e) {
+            DB::rollBack(); 
+    
+            return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
         }
     }
     public function viewCotizaciones()
@@ -67,7 +74,10 @@ class FormalityController extends Controller
     }
 
     public function insertCotizacion(Request $request)
-    { 
+    {
+    DB::beginTransaction(); 
+
+    try {
         $request->validate([
             'user_name' => 'required|string|max:60',
             'user_whatsapp' => 'required|string|max:45',
@@ -85,8 +95,28 @@ class FormalityController extends Controller
             'form_type' => $request->input('form_type', 'cotizacion'), 
         ]);
 
+        $details = [
+            'user_name' => $request->input('user_name'),
+            'user_whatsapp' => $request->input('user_whatsapp'),
+            'user_destino' => $request->input('user_destino'),
+            'user_date' => $request->input('user_date'),
+            'user_pasajeros' => $request->input('user_pasajeros'),
+            'form_type' => $request->input('form_type', 'cotizacion'),
+        ];
+        
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+       
+
+        DB::commit(); 
+
         return response()->json(['success' => true, 'message' => 'Solicitud de Cotización enviada exitosamente.']);
+    
+    } catch (\Exception $e) {
+        DB::rollBack(); 
+
+        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
     }
+}
 
     public function viewComentarios()
     {
@@ -96,6 +126,9 @@ class FormalityController extends Controller
 
     public function insertComentarios(Request $request)
     {
+        DB::beginTransaction(); 
+        try {
+
         $request->validate([
             'user_name' => 'required|string|max:60',
             'user_email' => 'required|string|max:45',
@@ -109,7 +142,23 @@ class FormalityController extends Controller
             'form_type' => $request->input('form_type', 'comentarios'), 
         ]);
 
+        $details = [
+            'user_name' => $request->input('user_name'),
+            'user_email' => $request->input('user_email'),
+            'message' => $request->input('message'),
+            'form_type' => $request->input('form_type', 'comentarios'),
+        ];
+        
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+
+        DB::commit(); 
+
         return response()->json(['success' => true, 'message' => 'Comentario enviado exitosamente.']);
+    } catch (\Exception $e) {
+        DB::rollBack(); 
+
+        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar. Por favor, inténtelo de nuevo.'], 500);
+    }
     }
 
     public function viewRentas()
@@ -120,6 +169,10 @@ class FormalityController extends Controller
 
     public function insertRentas(Request $request)
     {
+        DB::beginTransaction(); 
+
+        try {
+
         $request->validate([
             'user_name' => 'required|string|max:60',
             'user_email' => 'required|string|max:45',
@@ -134,10 +187,27 @@ class FormalityController extends Controller
             'type_transport' => $request->input('type_transport'),
             'user_date' => $request->input('user_date'),
             'user_pasajeros' => $request->input('user_pasajeros'),
-            'form_type' => 'renta',
+            'form_type' => $request->input('form_type', 'renta'), 
         ]);
 
+        $details = [
+            'user_name' => $request->input('user_name'),
+            'user_email' => $request->input('user_email'),
+            'type_transport' => $request->input('type_transport'),
+            'user_date' => $request->input('user_date'),
+            'user_pasajeros' => $request->input('user_pasajeros'),
+            'form_type' => $request->input('form_type', 'renta'),
+        ];
+        
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        DB::commit(); 
+
         return response()->json(['success' => true, 'message' => 'Solicitud de Cita para Renta enviada exitosamente.']);
+    } catch (\Exception $e) {
+        DB::rollBack(); 
+
+        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
+    }
     }
 
     public function viewViajes()
@@ -148,6 +218,10 @@ class FormalityController extends Controller
 
     public function insertViajes(Request $request)
     {
+        DB::beginTransaction(); 
+
+        try{ 
+
         $request->validate([
             'user_name' => 'required|string|max:60',
             'user_email' => 'required|string|max:45',
@@ -162,10 +236,27 @@ class FormalityController extends Controller
             'user_date' => $request->input('user_date'),
             'user_adult' => $request->input('user_adult'),
             'user_kid' => $request->input('user_kid'),
-            'form_type' => 'viajes',
+            'form_type' => $request->input('form_type', 'viajes'), 
         ]);
 
+        $details = [
+            'user_name' => $request->input('user_name'),
+            'user_email' => $request->input('user_email'),
+            'user_date' => $request->input('user_date'),
+            'user_adult' => $request->input('user_adult'),
+            'user_kid' => $request->input('user_kid'),
+            'form_type' => $request->input('form_type', 'viajes'),
+        ];
+        
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        DB::commit(); 
+
         return response()->json(['success' => true, 'message' => 'Solicitud de viaje enviada exitosamente.']);
+    } catch (\Exception $e) {
+        DB::rollBack(); 
+
+        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
+    }
     }
 
     public function viewVisas()
@@ -176,6 +267,9 @@ class FormalityController extends Controller
 
     public function insertVisas(Request $request)
     {
+    DB::beginTransaction(); 
+
+    try {
         $request->validate([
             'user_name' => 'required|string|max:60',
             'user_email' => 'required|email|max:60',
@@ -190,9 +284,27 @@ class FormalityController extends Controller
             'type_visa' => $request->input('type_visa'),
             'user_date' => $request->input('user_date'),
             'user_adult' => $request->input('user_adult'),
-            'form_type' => 'visas', 
+            'form_type' => $request->input('form_type', 'visas'), 
         ]);
 
+        $details = [
+            'user_name' => $request->input('user_name'),
+            'user_email' => $request->input('user_email'),
+            'type_visa' => $request->input('type_visa'),
+            'user_date' => $request->input('user_date'),
+            'user_adult' => $request->input('user_adult'),
+            'form_type' => $request->input('form_type', 'visas'),
+        ];
+        
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        DB::commit(); 
+
         return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
+    } catch (\Exception $e) {
+        DB::rollBack(); 
+
+        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
     }
+    }
+
 }

@@ -260,10 +260,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id="associates_id" name="id">
+                        <input type="hidden" id="idassociates" name="idassociates">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="last_name">Apellidos</label>
@@ -295,7 +295,7 @@
             $('#associateForm').on('submit', function (e) {
                 e.preventDefault();
 
-                let id = $('#associates_id').val();
+                let id = $('#idassociates').val();
                 let url = id ? `/update/associate/${id}` : '/insert/associate';
                 let method = id ? 'PUT' : 'POST';
 
@@ -331,13 +331,13 @@
             data.forEach(associate => {
                 tableBody.append(`
                     <tr>
-                        <td>${associate.id}</td>
-                        <td>${associate.nombre}</td>
+                        <td>${associate.idassociates}</td>
+                        <td>${associate.name}</td>
                         <td>${associate.last_name}</td>
                         <td>${associate.birthdate}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="editAssociate(${associate.id})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteAssociate(${associate.id})"><i class="bi bi-backspace-fill"></i></button>
+                            <button class="btn btn-warning" onclick="editAssociate(${associate.idassociates})"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-danger" onclick="deleteAssociate(${associate.idassociates})"><i class="bi bi-backspace-fill"></i></button>
                         </td>
                     </tr>
                 `);
@@ -363,8 +363,8 @@
 
         function editAssociate(id) {
             $.get(`/get/associate/${id}`, function (associate) {
-                $('#associates_id').val(associate.id);
-                $('#nombre').val(associate.nombre);
+                $('#idassociates').val(associate.idassociates);
+                $('#name').val(associate.name);
                 $('#last_name').val(associate.last_name);
                 $('#birthdate').val(associate.birthdate);
                 $('#associateModal').modal('show');
@@ -388,7 +388,7 @@
         }
 
         function clearForm() {
-            $('#associates_id').val('');
+            $('#idassociates').val('');
             $('#associateForm')[0].reset();
         }
     </script>

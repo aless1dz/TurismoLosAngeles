@@ -12,12 +12,13 @@ class Trip extends Model
     protected $primaryKey = 'idtrips';
     
     protected $fillable = [
-        'destinations_iddestinations',
+        'users_id',
+        'assocaites_idassociates',
+        'bus_seats',
         'start_date',
         'end_date',
         'duration',
         'cost_tabulators_idcost_tabulators',
-        'users_id',
         'contracts_idcontracts',
     ];
 
@@ -36,8 +37,5 @@ class Trip extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function contract()
-    {
-        return $this->belongsTo(Contract::class, 'contracts_idcontracts');
-    }
+   
 }

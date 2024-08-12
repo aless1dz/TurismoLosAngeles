@@ -9,6 +9,8 @@ class Associate extends Model{
 
     use HasFactory;
     
+    protected $primaryKey = 'idassociates';
+
     protected $fillable = [
         'name', 'last_name', 'birthdate'
     ];
