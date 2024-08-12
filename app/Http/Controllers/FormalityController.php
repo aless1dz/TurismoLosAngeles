@@ -305,6 +305,15 @@ class FormalityController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
     }
-    }
 
+    
+}
+public function updateStatus(Request $request, $id)
+{
+$cotizacion = Cotizacion::findOrFail($id);
+$cotizacion->state_form = $request->input('state_form');
+$cotizacion->save();
+
+return redirect()->back()->with('success', 'Estado actualizado correctamente.');
+}
 }
