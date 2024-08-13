@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
 * {
     margin: 0;
@@ -23,75 +23,6 @@ body {
     padding: 20px;
 }
 
-.nav {
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 100px;
-    line-height: 100px;
-    background: linear-gradient(rgba(39, 39, 39, 1), transparent);
-    z-index: 100;
-}
-
-.nav-logo p {
-    color: white;
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.nav-menu ul {
-    display: flex;
-}
-
-.nav-menu ul li {
-    list-style-type: none;
-}
-
-.nav-menu ul li .link {
-    text-decoration: none;
-    font-weight: 500;
-    color: #fff;
-    padding-bottom: 15px;
-    margin: 0 25px;
-}
-
-.link:hover, .active {
-    border-bottom: 2px solid #fff;
-}
-
-.nav-button .btn {
-    width: 130px;
-    height: 40px;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.4);
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s ease;
-}
-
-.btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-#registerBtn {
-    margin-left: 15px;
-}
-
-.btn .white-btn {
-    background: rgba(255, 255, 255, 0.7);
-}
-
-.btn .white-btn:hover {
-    background: rgba(255, 255, 255, 0.7);
-}
-
-.nav-menu-btn {
-    display: none;
-}
-
 .form-box {
     position: relative;
     display: flex;
@@ -104,6 +35,7 @@ body {
     z-index: 2;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Añadido */
 }
 
 .login-container {
@@ -115,7 +47,7 @@ body {
 
 .top span {
     color: #fff;
-    font-size: small;
+    font-size: 14px; /* Reducido */
     padding: 10px 0;
     display: flex;
     justify-content: center;
@@ -134,13 +66,26 @@ header {
     padding: 10px 0 20px 0;
 }
 
+.input-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
 .input-field {
-    font-size: 15px;
+    font-size: 14px; /* Reducido */
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
-    height: 45px;
+    height: 40px; /* Reducido */
     width: 100%;
-    padding: 0 10px 0 45px;
+    padding: 0 10px 0 40px; /* Ajustado */
     border: none;
     border-radius: 30px;
     outline: none;
@@ -155,24 +100,11 @@ header {
     color: #fff;
 }
 
-.input-box {
-    position: relative;
-    margin-bottom: 15px;
-}
-
-.input-box i {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #fff;
-}
-
 .submit {
-    font-size: 15px;
+    font-size: 14px; /* Reducido */
     font-weight: 500;
     color: black;
-    height: 45px;
+    height: 40px; /* Reducido */
     width: 100%;
     border: none;
     border-radius: 30px;
@@ -191,7 +123,7 @@ header {
     display: flex;
     justify-content: space-between;
     color: #fff;
-    font-size: small;
+    font-size: 12px; /* Reducido */
     margin-top: 10px;
 }
 
@@ -218,21 +150,21 @@ header {
 
 @media (max-width: 480px) {
     header {
-        font-size: 20px;
+        font-size: 18px; /* Reducido */
     }
 
     .input-field {
-        font-size: 14px;
-        height: 40px;
-        padding: 0 10px 0 40px;
+        font-size: 13px; /* Ajustado */
+        height: 38px; /* Ajustado */
+        padding: 0 10px 0 38px; /* Ajustado */
     }
 
     .submit {
-        font-size: 14px;
-        height: 40px;
+        font-size: 13px; /* Ajustado */
+        height: 38px; /* Ajustado */
     }
 
     .input-box i {
-        left: 10px;
+        left: 12px; /* Ajustado */
     }
 }
