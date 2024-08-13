@@ -111,6 +111,20 @@
          document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('contact-form');
 
+            // Función para permitir solo letras y números
+    function restrictSymbols(event) {
+        const input = event.target;
+        const regex = /^[a-zA-Z0-9]*$/;
+
+        if (!regex.test(input.value)) {
+            input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+        }
+    }
+
+    // Agregar evento de input para los campos específicos
+    document.getElementById('user-name').addEventListener('input', restrictSymbols);
+    document.getElementById('user-email').addEventListener('input', restrictSymbols);
+    
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); 
 

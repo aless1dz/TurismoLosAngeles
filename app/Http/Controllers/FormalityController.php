@@ -271,7 +271,7 @@ class FormalityController extends Controller
 
     try {
         $request->validate([
-            'user_name' => 'required|string|max:60',
+            'user_name' => 'required|alpha_num',
             'user_email' => 'required|email|max:60',
             'type_visa' => 'required|in:primera_vez,renovacion',
             'user_date' => 'required|date',

@@ -76,14 +76,14 @@ class UnitsController extends Controller
     return redirect()->back()->with('success', 'Unidad actualizada correctamente.');
 }
 
-// public function updateUnitStatus(Request $request, $id)
-// {
-//     $unit = Unit::findOrFail($id);
-//     $unit->state_form = $request->input('state_form');
-//     $unit->save();
+public function updateUnitStatus(Request $request, $id)
+{
+    $unit = Unit::findOrFail($id);
+    $unit->state_form = $request->input('state_form');
+    $unit->save();
 
-//     return redirect()->back()->with('success', 'Estado de la unidad actualizado correctamente.');
-// }
+    return redirect()->back()->with('success', 'Estado de la unidad actualizado correctamente.');
+}
 
 
 }
