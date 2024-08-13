@@ -114,7 +114,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                     <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
+                            <a class="nav-link active" href="#">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
                         </li>
@@ -124,8 +124,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-calendar3"></i> Citas
+                                Citas
                             </a>
                         </li>
                         <li class="nav-item">
@@ -307,9 +312,7 @@
             });
         });
 
-        $('#search-btn').on('click', function () {
-            applyFilters();
-        });
+        
     });
 
     function fetchUsers(order = 'asc') {
@@ -388,6 +391,33 @@
         $('#user_id').val('');
         $('#userForm')[0].reset();
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-btn');
+    const table = document.querySelector('table tbody');
+
+    searchButton.addEventListener('click', function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const rows = table.querySelectorAll('tr');
+
+        rows.forEach(row => {
+            const nameCell = row.querySelector('td:nth-child(2)'); 
+            if (nameCell) {
+                const nameText = nameCell.textContent.toLowerCase();
+                if (nameText.includes(searchTerm)) {
+                    row.style.display = ''; 
+                } else {
+                    row.style.display = 'none'; 
+                }
+            }
+        });
+    });
+
+    searchInput.addEventListener('input', function() {
+        searchButton.click();
+    });
+});
     </script>
 </body>
 </html>

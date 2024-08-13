@@ -65,6 +65,8 @@ Route::get('/citasCotizacion', [UserController::class, 'citasCotizacionTurismoLo
 
 Route::get('/citaPasaporte', [UserController::class, 'citaPasaporteTurismoLosAngeles']);
 
+Route::get('/misCitas', [UserController::class, 'misCitasTurismoLosAngeles']);
+
 
 //ENVIAR CORREO DE VERIFICACION EMAIL
 Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail'])->name('verification.verify');
@@ -157,10 +159,10 @@ Route::delete('/delete/unit/{idunits}', [UnitsController::class, 'deleteUnit']);
 
 Route::get('/view/trips', [TripsController::class, 'view'])->name('trips');
 Route::get('/get/trips', [TripsController::class, 'getTrips']);
-Route::get('/get/trip/{id}', [TripsController::class, 'getTrip']);
+Route::get('/get/trip/{idtrips}', [TripsController::class, 'getTrip']);
 Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
-Route::put('/trips/update/{id}', [TripsController::class, 'updateTrip']);
-Route::delete('/delete/trip/{id}', [TripsController::class, 'deleteTrip']);
+Route::put('/trips/update/{idtrips}', [TripsController::class, 'updateTrip']);
+Route::delete('/delete/trip/{idtrips}', [TripsController::class, 'deleteTrip']);
 Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);

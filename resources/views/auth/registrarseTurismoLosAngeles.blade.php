@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="input-box">
-            <input type="text" id="birthdate" name="birthdate" class="input-field" placeholder="Fecha de Nacimiento" 
+            <input type="text" id="birthdate" name="birthdate" class="input-field" placeholder="Fecha de nacimiento" 
                    onfocus="(this.type='date')" onblur="(this.type='text')" value="{{ old('birthdate') }}">
             <i class="bx bx-calendar"></i>
             @error('birthdate')
@@ -69,7 +69,7 @@
               @enderror
           </div>
           <div class="input-box">
-            <input type="password" name="password_confirmation" class="input-field" placeholder="Confirmar Contraseña">
+            <input type="password" name="password_confirmation" class="input-field" placeholder="Confirmar contraseña">
             <i class="bx bx-lock-alt"></i>
             @error('password_confirmation')
               <small class="text-danger mt-1">

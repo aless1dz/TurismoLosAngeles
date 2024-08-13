@@ -88,6 +88,10 @@ class UserController extends Controller
         return view('Auth.citaPasaporteTurismoLosAngeles');
     }
 
+    public function misCitasTurismoLosAngeles(){
+        return view('Auth.misCitasTurismoLosAngeles');
+    }
+
     public function logear(Request $request)
     {
         $request->validate([

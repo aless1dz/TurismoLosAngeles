@@ -7,7 +7,6 @@
   outline: none;
   border: none;
   text-decoration: none;
-  text-transform: capitalize;
   transition: 0.2s linear;
 }
 
@@ -34,16 +33,17 @@ section {
 .btn {
   margin-top: 1rem;
   display: inline-block;
-  border: 0.2rem solid #000;
-  color: #000;
+  border: 0.2rem solid #ffffff;
+  color: #ffffff;
   cursor: pointer;
   background: none;
   font-size: 1.7rem;
   padding: 1rem 3rem;
 }
 .btn:hover {
-  background: rgb(255, 255, 255);
-  color: #000;
+  background: rgb(0, 0, 0);
+  color: #ffffff;
+  border: 0.2rem solid #000;
 }
 
 .heading {
@@ -183,19 +183,25 @@ section {
   color: rgb(255, 255, 255);
 }
 .home .box .content h3 {
-  font-size: 6rem;
-  color: rgb(0, 0, 0);
-  padding-top: 0.5rem;
+  font-size: 5rem;
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
 }
 .home .box .content p {
   line-height: 2;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 1.5rem;
   padding: 1rem 0;
 }
 
-
+.home .box .content .container-transparent {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  margin: 50px auto; 
+}
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
