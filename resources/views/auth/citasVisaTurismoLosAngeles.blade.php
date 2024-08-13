@@ -107,5 +107,61 @@
     <script src="{{ asset('js/citas.js') }}"></script>
     <!-- script iziToast -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                const formData = new FormData(form);
+                const action = form.getAttribute('action');
+                const method = form.getAttribute('method');
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+                if (!csrfToken) {
+                    iziToast.error({
+                        title: 'Error',
+                        message: 'Token CSRF no encontrado',
+                        position: 'bottomCenter'
+                    });
+                    return;
+                }
+
+                fetch(action, {
+                    method: method,
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        iziToast.success({
+                            title: 'Éxito',
+                            message: data.message,
+                            position: 'bottomCenter'
+                        });
+                        form.reset(); // Limpia el formulario después de enviarlo
+                    } else {
+                        iziToast.error({
+                            title: 'Error',
+                            message: 'Hubo un problema al enviar el formulario',
+                            position: 'bottomCenter'
+                        });
+                    }
+                })
+                .catch(error => {
+                    iziToast.error({
+                        title: 'Error',
+                        message: 'Hubo un problema al enviar el formulario',
+                        position: 'bottomCenter'
+                    });
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
