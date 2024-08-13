@@ -41,13 +41,11 @@
           </div>
           <div class="input-box">
     <input 
-        type="text" 
+        type="date" 
         id="birthdate" 
         name="birthdate" 
         class="input-field" 
         placeholder="Fecha de Nacimiento" 
-        onfocus="this.type='date'; this.placeholder=''" 
-        onblur="if(!this.value) this.type='text'; this.placeholder='Fecha de Nacimiento';"
         value="{{ old('birthdate') }}"
     >
     <i class="bx bx-calendar"></i>

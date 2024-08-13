@@ -201,7 +201,7 @@ header {
         border-radius: 30px;
         outline: none;
         transition: .2s ease;
-        -webkit-appearance: none;
+        -webkit-appearance: none; /* Elimina los estilos por defecto en Safari */
         appearance: none;
     }
     
@@ -213,19 +213,13 @@ header {
         width: 25px;
         height: 25px;
         cursor: pointer;
-        opacity: 0;
-    }
-    
-    input[type="text"][type="date"]:focus::-webkit-calendar-picker-indicator {
-        opacity: 1;
-    }
-    
-    input[type="text"]::placeholder {
-        color: #fff;
-        opacity: 0.8;
     }
     
     input[type="date"]::placeholder {
+        color: #fff; /* Cambia el color del placeholder */
+    }
+    
+    input[type="date"]::-webkit-input-placeholder {
         color: transparent;
     }
     
