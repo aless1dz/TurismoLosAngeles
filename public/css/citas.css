@@ -1,5 +1,5 @@
 /* Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* Variables CSS */
 :root {
@@ -26,22 +26,27 @@ body {
     overflow-x: hidden;
 }
 
-/* Container */
+/* Ajustes en el contenedor principal para centrar el contenido */
 .container {
     width: 100%;
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
     flex-wrap: wrap;
     padding: 20px;
-    gap: 20px;
+    position: relative;
 }
 
-/* Header */
+/* Ajustes para el header para mostrar la flecha */
 header {
+    position: absolute;
     width: 100%;
+    top: 0;
+    left: 0;
+    padding: 30px;
     text-align: left;
-    margin-bottom: 20px;
+    z-index: 1000;
 }
 
 .container__logo img {
@@ -49,11 +54,22 @@ header {
     height: 60px;
 }
 
-/* Redes Sociales */
+.container__box {
+    position: fixed;
+    top: 0;
+    right: -100px; /* Ajusta este valor para desplazarlo más a la derecha */
+    width: 300px;
+    height: 100%;
+    background-color: var(--blue); /* Si es negro, mantenemos este color */
+    z-index: -1;
+}
+
+
+
 .container__rrss {
-    position: absolute;
+    position: fixed;
     top: 50%;
-    left: 10px;
+    left: 30px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -69,28 +85,36 @@ header {
 .container__rrss-item:hover {
     color: var(--dark-blue);
 }
-
 /* Section */
 .contact {
-    flex: 1;
+    position: relative;
     max-width: 600px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .contact__box {
     width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 .contact__title {
-    font-size: 2em;
+    font-size: 2.5em;
     color: var(--black);
     font-weight: 700;
     margin-bottom: 15px;
+}
+
+.contact__description {
+    font-size: 1.2em;
+    color: var(--black);
+    margin-bottom: 30px;
 }
 
 .contact__form {
@@ -98,11 +122,9 @@ header {
 }
 
 .contact__inputs {
-    position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    width: 100%;
 }
 
 .contact__label {
@@ -114,17 +136,18 @@ header {
 .contact__input,
 .contact__textarea {
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 8px;
     outline: none;
     background-color: var(--white);
     border: 1px solid var(--black);
     resize: none;
     width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .contact__button {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 8px;
     border: none;
     padding: 15px 20px;
     background-color: var(--blue);
@@ -134,7 +157,7 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s;
 }
 
 .contact__button:hover {
@@ -146,16 +169,21 @@ header {
     background-color: var(--black);
     width: 100%;
     max-width: 600px;
-    padding: 20px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: left;
+    margin-left: 90px; /* Ajusta este valor para mover hacia la derecha */
 }
 
+
 .info__title {
-    font-size: 1.5em;
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
@@ -204,7 +232,11 @@ header {
 @media (max-width: 768px) {
    .container {
         flex-direction: column;
-        align-items: center;
+        gap: 40px;
+   }
+
+   .container__rrss {
+       display: none;
    }
 
    .contact {
@@ -216,26 +248,31 @@ header {
         max-width: 100%;
         padding: 20px;
    }
-
-   .container__rrss {
-       display: none;
-   }
 } 
 
 /* -- Celulares -- */
 @media (max-width: 400px) {
-    .contact {
-        max-width: 100%;
-        padding: 20px;
+    header {
+        padding: 12px;
     }
 
-    .info {
+    .container__box {
+        display: none;
+    }
+
+    .contact {
         max-width: 100%;
-        padding: 20px;
+        margin: 0 auto;
+        padding-top: 40px;
     }
 
     .contact__title {
         font-size: 1.5em;
+        text-align: center;
+    }
+
+    .contact__description {
+        font-size: 1em;
         text-align: center;
     }
 
@@ -246,5 +283,9 @@ header {
 
     .info__list-item-description {
         font-size: 0.9em;
+    }
+
+    .info__list-item {
+        margin-bottom: 15px;
     }
 }

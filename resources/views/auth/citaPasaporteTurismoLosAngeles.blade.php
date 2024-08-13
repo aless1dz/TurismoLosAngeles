@@ -15,9 +15,13 @@
 <body>
     <div class="container">
         <!-- Header -->
+        <!-- Header -->
         <header>
-            <a href="/citasPrincipal" class="container__logo"><img src="{{ asset('ImgCitas/IMG-Regresar.png') }}" alt="Logo Company"></a>
+            <a href="/citasPrincipal" class="container__logo">
+                <img src="{{ asset('ImgCitas/IMG-Regresar.png') }}" alt="Logo Company">
+            </a>
         </header>
+
 
         <!-- Section -->
         <section class="contact">
@@ -45,7 +49,7 @@
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
+                    <input type="date" name="user_date" id="user-date" class="contact__input" required min="{{ date('Y-m-d') }}">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Personas</label>
