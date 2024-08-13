@@ -96,7 +96,7 @@ class UserController extends Controller
     }
 
     public function misCitasTurismoLosAngeles(){
-        return view('Auth.misCitasTurismoLosAngeles');
+        return view('auth.misCitasTurismoLosAngeles');
     }
 
     public function logear(Request $request)
