@@ -22,43 +22,43 @@
         <!-- Section -->
         <section class="contact">
             <div class="contact__box">
-                <h2 class="contact__title">cita pasaporte</h2>
+                <h2 class="contact__title">Cita pasaporte</h2>
                 <p>Complete la información solicitada y espera una respuesta.</p><br>
             </div>
             <form action="{{ route('store.formality') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
                 @csrf
                 <div class="contact__inputs">
-                    <label class="contact__label">nombre</label>
+                    <label class="contact__label">Nombre</label>
                     <input type="text" name="user_name" id="user-name" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">correo electrónico</label>
+                    <label class="contact__label">Correo electrónico</label>
                     <input type="email" name="user_email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">tipo de pasaporte</label>
+                    <label class="contact__label">Tipo de pasaporte</label>
                     <select name="type_visa" class="contact__input" id="user-type" required>
                         <option value="" disabled selected>Selecciona el tipo de pasaporte</option>
-                        <option value="primera_vez">primera vez</option>
-                        <option value="renovacion">renovación</option>
+                        <option value="primera_vez">Primera vez</option>
+                        <option value="renovacion">Renovación</option>
                     </select>
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">fecha</label>
+                    <label class="contact__label">Fecha</label>
                     <input type="date" name="user_date" id="user-date" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">personas</label>
-                    <input type="number" name="user_adult" id="user-adult" class="contact__input" required>
+                    <label class="contact__label">Personas</label>
+                    <input type="number" name="user_adult" id="user-adult" class="contact__input" required min="1" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
-                <button type="submit" class="contact__button">enviar</button>
+                <button type="submit" class="contact__button">Enviar</button>
             </form>
         </section>
 
         <!-- Aside -->
         <aside class="info">
             <div class="info__little-box"></div>
-            <h2 class="info__title">información de contacto</h2>
+            <h2 class="info__title">Información de contacto</h2>
             <ul class="info__list">
                 <li class="info__list-item">
                     <i class="fas fa-envelope"></i>
@@ -70,7 +70,7 @@
                 </li>
                 <li class="info__list-item">
                     <i class="fas fa-map"></i>
-                    <p class="info__list-item-description">aV morelos 482, primero de cobián centro, 27000 torreón, coah.</p>
+                    <p class="info__list-item-description">Av morelos 482, primero de cobián centro, 27000 Torreón, Coah.</p>
                 </li>
                 <li class="info__list-item">
                     <i class="fas fa-clock"></i>

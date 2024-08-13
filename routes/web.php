@@ -65,6 +65,8 @@ Route::get('/citasCotizacion', [UserController::class, 'citasCotizacionTurismoLo
 
 Route::get('/citaPasaporte', [UserController::class, 'citaPasaporteTurismoLosAngeles']);
 
+Route::get('/misCitas', [UserController::class, 'misCitasTurismoLosAngeles']);
+
 
 //ENVIAR CORREO DE VERIFICACION EMAIL
 Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail'])->name('verification.verify');
@@ -171,7 +173,7 @@ Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
 
-Route::put('/units/updateStatus/{id}', [UnitsController::class, 'updateUnitStatus'])->name('updateUnitStatus');
+// Route::put('/units/updateStatus/{id}', [UnitsController::class, 'updateUnitStatus'])->name('updateUnitStatus');
 
 
 

@@ -18,22 +18,22 @@
 
     <header class="header">
 
-        <a href="/inicio" class="logo"> <i class="fas fa-angel"></i> turismo los angeles </a>
+        <a href="/inicio" class="logo"> <i class="fas fa-angel"></i> Turismo Los Ángeles </a>
 
         <nav class="navbar">
         <div id="nav-close" class="fas fa-times"></div>
-        <a href="/inicio">inicio</a>
-        <a href="/servicios">nuestros servicios</a>
-        <a href="/viajes">viajes</a>
-        <a href="/citasPrincipal">citas</a>
+        <a href="/inicio">Inicio</a>
+        <a href="/servicios">Nuestros servicios</a>
+        <a href="/viajes">Viajes</a>
+        <a href="/citasPrincipal">Citas</a>
 
     <div class="user-menu">
         @guest
-            <a href="/iniciar-sesion" class="dropdown-toggle">iniciar sesión</a>
+            <a href="/iniciar-sesion" class="dropdown-toggle">Iniciar sesión</a>
         @else
-            <a href="" class="dropdown-toggle">bienvenido, {{ Auth::user()->name }} </a>
+            <a href="" class="dropdown-toggle">Bienvenido, {{ Auth::user()->name }} </a>
             <div class="dropdown-menu">
-                <a href="/inicio" onclick="confirmLogout(event)">cerrar sesión</a>
+                <a href="/inicio" onclick="confirmLogout(event)">Cerrar sesión</a>
             </div>
         @endguest
     </div>
@@ -69,42 +69,42 @@
         </div>
 
         <div class="content">
-            <h3>trámite de pasaporte</h3>
-            <p>si deseas tramitar tu pasaporte mexicano, ¡no dudes en contactarnos!</p>
-            <p>si prefieres tramitarlo por tu cuenta, también te brindamos toda la información necesaria para que puedas realizar el trámite en el horario adecuado, ya sea por llamada en los horarios recomendados por nosotros (8:00 a 10:00 am y 6:00 a 8:00 pm) o por whatsApp.</p>
-            <p>¡elige la opción que más te convenga y comienza a planear tus próximas aventuras alrededor del mundo con tu nuevo pasaporte en mano!</p> 
+            <h3>Trámite de pasaporte</h3>
+            <p>Si deseas tramitar tu pasaporte mexicano, ¡no dudes en contactarnos!</p>
+            <p>Si prefieres tramitarlo por tu cuenta, también te brindamos toda la información necesaria para que puedas realizar el trámite en el horario adecuado, ya sea por llamada en los horarios recomendados por nosotros (9:00 am a 6:00 pm) o por WhatsApp.</p>
+            <p>¡Elige la opción que más te convenga y comienza a planear tus próximas aventuras alrededor del mundo con tu nuevo pasaporte en mano!</p> 
         </div>
 
     </section>
 
     <section class="category">
 
-        <h1 class="heading">¿qué necesitas para tramitar tu pasaporte en relaciones exteriores?</h1>
+        <h1 class="heading">¿Qué necesitas para tramitar tu pasaporte en relaciones exteriores?</h1>
 
         <div class="box-container">
 
             <div class="box">
                 <img src="{{ asset('ImgServicios/IMG-ActaNacimiento.png') }}" alt="">
-                <h3>acta de nacimiento</h3>
-                <p>acta de nacimiento mexicana original. debe presentarse sin tachaduras, roturas o enmendaduras.</p>
+                <h3>Acta de nacimiento</h3>
+                <p>Acta de nacimiento mexicana original. Debe presentarse sin tachaduras, roturas o enmendaduras.</p>
             </div>
 
             <div class="box">
                 <img src="{{ asset('ImgServicios/IMG-Identificacion.png') }}" alt="">
-                <h3>identificación</h3>
-                <p>identificación oficial vigente con fotografía en original. puede ser tu credencial para votar, cédula profesional, título profesional, etc. siempre y cuando aparezcan los nombres y apellidos igual que en el acta de nacimiento mexicana.</p>
+                <h3>Identificación</h3>
+                <p>Identificación oficial vigente con fotografía en original. Puede ser tu credencial para votar, cédula profesional, título profesional, etc. siempre y cuando aparezcan los nombres y apellidos igual que en el acta de nacimiento mexicana.</p>
             </div>
 
             <div class="box">
                 <img src="{{ asset('ImgServicios/IMG-PasaporteAnterior.png') }}" alt="">
-                <h3>pasaporte</h3>
-                <p>pasaporte anterior en original (en caso de ser renovación) y fotocopia de la hoja de datos con fotografía.</p>
+                <h3>Pasaporte</h3>
+                <p>Pasaporte anterior en original (en caso de ser renovación) y fotocopia de la hoja de datos con fotografía.</p>
             </div>
 
             <div class="box">
                 <img src="{{ asset('ImgServicios/IMG-Pago.png') }}" alt="">
-                <h3>pago</h3>
-                <p>el pago de derechos se realiza el mismo día de su cita en el consulado, en efectivo y con el monto exacto.</p>
+                <h3>Pago</h3>
+                <p>El pago de derechos se realiza el mismo día de su cita en el consulado, en efectivo y con el monto exacto.</p>
             </div>
 
         </div>
@@ -120,39 +120,39 @@
         <div class="box-container">
 
             <div class="box">
-                <h3>enlaces directos</h3>
-                <a href="/inicio">inicio</a>
-                <a href="/servicios">nuestros servicios</a>
-                <a href="/viajes">viajes</a>
-                <a href="/citasPrincipal">citas</a>
+                <h3>Enlaces directos</h3>
+                <a href="/inicio">Inicio</a>
+                <a href="/servicios">Nuestros servicios</a>
+                <a href="/viajes">Viajes</a>
+                <a href="/citasPrincipal">Citas</a>
             </div>
 
             <div class="box">
-                <h3>enlaces adicionales</h3>
-                <a href="/visa">visas</a>
-                <a href="/pasaporte">pasaporte</a>
-                <a href="/unidades">unidades</a>
+                <h3>Enlaces Adicionales</h3>
+                <a href="/visa">Visas</a>
+                <a href="/pasaporte">Pasaporte</a>
+                <a href="/unidades">Unidades</a>
             </div>
 
             <div class="box">
-                <h3>contacto</h3>
-                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> visas (871) 401 0593 </a>
-                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> viajes (871) 217 4806 </a>
-                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> unidades (871) 457 2300 </a>
+                <h3>Contacto</h3>
+                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> Visas (871) 401 0593 </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> Viajes (871) 217 4806 </a>
+                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> Unidades (871) 457 2300 </a>
                 <a href="mailto:turismolosangelespro@gmail.com" target="_blank" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangelespro@gmail.com </a>
-                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  av morelos 482, primero de cobián centro, 27000 torreón, coah. </a> 
+                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  Av morelos 482, primero de cobián centro, 27000 Torreón, Coah. </a> 
             </div>
 
             <div class="box">
-                <h3>siguenos</h3>
-                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> facebook </a>
-                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> whatsApp</a>
-                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> instagram </a>
+                <h3>Siguenos</h3>
+                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> Facebook </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a>
             </div>
 
         </div>
 
-        <div class="credit">copyright © 2024 <span>turismo los angeles</span> | todos los derechos reservados.</div>
+        <div class="credit">Copyright © 2024 <span>Turismo Los Ángeles</span> | Todos los derechos reservados.</div>
 
     </section>
     
