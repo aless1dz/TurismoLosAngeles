@@ -9,6 +9,8 @@
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <!-- Librería iziToast -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ asset('imagenesInicio/favicon.ico') }}">
+
     <!-- Metaetiqueta para CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Citas Unidades | Turismo Los Angeles</title>

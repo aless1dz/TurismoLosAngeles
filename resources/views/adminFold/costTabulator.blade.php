@@ -100,11 +100,17 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Cerrar sesión
+        </button>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i> User
+                        <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                     </a>
                 </li>
             </ul>
@@ -113,10 +119,10 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block sidebar">
+        <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
                             </a>
@@ -127,7 +133,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('citas') }}">
                                 <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
@@ -146,7 +152,7 @@
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('cities') }}">
                                 <i class="bi bi-building"></i> Ciudades
                             </a>
@@ -155,7 +161,7 @@
                             <a class="nav-link" href="{{ route('states') }}">
                                 <i class="bi bi-map-fill"></i> Estados
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -166,7 +172,7 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('pasaportes') }}">
                                 <i class="bi bi-card-checklist"></i> Citas Pasaportes
                             </a>
@@ -180,7 +186,7 @@
                             <a class="nav-link" href="{{ route('comentarios') }}">
                                 <i class="bi bi-chat-left-dots"></i> Comentarios
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rentas') }}">
                                 <i class="bi bi-car-front-fill"></i> Renta de Unidades
@@ -191,15 +197,24 @@
                                 <i class="bi bi-airplane"></i> Solicitud de Viajes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('visas') }}">
                                 <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
+                            </a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
-
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <h1 class="h2">Tabla de costos</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -219,10 +234,10 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Destino (Abreviatura)</th>
-                                <th>Precio Unico</th>
-                                <th>Precio de mayoreo</th>
-                                <th>Descripcion</th>
+                                <th>Descripción de Precios</th>
+                                <th>Costo Unitario</th>
+                                <th>Costo a mayoreo</th>
+                                <th>Numero de Personas</th>
                                 <th>Fecha de Creacion</th>
                                 <th>Fecha de Actualizacion</th>
                                 <th>Editar/Eliminar</th>
@@ -251,22 +266,20 @@
                     <div class="modal-body">
                         <input type="hidden" id="idcost_tabulators" name="idcost_tabulators">
                         <div class="form-group">
-                            <label for="iddestinations">Destino</label>
-                            <select class="form-control" id="iddestinations" name="iddestinations" required>
-                               
-                            </select>
+                            <label for="price_description">Descripcion de precios</label>
+                           <input type="text" class="form-control" name="price_description" id="price_description" required>
                         </div>
                         <div class="form-group">
-                            <label for="unit_price">Precio Único</label>
+                            <label for="unit_price">Costo Unitario</label>
                             <input type="number" class="form-control" id="unit_price" name="unit_price" required>
                         </div>
                         <div class="form-group">
-                            <label for="bulk_price">Precio a Mayoreo</label>
-                            <input type="number" class="form-control" id="bulk_price" name="bulk_price" required>
+                            <label for="bulk_price">Costo a Mayoreo</label>
+                            <input type="number" class="form-control" id="bulk_price" name="bulk_price">
                         </div>
                         <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <input type="text" class="form-control" id="description" name="description" required>
+                            <label for="number_of_people">Numero de Personas</label>
+                            <input type="number" class="form-control" id="number_of_people" name="number_of_people" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -280,11 +293,10 @@
 
     <script>
         var cost_tabulators = [];
-        var destinations = [];
+       
 
         $(document).ready(function () {
             fetchCost_Tabulators();
-            fetchDestinations();
 
             $('#costTabulatorForm').on('submit', function (e) {
                 e.preventDefault();
@@ -319,28 +331,6 @@
 }
 
 
-function fetchDestinations() {
-    $.getJSON('/destinations/all', function (data) {
-        console.log(data);
-        renderDestinations(data);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error('Error al obtener destinos:', textStatus, errorThrown);
-    });
-}
-
-function renderDestinations(destinations) {
-    let destinationSelect = $('#iddestinations');
-    destinationSelect.empty();
-    destinations.forEach(destination => {
-        console.log(destination); 
-        if (destination.iddestinations && destination.destination_acronym) {
-            destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
-        } else {
-            console.error('Datos de destino no válidos:', destination);
-        }
-    });
-}
-
 
 
         function renderCost_Tabulators(data) {
@@ -349,15 +339,15 @@ function renderDestinations(destinations) {
             data.forEach(cost_tabulator => {
                 let createdAt = new Date(cost_tabulator.created_at).toLocaleString();
                 let updatedAt = new Date(cost_tabulator.updated_at).toLocaleString();
-                let destinationAcronym = cost_tabulator.destination ? cost_tabulator.destination.destination_acronym : 'N/A';
                 
                 tableBody.append(`
                     <tr>
                         <td>${cost_tabulator.idcost_tabulators}</td>
-                        <td>${destinationAcronym}</td>
+                        <td>${cost_tabulator.price_description}</td>
                         <td>${cost_tabulator.unit_price}</td>
                         <td>${cost_tabulator.bulk_price}</td>
-                        <td>${cost_tabulator.description}</td>
+                        <td>${cost_tabulator.number_of_people}</td>
+                        <td>${createdAt}</td>
                         <td>${updatedAt}</td>
                         <td>
                             <button class="btn btn-warning" onclick="editCost_tabulator(${cost_tabulator.idcost_tabulators})"><i class="bi bi-pencil-fill"></i></button>
@@ -375,19 +365,22 @@ function renderDestinations(destinations) {
     let cost_tabulator = cost_tabulators.find(item => item.idcost_tabulators === id);
     if (cost_tabulator) {
         $('#idcost_tabulators').val(cost_tabulator.idcost_tabulators);
-        $('#iddestinations').val(cost_tabulator.destinations_iddestinations); 
+        $('#price_description').val(cost_tabulator.price_description); 
         $('#unit_price').val(cost_tabulator.unit_price);
         $('#bulk_price').val(cost_tabulator.bulk_price);
-        $('#description').val(cost_tabulator.description);
+        $('#number_of_people').val(cost_tabulator.number_of_people);
         $('#costTabulatorModal').modal('show');
     }
 }
 
-        function deleteCost_Tabulator(id) {
+        function deleteCost_tabulator(id) {
             if (confirm('¿Estás seguro de eliminar?')) {
                 $.ajax({
                     url: `/cost_tabulators/delete/${id}`,
                     type: 'DELETE',
+                    headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
                     success: function (response) {
                         fetchCost_Tabulators();
                     },

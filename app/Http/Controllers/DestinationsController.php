@@ -11,8 +11,10 @@ class DestinationsController extends Controller
 {
     public function view()
     {
-        return view('adminFold.destinations');
+        $states = State::all();
+        return view('adminFold.destinations', compact('states'));
     }
+    
 
     public function getDestinations(Request $request)
     {

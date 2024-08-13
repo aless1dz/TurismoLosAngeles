@@ -17,75 +17,82 @@ use App\Mail\VerifyEmail;
 class UserController extends Controller
 {
     public function vistaLogin(){
-        return view('Auth.iniciarSesionTurismoLosAngeles');
+        if (Auth::check()) {
+            // Si el usuario está autenticado, redirigir a /inicio
+            return redirect('/inicio');
+        }
+        
+        // Si el usuario no está autenticado, podrías redirigir a otra página o mostrar un mensaje
+        return view('auth.iniciarSesionTurismoLosAngeles');
+       // return redirect('login');
     }
 
     public function vistaRegistro(){
-        return view('Auth.registrarseTurismoLosAngeles');
+        return view('auth.registrarseTurismoLosAngeles');
     }
 
     public function inicioTurismoLosAngeles(){
-        return view('Auth.inicio-turismo-los-angeles');
+        return view('auth.inicio-turismo-los-angeles');
     }
 
     public function citasTurismoLosAngeles(){
-        return view('Auth.citasTurismoLosAngeles');
+        return view('auth.citasTurismoLosAngeles');
     }
 
     public function serviciosTurismoLosAngeles(){
-        return view('Auth.serviciosTurismoLosAngeles');
+        return view('auth.serviciosTurismoLosAngeles');
     }
 
     public function visaTurismoLosAngeles(){
-        return view('Auth.visaTurismoLosAngeles');
+        return view('auth.visaTurismoLosAngeles');
     }
 
     public function pasaporteTurismoLosAngeles(){
-        return view('Auth.pasaporteTurismoLosAngeles');
+        return view('auth.pasaporteTurismoLosAngeles');
     }
 
     public function unidadesTurismoLosAngeles(){
-        return view('Auth.unidadesTurismoLosAngeles');
+        return view('auth.unidadesTurismoLosAngeles');
     }
 
     public function viajesTurismoLosAngeles(){
-        return view('Auth.viajesTurismoLosAngeles');
+        return view('auth.viajesTurismoLosAngeles');
     }
 
     public function viajesUsaTurismoLosAngeles(){
-        return view('Auth.viajesUsaTurismoLosAngeles');
+        return view('auth.viajesUsaTurismoLosAngeles');
     }
 
     public function viajesVacacionalesTurismoLosAngeles(){
-        return view('Auth.viajesVacacionalesTurismoLosAngeles');
+        return view('auth.viajesVacacionalesTurismoLosAngeles');
     }
 
     public function viajesLocalesTurismoLosAngeles(){
-        return view('Auth.viajesLocalesTurismoLosAngeles');
+        return view('auth.viajesLocalesTurismoLosAngeles');
     }
 
     public function citasPrincipalTurismoLosAngeles(){
-        return view('Auth.citasPrincipalTurismoLosAngeles');
+        return view('auth.citasPrincipalTurismoLosAngeles');
     }
 
     public function citasVisaTurismoLosAngeles(){
-        return view('Auth.citasVisaTurismoLosAngeles');
+        return view('auth.citasVisaTurismoLosAngeles');
     }
 
     public function citasViajesTurismoLosAngeles(){
-        return view('Auth.citasViajesTurismoLosAngeles');
+        return view('auth.citasViajesTurismoLosAngeles');
     }
 
     public function citasUnidadesTurismoLosAngeles(){
-        return view('Auth.citasUnidadesTurismoLosAngeles');
+        return view('auth.citasUnidadesTurismoLosAngeles');
     }
 
     public function citasCotizacionTurismoLosAngeles(){
-        return view('Auth.citasCotizacionTurismoLosAngeles');
+        return view('auth.citasCotizacionTurismoLosAngeles');
     }
 
     public function citaPasaporteTurismoLosAngeles(){
-        return view('Auth.citaPasaporteTurismoLosAngeles');
+        return view('auth.citaPasaporteTurismoLosAngeles');
     }
 
     public function misCitasTurismoLosAngeles(){
@@ -98,22 +105,35 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
         ],[
-            'email.required'=>'El email es necesario',
-            'password.required'=>'La contraseña es necesaria',
+            'email.required' => 'El email es necesario',
+            'password.required' => 'La contraseña es necesaria',
         ]);
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            
+            // Verificar si el correo electrónico está verificado
             if ($user->email_verified_at === null) {
                 Auth::logout();
                 return redirect()->back()->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
             }
-            return redirect()->intended('/inicio');
-        }
-        return redirect()->back()->withErrors(['invalid_credentials' => 'Estas credenciales no coinciden con nuestros registros.']);
 
+            // Redirigir según el rol del usuario
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('/dashboard'); // Ruta para admin
+                case 'employee':
+                    return redirect()->intended('/dashboard'); // Ruta para empleado
+                case 'user':
+                    return redirect()->intended('/inicio'); // Ruta para usuarios
+                default:
+                    return redirect()->intended('/inicio'); // Ruta predeterminada
+            }
+        }
+
+        return redirect()->back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros.']);
     }
 
     public function logout(Request $request)
@@ -221,7 +241,7 @@ class UserController extends Controller
      //RECUPERAR CONTRASEÑA
      public function formularioRecuperarContrasenia()
      {
-         return view('Auth.formulario-recuperar-contrasenia');
+         return view('auth.formulario-recuperar-contrasenia');
      }
  
      public function enviarRecuperarContrasenia(Request $request)
@@ -250,7 +270,7 @@ class UserController extends Controller
          ]);
  
          // Enviamos el email de recuperación de contraseña
-         Mail::send('Auth.recuperar-contrasenia', ['token' => $token], function ($message) use ($request) {
+         Mail::send('auth.recuperar-contrasenia', ['token' => $token], function ($message) use ($request) {
              $message->to($request->email);
              $message->subject('Recuperar Contraseña');
          });
@@ -309,13 +329,30 @@ class UserController extends Controller
         return view('adminFold.clientes');
     }
 
+    public function personal(){
+        return view('adminFold.personal');
+    }
+
     public function getUsers(Request $request)
     {
-        $order = $request->query('order', 'asc');
-        $users = User::orderBy('id', $order)->get();
+         $order = $request->query('order', 'asc');
+        // $users = User::orderBy('id', $order)->get();
+        // return response()->json($users);
+        $users = User::where('role', 'user')->get();
         return response()->json($users);
     }
 
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        return response()->json($user);
+    }
+    
+    public function getAdmins(Request $request)
+    {
+        $admins = User::where('role', 'admin')->get();
+        return response()->json($admins);
+    }
 
     public function updateUser(Request $request, $id)
     {
@@ -334,4 +371,16 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['message' => 'User deleted successfully']);
     }
+
+    public function checkAuthentication()
+    {
+        if (Auth::check()) {
+            // Si el usuario está autenticado, redirigir a /inicio
+            return redirect('/inicio');
+        }
+        
+        // Si el usuario no está autenticado, podrías redirigir a otra página o mostrar un mensaje
+        return redirect('login');
+    }
+
 }

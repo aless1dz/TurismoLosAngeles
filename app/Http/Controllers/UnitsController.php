@@ -8,9 +8,14 @@ use App\Models\Unit;
 class UnitsController extends Controller
 {
     public function view()
-    {
-        return view('adminFold.unidades');
-    }
+{
+    // Obtener todas las unidades
+    $units = Unit::all();
+
+    // Pasar la variable $units a la vista
+    return view('adminFold.unidades', compact('units'));
+}
+
 
     public function getUnits(Request $request)
     {
@@ -23,6 +28,7 @@ class UnitsController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
 
     public function getUnit($idunits)
     {
@@ -41,16 +47,16 @@ class UnitsController extends Controller
         return response()->json($unit);
     }
 
-    public function updateUnit(Request $request, $idunits)
-    {
-        $unit = Unit::find($idunits);
-        $unit->model = $request->model;
-        $unit->manufacturer = $request->manufacturer;
-        $unit->plate = $request->plate;
-        $unit->place = $request->place;
-        $unit->save();
-        return response()->json($unit);
-    }
+    // public function updateUnit(Request $request, $idunits)
+    // {
+    //     $unit = Unit::find($idunits);
+    //     $unit->model = $request->model;
+    //     $unit->manufacturer = $request->manufacturer;
+    //     $unit->plate = $request->plate;
+    //     $unit->place = $request->place;
+    //     $unit->save();
+    //     return response()->json($unit);
+    // }
 
     public function deleteUnit($idunits)
     {
@@ -58,4 +64,26 @@ class UnitsController extends Controller
         $unit->delete();
         return response()->json(['message' => 'Unidad eliminada correctamente']);
     }
+    public function updateUnit(Request $request, $id)
+{
+    $unit = Unit::findOrFail($id);
+    $unit->model = $request->input('model');
+    $unit->manufacturer = $request->input('manufacturer');
+    $unit->plate = $request->input('plate');
+    $unit->place = $request->input('place');
+    $unit->save();
+
+    return redirect()->back()->with('success', 'Unidad actualizada correctamente.');
+}
+
+// public function updateUnitStatus(Request $request, $id)
+// {
+//     $unit = Unit::findOrFail($id);
+//     $unit->state_form = $request->input('state_form');
+//     $unit->save();
+
+//     return redirect()->back()->with('success', 'Estado de la unidad actualizado correctamente.');
+// }
+
+
 }

@@ -124,39 +124,40 @@
                     });
                     return;
                 }
-
                 fetch(action, {
-                    method: method,
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        iziToast.success({
-                            title: 'Éxito',
-                            message: data.message,
-                            position: 'bottomCenter'
-                        });
-                        form.reset(); // Limpia el formulario después de enviarlo
-                    } else {
-                        iziToast.error({
-                            title: 'Error',
-                            message: 'Hubo un problema al enviar el formulario',
-                            position: 'bottomCenter'
-                        });
-                    }
-                })
-                .catch(error => {
-                    iziToast.error({
-                        title: 'Error',
-                        message: 'Hubo un problema al enviar el formulario',
-                        position: 'bottomCenter'
-                    });
-                    console.error('Error:', error);
-                });
+    method: method,
+    body: formData,
+    headers: {
+        'X-CSRF-TOKEN': csrfToken,
+        'Accept': 'application/json'
+    }
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        iziToast.success({
+            title: 'Éxito',
+            message: data.message,
+            position: 'bottomCenter'
+        });
+        form.reset(); 
+    } else {
+        iziToast.error({
+            title: 'Error',
+            message: data.message || 'Hubo un problema al enviar el formulario',
+            position: 'bottomCenter'
+        });
+    }
+})
+.catch(error => {
+    iziToast.error({
+        title: 'Error',
+        message: 'Hubo un problema al enviar el formulario',
+        position: 'bottomCenter'
+    });
+    console.error('Error:', error);
+});
+
             });
         });
     </script>

@@ -97,11 +97,17 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Cerrar sesión
+        </button>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i> User
+                        <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                     </a>
                 </li>
             </ul>
@@ -124,7 +130,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('citas') }}">
                                 <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
@@ -254,10 +260,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id="associates_id" name="id">
+                        <input type="hidden" id="idassociates" name="idassociates">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="last_name">Apellidos</label>
@@ -289,7 +295,7 @@
             $('#associateForm').on('submit', function (e) {
                 e.preventDefault();
 
-                let id = $('#associates_id').val();
+                let id = $('#idassociates').val();
                 let url = id ? `/update/associate/${id}` : '/insert/associate';
                 let method = id ? 'PUT' : 'POST';
 
@@ -325,13 +331,13 @@
             data.forEach(associate => {
                 tableBody.append(`
                     <tr>
-                        <td>${associate.id}</td>
-                        <td>${associate.nombre}</td>
+                        <td>${associate.idassociates}</td>
+                        <td>${associate.name}</td>
                         <td>${associate.last_name}</td>
                         <td>${associate.birthdate}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="editAssociate(${associate.id})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteAssociate(${associate.id})"><i class="bi bi-backspace-fill"></i></button>
+                            <button class="btn btn-warning" onclick="editAssociate(${associate.idassociates})"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-danger" onclick="deleteAssociate(${associate.idassociates})"><i class="bi bi-backspace-fill"></i></button>
                         </td>
                     </tr>
                 `);
@@ -357,8 +363,8 @@
 
         function editAssociate(id) {
             $.get(`/get/associate/${id}`, function (associate) {
-                $('#associates_id').val(associate.id);
-                $('#nombre').val(associate.nombre);
+                $('#idassociates').val(associate.idassociates);
+                $('#name').val(associate.name);
                 $('#last_name').val(associate.last_name);
                 $('#birthdate').val(associate.birthdate);
                 $('#associateModal').modal('show');
@@ -382,7 +388,7 @@
         }
 
         function clearForm() {
-            $('#associates_id').val('');
+            $('#idassociates').val('');
             $('#associateForm')[0].reset();
         }
     </script>
