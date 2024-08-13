@@ -52,7 +52,7 @@
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label" for="user-adult">Personas</label>
-                    <input type="number" name="user_adult" id="user-adult" class="contact__input" required>
+                    <input type="number" name="user_adult" id="user-adult" class="contact__input" required min="1" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
                 @auth
                 <button type="submit" class="contact__button">Enviar</button>
