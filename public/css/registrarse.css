@@ -205,6 +205,18 @@ header {
         appearance: none;
     }
     
+    input[type="date"]::placeholder {
+        color: #fff; /* Cambia el color del placeholder */
+    }
+    
+    input[type="date"]:focus::placeholder {
+        color: transparent; /* Oculta el placeholder cuando se enfoca */
+    }
+    
+    input[type="date"]:valid::placeholder {
+        color: transparent; /* Oculta el placeholder si hay un valor válido */
+    }
+    
     input[type="date"]::-webkit-calendar-picker-indicator {
         position: absolute;
         top: 50%;
@@ -215,12 +227,5 @@ header {
         cursor: pointer;
     }
     
-    input[type="date"]::placeholder {
-        color: #fff; /* Cambia el color del placeholder */
-    }
-    
-    input[type="date"]::-webkit-input-placeholder {
-        color: transparent;
-    }
-    
+
 }

@@ -47,6 +47,8 @@
         class="input-field" 
         placeholder="Fecha de Nacimiento" 
         value="{{ old('birthdate') }}"
+        onfocus="(this.placeholder = '')" 
+        onblur="(this.placeholder = 'Fecha de Nacimiento')"
     >
     <i class="bx bx-calendar"></i>
     @error('birthdate')
