@@ -31,7 +31,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     padding: 20px;
     gap: 20px;
@@ -224,6 +224,10 @@ header {
 
 /* -- Celulares -- */
 @media (max-width: 400px) {
+    header {
+        padding: 12px;
+    }
+
     .contact {
         max-width: 100%;
         padding: 20px;
@@ -246,5 +250,40 @@ header {
 
     .info__list-item-description {
         font-size: 0.9em;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .sidebar {
+        display: none; /* Ocultar el sidebar en pantallas muy pequeñas */
+    }
+
+    .navbar-brand {
+        font-size: 1.2em;
+    }
+
+    .table-responsive {
+        margin-top: 15px;
+    }
+
+    .table thead th {
+        font-size: 0.9em;
+    }
+
+    .table tbody tr td {
+        font-size: 0.9em;
+    }
+
+    .btn {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    .contact__title {
+        font-size: 1.2em;
     }
 }

@@ -144,7 +144,8 @@ header {
 /* Responsive Styles */
 @media (max-width: 768px) {
     .form-box {
-        width: 90%;
+        width: 100%;
+        max-width: 350px;
     }
 }
 
@@ -166,5 +167,13 @@ header {
 
     .input-box i {
         left: 12px; /* Ajustado */
+    }
+
+    .top span {
+        font-size: 12px; /* Ajustado */
+    }
+
+    .two-col {
+        font-size: 11px; /* Ajustado */
     }
 }
