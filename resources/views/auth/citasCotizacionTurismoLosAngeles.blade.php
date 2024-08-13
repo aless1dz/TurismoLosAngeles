@@ -42,13 +42,17 @@
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
+                    <input type="date" name="user_date" id="user-date" class="contact__input" required min="{{ date('Y-m-d') }}">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Pasajeros</label>
                     <input type="number" name="user_pasajeros" id="user-pasajeros" class="contact__input" required min="1" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
+                @auth
                 <button type="submit" class="contact__button">Enviar</button>
+                @else
+                <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
+                @endauth
             </form>
         </section>
 

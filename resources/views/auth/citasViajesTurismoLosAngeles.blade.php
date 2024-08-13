@@ -38,7 +38,7 @@
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
+                    <input type="date" name="user_date" id="user-date" class="contact__input" required min="{{ date('Y-m-d') }}">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Adultos que viajan</label>

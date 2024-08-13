@@ -15,9 +15,13 @@
 <body>
     <div class="container">
         <!-- Header -->
+        <!-- Header -->
         <header>
-            <a href="/citasPrincipal" class="container__logo"><img src="{{ asset('ImgCitas/IMG-Regresar.png') }}" alt="Logo Company"></a>
+            <a href="/citasPrincipal" class="container__logo">
+                <img src="{{ asset('ImgCitas/IMG-Regresar.png') }}" alt="Logo Company">
+            </a>
         </header>
+
 
         <!-- Section -->
         <section class="contact">
@@ -45,13 +49,17 @@
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
+                    <input type="date" name="user_date" id="user-date" class="contact__input" required min="{{ date('Y-m-d') }}">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Personas</label>
                     <input type="number" name="user_adult" id="user-adult" class="contact__input" required min="1" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
+                @auth
                 <button type="submit" class="contact__button">Enviar</button>
+                @else
+                <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
+                @endauth
             </form>
         </section>
 
