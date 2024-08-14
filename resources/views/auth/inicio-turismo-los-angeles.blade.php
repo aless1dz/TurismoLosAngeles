@@ -208,7 +208,7 @@
             <h3>¿Quiénes somos?</h3>
             <p>Somos una agencia integradora, transportista y tour operadora, que cuenta con más de 20 años de experiencia en el Trámite de Visas, Renta de Unidades, Viajes Vacacionaes a nivel Nacional, Locales (Coahuila y Durango) y a Estados Unidos (McAllen, San Antonio, Eagle Pass e Isla del Padre).</p>
             <p>Tenemos como principal objetivo crear y desarrollar productos turísticos con los más altos estándares de calidad y servicio a nuestros clientes, creando experiencias únicas e inolvidables.</p>
-            <p>¡En Turismo <Link:print></Link:print>os Ángeles nos aseguramos de que tu viaje sea una experiencia increíble!</p>
+            <p>¡En Turismo <Link:print></Link:print>Los Ángeles nos aseguramos de que tu viaje sea una experiencia increíble!</p>
         </div>
 
     </section>
