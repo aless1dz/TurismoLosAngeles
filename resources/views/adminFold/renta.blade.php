@@ -69,72 +69,71 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Dashboard</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-        <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Cerrar sesión
-        </button>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+    <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Cerrar sesión
+    </button>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container-fluid">
     <div class="row">
-    <nav class="col-md-2 d-none d-md-block sidebar">
-                <div class="sidebar-sticky">
+        <nav class="col-md-2 d-none d-md-block sidebar">
+            <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
-                                <i class="bi bi-speedometer2"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('trips') }}">
-                                <i class="bi bi-geo-alt"></i> Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('citas') }}">
-                                <i class="bi bi-calendar3"></i> Citas
-                            </a>
-                        </li>
-			<li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="bi bi-airplane"></i> Gestionar Usuarios
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}">
-                                <i class="bi bi-people-fill"></i> Clientes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('units') }}">
-                                <i class="bi bi-bus-front-fill"></i> Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                <i class="bi bi-map"></i> Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/dashboard">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('trips') }}">
+                            <i class="bi bi-geo-alt"></i> Viajes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('citas') }}">
+                            <i class="bi bi-calendar3"></i> Citas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="bi bi-people"></i> Gestionar Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users') }}">
+                            <i class="bi bi-people-fill"></i> Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('units') }}">
+                            <i class="bi bi-bus-front-fill"></i> Unidades
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('destinations') }}">
+                            <i class="bi bi-map"></i> Destinos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                            <i class="bi bi-currency-dollar"></i> Tabla de Costos
+                        </a>
                     </ul>
-                </div>
-            </nav>
+            </div>
+        </nav>
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -148,9 +147,15 @@
                     </div>
                 </div>
                 <div class="input-group ml-2">
-                    <input type="date" id="start-date" class="form-control" placeholder="Fecha Inicio">
-                    <input type="date" id="end-date" class="form-control ml-2" placeholder="Fecha Fin">
-                    <button id="filter-date-btn" class="btn btn-secondary ml-2">Filtrar Fecha</button>
+                    <div class="form-group">
+                        <label for="start-date">Fecha Inicio:</label>
+                        <input type="date" id="start-date" class="form-control" placeholder="Fecha Inicio">
+                    </div>
+                    <div class="form-group ml-2">
+                        <label for="end-date">Fecha Fin:</label>
+                        <input type="date" id="end-date" class="form-control" placeholder="Fecha Fin">
+                    </div>
+                    <button id="filter-date-btn" class="btn btn-secondary ml-2 align-self-end">Filtrar Fecha</button>
                 </div>
             </div>
             
@@ -233,6 +238,8 @@ document.addEventListener('DOMContentLoaded', function() {
     filterDateButton.addEventListener('click', filterRows);
 
     searchInput.addEventListener('input', filterRows);
+    startDateInput.addEventListener('change', filterRows);
+    endDateInput.addEventListener('change', filterRows);
 });
 </script>
 </body>

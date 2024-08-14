@@ -85,6 +85,10 @@ public function update(Request $request, $id)
     }
 
     public function vistaRegistro(){
+        if (Auth::check()) {
+            // Si el usuario está autenticado, redirigir a /inicio
+            return redirect('/inicio');
+        }
         return view('auth.registrarseTurismoLosAngeles');
     }
 

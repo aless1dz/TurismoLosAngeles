@@ -69,72 +69,71 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Dashboard</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-        <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Cerrar sesión
-        </button>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+    <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Cerrar sesión
+    </button>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container-fluid">
     <div class="row">
-    <nav class="col-md-2 d-none d-md-block sidebar">
-                <div class="sidebar-sticky">
+        <nav class="col-md-2 d-none d-md-block sidebar">
+            <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
-                                <i class="bi bi-speedometer2"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('trips') }}">
-                                <i class="bi bi-geo-alt"></i> Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('citas') }}">
-                                <i class="bi bi-calendar3"></i> Citas
-                            </a>
-                        </li>
-			<li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="bi bi-airplane"></i> Gestionar Usuarios
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}">
-                                <i class="bi bi-people-fill"></i> Clientes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('units') }}">
-                                <i class="bi bi-bus-front-fill"></i> Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                <i class="bi bi-map"></i> Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/dashboard">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('trips') }}">
+                            <i class="bi bi-geo-alt"></i> Viajes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('citas') }}">
+                            <i class="bi bi-calendar3"></i> Citas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="bi bi-people"></i> Gestionar Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users') }}">
+                            <i class="bi bi-people-fill"></i> Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('units') }}">
+                            <i class="bi bi-bus-front-fill"></i> Unidades
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('destinations') }}">
+                            <i class="bi bi-map"></i> Destinos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                            <i class="bi bi-currency-dollar"></i> Tabla de Costos
+                        </a>
                     </ul>
-                </div>
-            </nav>
+            </div>
+        </nav>
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <h1 class="h2">Citas Cotizaciones</h1>
@@ -150,7 +149,19 @@
                         <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                     </div>
                 </div>
+                <div class="input-group ml-2">
+                    <div class="form-group">
+                        <label for="start-date">Fecha Inicio:</label>
+                        <input type="date" id="start-date" class="form-control" placeholder="Fecha Inicio">
+                    </div>
+                    <div class="form-group ml-2">
+                        <label for="end-date">Fecha Fin:</label>
+                        <input type="date" id="end-date" class="form-control" placeholder="Fecha Fin">
+                    </div>
+                    <button id="filter-date-btn" class="btn btn-secondary ml-2 align-self-end">Filtrar Fecha</button>
+                </div>
             </div>
+            
             <div class="table-responsive">
                 <table class="table table-sm table-striped table-hover">
                     <thead>
@@ -188,28 +199,49 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-btn');
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+    const filterDateButton = document.getElementById('filter-date-btn');
     const table = document.querySelector('table tbody');
 
-    searchButton.addEventListener('click', function() {
+    function filterRows() {
         const searchTerm = searchInput.value.toLowerCase();
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
         const rows = table.querySelectorAll('tr');
 
         rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(1)'); 
-            if (nameCell) {
+            const nameCell = row.querySelector('td:nth-child(1)');
+            const dateCell = row.querySelector('td:nth-child(4)');
+            const dateText = dateCell.textContent;
+
+            let match = true;
+
+            if (searchTerm && nameCell) {
                 const nameText = nameCell.textContent.toLowerCase();
-                if (nameText.includes(searchTerm)) {
-                    row.style.display = ''; 
-                } else {
-                    row.style.display = 'none'; 
+                if (!nameText.includes(searchTerm)) {
+                    match = false;
                 }
             }
-        });
-    });
 
-    searchInput.addEventListener('input', function() {
-        searchButton.click();
-    });
+            if (startDate && dateText < startDate) {
+                match = false;
+            }
+
+            if (endDate && dateText > endDate) {
+                match = false;
+            }
+
+            row.style.display = match ? '' : 'none';
+        });
+    }
+
+    searchButton.addEventListener('click', filterRows);
+    filterDateButton.addEventListener('click', filterRows);
+
+    searchInput.addEventListener('input', filterRows);
+    startDateInput.addEventListener('change', filterRows);
+    endDateInput.addEventListener('change', filterRows);
 });
 </script>
 </body>

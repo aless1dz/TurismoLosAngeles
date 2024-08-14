@@ -88,7 +88,7 @@
                         </li>
 			<li class="nav-item">
                             <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="bi bi-airplane"></i> Gestionar Usuarios
+                                <i class="bi bi-people"></i> Gestionar Usuarios
                             </a>
                         </li>
                         <li class="nav-item">
