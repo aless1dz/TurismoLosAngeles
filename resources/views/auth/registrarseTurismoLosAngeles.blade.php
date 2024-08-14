@@ -21,7 +21,7 @@
           @csrf
           <div class="two-forms">
             <div class="input-box">
-              <input type="text" value="{{old('name')}}" name="name" class="input-field" placeholder="Nombre">
+              <input type="text" value="{{old('name')}}" name="name" class="input-field" placeholder="Nombre" required oninput="validateName(this)">
               <i class="bx bx-user"></i>
               @error('name')
               <small class="text-danger mt-1">
@@ -30,7 +30,7 @@
               @enderror
             </div>
             <div class="input-box">
-              <input type="text" value="{{old('last_name')}}" name="last_name" class="input-field" placeholder="Apellido">
+              <input type="text" value="{{old('last_name')}}" name="last_name" class="input-field" placeholder="Apellido" required oninput="validateLastname(this)">
               <i class="bx bx-user"></i>
               @error('last_name')
               <small class="text-danger mt-1">
@@ -40,17 +40,6 @@
             </div>
           </div>
           <div class="input-box">
-<<<<<<< HEAD
-            <input type="text" id="birthdate" name="birthdate" class="input-field" placeholder="Fecha de nacimiento" 
-                   onfocus="(this.type='date')" onblur="(this.type='text')" value="{{ old('birthdate') }}">
-            <i class="bx bx-calendar"></i>
-            @error('birthdate')
-                <small class="text-danger mt-1">
-                    <strong>{{ $message }}</strong>
-                </small>
-            @enderror
-        </div>
-=======
     <input 
         type="date" 
         id="birthdate" 
@@ -67,7 +56,6 @@
     @enderror
 </div>
 
->>>>>>> bff27050d687612f9806570f6a71b444c855262d
         
           <div class="input-box">
             <input type="email" value="{{old('email')}}" name="email" class="input-field" placeholder="Email">
@@ -104,6 +92,17 @@
          </div>
        </div>
       </div>
+
+
+      <script>
+          function validateName(input) {
+                input.value = input.value.replace(/[^a-zA-ZñÑ\s]/g, '');
+          }
+
+          function validateLastname(input) {
+                input.value = input.value.replace(/[^a-zA-ZñÑ\s]/g, '');
+          }
+      </script>
     
 </body>
 </html>
