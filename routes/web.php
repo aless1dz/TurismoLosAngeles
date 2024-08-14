@@ -68,6 +68,15 @@ Route::get('/citaPasaporte', [UserController::class, 'citaPasaporteTurismoLosAng
 Route::get('/misCitas', [UserController::class, 'misCitasTurismoLosAngeles']);
 
 
+Route::middleware('auth')->group(function () {
+     Route::get('/citas-clientes', [FormalityController::class, 'citasClientes'])->name('auth.citasClientes');
+ });
+ Route::middleware('auth')->group(function () {
+     Route::get('/mis-citas', [FormalityController::class, 'citasClientes'])->name('auth.citasClientes');
+     Route::delete('/mis-citas/{idformalities}', [FormalityController::class, 'destroy'])->name('cancelar-cita');
+ });
+
+
 //ENVIAR CORREO DE VERIFICACION EMAIL
 Route::get('/verificar-email/{token}', [UserController::class, 'verificarEmail'])->name('verification.verify');
 
@@ -169,6 +178,11 @@ Route::get('/get/trip/{idtrips}', [TripsController::class, 'getTrip']);
 Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
 Route::put('/trips/update/{idtrips}', [TripsController::class, 'updateTrip']);
 Route::delete('/delete/trip/{idtrips}', [TripsController::class, 'deleteTrip']);
+
+Route::get('/get/trip/{id}', [TripsController::class, 'getTrip']);
+Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
+Route::put('/trips/update/{id}', [TripsController::class, 'updateTrip']);
+Route::delete('/delete/trip/{id}', [TripsController::class, 'deleteTrip']);
 Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
@@ -177,8 +191,13 @@ Route::get('/associates/all', [TripsController::class, 'getAssociates']);
 
 // Route::put('/units/updateStatus/{id}', [UnitsController::class, 'updateUnitStatus'])->name('updateUnitStatus');
 
-
-
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
+Route::resource('users', UserController::class)->except(['show']);
 
 
  });

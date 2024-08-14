@@ -12,13 +12,61 @@ use Illuminate\Support\Facades\DB;
 
 class FormalityController extends Controller
 {
-
+   
     public function index()
     {
         
         return view('adminFold.formalities');
     }
 
+    public function store(Request $request)
+{
+    $formality = new Formality($request->all());
+    $formality->state_form = 'pendiente'; 
+    $formality->save();
+
+    return redirect()->route('auth.citasClientes')->with('success', 'Cita creada con éxito.');
+}
+
+public function destroy($idformalities)
+{
+    $formality = Formality::find($idformalities);
+
+    if ($formality) {
+        $formality->state_form = 'cancelada';
+        $formality->save();
+
+
+        return redirect()->route('auth.citasClientes')->with('success', 'Cita cancelada con éxito.');
+    }
+
+    return redirect()->route('auth.citasClientes')->with('error', 'Cita no encontrada.');
+}
+
+
+    public function myAppointments()
+    {
+        $citas = Formality::where('user_email', auth()->user()->email)->get();
+        return view('auth.citasClientes', compact('citas'));
+    }
+
+   
+
+    public function citasClientes()
+    {
+        $citas = Formality::where('user_email', auth()->user()->email)->get();
+        
+        return view('auth.citasClientes', compact('citas'));
+    }
+
+    public function misVistas()
+    {
+        $userEmail = auth()->user()->email;
+
+        $citas = Formality::where('user_email', $userEmail)->get();
+
+        return view('auth.citasClientes', compact('citas'));
+    }
     public function viewPasaportes()
     {
         $pasaportes = Formality::where('type_visa', '!=', null)->get();
@@ -55,7 +103,7 @@ class FormalityController extends Controller
                 'form_type' => $request->input('form_type', 'pasaporte'),
             ];
             
-            Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+            Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
             
             DB::commit(); 
 
@@ -104,7 +152,7 @@ class FormalityController extends Controller
             'form_type' => $request->input('form_type', 'cotizacion'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
        
 
         DB::commit(); 
@@ -149,7 +197,7 @@ class FormalityController extends Controller
             'form_type' => $request->input('form_type', 'comentarios'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
 
         DB::commit(); 
 
@@ -199,7 +247,7 @@ class FormalityController extends Controller
             'form_type' => $request->input('form_type', 'renta'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
         return response()->json(['success' => true, 'message' => 'Solicitud de Cita para Renta enviada exitosamente. Pronto nos comunicaremos contigo!']);
@@ -248,7 +296,7 @@ class FormalityController extends Controller
             'form_type' => $request->input('form_type', 'viajes'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
         return response()->json(['success' => true, 'message' => 'Solicitud de viaje enviada exitosamente. Pronto nos comunicaremos contigo!']);
@@ -296,7 +344,7 @@ class FormalityController extends Controller
             'form_type' => $request->input('form_type', 'visas'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
         return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente. Pronto nos comunicaremos contigo!']);

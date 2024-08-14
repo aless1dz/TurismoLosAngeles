@@ -13,9 +13,66 @@ use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Mail\VerifyEmail;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+       if (auth()->user()->role !== 'admin') {
+            abort(403, 'No tienes permiso para acceder a esta página.');
+        }
+        $users = User::whereIn('role', ['admin', 'employee'])->get();
+    return view('adminFold/adminUsers', compact('users'));
+    }
+
+
+    public function store(Request $request)
+{
+    try {
+        $user = User::create($request->all());
+        return response()->json(['success' => true, 'user' => $user]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()], 400);
+    }
+}
+
+    public function destroy($id)
+{
+    $user = User::find($id);
+    if ($user) {
+        $user->delete();
+        return response()->json(['success' => true]);
+    }
+    return response()->json(['success' => false, 'error' => 'Usuario no encontrado']);
+}
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'birthdate' => 'required|date',
+        'email' => 'required|email',
+        'role' => 'required|string',
+        'password' => 'nullable|string|min:6',
+    ]);
+
+    $user = User::findOrFail($id);
+    $user->name = $request->name;
+    $user->last_name = $request->last_name;
+    $user->birthdate = $request->birthdate;
+    $user->email = $request->email;
+    $user->role = $request->role;
+
+    if ($request->password) {
+        $user->password = Hash::make($request->password);
+    }
+
+    $user->save();
+
+    return response()->json(['success' => true, 'user' => $user]);
+}
+
     public function vistaLogin(){
         if (Auth::check()) {
             // Si el usuario está autenticado, redirigir a /inicio
@@ -95,9 +152,10 @@ class UserController extends Controller
         return view('auth.citaPasaporteTurismoLosAngeles');
     }
 
-    public function misCitasTurismoLosAngeles(){
-        return view('auth.misCitasTurismoLosAngeles');
+    public function citasClientes(){
+        return view('auth.citasClientes');
     }
+
 
     public function logear(Request $request)
     {
@@ -113,9 +171,9 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            
+    
             // Verificar si el correo electrónico está verificado
-            if ($user->email_verified_at === null) {
+            if ($user->role !== 'admin' && $user->role !== 'employee' && $user->email_verified_at === null) {
                 Auth::logout();
                 return redirect()->back()->with('error', 'Por favor, verifica tu correo electrónico antes de iniciar sesión.');
             }

@@ -6,6 +6,8 @@
     <title>Administracion</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ asset('imagenesInicio/favicon.ico') }}">
+
     <style>
          body {
             font-family: 'Arial', sans-serif;
@@ -106,7 +108,7 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    <a class="nav-link" id="navbarDropdown">
                         <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                     </a>
                 </li>
@@ -118,7 +120,7 @@
         <div class="row">
         <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -132,6 +134,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('citas') }}">
                                 <i class="bi bi-calendar3"></i> Citas
+                            </a>
+                        </li>
+			<li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="bi bi-airplane"></i> Gestionar Usuarios
                             </a>
                         </li>
                         <li class="nav-item">
@@ -152,16 +159,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cost_tabulators') }}">
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
                             </a>
                         </li>
                     </ul>

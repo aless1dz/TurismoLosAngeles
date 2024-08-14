@@ -6,6 +6,8 @@
     <title>Citas Cotizaciones | Administración</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ asset('imagenesInicio/favicon.ico') }}">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -105,31 +107,21 @@
                                 <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
+			<li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="bi bi-airplane"></i> Gestionar Usuarios
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-person-hearts"></i> Acompañantes
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                <i class="bi bi-building"></i> Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                <i class="bi bi-map-fill"></i> Estados
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -140,37 +132,6 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pasaportes') }}">
-                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cotizaciones') }}">
-                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comentarios') }}">
-                                <i class="bi bi-chat-left-dots"></i> Comentarios
-                            </a>
-                        </li> -->
-                        
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('visas') }}">
-                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -178,6 +139,10 @@
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <h1 class="h2">Citas Cotizaciones</h1>
             <a href="{{ route('citas') }}" class="btn btn-primary">Menu</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1" class="btn btn-primary" target="_blank">
+                Enviar Email
+            </a>
+
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="input-group w-50">
                     <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
