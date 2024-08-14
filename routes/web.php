@@ -65,6 +65,8 @@ Route::get('/citasCotizacion', [UserController::class, 'citasCotizacionTurismoLo
 
 Route::get('/citaPasaporte', [UserController::class, 'citaPasaporteTurismoLosAngeles']);
 
+Route::get('/misCitas', [UserController::class, 'misCitasTurismoLosAngeles']);
+
 
 Route::middleware('auth')->group(function () {
      Route::get('/citas-clientes', [FormalityController::class, 'citasClientes'])->name('auth.citasClientes');
@@ -152,12 +154,18 @@ Route::get('/cost_tabulators/{idcost_tabulators}', [Cost_TabulatorsController::c
 Route::post('/cost_tabulators/insert', [Cost_TabulatorsController::class, 'insertCost_Tabulator']);
 Route::put('/cost_tabulators/update/{idcost_tabulators}', [Cost_TabulatorsController::class, 'updateCost_Tabulator']);
 Route::delete('/cost_tabulators/delete/{idcost_tabulators}', [Cost_TabulatorsController::class, 'deleteCost_Tabulator']);
-Route::get('/destinations/all', [Cost_TabulatorsController::class, 'getDestinations']);
 // Route::middleware(['admin'])->group(function () {
 //     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 // });
 
 Route::get('/view/units', [UnitsController::class, 'view'])->name('units');
+
+Route::get('/viajesvisas', [TripsController::class, 'viewTripsVisas'])->name('visastrips');
+
+Route::put('/units/update/{id}', [UnitsController::class, 'updateUnit'])->name('updateUnit');
+Route::put('/units/updateStatus/{id}', [UnitsController::class, 'updateUnitStatus'])->name('updateUnitStatus');
+
+
 Route::get('/get/units', [UnitsController::class, 'getUnits']);
 Route::get('/get/unit/{idunits}', [UnitsController::class, 'getUnit']);
 Route::post('/units/insert', [UnitsController::class, 'insertUnit']);
@@ -165,7 +173,7 @@ Route::put('/units/update/{idunits}', [UnitsController::class, 'updateUnit']);
 Route::delete('/delete/unit/{idunits}', [UnitsController::class, 'deleteUnit']);
 
 Route::get('/view/trips', [TripsController::class, 'view'])->name('trips');
-Route::get('/get/trips', [TripsController::class, 'getTrips']);
+Route::get('/trips/all', [TripsController::class, 'getTrips']);
 Route::get('/get/trip/{idtrips}', [TripsController::class, 'getTrip']);
 Route::post('/trips/insert', [TripsController::class, 'insertTrip']);
 Route::put('/trips/update/{idtrips}', [TripsController::class, 'updateTrip']);
@@ -178,6 +186,10 @@ Route::delete('/delete/trip/{id}', [TripsController::class, 'deleteTrip']);
 Route::get('/destinations/all', [TripsController::class, 'getDestinations']);
 Route::get('/users/all', [TripsController::class, 'getUsers']);
 Route::get('/cost_tabulators/all', [TripsController::class, 'getCost_Tabulators']);
+Route::get('/associates/all', [TripsController::class, 'getAssociates']);
+
+
+// Route::put('/units/updateStatus/{id}', [UnitsController::class, 'updateUnitStatus'])->name('updateUnitStatus');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -191,7 +203,8 @@ Route::resource('users', UserController::class)->except(['show']);
  });
  Route::post('/formulario', [FormalityController::class, 'insertPasaporte'])->name('store.formality');
  Route::get('/pasaportes', [FormalityController::class, 'viewPasaportes'])->name('pasaportes');
- 
+ Route::put('/citas/updateStatus/{id}', [FormalityController::class, 'updateStatus'])->name('updateStatus');
+
  Route::get('/cotizaciones', [FormalityController::class, 'viewCotizaciones'])->name('cotizaciones');
  Route::post('/insertCotizacion', [FormalityController::class, 'insertCotizacion'])->name('store.cotizacion');
  

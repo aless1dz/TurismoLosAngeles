@@ -91,11 +91,11 @@
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
@@ -116,11 +116,11 @@
                                 <i class="bi bi-map"></i> Destinos
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('cost_tabulators') }}">
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
-                        </li>
+                        </li> -->
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('pasaportes') }}">
                                 <i class="bi bi-card-checklist"></i> Citas Pasaportes

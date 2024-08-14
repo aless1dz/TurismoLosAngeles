@@ -120,7 +120,7 @@
         <div class="row">
         <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -132,7 +132,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('citas') }}">
                                 <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
@@ -141,11 +141,11 @@
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
@@ -166,11 +166,11 @@
                                 <i class="bi bi-map"></i> Destinos
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('cost_tabulators') }}">
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
-                        </li>
+                        </li> -->
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('pasaportes') }}">
                                 <i class="bi bi-card-checklist"></i> Citas Pasaportes
@@ -249,11 +249,94 @@
                                 <th>Espacio</th>
                                 <th>Fecha de Creación</th>
                                 <th>Fecha de Actualización</th>
+                                <th>Estado</th>
                                 <th>Editar/Eliminar</th>
                             </tr>
                         </thead>
                         <tbody id="unitTableBody">
-                            
+                            @foreach($units as $unit)
+                                <tr>
+                                    <td>{{ $unit->idunits }}</td>
+                                    <td>{{ $unit->model }}</td>
+                                    <td>{{ $unit->manufacturer }}</td>
+                                    <td>{{ $unit->plate }}</td>
+                                    <td>{{ $unit->place }}</td>
+                                    <td>{{ $unit->created_at->format('d/m/Y H:i') }}</td>
+                                    <td>{{ $unit->updated_at->format('d/m/Y H:i') }}</td>
+                                    <td>{{ ucfirst($unit->state_form) }}</td>
+                                    <td>
+                                        <button class="btn btn-warning" data-toggle="modal" data-target="#editUnitModal-{{ $unit->idunits }}"><i class="bi bi-pencil-square"></i> Editar</button>
+                                        <button class="btn btn-info" data-toggle="modal" data-target="#editStatusModal-{{ $unit->idunits }}"><i class="bi bi-pencil-fill"></i> Editar Estado</button>
+                                        <button class="btn btn-danger" onclick="deleteUnit({{ $unit->idunits }})"><i class="bi bi-backspace-fill"></i> Eliminar</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Modal para editar toda la unidad -->
+                                <div class="modal fade" id="editUnitModal-{{ $unit->idunits }}" tabindex="-1" role="dialog" aria-labelledby="editUnitModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editUnitModalLabel">Editar Unidad</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="editUnitForm-{{ $unit->idunits }}" action="{{ route('updateUnit', $unit->idunits) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="form-group">
+                                                        <label for="model">Modelo</label>
+                                                        <input type="text" class="form-control" name="model" value="{{ $unit->model }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="manufacturer">Marca</label>
+                                                        <input type="text" class="form-control" name="manufacturer" value="{{ $unit->manufacturer }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="plate">Placas</label>
+                                                        <input type="text" class="form-control" name="plate" value="{{ $unit->plate }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="place">Espacio</label>
+                                                        <input type="number" class="form-control" name="place" value="{{ $unit->place }}" required>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal para editar estado -->
+                                <div class="modal fade" id="editStatusModal-{{ $unit->idunits }}" tabindex="-1" role="dialog" aria-labelledby="editStatusModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editStatusModalLabel">Editar Estado de Unidad</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('updateUnitStatus', $unit->idunits) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="form-group">
+                                                        <label for="state_form">Estado</label>
+                                                        <select name="state_form" id="state_form" class="form-control">
+                                                            <option value="disponible" {{ $unit->state_form == 'disponible' ? 'selected' : '' }}>Disponible</option>
+                                                            <option value="en viaje" {{ $unit->state_form == 'en viaje' ? 'selected' : '' }}>En Viaje</option>
+                                                            <option value="en renta" {{ $unit->state_form == 'en renta' ? 'selected' : '' }}>En Renta</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -330,7 +413,6 @@
                 });
             });
 
-            
         });
 
         function fetchUnits(order = 'asc') {
@@ -355,9 +437,11 @@
                         <td>${unit.place}</td>
                         <td>${createdAt}</td>
                         <td>${updatedAt}</td>
+                        <td>${unit.state_form}</td>
                         <td>
-                            <button class="btn btn-warning" onclick="editUnit(${unit.idunits})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteUnit(${unit.idunits})"><i class="bi bi-backspace-fill"></i></button>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#editUnitModal-${unit.idunits}"><i class="bi bi-pencil-square"></i> Editar</button>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#editStatusModal-${unit.idunits}"><i class="bi bi-pencil-fill"></i> Editar Estado</button>
+                            <button class="btn btn-danger" onclick="deleteUnit(${unit.idunits})"><i class="bi bi-backspace-fill"></i> Eliminar</button>
                         </td>
                     </tr>
                 `);

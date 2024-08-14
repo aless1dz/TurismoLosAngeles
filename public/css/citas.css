@@ -21,27 +21,32 @@
 /* Body */
 body {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--white);
     overflow-x: hidden;
 }
 
-/* Container */
+/* Ajustes en el contenedor principal para centrar el contenido */
 .container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-wrap: wrap;
+    padding: 20px;
+    position: relative;
 }
 
-/* Header */
+/* Ajustes para el header para mostrar la flecha */
 header {
     position: absolute;
     width: 100%;
     top: 0;
     left: 0;
     padding: 30px;
+    text-align: left;
+    z-index: 1000;
 }
 
 .container__logo img {
@@ -50,22 +55,25 @@ header {
 }
 
 .container__box {
-    position: absolute;
+    position: fixed;
     top: 0;
-    right: 0;
+    right: -100px; /* Ajusta este valor para desplazarlo más a la derecha */
     width: 300px;
     height: 100%;
-    background-color: var(--blue);
+    background-color: var(--blue); /* Si es negro, mantenemos este color */
     z-index: -1;
 }
 
+
+
 .container__rrss {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 30px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    z-index: 1000;
 }
 
 .container__rrss-item {
@@ -77,7 +85,6 @@ header {
 .container__rrss-item:hover {
     color: var(--dark-blue);
 }
-
 /* Section */
 .contact {
     position: relative;
@@ -86,15 +93,19 @@ header {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    left: 200px; /* 200 px */
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .contact__box {
-    text-align: left;
+    width: 100%;
+    text-align: center;
 }
 
 .contact__title {
-    font-size: 3em;
+    font-size: 2.5em;
     color: var(--black);
     font-weight: 700;
     margin-bottom: 15px;
@@ -111,7 +122,6 @@ header {
 }
 
 .contact__inputs {
-    position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
@@ -126,16 +136,18 @@ header {
 .contact__input,
 .contact__textarea {
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 8px;
     outline: none;
     background-color: var(--white);
     border: 1px solid var(--black);
     resize: none;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .contact__button {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 8px;
     border: none;
     padding: 15px 20px;
     background-color: var(--blue);
@@ -145,7 +157,7 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s;
 }
 
 .contact__button:hover {
@@ -155,45 +167,37 @@ header {
 /* Aside */
 .info {
     background-color: var(--black);
-    width: 600px;
-    height: 500px;
-    position: relative;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
     display: flex;
-    align-items: start;
-    justify-content: center;
     flex-direction: column;
-    padding-left: 100px;
-    gap: 45px;
+    justify-content: center;
+    gap: 30px;
+    color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: left;
+    margin-left: 90px; /* Ajusta este valor para mover hacia la derecha */
 }
 
-.info__little-box {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--blue);
-}
 
 .info__title {
-    color: var(--white);
     font-size: 2em;
+    margin-bottom: 20px;
 }
 
 .info__list {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .info__list-item {
-    color: var(--white);
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 30px;
-}
-
-.bx {
-    font-size: 2em;
+    margin-bottom: 20px;
 }
 
 .info__list-item-description {
@@ -206,12 +210,10 @@ header {
 @media (max-width: 1200px) {
    .contact {
         max-width: 500px;
-        left: 150px;
    }
 
    .info {
-        width: 500px;
-        padding-left: 70px;
+        max-width: 500px;
    }
 }
 
@@ -219,39 +221,32 @@ header {
 @media (max-width: 992px) {
    .contact {
         max-width: 400px;
-        left: 100px;
    }
 
    .info {
-        width: 400px;
+        max-width: 400px;
    }
 }
 
 /* -- Tablets -- */
 @media (max-width: 768px) {
    .container {
-        justify-content: center;
         flex-direction: column;
-        gap: 80px;
+        gap: 40px;
    }
 
    .container__rrss {
-    display: none;
-    }
-
-   .container__box {
-        width: 100px;
+       display: none;
    }
 
    .contact {
-        max-width: 400px;
-        left: 0;
-        padding-top: 40px;
+        max-width: 100%;
+        padding: 20px;
    }
 
    .info {
-        padding: 40px;
-        left: 0;
+        max-width: 100%;
+        padding: 20px;
    }
 } 
 
@@ -265,14 +260,10 @@ header {
         display: none;
     }
 
-    .container__rrss {
-        display: none;
-    }
-
     .contact {
-        max-width: 90%;
+        max-width: 100%;
         margin: 0 auto;
-        padding-top: 700px;
+        padding-top: 40px;
     }
 
     .contact__title {
@@ -285,74 +276,16 @@ header {
         text-align: center;
     }
 
-    .info__little-box {
-        display: none;
+    .info__title {
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .info__list-item-description {
+        font-size: 0.9em;
+    }
+
+    .info__list-item {
+        margin-bottom: 15px;
     }
 }
-
-
-/*Estilo de alerta para cerrar sesion*/
-.swal2-popup {
-    background-color: #565656;
-    border-radius: 60px;
-    width: 600px; 
-    height: auto;
-  }
-  
-  .swal2-title {
-    color: #ffffff;
-    font-size: 4rem;
-  }
-  
-  .swal2-confirm {
-    background-color: #105392;
-    border-radius: 5px;
-    width: 150px; 
-    height: 50px;
-    font-size: 1.5rem;
-  
-  }
-  
-  .swal2-cancel {
-    background-color: rgb(45, 45, 45);
-    border-radius: 5px;
-    width: 150px; 
-    height: 50px;
-    font-size: 1.5rem;
-  
-  }
-  
-  /*Estilo para el cerrar sesion y usuario*/
-  .user-menu {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-toggle {
-    cursor: pointer;
-  }
-  
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-    z-index: 1000;
-  }
-  
-  .dropdown-menu a {
-    display: block;
-    padding: 10px 15px;
-    color: #333333; 
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
-  
-  .user-menu:hover .dropdown-menu {
-    display: block;
-  }
-  

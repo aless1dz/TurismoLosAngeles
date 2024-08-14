@@ -103,12 +103,12 @@ public function destroy($idformalities)
                 'form_type' => $request->input('form_type', 'pasaporte'),
             ];
             
-            Mail::to('mm0673222@gmail.com')->send(new AppointmentMail($details));
+            Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
             
             DB::commit(); 
 
             
-            return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
+            return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente. Pronto nos comunicaremos contigo!']);
         } catch (\Exception $e) {
             DB::rollBack(); 
     
@@ -152,7 +152,7 @@ public function destroy($idformalities)
             'form_type' => $request->input('form_type', 'cotizacion'),
         ];
         
-        Mail::to('mm0673222@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
        
 
         DB::commit(); 
@@ -162,7 +162,7 @@ public function destroy($idformalities)
     } catch (\Exception $e) {
         DB::rollBack(); 
 
-        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
+        return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo. Pronto nos comunicaremos contigo!'], 500);
     }
 }
 
@@ -197,11 +197,11 @@ public function destroy($idformalities)
             'form_type' => $request->input('form_type', 'comentarios'),
         ];
         
-        Mail::to('mm0673222@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
 
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Comentario enviado exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Comentario enviado exitosamente. Pronto revisaremos tu comentario!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
@@ -247,10 +247,10 @@ public function destroy($idformalities)
             'form_type' => $request->input('form_type', 'renta'),
         ];
         
-        Mail::to('mm0673222@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Solicitud de Cita para Renta enviada exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Solicitud de Cita para Renta enviada exitosamente. Pronto nos comunicaremos contigo!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
@@ -296,10 +296,10 @@ public function destroy($idformalities)
             'form_type' => $request->input('form_type', 'viajes'),
         ];
         
-        Mail::to('mm0673222@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Solicitud de viaje enviada exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Solicitud de viaje enviada exitosamente. Pronto nos comunicaremos contigo!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
@@ -319,7 +319,7 @@ public function destroy($idformalities)
 
     try {
         $request->validate([
-            'user_name' => 'required|string|max:60',
+            'user_name' => 'required|alpha_num',
             'user_email' => 'required|email|max:60',
             'type_visa' => 'required|in:primera_vez,renovacion',
             'user_date' => 'required|date',
@@ -344,15 +344,24 @@ public function destroy($idformalities)
             'form_type' => $request->input('form_type', 'visas'),
         ];
         
-        Mail::to('mm0673222@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
-        return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente.']);
+        return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente. Pronto nos comunicaremos contigo!']);
     } catch (\Exception $e) {
         DB::rollBack(); 
 
         return response()->json(['success' => false, 'message' => 'Hubo un error al enviar la solicitud. Por favor, inténtelo de nuevo.'], 500);
     }
-    }
 
+    
+}
+public function updateStatus(Request $request, $id)
+{
+$cotizacion = Cotizacion::findOrFail($id);
+$cotizacion->state_form = $request->input('state_form');
+$cotizacion->save();
+
+return redirect()->back()->with('success', 'Estado actualizado correctamente.');
+}
 }

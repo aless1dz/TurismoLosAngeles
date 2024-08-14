@@ -151,16 +151,6 @@
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                <i class="bi bi-building"></i> Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                <i class="bi bi-map-fill"></i> Estados
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -171,21 +161,6 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pasaportes') }}">
-                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cotizaciones') }}">
-                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comentarios') }}">
-                                <i class="bi bi-chat-left-dots"></i> Comentarios
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('rentas') }}">
                                 <i class="bi bi-car-front-fill"></i> Renta de Unidades
@@ -240,6 +215,7 @@
                                 <th>Personas</th>
                                 <th>Estado</th>
                                 <th>Fecha de Envío</th>
+                                <th>Estado</th> <!-- Columna de estado añadida -->
                             </tr>
                         </thead>
                         <tbody>
@@ -252,6 +228,7 @@
                                     <td>{{ $visa->user_adult }}</td>
                                     <td>{{ $visa->state_form }}</td>
                                     <td>{{ $visa->created_at}}</td>
+                                    <td>{{ ucfirst($visa->state_form) }}</td> <!-- Mostrar el estado -->
                                 </tr>
                             @endforeach
                         </tbody>
@@ -263,7 +240,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.githubusercontent.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
        document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
@@ -313,4 +290,3 @@
     </script>
 </body>
 </html>
-        

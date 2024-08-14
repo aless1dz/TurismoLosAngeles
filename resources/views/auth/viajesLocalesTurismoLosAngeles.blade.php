@@ -19,24 +19,24 @@
 
     <header class="header">
 
-        <a href="/inicio" class="logo"> <i class="fas fa-angel"></i> turismo los angeles </a>
+        <a href="/inicio" class="logo"> <i class="fas fa-angel"></i> Turismo Los Ángeles </a>
 
         <nav class="navbar">
         <div id="nav-close" class="fas fa-times"></div>
-        <a href="/inicio">inicio</a>
-        <a href="/servicios">nuestros servicios</a>
-        <a href="/viajes">viajes</a>
-        <a href="/citasPrincipal">citas</a>
+        <a href="/inicio">Inicio</a>
+        <a href="/servicios">Nuestros servicios</a>
+        <a href="/viajes">Viajes</a>
+        <a href="/citasPrincipal">Citas</a>
 
     <div class="user-menu">
         @guest
-            <a href="/iniciar-sesion" class="dropdown-toggle">iniciar sesión</a>
+            <a href="/iniciar-sesion" class="dropdown-toggle">Iniciar sesión</a>
         @else
         <a href="/mis-citas">Mis citas</a>
 
             <a href="" class="dropdown-toggle">bienvenido, {{ Auth::user()->name }} </a>
             <div class="dropdown-menu">
-                <a href="/inicio" onclick="confirmLogout(event)">cerrar sesión</a>
+                <a href="/inicio" onclick="confirmLogout(event)">Cerrar sesión</a>
             </div>
         @endguest
     </div>
@@ -67,7 +67,7 @@
 
     <section class="blogs" id="blogs">
 
-        <h1 class="heading"> viajes locales </h1>
+        <h1 class="heading"> Viajes Locales </h1>
 
         <div class="swiper blogs-slider">
 
@@ -76,80 +76,80 @@
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-ViescaParras.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>viesca-parras.</h3>
-                    <p>viesca y parras son pueblos en coahuila, méxico, conocidos por su historia y viñedos. viesca ofrece paisajes desérticos y dunas, mientras que parras es famoso por su producción de vino y arquitectura colonial.</p>
+                    <h3>Viesca-Parras.</h3>
+                    <p>Viesca y Parras son pueblos en Coahuila, México, conocidos por su historia y viñedos. Viesca ofrece paisajes desérticos y dunas, mientras que Parras es famoso por su producción de vino y arquitectura colonial.</p>
     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-TorreonViesca.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>torreón-viesca.</h3>
-                    <p>recorrido por la región desértica de coahuila, que conecta una ciudad industrial con un pueblo histórico conocido por sus dunas y paisajes naturales.</p>
+                    <h3>Torreón-Viesca.</h3>
+                    <p>Recorrido por la región desértica de Coahuila, que conecta una ciudad industrial con un pueblo histórico conocido por sus dunas y paisajes naturales.</p>
     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-TermasSanJoaquin.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>termas de san joaquín.</h3>
-                    <p>las termas de san joaquín son un resort de aguas termales en coahuila, méxico, ofreciendo baños termales, spa y un entorno relajante ideal para el descanso y la salud.</p>
+                    <h3>Termas de San Joaquín.</h3>
+                    <p>Las Termas de San Joaquín son un resort de aguas termales en Coahuila, México, ofreciendo baños termales, spa y un entorno relajante ideal para el descanso y la salud.</p>
     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-Muzquiz.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>múzquiz.</h3>
-                    <p>múzquiz es un municipio en coahuila, méxico, conocido por su riqueza cultural y natural. ofrece visitas a reservas naturales, cuevas, y la oportunidad de explorar la cultura indígena kikapú.</p>
+                    <h3>Múzquiz.</h3>
+                    <p>Múzquiz es un municipio en Coahuila, México, conocido por su riqueza cultural y natural. Ofrece visitas a reservas naturales, cuevas, y la oportunidad de explorar la cultura indígena Kikapú.</p>
     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-MoorelearTorreon.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>moorelear-torreón.</h3>
-                    <p>vamos a moorelear todo el día, conoce museos en torreón, turismo religioso, paseo morelos y much más.</p>
+                    <h3>Moorelear-Torreón.</h3>
+                    <p>Vamos a Moorelear todo el día, conoce museos en Torreón, turismo religioso, paseo morelos y mucho más.</p>
     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-GeneralCepeda.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>general cepeda.</h3>
-                    <p>general cepeda es un municipio en coahuila, méxico, conocido por su tranquilidad y paisajes rurales. es famoso por sus petroglifos, fósiles y eventos culturales locales.</p>
+                    <h3>General Cepeda.</h3>
+                    <p>General Cepeda es un municipio en Coahuila, México, conocido por su tranquilidad y paisajes rurales. Es famoso por sus petroglifos, fósiles y eventos culturales locales.</p>
     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-Cuatrocienegas.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>cuatrociénegas.</h3>
-                    <p>cuatrociénegas es un área natural protegida en coahuila, méxico, famosa por sus pozas, dunas de yeso y biodiversidad única. es un destino popular para ecoturismo y estudios científicos.</p>
+                    <h3>Cuatrociénegas.</h3>
+                    <p>Cuatrociénegas es un área natural protegida en Coahuila, México, famosa por sus pozas, dunas de yeso y biodiversidad única. Es un destino popular para ecoturismo y estudios científicos.</p>
     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-Arteaga.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> coahuila </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Coahuila </a>
                     </div>
-                    <h3>arteaga.</h3>
-                    <p>arteaga es un pueblo en coahuila, méxico, conocido por sus paisajes montañosos y clima fresco. es un destino popular para actividades al aire libre como el senderismo y el esquí.</p>
+                    <h3>Arteaga.</h3>
+                    <p>Arteaga es un pueblo en Coahuila, México, conocido por sus paisajes montañosos y clima fresco. Es un destino popular para actividades al aire libre como el senderismo y el esquí.</p>
     
                 </div>
 
@@ -168,7 +168,7 @@
 
     <section class="blogs-durango" id="blogs-durango">
 
-        <h1 class="heading"> viajes a durango </h1>
+        <h1 class="heading"> Viajes a Durango </h1>
 
         <div class="swiper blogs-slider">
 
@@ -177,30 +177,30 @@
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-ViejoOeste.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> durango </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Durango </a>
                     </div>
-                    <h3>viejo oeste.</h3>
-                    <p>el viejo oeste en durango es un parque temático que recrea la época de los vaqueros con espectáculos en vivo y visitas a sets de películas.</p>
+                    <h3>Viejo Oeste.</h3>
+                    <p>El Viejo Oeste en Durango es un parque temático que recrea la época de los vaqueros con espectáculos en vivo y visitas a sets de películas.</p>
                     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-PuenteOjuela.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> durango </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Durango </a>
                     </div>
-                    <h3>puente de ojuela.</h3>
-                    <p>el puente de ojuela en durango es un antiguo puente colgante sobre un cañón, famoso por su historia minera y su impresionante estructura.</p>
+                    <h3>Puente de Ojuela.</h3>
+                    <p>El Puente de Ojuela en Durango es un antiguo puente colgante sobre un cañón, famoso por su historia minera y su impresionante estructura.</p>
                     
                 </div>
 
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-Mexiquillo.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> durango </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Durango </a>
                     </div>
-                    <h3>mexiquillo.</h3>
-                    <p>mexiquillo es un parque natural en durango con formaciones rocosas, bosques, cascadas y ríos, ideal para senderismo, ciclismo y camping.</p>
+                    <h3>Mexiquillo.</h3>
+                    <p>Mexiquillo es un parque natural en Durango con formaciones rocosas, bosques, cascadas y ríos, ideal para senderismo, ciclismo y camping.</p>
                     
                 </div>
 
@@ -219,7 +219,7 @@
 
     <section class="blogs-more" id="blogs-more">
 
-        <h1 class="heading"> extras </h1>
+        <h1 class="heading"> Extras </h1>
 
         <div class="swiper blogs-slider">
 
@@ -228,10 +228,10 @@
                 <div class="swiper-slide slide">
                     <img src="{{ asset('ImgViajes/IMG-BioparqueEstrella.jpg') }}" alt="">
                     <div class="icons">
-                        <a href="#"> <i class="fa-solid fa-location-dot"></i> monterrey </a>
+                        <a href="#"> <i class="fa-solid fa-location-dot"></i> Monterrey </a>
                     </div>
-                    <h3>bioparque estrella.</h3>
-                    <p>el bioparque estrella en monterrey es un parque de vida silvestre que ofrece safaris, exhibiciones de animales y actividades recreativas. es un destino ideal para disfrutar en familia y aprender sobre la conservación de la naturaleza.</p>
+                    <h3>Bioparque Estrella.</h3>
+                    <p>El Bioparque Estrella en Monterrey es un parque de vida silvestre que ofrece safaris, exhibiciones de animales y actividades recreativas. Es un destino ideal para disfrutar en familia y aprender sobre la conservación de la naturaleza.</p>
                     
                 </div>
 
@@ -250,39 +250,39 @@
         <div class="box-container">
 
             <div class="box">
-                <h3>enlaces directos</h3>
-                <a href="/inicio">inicio</a>
-                <a href="/servicios">nuestros servicios</a>
-                <a href="/viajes">viajes</a>
-                <a href="/citasPrincipal">citas</a>
+                <h3>Enlaces directos</h3>
+                <a href="/inicio">Inicio</a>
+                <a href="/servicios">Nuestros servicios</a>
+                <a href="/viajes">Viajes</a>
+                <a href="/citasPrincipal">Citas</a>
             </div>
 
             <div class="box">
-                <h3>enlaces adicionales</h3>
-                <a href="/visa">visas</a>
-                <a href="/pasaporte">pasaporte</a>
-                <a href="/unidades">unidades</a>
+                <h3>Enlaces adicionales</h3>
+                <a href="/visa">Visas</a>
+                <a href="/pasaporte">Pasaporte</a>
+                <a href="/unidades">Unidades</a>
             </div>
 
             <div class="box">
-                <h3>contacto</h3>
-                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> visas (871) 401 0593 </a>
-                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> viajes (871) 217 4806 </a>
-                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> unidades (871) 457 2300 </a>
+                <h3>Contacto</h3>
+                <a href="https://wa.me/8714010593" target="_blank"> <i class="fas fa-phone"></i> Visas (871) 401 0593 </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fas fa-phone"></i> Viajes (871) 217 4806 </a>
+                <a href="https://wa.me/8714572300" target="_blank"> <i class="fas fa-phone"></i> Unidades (871) 457 2300 </a>
                 <a href="mailto:turismolosangelespro@gmail.com" target="_blank" style="text-transform: none;"> <i class="fas fa-envelope"></i> turismolosangelespro@gmail.com </a>
-                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  av morelos 482, primero de cobián centro, 27000 torreón, coah. </a> 
+                <a href="https://www.google.com/maps/search/?api=1&query=25.539489240121423,-103.45462295777837" target="_blank"> <i class="fas fa-map"></i>  Av morelos 482, primero de cobián centro, 27000 Torreón, Coah. </a> 
             </div>
 
             <div class="box">
-                <h3>siguenos</h3>
-                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> facebook </a>
-                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> whatsApp</a>
-                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> instagram </a>
+                <h3>Siguenos</h3>
+                <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank"> <i class="fab fa-facebook"></i> Facebook </a>
+                <a href="https://wa.me/8712174806" target="_blank"> <i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a>
             </div>
 
         </div>
 
-        <div class="credit">copyright © 2024 <span>turismo los angeles</span> | todos los derechos reservados.</div>
+        <div class="credit">Copyright © 2024 <span>Turismo Los Ángeles</span> | Todos los derechos reservados.</div>
 
     </section>
     

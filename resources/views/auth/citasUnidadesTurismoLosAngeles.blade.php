@@ -25,39 +25,39 @@
         <!-- Section -->
         <section class="contact">
             <div class="contact__box">
-                <h2 class="contact__title">renta de unidades</h2>
+                <h2 class="contact__title">Renta de unidades</h2>
                 <p>Complete la información solicitada y espera una respuesta.</p><br>
             </div>
             <form action="{{ route('insertar.renta') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
                 @csrf
                 <input type="hidden" id="form_type" name="form_type" value="renta">
                 <div class="contact__inputs">
-                    <label class="contact__label">nombre</label>
+                    <label class="contact__label">Nombre</label>
                     <input type="text" name="user_name" id="user-name" class="contact__input" required>
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">correo electrónico</label>
+                    <label class="contact__label">Correo electrónico</label>
                     <input type="email" name="user_email" id="user-email" class="contact__input" required autocapitalize="off" style="text-transform: none;">
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">transporte</label>
+                    <label class="contact__label">Transporte</label>
                     <select name="type_transport" class="contact__input" id="user-transport" required>
                         <option value="" disabled selected>Selecciona el tipo de unidad</option>
-                        <option value="autobus">autobús</option>
-                        <option value="sprinter">sprinter</option>
-                        <option value="hiace">hiace</option>
+                        <option value="autobus">Autobús</option>
+                        <option value="sprinter">Sprinter</option>
+                        <option value="hiace">Hiace</option>
                     </select>
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
+                    <label class="contact__label">Fecha</label>
+                    <input type="date" name="user_date" id="user-date" class="contact__input" required min="{{ date('Y-m-d') }}">
                 </div>
                 <div class="contact__inputs">
-                    <label class="contact__label">pasajeros</label>
-                    <input type="number" name="user_pasajeros" id="user-pasajeros" class="contact__input" required min="0" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
+                    <label class="contact__label">Pasajeros</label>
+                    <input type="number" name="user_pasajeros" id="user-pasajeros" class="contact__input" required min="1" oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                 </div>
                 @auth
-                <button type="submit" class="contact__button">enviar</button>
+                <button type="submit" class="contact__button">Enviar</button>
                 @else
                 <button type="button" class="contact__button" onclick="window.location.href='/iniciar-sesion';">iniciar sesión para enviar</button>
                 @endauth
@@ -67,7 +67,7 @@
         <!-- Aside -->
         <aside class="info">
             <div class="info__little-box"></div>
-            <h2 class="info__title">información de contacto</h2>
+            <h2 class="info__title">Información de contacto</h2>
             <ul class="info__list">
                 <li class="info__list-item">
                     <i class="fas fa-envelope"></i>
@@ -79,7 +79,7 @@
                 </li>
                 <li class="info__list-item">
                     <i class="fas fa-map"></i>
-                    <p class="info__list-item-description">aV morelos 482, primero de cobián centro, 27000 torreón, coah.</p>
+                    <p class="info__list-item-description">Av morelos 482, primero de cobián centro, 27000 Torreón, Coah.</p>
                 </li>
                 <li class="info__list-item">
                     <i class="fas fa-clock"></i>

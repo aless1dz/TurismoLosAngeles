@@ -91,7 +91,7 @@
     <div class="row">
     <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -112,11 +112,11 @@
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
@@ -137,11 +137,11 @@
                                 <i class="bi bi-map"></i> Destinos
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('cost_tabulators') }}">
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
-                        </li>
+                        </li> -->
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('pasaportes') }}">
                                 <i class="bi bi-card-checklist"></i> Citas Pasaportes
@@ -219,6 +219,7 @@
                             <th>Fecha</th>
                             <th>Pasajeros</th>
                             <th>Fecha de Envío</th>
+                            <th>Estado</th> <!-- Columna de estado añadida -->
                         </tr>
                     </thead>
                     <tbody>
@@ -230,6 +231,7 @@
                                 <td>{{ $renta->user_date }}</td>
                                 <td>{{ $renta->user_pasajeros }}</td>
                                 <td>{{ $renta->created_at}}</td>
+                                <td>{{ ucfirst($renta->state_form) }}</td> <!-- Mostrar el estado -->
                             </tr>
                         @endforeach
                     </tbody>

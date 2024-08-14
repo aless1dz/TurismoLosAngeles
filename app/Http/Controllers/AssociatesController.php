@@ -15,9 +15,9 @@ class AssociatesController extends Controller{
         return response()->json(Associate::all(), 200);
     }
 
-    public function show($id)
+    public function show($idassociates)
     {
-        return response()->json(Associate::find($id), 200);
+        return response()->json(Associate::find($idassociates), 200);
     }
 
     public function store(Request $request)
@@ -26,16 +26,16 @@ class AssociatesController extends Controller{
         return response()->json($associate, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $idassociates)
     {
-        $associate = Associate::findOrFail($id);
+        $associate = Associate::findOrFail($idassociates);
         $associate->update($request->all());
         return response()->json($associate, 200);
     }
 
-    public function destroy($id)
+    public function destroy($idassociates)
     {
-        Associate::findOrFail($id)->delete();
+        Associate::findOrFail($idassociates)->delete();
         return response()->json(null, 204);
     }
 }
