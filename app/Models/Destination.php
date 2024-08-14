@@ -38,7 +38,7 @@ class Destination extends Model
      */
     public function trips()
     {
-        return $this->hasMany(Trip::class);
+        return $this->hasMany(Trip::class, 'trips_idtrips', 'idtrips');
     }
 }
 

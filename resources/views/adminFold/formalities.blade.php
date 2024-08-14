@@ -129,7 +129,7 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -150,16 +150,26 @@
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cities') }}">
+                                <i class="bi bi-building"></i> Ciudades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('states') }}">
+                                <i class="bi bi-map-fill"></i> Estados
+                            </a>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -170,16 +180,37 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('comentarios') }}">
+                                <i class="bi bi-chat-left-dots"></i> Comentarios
+                            </a>
+                        </li> -->
+                        
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
+                            </a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -193,6 +224,7 @@
                     <a href="{{ route('visas') }}" class="btn btn-primary">Visas</a>
                     <a href="{{ route('pasaportes') }}" class="btn btn-primary">Pasaportes</a>
                     <a href="{{ route('rentas') }}" class="btn btn-primary">Renta de Unidades</a>
+                    <a href="{{ route('viajes') }}" class="btn btn-primary">Soliciutd de Viajes</a>
                 </div>
             </main>
         </div>

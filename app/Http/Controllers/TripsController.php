@@ -7,7 +7,7 @@ use App\Models\Trip;
 use App\Models\Destination;
 use App\Models\Cost_Tabulator;
 use App\Models\User;
-use App\Models\Unit;
+use App\Models\Associate;
 
 class TripsController extends Controller
 {
@@ -16,30 +16,18 @@ class TripsController extends Controller
         return view('adminFold.trips');
     }
 
-    public function viewTripsVisas()
-    {
-        $clients = User::where('role', 'user')->get();
-    $destinations = Destination::with('city', 'state')->get();
-    $units = Unit::all(); // Si también necesitas las unidades en la vista
-    return view('adminFold.viajesVisa', compact('clients', 'destinations', 'units'));
-    }
-
     public function getTrips(Request $request)
 {
     try {
-        $order = $request->query('order', 'asc'); 
-
-        $trips = Trip::with(['destination', 'costTabulator', 'user'])
-            ->orderBy('idtrips', $order)
-            ->get(); 
-
-        return response()->json($trips); 
+        $order = $request->query('order', 'asc');
+        $trips = Trip::with(['destination', 'costTabulator', 'user', 'associate', 'associates'])->orderBy('idtrips', $order)->get();
+        return response()->json($trips);
     } catch (\Exception $e) {
-        // Log the exception message
-        \Log::error('Error fetching trips: ' . $e->getMessage());
-        return response()->json(['error' => 'Error fetching trips'], 500);
+        return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
+
 
 
 public function getTrip($idtrips)
@@ -51,27 +39,33 @@ public function getTrip($idtrips)
     return response()->json($trip);
 }
 
-    public function insertTrip(Request $request)
+public function insertTrip(Request $request)
 {
     $validated = $request->validate([
         'iddestinations' => 'required|integer',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date',
-        'duration' => 'required|string|max:60', 
-        'idcost_tabulators' => 'required|integer',
         'idusers' => 'required|integer',
-        'idcontracts' => 'nullable|integer', 
+        'idassociates' => 'required|array',
+        'idcost_tabulators' => 'required|integer',
+        'bus_seats' => 'required|numeric',
+        'telephone_number' => 'required|numeric',
+        'payment_advance' => 'required|numeric',
+        'total' => 'required|numeric',
+        'observations' => 'required|string|max:60',
     ]);
 
     $trip = new Trip;
     $trip->destinations_iddestinations = $validated['iddestinations'];
-    $trip->start_date = $validated['start_date'];
-    $trip->end_date = $validated['end_date'];
-    $trip->duration = $validated['duration'];
-    $trip->cost_tabulators_idcost_tabulators = $validated['idcost_tabulators'];
     $trip->users_id = $validated['idusers'];
-    $trip->contracts_idcontracts = $validated['idcontracts'] ?? null; 
+    $trip->cost_tabulators_idcost_tabulators = $validated['idcost_tabulators'];
+    $trip->bus_seats = $validated['bus_seats'];
+    $trip->telephone_number = $validated['telephone_number'];
+    $trip->payment_advance = $validated['payment_advance'];
+    $trip->total = $validated['total'];
+    $trip->observations = $validated['observations'];
     $trip->save();
+
+    // Sincronizar los acompañantes seleccionados con el viaje
+    $trip->associates()->sync($validated['idassociates']);
 
     return response()->json($trip);
 }
@@ -80,29 +74,37 @@ public function updateTrip(Request $request, $idtrips)
 {
     $validated = $request->validate([
         'iddestinations' => 'required|integer',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date',
-        'duration' => 'required|string|max:60', 
-        'idcost_tabulators' => 'required|integer',
         'idusers' => 'required|integer',
-        'idcontracts' => 'nullable|integer', 
+        'idassociates' => 'required|array',
+        'idcost_tabulators' => 'required|integer',
+        'bus_seats' => 'numeric',
+        'telephone_number' => 'required|numeric',
+        'payment_advance' => 'required|numeric',
+        'total' => 'numeric',
+        'observations' => 'required|string|max:60',
     ]);
 
     $trip = Trip::find($idtrips);
     if (!$trip) {
         return response()->json(['error' => 'Trip not found'], 404);
     }
+
     $trip->destinations_iddestinations = $validated['iddestinations'];
-    $trip->start_date = $validated['start_date'];
-    $trip->end_date = $validated['end_date'];
-    $trip->duration = $validated['duration'];
-    $trip->cost_tabulators_idcost_tabulators = $validated['idcost_tabulators'];
     $trip->users_id = $validated['idusers'];
-    $trip->contracts_idcontracts = $validated['idcontracts'] ?? null; 
+    $trip->cost_tabulators_idcost_tabulators = $validated['idcost_tabulators'];
+    $trip->bus_seats = $validated['bus_seats'];
+    $trip->telephone_number = $validated['telephone_number'];
+    $trip->payment_advance = $validated['payment_advance'];
+    $trip->total = $validated['total'];
+    $trip->observations = $validated['observations'];
     $trip->save();
+
+    // Sincronizar los acompañantes seleccionados con el viaje
+    $trip->associates()->sync($validated['idassociates']);
 
     return response()->json($trip);
 }
+
 
 
 public function deleteTrip($idtrips)
@@ -130,5 +132,11 @@ public function deleteTrip($idtrips)
     {
         $cost_tabulators = Cost_Tabulator::all();
         return response()->json($cost_tabulators);
+    }
+
+    public function getAssociates()
+    {
+        $associates = Associate::all();
+        return response()->json($associates);
     }
 }

@@ -118,7 +118,7 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -139,16 +139,26 @@
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cities') }}">
+                                <i class="bi bi-building"></i> Ciudades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('states') }}">
+                                <i class="bi bi-map-fill"></i> Estados
+                            </a>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -159,29 +169,47 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('comentarios') }}">
+                                <i class="bi bi-chat-left-dots"></i> Comentarios
+                            </a>
+                        </li> -->
+                        
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
+                            </a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
             <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Clientes</h1>
+                    <h1 class="h2">Usuarios</h1>
                 </div>
                 
                 <div class="d-flex justify-content-between mb-3">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" onclick="clearForm()">
-                        <i class="bi bi-plus-lg"></i> Añadir Cliente
-                    </button>
                     <div class="input-group w-50">
                         <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
                         <div class="input-group-append">
@@ -189,6 +217,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <div class="table-responsive">
                     <table class="table table-sm table-striped table-hover">
@@ -201,7 +230,6 @@
                                 <th>Fecha Nacimiento</th>
                                 <th>Fecha Creación</th>
                                 <th>Fecha Actualización</th>
-                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="userTableBody">
@@ -259,122 +287,67 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetchUsers();
-            
-            // Función para guardar usuario
-            window.saveUser = function () {
-                const form = document.getElementById('userForm');
-                const formData = new FormData(form);
-                const userId = document.getElementById('userId').value;
+       document.addEventListener('DOMContentLoaded', function () {
+    fetchUsers();
 
-                const url = userId ? `/users/${userId}` : '/users';
-                const method = userId ? 'PUT' : 'POST';
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-btn');
+    const tableBody = document.getElementById('userTableBody');
 
-                fetch(url, {
-                    method: method,
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    $('#userModal').modal('hide');
-                    fetchUsers();
-                })
-                .catch(error => console.error('Error:', error));
-            };
+    searchButton.addEventListener('click', function () {
+        const searchTerm = searchInput.value.toLowerCase();
+        const rows = tableBody.querySelectorAll('tr');
 
-            // Función para obtener usuarios
-            function fetchUsers(order = 'asc') {
-                fetch(`/get/users?order=${order}`)
-                .then(response => response.json())
-                .then(data => {
-                    renderUsers(data);
-                })
-                .catch(error => console.error('Error:', error));
-            }
-
-            // Función para renderizar usuarios en la tabla
-            function renderUsers(data) {
-                const tableBody = document.getElementById('userTableBody');
-                tableBody.innerHTML = '';
-                data.forEach(user => {
-                    tableBody.innerHTML += `
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.name}</td>
-                            <td>${user.last_name}</td>
-                            <td>${user.email}</td>
-                            <td>${user.birthdate}</td>
-                            <td>${user.created_at}</td>
-                            <td>${user.updated_at}</td>
-                            <td>
-                                <button class="btn btn-warning" onclick="editUser(${user.id})"><i class="bi bi-pencil-fill"></i></button>
-                                <button class="btn btn-danger" onclick="deleteUser(${user.id})"><i class="bi bi-backspace-fill"></i></button>
-                            </td>
-                        </tr>
-                    `;
-                });
-            }
-
-            // Función para limpiar el formulario
-            window.clearForm = function () {
-                document.getElementById('userForm').reset();
-                document.getElementById('userId').value = '';
-                document.getElementById('userModalLabel').textContent = 'Añadir Cliente';
-            };
-
-            // Función para editar usuario
-            window.editUser = function (userId) {
-                fetch(`/users/${userId}/edit`)
-                .then(response => response.json())
-                .then(user => {
-                    document.getElementById('name').value = user.name;
-                    document.getElementById('last_name').value = user.last_name;
-                    document.getElementById('email').value = user.email;
-                    document.getElementById('birthdate').value = user.birthdate;
-                    document.getElementById('userId').value = user.id;
-                    document.getElementById('userModalLabel').textContent = 'Editar Cliente';
-                    $('#userModal').modal('show');
-                })
-                .catch(error => console.error('Error:', error));
-            };
-
-            // Función para eliminar usuario
-            window.deleteUser = function (userId) {
-                if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-                    fetch(`/users/${userId}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(() => {
-                        fetchUsers();
-                    })
-                    .catch(error => console.error('Error:', error));
+        rows.forEach(row => {
+            const nameCell = row.querySelector('td:nth-child(2)');
+            if (nameCell) {
+                const nameText = nameCell.textContent.toLowerCase();
+                if (nameText.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
                 }
-            };
-
-            // Función de búsqueda
-            document.getElementById('search-btn').addEventListener('click', function () {
-                const searchQuery = document.getElementById('search-input').value.toLowerCase();
-                fetch(`/get/users?search=${searchQuery}`)
-                .then(response => response.json())
-                .then(data => {
-                    renderUsers(data);
-                })
-                .catch(error => console.error('Error:', error));
-            });
-
-            // Actualizar los usuarios cuando se carga la página
-            fetchUsers();
+            }
         });
+    });
+
+    searchInput.addEventListener('input', function () {
+        searchButton.click();
+    });
+
+    // Fetch users and render table
+    function fetchUsers(order = 'asc') {
+        fetch(`/get/users?order=${order}`)
+            .then(response => response.json())
+            .then(data => {
+                renderUsers(data);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function renderUsers(data) {
+        tableBody.innerHTML = '';
+        data.forEach(user => {
+            let createdAt = new Date(user.created_at).toLocaleString(); 
+            let updatedAt = new Date(user.updated_at).toLocaleString(); 
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.last_name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.birthdate}</td>
+                    <td>${createdAt}</td>
+                    <td>${updatedAt}</td>
+                </tr>
+            `;
+        });
+    }
+
+    // Fetch and display users on page load
+    fetchUsers();
+});
+
     </script>
 </body>
 </html>

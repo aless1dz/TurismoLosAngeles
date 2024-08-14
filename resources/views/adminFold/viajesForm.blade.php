@@ -118,7 +118,7 @@
         <div class="row">
         <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -139,11 +139,11 @@
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('associates') }}">
                                 <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
@@ -184,16 +184,7 @@
                                 <i class="bi bi-chat-left-dots"></i> Comentarios
                             </a>
                         </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
-                            </a>
-                        </li>
+                        
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('visas') }}">
                                 <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
@@ -216,6 +207,7 @@
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <h1 class="h2">Solicitud de Viajes</h1>
+                <a href="{{ route('citas') }}" class="btn btn-primary">Menu</a>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                     <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
