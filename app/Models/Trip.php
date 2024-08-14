@@ -12,14 +12,15 @@ class Trip extends Model
     protected $primaryKey = 'idtrips';
     
     protected $fillable = [
+        'destinations_iddestinations',
         'users_id',
-        'assocaites_idassociates',
-        'bus_seats',
-        'start_date',
-        'end_date',
-        'duration',
+        'associates_idassociates',
         'cost_tabulators_idcost_tabulators',
-        'contracts_idcontracts',
+        'bus_seats',
+        'telephone_number',
+        'payment_advance',
+        'total',
+        'observations',
     ];
 
     public function destination()
@@ -37,5 +38,14 @@ class Trip extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
-   
+    public function associate()
+    {
+        return $this->belongsTo(Associate::class, 'associates_idassociates');
+    }
+
+       // Trip.php
+public function associates()
+{
+    return $this->belongsToMany(Associate::class, 'trip_associate', 'trips_idtrips', 'associates_idassociates');
+}
 }

@@ -206,7 +206,7 @@
 
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                <h1 class="h2">Viajes (Historial)</h1>
+                <h1 class="h2">Viajes</h1>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tripModal" onclick="clearForm()">
                         Añadir Viaje
@@ -226,11 +226,14 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Destino</th>
-                                <th>Fecha de Inicio</th>
-                                <th>Fecha de Fin</th>
-                                <th>Duración (Días)</th>
-                                <th>Costo (Unico o Mayoreo)</th>
-                                <th>Usuario</th>
+                                <th>Cliente</th>
+                                <th>Acompañantes</th>
+                                <th>Precios</th>
+                                <th>Asientos de Autobús</th>
+                                <th>Numero de Telefono</th>
+                                <th>Abono de Pago</th>
+                                <th>Total</th>
+                                <th>Observaciones</th>
                                 <th>Fecha de Creacion</th>
                                 <th>Fecha de Actualizacion</th>
                                 <th>Editar/Eliminar</th>
@@ -263,36 +266,56 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="idtrips" name="idtrips">
-                        <input type="hidden" id="page" name="page">
                         <div class="form-group">
                             <label for="iddestinations">Destino</label>
                             <select class="form-control" id="iddestinations" name="iddestinations" required>
-                                <option value="" disabled selected>Seleccione un destino</option>
+                                <option value="">Seleccione un Destino</option>
                                 
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="start_date">Fecha de Inicio</label>
-                            <input type="date" class="form-control" id="start_date" name="start_date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="end_date">Fecha de Fin</label>
-                            <input type="date" class="form-control" id="end_date" name="end_date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="duration">Duración (Días)</label>
-                            <input type="number" class="form-control" id="duration" name="duration" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="idcost_tabulators">Costo (Unico o Mayoreo)</label>
-                            <select class="form-control" id="idcost_tabulators" name="idcost_tabulators" required>
-                                <option value="" disabled selected>Seleccione un costo</option>
+                            <label for="idusers">Cliente</label>
+                            <select class="form-control" id="idusers" name="idusers" required>
+                                <option value="" >Seleccione un Cliente</option>
                                 <!-- Las opciones serán cargadas aquí -->
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="idusers">Cliente</label>
-                            <select class="form-control" id="idusers" name="idusers" required></select>
+                            <label for="idassociates">Acompañantes</label>
+                            <select class="form-control" id="idassociates" name="idassociates[]" multiple required>
+                                <!-- Las opciones serán cargadas aquí -->
+                            </select>
+                            <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#associateModal">
+                                Añadir Acompañante
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="idcost_tabulators">Costo (Unico o Mayoreo)</label>
+                            <select class="form-control" id="idcost_tabulators" name="idcost_tabulators" required>
+                                <option value="">Seleccione un Costo</option>
+                                <!-- Las opciones serán cargadas aquí -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bus_seats">Asientos de Autobús</label>
+                            <input type="number" class="form-control" id="bus_seats" name="bus_seats" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone_number">Número de Telefono</label>
+                            <input type="number" class="form-control" id="telephone_number" name="telephone_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment_advance">Abono de Pago</label>
+                            <input type="number" class="form-control" id="payment_advance" name="payment_advance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total</label>
+                            <input type="number" class="form-control" id="total" name="total" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="observations">Observaciones</label>
+                            <input type="text" class="form-control" id="observations" name="observations" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -303,22 +326,109 @@
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="associateModal" tabindex="-1" aria-labelledby="associateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="associateForm">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="associateModalLabel">Añadir Acompañante</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Apellido</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdate">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Acompañante</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         var trips = [];
-        var currentPage = 1;
-        var itemsPerPage = 5;
-
+        var destinations =[];
+        var cost_tabulators = [];
+        var users =[];
+        var associates =[];
         $(document).ready(function () {
             fetchTrips();
             fetchCost_Tabulators();
             fetchDestinations();
             fetchUsers();
+            fetchAssociates();
 
+            function updateBusSeatsAndTotal() {
+    // Obtener el número de acompañantes seleccionados
+    let numberOfAssociates = $('#idassociates option:selected').length;
+
+    // Comprobar si se ha seleccionado un cliente
+    let userSelected = $('#idusers').val() ? 1 : 0;
+
+    // El número total de asientos es igual al número de acompañantes más el cliente (si está seleccionado)
+    let totalSeats = numberOfAssociates + userSelected;
+
+    // Actualizar el campo de asientos
+    $('#bus_seats').val(totalSeats);
+
+    // Obtener el precio unitario del costo seleccionado
+    let unitPrice = $('#idcost_tabulators option:selected').text().split(':')[1];
+    unitPrice = parseFloat(unitPrice); // Convertir a número
+
+    // Verificar si el unitPrice es un número válido
+    if (isNaN(unitPrice)) {
+        unitPrice = 0; // Si no es un número, asignar 0
+    }
+
+    // Calcular el total
+    let totalAmount = totalSeats * unitPrice;
+
+    // Actualizar el campo de total
+    $('#total').val(totalAmount.toFixed(2));
+}
+
+// Llamar a la función cada vez que se seleccionan o deseleccionan acompañantes, o se selecciona un costo
+$('#idassociates, #idusers, #idcost_tabulators').on('change', function () {
+    updateBusSeatsAndTotal();
+});
+
+// Llamar a la función al cargar el formulario para calcular los asientos y el total iniciales
+updateBusSeatsAndTotal();
+
+
+            $('#associateForm').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/insert/associate', // Ruta para crear un nuevo acompañante
+            method: 'POST',
+            data: $('#associateForm').serialize(),
+            success: function (response) {
+                $('#associateModal').modal('hide');
+                fetchAssociates(); // Actualiza la lista de acompañantes en el formulario principal
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
             $('#tripForm').on('submit', function (e) {
                 e.preventDefault();
 
@@ -341,14 +451,6 @@
             });
         });
 
-        function fetchTrips(page = 1) {
-            currentPage = page;
-            $.get(`/get/trips?page=${page}`, function (data) {
-                trips = data.trips;
-                renderTrips(trips);
-                setupPagination(data.total);
-            });
-        }
 
         function fetchDestinations() {
             $.getJSON('/destinations/all', function (data) {
@@ -371,35 +473,60 @@
             });
         }
 
-        function renderTrips(data) {
-            let tableBody = $('#tripTableBody');
-            tableBody.empty();
-            data.forEach(trip => {
-                let createdAt = new Date(trip.created_at).toLocaleString();
-                let updatedAt = new Date(trip.updated_at).toLocaleString();
-                let destinationInfo = trip.destination ? `${trip.destination.destination_acronym}` : 'N/A';
-                let costInfo = trip.cost_tabulator ? `${trip.cost_tabulator.unit_price}  ${trip.cost_tabulator.bulk_price}` : 'N/A';
-                let userInfo = trip.user ? `${trip.user.name} ${trip.user.last_name}` : 'N/A';
-
-                tableBody.append(`
-                    <tr>
-                        <td>${trip.idtrips}</td>
-                        <td>${destinationInfo}</td>
-                        <td>${trip.start_date}</td>
-                        <td>${trip.end_date}</td>
-                        <td>${trip.duration}</td>
-                        <td>${costInfo}</td>
-                        <td>${userInfo}</td>
-                        <td>${createdAt}</td>
-                        <td>${updatedAt}</td>
-                        <td>
-                            <button class="btn btn-warning" onclick="editTrip(${trip.idtrips})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteTrip(${trip.idtrips})"><i class="bi bi-backspace-fill"></i></button>
-                        </td>
-                    </tr>
-                `);
+        function fetchAssociates(){
+            $.getJSON('/associates/all', function (data) {
+                associates = data;
+                renderAssociates(associates);
             });
         }
+        function fetchTrips() {
+    $.getJSON('/trips/all', function (data) {
+        console.log(data); 
+        trips = data;
+        renderTrips(trips);
+    });
+}
+
+function renderTrips(data) {
+    let tableBody = $('#tripTableBody');
+    tableBody.empty();
+    data.forEach(trip => {
+        let createdAt = new Date(trip.created_at).toLocaleString();
+        let updatedAt = new Date(trip.updated_at).toLocaleString();
+        let destinationInfo = trip.destination ? `${trip.destination.destination_acronym}` : 'N/A';
+
+        // Asegurarnos de que `trip.associates` sea un array antes de mapearlo
+        let associateInfo = Array.isArray(trip.associates) && trip.associates.length > 0 
+            ? trip.associates.map(a => `${a.name} ${a.last_name}`).join(', ') 
+            : 'N/A'; 
+
+        let costInfo = trip.cost_tabulator ? `${trip.cost_tabulator.price_description}  ${trip.cost_tabulator.unit_price} ` : 'N/A';
+        let userInfo = trip.user ? `${trip.user.name} ${trip.user.last_name}` : 'N/A';
+
+        tableBody.append(`
+            <tr>
+                <td>${trip.idtrips}</td>
+                <td>${destinationInfo}</td>
+                <td>${userInfo}</td>
+                <td>${associateInfo}</td>
+                <td>${costInfo}</td>
+                <td>${trip.bus_seats}</td>
+                <td>${trip.telephone_number}</td>
+                <td>${trip.payment_advance}</td>
+                <td>${trip.total}</td>
+                <td>${trip.observations}</td>
+                <td>${createdAt}</td>
+                <td>${updatedAt}</td>
+                <td>
+                    <button class="btn btn-warning" onclick="editTrip(${trip.idtrips})"><i class="bi bi-pencil-fill"></i></button>
+                    <button class="btn btn-danger" onclick="deleteTrip(${trip.idtrips})"><i class="bi bi-backspace-fill"></i></button>
+                </td>
+            </tr>
+        `);
+    });
+}
+
+
 
         function renderDestinations(destinations) {
             let destinationSelect = $('#iddestinations');
@@ -417,32 +544,24 @@
             });
         }
 
+        function renderAssociates(associates) {
+            let associateSelect = $('#idassociates');
+            associateSelect.empty();
+            associates.forEach(associate => {
+                associateSelect.append(`<option value="${associate.idassociates}">${associate.name} ${associate.last_name} ${associate.birthdate}</option>`);
+            });
+        }
+
+
         function renderCost_Tabulators(cost_tabulators) {
             let cost_tabulatorSelect = $('#idcost_tabulators');
             cost_tabulatorSelect.empty();
             cost_tabulators.forEach(cost_tabulator => {
-                cost_tabulatorSelect.append(`<option value="${cost_tabulator.idcost_tabulators}">${cost_tabulator.unit_price}:${cost_tabulator.bulk_price}</option>`);
+                cost_tabulatorSelect.append(`<option value="${cost_tabulator.idcost_tabulators}">${cost_tabulator.price_description}:${cost_tabulator.unit_price}</option>`);
             });
         }
 
-        function setupPagination(totalItems) {
-            let pageCount = Math.ceil(totalItems / itemsPerPage);
-            let pagination = $('#pagination');
-            pagination.empty();
 
-            for (let i = 1; i <= pageCount; i++) {
-                pagination.append(`
-                    <li class="page-item ${i === currentPage ? 'active' : ''}">
-                        <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
-                    </li>
-                `);
-            }
-        }
-
-        function goToPage(page) {
-            currentPage = page;
-            fetchTrips(page);
-        }
 
         function applyFilters() {
             let searchValue = $('#search-input').val().toLowerCase();
@@ -464,12 +583,14 @@
             $.get(`/get/trip/${id}`, function (trip) {
                 $('#idtrips').val(trip.idtrips);
                 $('#iddestinations').val(trip.iddestinations);
-                $('#start_date').val(trip.start_date);
-                $('#end_date').val(trip.end_date);
-                $('#duration').val(trip.duration);
+                $('#idusers').val(trip.idusers );
+                $('#idassociates').val(trip.idassociates);
                 $('#idcost_tabulators').val(trip.idcost_tabulators);
-                $('#idusers').val(trip.idusers || '');
-                $('#page').val(currentPage);
+                $('#bus_seats').val(trip.bus_seats);
+                $('#telephone_number').val(trip.telephone_number);
+                $('#payment_advance').val(trip.payment_advance);
+                $('#total').val(trip.total);
+                $('#observations').val(trip.observations);
                 $('#tripModal').modal('show');
             });
         }
@@ -482,7 +603,7 @@
                 },
                 method: 'DELETE',
                 success: function () {
-                    fetchTrips(currentPage);
+                    fetchTrips();
                 },
                 error: function (error) {
                     console.log(error);
@@ -498,7 +619,6 @@
 
         function clearForm() {
             $('#idtrips').val('');
-            $('#page').val(currentPage);
             $('#tripForm')[0].reset();
         }
     </script>
