@@ -164,11 +164,11 @@
                                 <i class="bi bi-map"></i> Destinos
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('cost_tabulators') }}">
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
-                        </li> -->
+                        </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('pasaportes') }}">
                                 <i class="bi bi-card-checklist"></i> Citas Pasaportes
@@ -207,6 +207,7 @@
             <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
                 <h1 class="h2">Solicitud de Viajes</h1>
+                <a href="{{ route('citas') }}" class="btn btn-primary">Menu</a>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                     <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
