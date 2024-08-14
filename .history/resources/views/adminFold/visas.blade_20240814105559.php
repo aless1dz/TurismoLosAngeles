@@ -65,6 +65,35 @@
         .btn:hover {
             background-color: #1f4aaa;
         }
+        .btn-warning, .btn-danger {
+            padding: 0.375rem 0.75rem;
+        }
+        .btn-warning i, .btn-danger i {
+            font-size: 1.2rem;
+        }
+        .modal-content {
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .modal-header {
+            background-color: #2255c4;
+            color: #ffffff;
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #2255c4;
+        }
+        .modal-footer .btn-secondary {
+            background-color: #7f8c8d;
+        }
+        .modal-footer .btn-primary {
+            background-color: #2255c4;
+            border-color: #2255c4;
+        }
     </style>
 </head>
 <body>
@@ -137,11 +166,11 @@
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <meta name="csrf-token" content="{{ csrf_token() }}">
-            <h1 class="h2">Citas Renta de Unidades</h1>
+            <h1 class="h2">Citas Visas</h1>
             <a href="{{ route('citas') }}" class="btn btn-primary">Menu</a>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="input-group w-50">
-                    <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
+                    <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
                     <div class="input-group-append">
                         <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                     </div>
@@ -165,51 +194,51 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Correo Electrónico</th>
-                            <th>Tipo de Unidad</th>
+                            <th>Tipo de Visa</th>
                             <th>Fecha</th>
-                            <th>Pasajeros</th>
+                            <th>Personas</th>
+                            <th>Estado</th>
                             <th>Fecha de Envío</th>
-                            <th>Estado</th> <!-- Columna de estado añadida -->
-                            <th>Acciones</th>
-
+                            <th>Editar Estado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($rentas as $renta)
+                        @foreach($visas as $visa)
                             <tr>
-                                <td>{{ $renta->user_name }}</td>
-                                <td>{{ $renta->user_email }}</td>
-                                <td>{{ $renta->type_transport }}</td>
-                                <td>{{ $renta->user_date }}</td>
-                                <td>{{ $renta->user_pasajeros }}</td>
-                                <td>{{ $renta->created_at}}</td>
-                                <td>{{ ucfirst($renta->state_form) }}</td> <!-- Mostrar el estado -->
+                                <td>{{ $visa->user_name }}</td>
+                                <td>{{ $visa->user_email }}</td>
+                                <td>{{ $visa->type_visa }}</td>
+                                <td>{{ $visa->user_date }}</td>
+                                <td>{{ $visa->user_adult }}</td>
+                                <td>{{ $visa->state_form }}</td>
+                                <td>{{ $visa->created_at }}</td>
+                                <td>{{ ucfirst($visas->state_form) }}</td> <!-- Columna de estado añadida -->
+
                                 <td>
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateStatusModal{{ $renta->idformalities }}">
-                            <i class="bi bi-pencil-square"></i> Actualizar Estado
-                        </button>
-                    </td> 
+                                    <button class="btn btn-warning btn-sm">
+                                        Editar <i class="bi bi-pencil-fill"></i>
+                                    </button>
+                                </td>
                             </tr>
-                             <!-- Modal -->
-                <div class="modal fade" id="updateStatusModal{{ $renta->idformalities }}" tabindex="-1" role="dialog" aria-labelledby="updateStatusModalLabel{{ $renta->idformalities }}" aria-hidden="true">
+                            <div class="modal fade" id="updateStatusModal{{ $pasaporte->idformalities }}" tabindex="-1" role="dialog" aria-labelledby="updateStatusModalLabel{{ $pasaporte->idformalities }}" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="updateStatusModalLabel{{ $renta->idformalities }}">Actualizar Estado de Cita</h5>
+                                <h5 class="modal-title" id="updateStatusModalLabel{{ $pasaporte->idformalities }}">Actualizar Estado de Cita</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="POST" action="{{ route('formalities.updateStatusRentas', $renta->idformalities) }}">
+                            <form method="POST" action="{{ route('formalities.updateStatusPasaporte', $pasaporte->idformalities) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="state_form">Estado</label>
                                         <select name="state_form" id="state_form" class="form-control">
-                                            <option value="pendiente" {{ $renta->state_form == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-                                            <option value="aceptada" {{ $renta->state_form == 'aceptada' ? 'selected' : '' }}>Aceptada</option>
-                                            <option value="cancelada" {{ $renta->state_form == 'cancelada' ? 'selected' : '' }}>Cancelada</option>
+                                            <option value="pendiente" {{ $pasaporte->state_form == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
+                                            <option value="aceptada" {{ $pasaporte->state_form == 'aceptada' ? 'selected' : '' }}>Aceptada</option>
+                                            <option value="cancelada" {{ $pasaporte->state_form == 'cancelada' ? 'selected' : '' }}>Cancelada</option>
                                         </select>
 
                                     </div>
@@ -221,7 +250,12 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -229,57 +263,56 @@
         </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-btn');
-    const startDateInput = document.getElementById('start-date');
-    const endDateInput = document.getElementById('end-date');
-    const filterDateButton = document.getElementById('filter-date-btn');
-    const table = document.querySelector('table tbody');
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-btn');
+        const startDateInput = document.getElementById('start-date');
+        const endDateInput = document.getElementById('end-date');
+        const filterDateButton = document.getElementById('filter-date-btn');
+        const table = document.querySelector('table tbody');
 
-    function filterRows() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
-        const rows = table.querySelectorAll('tr');
+        function filterRows() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const startDate = startDateInput.value;
+            const endDate = endDateInput.value;
+            const rows = table.querySelectorAll('tr');
 
-        rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(1)');
-            const dateCell = row.querySelector('td:nth-child(4)');
-            const dateText = dateCell.textContent;
+            rows.forEach(row => {
+                const nameCell = row.querySelector('td:nth-child(1)');
+                const dateCell = row.querySelector('td:nth-child(4)');
+                const dateText = dateCell.textContent;
 
-            let match = true;
+                let match = true;
 
-            if (searchTerm && nameCell) {
-                const nameText = nameCell.textContent.toLowerCase();
-                if (!nameText.includes(searchTerm)) {
+                if (searchTerm && nameCell) {
+                    const nameText = nameCell.textContent.toLowerCase();
+                    if (!nameText.includes(searchTerm)) {
+                        match = false;
+                    }
+                }
+
+                if (startDate && dateText < startDate) {
                     match = false;
                 }
-            }
 
-            if (startDate && dateText < startDate) {
-                match = false;
-            }
+                if (endDate && dateText > endDate) {
+                    match = false;
+                }
 
-            if (endDate && dateText > endDate) {
-                match = false;
-            }
+                row.style.display = match ? '' : 'none';
+            });
+        }
 
-            row.style.display = match ? '' : 'none';
-        });
-    }
+        searchButton.addEventListener('click', filterRows);
+        filterDateButton.addEventListener('click', filterRows);
 
-    searchButton.addEventListener('click', filterRows);
-    filterDateButton.addEventListener('click', filterRows);
-
-    searchInput.addEventListener('input', filterRows);
-    startDateInput.addEventListener('change', filterRows);
-    endDateInput.addEventListener('change', filterRows);
-});
+        searchInput.addEventListener('input', filterRows);
+    });
 </script>
 </body>
 </html>

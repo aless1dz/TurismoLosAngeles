@@ -121,45 +121,86 @@
         <nav class="col-md-2 d-none d-md-block sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/dashboard">
-                            <i class="bi bi-speedometer2"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('trips') }}">
-                            <i class="bi bi-geo-alt"></i> Viajes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('citas') }}">
-                            <i class="bi bi-calendar3"></i> Citas
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}">
-                            <i class="bi bi-people"></i> Gestionar Usuarios
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users') }}">
-                            <i class="bi bi-people-fill"></i> Clientes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('units') }}">
-                            <i class="bi bi-bus-front-fill"></i> Unidades
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('destinations') }}">
-                            <i class="bi bi-map"></i> Destinos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                            <i class="bi bi-currency-dollar"></i> Tabla de Costos
-                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
+                                <i class="bi bi-speedometer2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('trips') }}">
+                                <i class="bi bi-geo-alt"></i> Viajes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('citas') }}">
+                                <i class="bi bi-calendar3"></i> Citas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users') }}">
+                                <i class="bi bi-people-fill"></i> Clientes
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('associates') }}">
+                                <i class="bi bi-person-hearts"></i> Acompañantes
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('units') }}">
+                                <i class="bi bi-bus-front-fill"></i> Unidades
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cities') }}">
+                                <i class="bi bi-building"></i> Ciudades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('states') }}">
+                                <i class="bi bi-map-fill"></i> Estados
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                <i class="bi bi-map"></i> Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pasaportes') }}">
+                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cotizaciones') }}">
+                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="bi bi-airplane"></i> Gestionar Usuarios
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('visas') }}">
+                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('destinations') }}">
+                                Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                                Tabla de Costos
+                            </a>
+                        </li> -->
                     </ul>
             </div>
         </nav>
@@ -171,86 +212,42 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="input-group w-50">
                     <input type="text" id="search-input" class="form-control mr-2" placeholder="Buscar por nombre...">
-                    <div class="input-group-append">
-                        <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
-                    </div>
+                    <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                 </div>
                 
                 <div class="table-responsive">
-    <table class="table table-sm table-striped table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo Electrónico</th>
-                <th>Tipo de Visa</th>
-                <th>Fecha</th>
-                <th>Personas</th>
-                <th>Fecha de Envío</th>
-                <th>Estado</th> <!-- Columna de estado añadida -->
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($visas as $visa)
-                <tr>
-                    <td>{{ $visa->idformalities }}</td>
-                    <td>{{ $visa->user_name }}</td>
-                    <td>{{ $visa->user_email }}</td>
-                    <td>{{ $visa->type_visa }}</td>
-                    <td>{{ $visa->user_date }}</td>
-                    <td>{{ $visa->user_adult }}</td>
-                    <td>{{ $visa->created_at }}</td>
-                    <td>{{ ucfirst($visa->state_form) }}</td> <!-- Mostrar el estado -->
-                    
-                    <td>
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateStatusModal{{ $visa->idformalities }}">
-                            <i class="bi bi-pencil-square"></i> Actualizar Estado
-                        </button>
-                    </td> 
-                </tr>
-
-                <!-- Modal -->
-                <div class="modal fade" id="updateStatusModal{{ $visa->idformalities }}" tabindex="-1" role="dialog" aria-labelledby="updateStatusModalLabel{{ $visa->idformalities }}" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="updateStatusModalLabel{{ $visa->idformalities }}">Actualizar Estado de Cita</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form method="POST" action="{{ route('formalities.updateStatusVisas', $visa->idformalities) }}">
-                                @csrf
-                                @method('PUT')
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="state_form">Estado</label>
-                                        <select name="state_form" id="state_form" class="form-control">
-                                            <option value="pendiente" {{ $visa->state_form == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-                                            <option value="aceptada" {{ $visa->state_form == 'aceptada' ? 'selected' : '' }}>Aceptada</option>
-                                            <option value="cancelada" {{ $visa->state_form == 'cancelada' ? 'selected' : '' }}>Cancelada</option>
-                                        </select>
-
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <table class="table table-sm table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo Electrónico</th>
+                                <th>Tipo de Visa</th>
+                                <th>Fecha</th>
+                                <th>Personas</th>
+                                <th>Estado</th>
+                                <th>Fecha de Envío</th>
+                                <th>Estado</th> <!-- Columna de estado añadida -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($visas as $visa)
+                                <tr>
+                                    <td>{{ $visa->user_name }}</td>
+                                    <td>{{ $visa->user_email }}</td>
+                                    <td>{{ $visa->type_visa }}</td>
+                                    <td>{{ $visa->user_date }}</td>
+                                    <td>{{ $visa->user_adult }}</td>
+                                    <td>{{ $visa->state_form }}</td>
+                                    <td>{{ $visa->created_at}}</td>
+                                    <td>{{ ucfirst($visa->state_form) }}</td> <!-- Mostrar el estado -->
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-
             </div>
         </div>
     </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

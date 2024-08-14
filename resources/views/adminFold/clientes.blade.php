@@ -136,31 +136,21 @@
                                 <i class="bi bi-calendar3"></i> Citas
                             </a>
                         </li>
+			<li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="bi bi-people"></i> Gestionar Usuarios
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">
                                 <i class="bi bi-people-fill"></i> Clientes
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-person-hearts"></i> Acompañantes
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('units') }}">
                                 <i class="bi bi-bus-front-fill"></i> Unidades
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                <i class="bi bi-building"></i> Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                <i class="bi bi-map-fill"></i> Estados
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('destinations') }}">
                                 <i class="bi bi-map"></i> Destinos
@@ -171,42 +161,6 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="bi bi-airplane"></i> Gestionar Usuarios
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pasaportes') }}">
-                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cotizaciones') }}">
-                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comentarios') }}">
-                                <i class="bi bi-chat-left-dots"></i> Comentarios
-                            </a>
-                        </li> -->
-                        
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('visas') }}">
-                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>

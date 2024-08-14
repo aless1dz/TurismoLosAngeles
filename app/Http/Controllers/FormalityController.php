@@ -139,7 +139,7 @@ return redirect()->back()->with('success', 'Estado actualizado correctamente.');
                 'form_type' => $request->input('form_type', 'pasaporte'),
             ];
             
-            Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+            Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
             
             DB::commit(); 
 
@@ -188,7 +188,7 @@ return redirect()->back()->with('success', 'Estado actualizado correctamente.');
             'form_type' => $request->input('form_type', 'cotizacion'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
        
 
         DB::commit(); 
@@ -233,7 +233,7 @@ return redirect()->back()->with('success', 'Estado actualizado correctamente.');
             'form_type' => $request->input('form_type', 'comentarios'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
 
         DB::commit(); 
 
@@ -290,7 +290,7 @@ return redirect()->back()->with('success', 'Estado actualizado correctamente.');
             'form_type' => $request->input('form_type', 'renta'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
         return response()->json(['success' => true, 'message' => 'Solicitud de Cita para Renta enviada exitosamente. Pronto nos comunicaremos contigo!']);
@@ -344,7 +344,7 @@ return redirect()->back()->with('success', 'Estado actualizado correctamente.');
             'form_type' => $request->input('form_type', 'viajes'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
         return response()->json(['success' => true, 'message' => 'Solicitud de viaje enviada exitosamente. Pronto nos comunicaremos contigo!']);
@@ -394,7 +394,7 @@ return redirect()->back()->with('success', 'Estado actualizado correctamente.');
             'form_type' => $request->input('form_type', 'visas'),
         ];
         
-        Mail::to('sifuentesdelacruzalex@gmail.com')->send(new AppointmentMail($details));
+        Mail::to('sifuentesmarcelo78@gmail.com')->send(new AppointmentMail($details));
         DB::commit(); 
 
         return response()->json(['success' => true, 'message' => 'Solicitud de cita enviada exitosamente. Pronto nos comunicaremos contigo!']);

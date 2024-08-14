@@ -120,7 +120,7 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -132,18 +132,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
+                            <a class="nav-link" href="{{ route('citas') }}">
                                 <i class="bi bi-calendar3"></i> Citas
+                            </a>
+                        </li>
+			<li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="bi bi-airplane"></i> Gestionar Usuarios
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">
                                 <i class="bi bi-people-fill"></i> Clientes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-person-hearts"></i> Acompañantes
                             </a>
                         </li>
                         <li class="nav-item">
@@ -159,21 +159,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cost_tabulators') }}">
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="bi bi-airplane"></i> Gestionar Usuarios
                             </a>
                         </li>
                     </ul>

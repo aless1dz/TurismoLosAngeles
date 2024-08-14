@@ -149,6 +149,23 @@
                         <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                     </div>
                 </div>
+                <div class="input-group ml-2">
+<<<<<<< HEAD
+                    <input type="date" id="start-date" class="form-control" placeholder="Fecha Inicio">
+                    <input type="date" id="end-date" class="form-control ml-2" placeholder="Fecha Fin">
+                    <button id="filter-date-btn" class="btn btn-secondary ml-2">Filtrar Fecha</button>
+=======
+                    <div class="form-group">
+                        <label for="start-date">Fecha Inicio:</label>
+                        <input type="date" id="start-date" class="form-control" placeholder="Fecha Inicio">
+                    </div>
+                    <div class="form-group ml-2">
+                        <label for="end-date">Fecha Fin:</label>
+                        <input type="date" id="end-date" class="form-control" placeholder="Fecha Fin">
+                    </div>
+                    <button id="filter-date-btn" class="btn btn-secondary ml-2 align-self-end">Filtrar Fecha</button>
+>>>>>>> 23ed606a10eef3b2e888c6c392aabed7c599cae0
+                </div>
             </div>
             
             <div class="table-responsive">
@@ -228,9 +245,9 @@ document.addEventListener('DOMContentLoaded', function() {
     searchButton.addEventListener('click', filterRows);
     filterDateButton.addEventListener('click', filterRows);
 
-    searchInput.addEventListener('input', function() {
-        searchButton.click();
-    });
+    searchInput.addEventListener('input', filterRows);
+    startDateInput.addEventListener('change', filterRows);
+    endDateInput.addEventListener('change', filterRows);
 });
 </script>
 </body>

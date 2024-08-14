@@ -120,7 +120,7 @@
         <div class="row">
         <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
+                <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard">
                                 <i class="bi bi-speedometer2"></i> Dashboard
@@ -134,6 +134,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('citas') }}">
                                 <i class="bi bi-calendar3"></i> Citas
+                            </a>
+                        </li>
+			<li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">
+                                <i class="bi bi-airplane"></i> Gestionar Usuarios
                             </a>
                         </li>
                         <li class="nav-item">
@@ -156,51 +161,6 @@
                                 <i class="bi bi-currency-dollar"></i> Tabla de Costos
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comentarios') }}">
-                                <i class="bi bi-chat-left-dots"></i> Comentarios
-                            </a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="bi bi-airplane"></i> Gestionar Usuarios
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('visas') }}">
-                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
-                            </a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -217,6 +177,10 @@
                         <input type="date" id="start-date" class="form-control" placeholder="Fecha de inicio">
                         <input type="date" id="end-date" class="form-control ml-2" placeholder="Fecha de fin">
                         <input type="text" id="search-input" class="form-control ml-2" placeholder="Buscar por nombre...">
+                        <select id="destination-filter" class="form-control ml-2">
+                            <option value="">Todos los Destinos</option>
+                            <!-- Opciones de destinos se agregarán aquí -->
+                        </select>
                         <div class="input-group-append">
                             <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
                         </div>
@@ -491,51 +455,59 @@
         }
 
         function renderTrips(data) {
-            let tableBody = $('#tripTableBody');
-            tableBody.empty();
-            data.forEach(trip => {
-                let createdAt = new Date(trip.created_at).toLocaleString();
-                let updatedAt = new Date(trip.updated_at).toLocaleString();
-                let destinationInfo = trip.destination ? `${trip.destination.destination_acronym}` : 'N/A';
+    let tableBody = $('#tripTableBody');
+    tableBody.empty();
+    data.forEach(trip => {
+        let createdAt = new Date(trip.created_at).toLocaleString();
+        let updatedAt = new Date(trip.updated_at).toLocaleString();
+        let destinationInfo = trip.destination ? `${trip.destination.destination_acronym}` : 'N/A';
+        let destinationId = trip.destination ? trip.destination.iddestinations : '';
 
-                // Asegurarnos de que `trip.associates` sea un array antes de mapearlo
-                let associateInfo = Array.isArray(trip.associates) && trip.associates.length > 0 
-                    ? trip.associates.map(a => `${a.name} ${a.last_name}`).join(', ') 
-                    : 'N/A'; 
+        // Asegurarnos de que `trip.associates` sea un array antes de mapearlo
+        let associateInfo = Array.isArray(trip.associates) && trip.associates.length > 0 
+            ? trip.associates.map(a => `${a.name} ${a.last_name}`).join(', ') 
+            : 'N/A'; 
 
-                let costInfo = trip.cost_tabulator ? `${trip.cost_tabulator.price_description}  ${trip.cost_tabulator.unit_price} ` : 'N/A';
-                let userInfo = trip.user ? `${trip.user.name} ${trip.user.last_name}` : 'N/A';
+        let costInfo = trip.cost_tabulator ? `${trip.cost_tabulator.price_description}  ${trip.cost_tabulator.unit_price} ` : 'N/A';
+        let userInfo = trip.user ? `${trip.user.name} ${trip.user.last_name}` : 'N/A';
 
-                tableBody.append(`
-                    <tr>
-                        <td>${trip.idtrips}</td>
-                        <td>${destinationInfo}</td>
-                        <td>${userInfo}</td>
-                        <td>${associateInfo}</td>
-                        <td>${costInfo}</td>
-                        <td>${trip.bus_seats}</td>
-                        <td>${trip.telephone_number}</td>
-                        <td>${trip.payment_advance}</td>
-                        <td>${trip.total}</td>
-                        <td>${trip.observations}</td>
-                        <td>${createdAt}</td>
-                        <td>${updatedAt}</td>
-                        <td>
-                            <button class="btn btn-warning" onclick="editTrip(${trip.idtrips})"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger" onclick="deleteTrip(${trip.idtrips})"><i class="bi bi-backspace-fill"></i></button>
-                        </td>
-                    </tr>
-                `);
-            });
-        }
+        tableBody.append(`
+            <tr>
+                <td>${trip.idtrips}</td>
+                <td data-destination-id="${destinationId}">${destinationInfo}</td>
+                <td>${userInfo}</td>
+                <td>${associateInfo}</td>
+                <td>${costInfo}</td>
+                <td>${trip.bus_seats}</td>
+                <td>${trip.telephone_number}</td>
+                <td>${trip.payment_advance}</td>
+                <td>${trip.total}</td>
+                <td>${trip.observations}</td>
+                <td>${createdAt}</td>
+                <td>${updatedAt}</td>
+                <td>
+                    <button class="btn btn-warning" onclick="editTrip(${trip.idtrips})"><i class="bi bi-pencil-fill"></i></button>
+                    <button class="btn btn-danger" onclick="deleteTrip(${trip.idtrips})"><i class="bi bi-backspace-fill"></i></button>
+                </td>
+            </tr>
+        `);
+    });
+}
+
 
         function renderDestinations(destinations) {
-            let destinationSelect = $('#iddestinations');
-            destinationSelect.empty();
-            destinations.forEach(destination => {
-                destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
-            });
-        }
+    let destinationSelect = $('#iddestinations');
+    let destinationFilter = $('#destination-filter');
+    destinationSelect.empty();
+    destinationFilter.empty();
+    destinationFilter.append(`<option value="">Todos los Destinos</option>`); // Opción para no filtrar
+
+    destinations.forEach(destination => {
+        destinationSelect.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
+        destinationFilter.append(`<option value="${destination.iddestinations}">${destination.destination_acronym}</option>`);
+    });
+}
+
 
         function renderUsers(users) {
             let userSelect = $('#idusers');
@@ -565,6 +537,7 @@
     const searchValue = $('#search-input').val().toLowerCase();
     const startDate = new Date($('#start-date').val());
     const endDate = new Date($('#end-date').val());
+    const selectedDestination = $('#destination-filter').val();
     const rows = $('#tripTableBody tr');
 
     rows.each(function() {
@@ -572,27 +545,29 @@
         const nameText = row.find('td:nth-child(3)').text().toLowerCase();
         const dateText = row.find('td:nth-child(11)').text();
         const tripDate = new Date(dateText);
+        const destinationValue = row.find('td:nth-child(2)').data('destination-id');
 
         const matchesSearch = searchValue ? nameText.includes(searchValue) : true;
         const matchesDate = (!isNaN(startDate) && !isNaN(endDate)) 
             ? (tripDate >= startDate && tripDate <= endDate)
             : true;
+        const matchesDestination = selectedDestination ? destinationValue == selectedDestination : true;
 
-        if (matchesSearch && matchesDate) {
+        if (matchesSearch && matchesDate && matchesDestination) {
             row.show();
         } else {
             row.hide();
         }
     });
 }
-
 $('#search-btn').on('click', function () {
     applyFilters();
 });
 
-$('#start-date, #end-date, #search-input').on('input', function () {
+$('#start-date, #end-date, #search-input, #destination-filter').on('input', function () {
     applyFilters();
 });
+
 
 
         function editTrip(id) {

@@ -71,16 +71,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">Dashboard</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-        <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Cerrar sesión
-        </button>
+        @csrf
+    </form>
+    <button type="button" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Cerrar sesión
+    </button>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                    <i class="bi bi-person-circle"></i> {{Auth::user()->name}}
+                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
                 </a>
             </li>
         </ul>
@@ -89,107 +89,52 @@
 
 <div class="container-fluid">
     <div class="row">
-    <nav class="col-md-2 d-none d-md-block sidebar">
-                <div class="sidebar-sticky">
+        <nav class="col-md-2 d-none d-md-block sidebar">
+            <div class="sidebar-sticky">
                 <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
-                                <i class="bi bi-speedometer2"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('trips') }}">
-                                <i class="bi bi-geo-alt"></i> Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('citas') }}">
-                                <i class="bi bi-calendar3"></i> Citas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}">
-                                <i class="bi bi-people-fill"></i> Clientes
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('associates') }}">
-                                <i class="bi bi-person-hearts"></i> Acompañantes
-                            </a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('units') }}">
-                                <i class="bi bi-bus-front-fill"></i> Unidades
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cities') }}">
-                                <i class="bi bi-building"></i> Ciudades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('states') }}">
-                                <i class="bi bi-map-fill"></i> Estados
-                            </a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                <i class="bi bi-map"></i> Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                <i class="bi bi-currency-dollar"></i> Tabla de Costos
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pasaportes') }}">
-                                <i class="bi bi-card-checklist"></i> Citas Pasaportes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cotizaciones') }}">
-                                <i class="bi bi-file-earmark-text"></i> Citas Cotizaciones
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comentarios') }}">
-                                <i class="bi bi-chat-left-dots"></i> Comentarios
-                            </a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('rentas') }}">
-                                <i class="bi bi-car-front-fill"></i> Renta de Unidades
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viajes') }}">
-                                <i class="bi bi-airplane"></i> Solicitud de Viajes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">
-                                <i class="bi bi-airplane"></i> Gestionar Usuarios
-                            </a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('visas') }}">
-                                <i class="bi bi-file-earmark-text-fill"></i> Citas para Visas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('destinations') }}">
-                                Destinos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cost_tabulators') }}">
-                                Tabla de Costos
-                            </a>
-                        </li> -->
-                    </ul>
-                </div>
-            </nav>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/dashboard">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('trips') }}">
+                            <i class="bi bi-geo-alt"></i> Viajes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('citas') }}">
+                            <i class="bi bi-calendar3"></i> Citas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="bi bi-airplane"></i> Gestionar Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users') }}">
+                            <i class="bi bi-people-fill"></i> Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('units') }}">
+                            <i class="bi bi-bus-front-fill"></i> Unidades
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('destinations') }}">
+                            <i class="bi bi-map"></i> Destinos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cost_tabulators') }}">
+                            <i class="bi bi-currency-dollar"></i> Tabla de Costos
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
         <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
             <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -200,6 +145,16 @@
                     <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre...">
                     <div class="input-group-append">
                         <button id="search-btn" class="btn btn-secondary">Buscar <i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                <div class="input-group ml-2">
+                    <div class="form-group">
+                        <label for="start-date">Inicio:</label>
+                        <input type="date" id="start-date" class="form-control" placeholder="Fecha de inicio">
+                    </div>
+                    <div class="form-group ml-2">
+                        <label for="end-date">Fin:</label>
+                        <input type="date" id="end-date" class="form-control" placeholder="Fecha de fin">
                     </div>
                 </div>
             </div>
@@ -282,28 +237,32 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-btn');
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
     const table = document.querySelector('table tbody');
 
-    searchButton.addEventListener('click', function() {
+    function filterRows() {
         const searchTerm = searchInput.value.toLowerCase();
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
         const rows = table.querySelectorAll('tr');
 
         rows.forEach(row => {
-            const nameCell = row.querySelector('td:nth-child(1)'); 
-            if (nameCell) {
-                const nameText = nameCell.textContent.toLowerCase();
-                if (nameText.includes(searchTerm)) {
-                    row.style.display = ''; 
-                } else {
-                    row.style.display = 'none'; 
-                }
-            }
-        });
-    });
+            const nameCell = row.querySelector('td:nth-child(1)');
+            const dateCell = row.querySelector('td:nth-child(4)');
+            const dateValue = dateCell.textContent;
 
-    searchInput.addEventListener('input', function() {
-        searchButton.click();
-    });
+            const matchesSearch = nameCell && nameCell.textContent.toLowerCase().includes(searchTerm);
+            const matchesDate = (!startDate || dateValue >= startDate) && (!endDate || dateValue <= endDate);
+
+            row.style.display = matchesSearch && matchesDate ? '' : 'none';
+        });
+    }
+
+    searchButton.addEventListener('click', filterRows);
+    startDateInput.addEventListener('change', filterRows);
+    endDateInput.addEventListener('change', filterRows);
+    searchInput.addEventListener('input', filterRows);
 });
 </script>
 
