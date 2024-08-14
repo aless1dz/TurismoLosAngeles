@@ -76,9 +76,11 @@
 
                     <div class="box" style="background: url('/ImgCitas/IMG-FVisa.jpg') no-repeat;">
                         <div class="content">
-                            <h3>cita visa</h3>
-                            <p>reserva tu cita para iniciar tu solicitud de visa. nuestro equipo te guiará a través de todo el proceso. ¡haz clic aquí para agendar y asegurar tu lugar!</p>
-                            <a href="/citasVisa" class="btn">reservar cita</a>
+                            <div class="container-transparent">
+                                <h3>cita visa</h3>
+                                <p>Reserva tu cita para iniciar tu solicitud de visa. Nuestro equipo te guiará a través de todo el proceso. ¡Haz clic aquí para agendar y asegurar tu lugar!</p>
+                                <a href="/citasVisa" class="btn">Reservar cita</a>
+                            </div>
                         </div>
                     </div>
 
@@ -87,9 +89,11 @@
                 <div class="swiper-slide">
                     <div class="box second" style="background: url('/ImgCitas/IMG-FPasaporte.jpg') no-repeat;">
                         <div class="content">
-                            <h3>cita pasaporte</h3>
-                            <p>¿necesitas un pasaporte? programa tu cita de manera rápida y sencilla. evita largas filas y obtén tu pasaporte a tiempo para tu próximo viaje. ¡reserva aquí!</p>
-                            <a href="/citaPasaporte" class="btn">reservar cita</a>
+                            <div class="container-transparent">
+                                <h3>Cita pasaporte</h3>
+                                <p>¿Necesitas un pasaporte? programa tu cita de manera rápida y sencilla. Evita largas filas y obtén tu pasaporte a tiempo para tu próximo viaje. ¡Reserva aquí!</p>
+                                <a href="/citaPasaporte" class="btn">Reservar cita</a>
+                            </div>             
                         </div>
                     </div>
                 </div>
@@ -97,9 +101,11 @@
                 <div class="swiper-slide">
                     <div class="box" style="background: url('/ImgCitas/IMG-FUnidades.png') no-repeat;">
                         <div class="content">
-                            <h3>renta de unidades</h3>
-                            <p>explora nuestras unidades disponibles para alquiler. tenemos opciones que se ajustan a tus necesidades. programa una cita para una visita guiada. ¡contáctanos y agenda hoy mismo!</p>
-                            <a href="/citasUnidades" class="btn">reservar cita</a>
+                            <div class="container-transparent">
+                                <h3>Renta de unidades</h3>
+                                <p>Explora nuestras unidades disponibles para alquiler. Tenemos opciones que se ajustan a tus necesidades. Programa una cita para una visita guiada. ¡Contáctanos y agenda hoy mismo!</p>
+                                <a href="/citasUnidades" class="btn">Reservar cita</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,9 +113,11 @@
                 <div class="swiper-slide">
                     <div class="box second" style="background: url('/ImgCitas/IMG-FCotizacion.png') no-repeat;">
                         <div class="content">
-                            <h3>cita cotizaciones</h3>
-                            <p>¿buscas una cotización personalizada para nuestros productos o servicios? programa una cita y obtén una evaluación detallada que se ajuste a tus necesidades y presupuesto. ¡agenda tu cita ahora!</p>
-                            <a href="/citasCotizacion" class="btn">reservar cita</a>
+                            <div class="container-transparent">
+                                <h3>cita cotizaciones</h3>
+                                <p>¿Buscas una cotización personalizada para nuestros productos o servicios? programa una cita y obtén una evaluación detallada que se ajuste a tus necesidades y presupuesto. ¡Agenda tu cita ahora!</p>
+                                <a href="/citasCotizacion" class="btn">Reservar cita</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,9 +125,11 @@
                 <div class="swiper-slide">
                     <div class="box" style="background: url('/ImgCitas/IMG-FComentario.jpg') no-repeat;">
                         <div class="content">
-                            <h3>comentario</h3>
-                            <p>nos encantaría conocer tu opinión. ¿tienes alguna sugerencia o pregunta? deja tu comentario aquí y comparte tus ideas con nosotros. ¡gracias por ayudarnos a mejorar!</p>
-                            <a href="/citas" class="btn">realizar comentario</a>
+                            <div class="container-transparent">
+                                <h3>comentario</h3>
+                                <p>Nos encantaría conocer tu opinión. ¿Tienes alguna sugerencia o pregunta? deja tu comentario aquí y comparte tus ideas con nosotros. ¡Gracias por ayudarnos a mejorar!</p>
+                                <a href="/citas" class="btn">Realizar comentario</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,9 +137,11 @@
                 <div class="swiper-slide">
                     <div class="box second" style="background: url('/ImgCitas/IMG-FViajes.jpg') no-repeat;">
                         <div class="content">
-                            <h3>cita viajes</h3>
-                            <p>¿listo para tu próxima aventura? Programa una cita con nuestros expertos en viajes y deja que te ayudemos a planificar el viaje perfecto. ya sea que busques destinos exóticos o escapadas relajantes, estamos aquí para asesorarte. ¡agenda tu cita hoy y empieza a planear tu viaje ideal!</p>
-                            <a href="/citasViajes" class="btn">reservar cita</a>
+                            <div class="container-transparent">
+                                <h3>Cita viajes</h3>
+                                <p>¿Listo para tu próxima aventura? Programa una cita con nuestros expertos en viajes y deja que te ayudemos a planificar el viaje perfecto. Ya sea que busques destinos exóticos o escapadas relajantes, estamos aquí para asesorarte. ¡Agenda tu cita hoy y empieza a planear tu viaje ideal!</p>
+                                <a href="/citasViajes" class="btn">reservar cita</a>
+                            </div>
                         </div>
                     </div>
                 </div>

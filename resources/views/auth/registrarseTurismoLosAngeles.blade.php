@@ -42,7 +42,6 @@
             </div>
           </div>
           <div class="input-box">
-<<<<<<< HEAD
             <input type="text" id="birthdate" name="birthdate" class="input-field" placeholder="Fecha de nacimiento" 
                    onfocus="(this.type='date')" onblur="(this.type='text')" value="{{ old('birthdate') }}">
             <i class="bx bx-calendar"></i>
@@ -52,24 +51,6 @@
                 </small>
             @enderror
         </div>
-=======
-    <input 
-        type="date" 
-        id="birthdate" 
-        name="birthdate" 
-        class="input-field" 
-        placeholder="Fecha de Nacimiento" 
-        value="{{ old('birthdate') }}"
-    >
-    <i class="bx bx-calendar"></i>
-    @error('birthdate')
-        <small class="text-danger mt-1">
-            <strong>{{ $message }}</strong>
-        </small>
-    @enderror
-</div>
-
->>>>>>> bff27050d687612f9806570f6a71b444c855262d
         
           <div class="input-box">
             <input type="email" value="{{old('email')}}" name="email" class="input-field" placeholder="Email">
