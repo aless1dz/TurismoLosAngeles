@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/bac15b686a.js" crossorigin="anonymous"></script>
     <!-- Librería iziToast -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ asset('imagenesInicio/favicon.ico') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Cita Visa | Turismo Los Angeles</title>
 </head>
@@ -24,7 +25,7 @@
         <!-- Section -->
         <section class="contact">
             <div class="contact__box">
-                <h2 class="contact__title">Cita Visa</h2>
+                <h2 class="contact__title">Cita visa</h2>
                 <p>Complete la información solicitada y espera una respuesta.</p>
             </div>
             <form action="{{ route('store.visas') }}" method="POST" id="contact-form" class="contact__form" autocomplete="off">
@@ -32,7 +33,7 @@
                 <input type="hidden" id="form_type" name="form_type" value="visas">
                 <div class="contact__inputs">
                     <label class="contact__label" for="user-name">Nombre</label>
-                    <input type="text" name="user_name" id="user-name" class="contact__input" required>
+                    <input type="text" name="user_name" id="user-name" class="contact__input" required oninput="validateName(this);">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label" for="user-email">Correo electrónico</label>
@@ -48,7 +49,7 @@
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label" for="user-date">Fecha</label>
-                    <input type="date" name="user_date" id="user-date" class="contact__input" required>
+                    <input type="date" name="user_date" id="user-date" class="contact__input" required min="{{ date('Y-m-d') }}">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label" for="user-adult">Personas</label>
@@ -91,21 +92,21 @@
      
              <!-- Redes Sociales -->
              <div class="container__rrss">
-                 <a href="#" class="container__rrss-item">
+                 <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank" class="container__rrss-item">
                      <i class="fab fa-facebook"></i>
                  </a>
-                 <a href="#" class="container__rrss-item">
-                     <i class="fab fa-whatsapp"></i>
+                 <a href="https://wa.me/8712174806" target="_blank" class="container__rrss-item"> 
+                    <i class="fab fa-whatsapp"></i>
                  </a>
-                 <a href="#" class="container__rrss-item">
+                 <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank" class="container__rrss-item">
                      <i class="fab fa-instagram"></i>
                  </a>
              </div>
          </div>
     </div>
-    <!-- script js -->
-    <script src="{{ asset('js/citas.js') }}"></script>
-    <!-- script iziToast -->
+    <!-- Librería EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Script Librería iziToast -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <script>
          document.addEventListener('DOMContentLoaded', function() {
