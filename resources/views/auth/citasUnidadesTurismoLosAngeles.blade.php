@@ -33,7 +33,7 @@
                 <input type="hidden" id="form_type" name="form_type" value="renta">
                 <div class="contact__inputs">
                     <label class="contact__label">Nombre</label>
-                    <input type="text" name="user_name" id="user-name" class="contact__input" required>
+                    <input type="text" name="user_name" id="user-name" class="contact__input" required oninput="validateName(this)">
                 </div>
                 <div class="contact__inputs">
                     <label class="contact__label">Correo electrónico</label>
@@ -93,13 +93,13 @@
 
         <!-- Redes Sociales -->
         <div class="container__rrss">
-            <a href="#" class="container__rrss-item">
+            <a href="https://www.facebook.com/TurismoLosAngeless/?locale=es_LA" target="_blank" class="container__rrss-item">
                 <i class="fab fa-facebook"></i>
             </a>
-            <a href="#" class="container__rrss-item">
-                <i class="fab fa-whatsapp"></i>
+            <a href="https://wa.me/8712174806" target="_blank" class="container__rrss-item"> 
+               <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="#" class="container__rrss-item">
+            <a href="https://www.instagram.com/turismolosangeles1/?hl=es-la" target="_blank" class="container__rrss-item">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
@@ -111,6 +111,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <!-- Script index.js -->
     <script>
+
+        function validateName(input) {
+            input.value = input.value.replace(/[^a-zA-ZñÑ\s]/g, '');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('contact-form');
 
