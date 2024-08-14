@@ -107,7 +107,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Script Librería iziToast -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-<<<<<<< HEAD
     <!-- Script para notificación -->
 
     <script>
@@ -118,26 +117,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('contact-form');
 
-=======
-    <script>
-         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('contact-form');
-
-            // Función para permitir solo letras y números
-    function restrictSymbols(event) {
-        const input = event.target;
-        const regex = /^[a-zA-Z0-9]*$/;
-
-        if (!regex.test(input.value)) {
-            input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
-        }
-    }
-
-    // Agregar evento de input para los campos específicos
-    document.getElementById('user-name').addEventListener('input', restrictSymbols);
-    document.getElementById('user-email').addEventListener('input', restrictSymbols);
-    
->>>>>>> 159d261027709369a9d4b5440eb596010d6aec67
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); 
 
