@@ -19,9 +19,9 @@ class UserController extends Controller
 {
     public function index()
     {
-       /*if (auth()->user()->role !== 'admin') {
+       if (auth()->user()->role !== 'admin') {
             abort(403, 'No tienes permiso para acceder a esta página.');
-        }*/
+        }
         $users = User::whereIn('role', ['admin', 'employee'])->get();
     return view('adminFold/adminUsers', compact('users'));
     }
